@@ -6,18 +6,21 @@ import kotlinx.serialization.Serializable
 sealed class Role(
     val roleId: RoleId,
     val type: RoleType,
+    val tokens: List<Token> = emptyList()
 ) {
     //Townsfolks
     @Serializable
     data object Washerwoman : Role(
         roleId = RoleId.WASHERWOMAN,
-        type = RoleType.TOWNSFOLK
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.WasherwomanTownsfolk, Token.WasherwomanWrong)
     )
 
     @Serializable
     data object Librarian : Role(
         roleId = RoleId.LIBRARIAN,
-        type = RoleType.TOWNSFOLK
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.LibrarianOutsider, Token.LibrarianWrong)
     )
 
     @Serializable

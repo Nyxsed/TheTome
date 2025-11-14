@@ -1,4 +1,4 @@
-package ru.nyxsed.thetome.core
+package ru.nyxsed.thetome.core.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

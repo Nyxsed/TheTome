@@ -10,12 +10,15 @@ import kotlinx.coroutines.launch
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.domain.models.Token
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
+import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val loadGameUseCase: LoadGameStateUseCase,
+    private val saveGameStateUseCase: SaveGameStateUseCase,
 ) : ViewModel() {
 
     val _state = MutableStateFlow(GameState(null))
@@ -24,34 +27,32 @@ class GameViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             loadGameUseCase().collect { loadedGame ->
-                if (loadedGame != null) {
-                    val players = loadedGame.chosenRoles?.mapIndexed { index, role ->
-                        Player(
-                            id = index,
-                            name = null,
-                            role = null,
-                            tokens = listOf("123", "456", "789")
-                        )
-                    } ?: emptyList()
-                    _state.update {
-                        it.copy(
-                            scenery = loadedGame.scenery,
-                            players = players,
-                            chosenRoles = loadedGame.chosenRoles,
-                        )
-                    }
+                _state.update {
+                    it.copy(
+                        scenery = loadedGame?.scenery,
+                        players = loadedGame?.players,
+                        chosenRoles = loadedGame?.chosenRoles,
+                    )
                 }
             }
         }
     }
 
-    fun updateTokens(player: Player, tokens: List<String>) {
+
+    fun saveGameState() {
+        viewModelScope.launch {
+            saveGameStateUseCase(_state.value)
+        }
+    }
+
+    fun updateTokens(player: Player, tokens: List<Token>) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
                 if (currentPlayer == player) currentPlayer.copy(tokens = tokens) else currentPlayer
             }
             currentState.copy(players = updatedPlayers)
         }
+        saveGameState()
     }
 
     fun changeAliveStatus(player: Player) {
@@ -61,6 +62,7 @@ class GameViewModel @Inject constructor(
             }
             currentState.copy(players = updatedPlayers)
         }
+        saveGameState()
     }
 
     fun renamePlayer(player: Player, name: String) {
@@ -70,14 +72,16 @@ class GameViewModel @Inject constructor(
             }
             currentState.copy(players = updatedPlayers)
         }
+        saveGameState()
     }
 
-    fun changeRole(player: Player, role: Role) {
+    fun changeRole(player: Player, role: Role?) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
                 if (currentPlayer == player) currentPlayer.copy(role = role) else currentPlayer
             }
             currentState.copy(players = updatedPlayers)
         }
+        saveGameState()
     }
 }

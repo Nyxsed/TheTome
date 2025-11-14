@@ -19,7 +19,8 @@ import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.features.game.presentation.ArcPosition
+import ru.nyxsed.thetome.core.domain.models.Token
+import ru.nyxsed.thetome.features.game.presentation.components.ArcPosition
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -27,10 +28,10 @@ import kotlin.math.sin
 @Composable
 fun PlayersWheel(
     state: GameState,
-    onUpdateTokens: (Player, List<String>) -> Unit,
+    onUpdateTokens: (Player, List<Token>) -> Unit,
     onChangeAliveStatus: (Player) -> Unit,
     onRenamePlayer: (Player, String) -> Unit,
-    onChangeRole: (Player, Role) -> Unit,
+    onChangeRole: (Player, Role?) -> Unit,
 ) {
     var renameTarget by remember { mutableStateOf<Player?>(null) }
     var renameText by remember { mutableStateOf("") }
@@ -38,7 +39,7 @@ fun PlayersWheel(
     if (renameTarget != null) {
         AlertDialog(
             onDismissRequest = { renameTarget = null },
-            title = { Text("Переименовать игрока") },
+            title = { Text("Rename player") },
             text = {
                 OutlinedTextField(
                     value = renameText,
@@ -68,13 +69,52 @@ fun PlayersWheel(
 
     var roleTarget by remember { mutableStateOf<Player?>(null) }
     var selectedRole by remember { mutableStateOf<Role?>(null) }
+
     if (roleTarget != null && state.chosenRoles?.isNotEmpty() == true) {
+
+        val availableRoles = state.chosenRoles
+            ?.filter { role ->
+                !state.players?.any { p -> p != roleTarget && p.role == role }!!
+            }
+            ?: emptyList()
+
         AlertDialog(
             onDismissRequest = { roleTarget = null },
             title = { Text("Pick a role") },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    state.chosenRoles?.forEach { role ->
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ) {
+                                val target = roleTarget
+                                if (target != null) {
+                                    onChangeRole(target, null)   // снимаем роль
+                                }
+                                roleTarget = null
+                            }
+                            .padding(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = selectedRole == null,
+                            onClick = {
+                                val target = roleTarget
+                                if (target != null) {
+                                    onChangeRole(target, null)
+                                }
+                                roleTarget = null
+                            }
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text("Без роли")
+                    }
+
+                    availableRoles.forEach { role ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -219,8 +259,76 @@ fun PlayersWheel(
                         },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("2", fontSize = 6.sp, color = Color.White, textAlign = TextAlign.Center, lineHeight = 6.sp)
+                    TextArc(text = token.name, fontSize = 6.sp, circleSize = tokenSize, position = ArcPosition.BOTTOM)
                 }
+            }
+
+
+            var tokenTargetPlayer by remember { mutableStateOf<Player?>(null) }
+            var selectedToken by remember { mutableStateOf<Token?>(null) }
+
+            if (tokenTargetPlayer != null) {
+                // Собираем все токены из всех ролей в игре
+                val allRoleTokens = state.chosenRoles
+                    ?.flatMap { role -> role.tokens }
+                    ?: emptyList()
+
+                // Отфильтровываем токены, которые уже назначены другим игрокам
+                val availableTokens = allRoleTokens.filter { token ->
+                    state.players.none { p ->
+                       token in p.tokens
+                    }
+                }
+
+                AlertDialog(
+                    onDismissRequest = { tokenTargetPlayer = null },
+                    title = { Text("Choose token") },
+                    text = {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            availableTokens.forEach { token ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable(
+                                            indication = null,
+                                            interactionSource = remember { MutableInteractionSource() }
+                                        ) {
+                                            tokenTargetPlayer?.let { player ->
+                                                val newTokens = player.tokens.toMutableList().also {
+                                                    it.add(token)
+                                                }
+                                                onUpdateTokens(player, newTokens)
+                                            }
+                                            tokenTargetPlayer = null
+                                        }
+                                        .padding(8.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    RadioButton(
+                                        selected = selectedToken == token,
+                                        onClick = {
+                                            tokenTargetPlayer?.let { player ->
+                                                val newTokens = player.tokens.toMutableList().also {
+                                                    it.add(token)
+                                                }
+                                                onUpdateTokens(player, newTokens)
+                                            }
+                                            tokenTargetPlayer = null
+                                        }
+                                    )
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(token.name)
+                                }
+                            }
+                        }
+                    },
+                    confirmButton = {},
+                    dismissButton = {
+                        TextButton(onClick = { tokenTargetPlayer = null }) {
+                            Text("Отмена")
+                        }
+                    }
+                )
             }
 
             // Добавочный "+"
@@ -238,8 +346,7 @@ fun PlayersWheel(
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }
                     ) {
-                        val newTokens = player.tokens.toMutableList().also { it.addLast("123") }
-                        onUpdateTokens(player, newTokens)
+                        tokenTargetPlayer = player
                     },
                 contentAlignment = Alignment.Center
             ) {

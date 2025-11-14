@@ -1,4 +1,4 @@
-package ru.nyxsed.thetome.features.newgame.presentation
+package ru.nyxsed.thetome.features.settings.presentation
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
@@ -20,13 +20,13 @@ import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
 
 @Composable
-fun NewGameScreen(
-    viewModel: NewGameViewModel = hiltViewModel(),
+fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel(),
     onStartGameClicked: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
-    NewGameContent(
+    SettingsContent(
         state = state,
         onPlayerCountChanged = { viewModel.changePlayerCount(it) },
         onSceneryChanged = { viewModel.changeScenery(it) },
@@ -39,8 +39,8 @@ fun NewGameScreen(
 }
 
 @Composable
-fun NewGameContent(
-    state: NewGameState,
+fun SettingsContent(
+    state: SettingsState,
     onPlayerCountChanged: (Int) -> Unit,
     onSceneryChanged: (Scenery) -> Unit,
     onRoleSelected: (Role) -> Unit,

@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.nyxsed.thetome.features.game.presentation.GameScreen
-import ru.nyxsed.thetome.features.newgame.presentation.NewGameScreen
+import ru.nyxsed.thetome.features.settings.presentation.SettingsScreen
 import ru.nyxsed.thetome.features.start.presentation.StartScreen
 
 @Composable
@@ -13,12 +13,12 @@ fun AppNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "start") {
         composable("start") { 
             StartScreen(
-                onNewGameClicked = { navController.navigate("new_game") },
+                onNewGameClicked = { navController.navigate("settings") },
                 onRestoreGameClicked = { navController.navigate("restore_game") },
             )
         }
-        composable("new_game") {
-            NewGameScreen(
+        composable("settings") {
+            SettingsScreen(
                 onStartGameClicked = { navController.navigate("restore_game") }
             )
         }

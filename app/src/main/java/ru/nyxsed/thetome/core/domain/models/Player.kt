@@ -7,7 +7,7 @@ data class Player(
     val id : Int,
     val name : String?,
     val role : Role?,
-    val tokens: List<String> = emptyList(),
+    val tokens: List<Token> = emptyList(),
     val isAlive : Boolean = true,
     val isDrunk : Boolean = false,
 )

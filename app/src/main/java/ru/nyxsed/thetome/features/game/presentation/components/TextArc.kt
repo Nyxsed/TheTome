@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.nyxsed.thetome.features.game.presentation.ArcPosition
+import ru.nyxsed.thetome.features.game.presentation.components.ArcPosition
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
