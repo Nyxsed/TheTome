@@ -259,7 +259,7 @@ fun PlayersWheel(
                         },
                     contentAlignment = Alignment.Center
                 ) {
-                    TextArc(text = token.name, fontSize = 6.sp, circleSize = tokenSize, position = ArcPosition.BOTTOM)
+                    TextArc(text = token.name, circleSize = tokenSize,color = Color.White, position = ArcPosition.BOTTOM)
                 }
             }
 

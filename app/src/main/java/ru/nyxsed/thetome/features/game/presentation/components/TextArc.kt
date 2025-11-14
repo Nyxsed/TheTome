@@ -21,45 +21,65 @@ import kotlin.math.sin
 fun TextArc(
     text: String,
     circleSize: Dp,
-    fontSize: TextUnit = 12.sp,
     color: Color = Color.Black,
-    position: ArcPosition,
-    maxSweep: Float = 120f,
+    position: ArcPosition
 ) {
     Canvas(modifier = Modifier.size(circleSize)) {
-        val radius = size.minDimension / 2 - 10.dp.toPx()
-        val centerX = size.width / 2
-        val centerY = size.height / 2
-
         if (text.isEmpty()) return@Canvas
 
+        val canvasRadius = size.minDimension / 2f
+        val centerX = size.width / 2f
+        val centerY = size.height / 2f
+
+        // Динамический коэффициент для шрифта в зависимости от размера круга
+        val sizeFactor = when {
+            canvasRadius < 50f -> 0.4f // маленький круг — увеличиваем шрифт
+            canvasRadius < 100f -> 0.5f
+            else -> 0.2f // большой круг — немного меньше
+        }
+
+        // Авто-подбор размера шрифта по радиусу круга
+        val fontSizePx = canvasRadius * sizeFactor
         val paint = android.graphics.Paint().apply {
             this.color = color.toArgb()
-            this.textSize = fontSize.toPx()
+            this.textSize = fontSizePx
             this.isAntiAlias = true
             this.textAlign = android.graphics.Paint.Align.CENTER
         }
 
-        val sweepAngle = min(maxSweep, 360f)
-        val charAngle = if (text.length > 1) sweepAngle / (text.length - 1) else 0f
+        // Расчет sweepAngle исходя из ширины текста и радиуса
+        val textWidthPx = text.map { paint.measureText(it.toString()).toDouble() }.sum()
+        // Общий угол для текста в радианах: длина дуги = radius * angle
+        val totalAngleRad = textWidthPx / canvasRadius
+        val charAngleRad = if (text.length > 1) totalAngleRad / (text.length - 1) else 0.0
 
         text.forEachIndexed { index, char ->
-            val angleDeg = when (position) {
-                ArcPosition.TOP -> -90f - sweepAngle / 2 + index * charAngle
-                ArcPosition.BOTTOM -> 90f + sweepAngle / 2 - index * charAngle
+            val angleRad = when (position) {
+                ArcPosition.TOP -> -Math.PI / 2 - totalAngleRad / 2 + index * charAngleRad
+                ArcPosition.BOTTOM -> Math.PI / 2 + totalAngleRad / 2 - index * charAngleRad
             }
-            val angleRad = Math.toRadians(angleDeg.toDouble())
 
-            val adjustedRadius = if (position == ArcPosition.BOTTOM) radius + fontSize.toPx() / 2 else radius
 
-            val x = centerX + adjustedRadius * cos(angleRad)
-            val y = centerY + adjustedRadius * sin(angleRad)
+
+            // Радиус для верхней дуги учитывает высоту шрифта
+            val radiusOffset = fontSizePx / 2f
+            val metrics = paint.fontMetrics
+            val textHeight = metrics.descent - metrics.ascent
+
+            val adjustedRadius = when (position) {
+                ArcPosition.TOP -> canvasRadius - textHeight // прижимаем текст к верхнему краю
+                ArcPosition.BOTTOM -> canvasRadius - textHeight / 2f // чуть выше нижнего края
+            }
+
+            val x = centerX + adjustedRadius * cos(angleRad).toFloat()
+            val y = centerY + adjustedRadius * sin(angleRad).toFloat()
 
             drawContext.canvas.nativeCanvas.apply {
                 save()
-                val rotation = if (position == ArcPosition.TOP) angleDeg + 90f else angleDeg - 90f
-                rotate(rotation.toFloat(), x.toFloat(), y.toFloat())
-                drawText(char.toString(), x.toFloat(), y.toFloat(), paint)
+                val rotation = if (position == ArcPosition.TOP) Math.toDegrees(angleRad) + 90.0
+                else Math.toDegrees(angleRad) - 90.0
+                rotate(rotation.toFloat(), x, y)
+                drawText(char.toString(), x, y, paint)
                 restore()
             }
         }
