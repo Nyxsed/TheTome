@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
+import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
 @Composable
 fun SettingsScreen(
@@ -159,12 +160,16 @@ fun RoleSelector(
                     val isSelected = selectedRoles.contains(role)
                     val isEnabled = isSelected || selectedRoles.size < maxSelection
 
-                    RoleItem(
-                        role = role,
-                        isSelected = isSelected,
-                        isEnabled = isEnabled,
-                        onClick = { onRoleClick(role) }
+                    CircleItem(
+                        size = 70.dp,
+                        backgroundColor = if (isSelected) Color.Green else if (isEnabled) Color.Gray else Color.LightGray,
+                        bottomText = role.roleId.name,
+                        isClickableEnabled = isEnabled,
+                        onClick = {
+                            onRoleClick(role)
+                        }
                     )
+
                 }
         }
     }
@@ -173,35 +178,4 @@ fun RoleSelector(
         text = "Players: ${selectedRoles.size} / $maxSelection",
         modifier = Modifier.padding(top = 8.dp)
     )
-}
-
-@Composable
-fun RoleItem(
-    role: Role,
-    isSelected: Boolean,
-    isEnabled: Boolean,
-    onClick: (Role) -> Unit,
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-
-    Box(
-        modifier = Modifier
-            .size(48.dp)
-            .clip(CircleShape)
-            .background(if (isSelected) Color.Green else if (isEnabled) Color.Gray else Color.LightGray)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = LocalIndication.current,
-                enabled = isEnabled
-            ) {
-                onClick(role)
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = role.roleId.name,
-            color = Color.White,
-            fontWeight = FontWeight.Bold
-        )
-    }
 }

@@ -1,5 +1,6 @@
-package ru.nyxsed.thetome.features.game.presentation.components
+package ru.nyxsed.thetome.core.presentation.components
 
+import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -8,12 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import ru.nyxsed.thetome.features.game.presentation.components.ArcPosition
 import kotlin.math.cos
-import kotlin.math.min
 import kotlin.math.sin
 
 
@@ -22,7 +18,7 @@ fun TextArc(
     text: String,
     circleSize: Dp,
     color: Color = Color.Black,
-    position: ArcPosition
+    position: ArcPosition,
 ) {
     Canvas(modifier = Modifier.size(circleSize)) {
         if (text.isEmpty()) return@Canvas
@@ -33,18 +29,18 @@ fun TextArc(
 
         // Динамический коэффициент для шрифта в зависимости от размера круга
         val sizeFactor = when {
-            canvasRadius < 50f -> 0.4f // маленький круг — увеличиваем шрифт
-            canvasRadius < 100f -> 0.5f
+            canvasRadius < 50f -> 0.3f // маленький круг — увеличиваем шрифт
+            canvasRadius < 100f -> 0.32f
             else -> 0.2f // большой круг — немного меньше
         }
 
         // Авто-подбор размера шрифта по радиусу круга
         val fontSizePx = canvasRadius * sizeFactor
-        val paint = android.graphics.Paint().apply {
+        val paint = Paint().apply {
             this.color = color.toArgb()
             this.textSize = fontSizePx
             this.isAntiAlias = true
-            this.textAlign = android.graphics.Paint.Align.CENTER
+            this.textAlign = Paint.Align.CENTER
         }
 
         // Расчет sweepAngle исходя из ширины текста и радиуса
@@ -58,7 +54,6 @@ fun TextArc(
                 ArcPosition.TOP -> -Math.PI / 2 - totalAngleRad / 2 + index * charAngleRad
                 ArcPosition.BOTTOM -> Math.PI / 2 + totalAngleRad / 2 - index * charAngleRad
             }
-
 
 
             // Радиус для верхней дуги учитывает высоту шрифта
@@ -85,3 +80,5 @@ fun TextArc(
         }
     }
 }
+
+enum class ArcPosition { TOP, BOTTOM }
