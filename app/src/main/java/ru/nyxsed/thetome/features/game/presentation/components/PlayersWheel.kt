@@ -220,46 +220,69 @@ fun RolePickerDialog(
         onDismissRequest = onDismiss,
         title = { Text("Pick a role") },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-
-                // "Без роли"
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() }
-                        ) { onSelectRole(null) }
-                        .padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                FlowRow(
+                    modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    RadioButton(
-                        selected = selectedRole == null,
-                        onClick = { onSelectRole(null) }
+                    CircleItem(
+                        size = 70.dp,
+                        backgroundColor = Color.DarkGray,
+                        centerText = "No Role",
+                        onClick = {onSelectRole(null)}
                     )
-                    Spacer(Modifier.width(8.dp))
-                    Text("Без роли")
-                }
 
-                availableRoles.forEach { role ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(
-                                indication = null,
-                                interactionSource = remember { MutableInteractionSource() }
-                            ) { onSelectRole(role) }
-                            .padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = selectedRole == role,
-                            onClick = { onSelectRole(role) }
+                    availableRoles.forEach { role ->
+                        CircleItem(
+                            size = 70.dp,
+                            backgroundColor = Color.DarkGray,
+                            bottomText = role.roleId.name,
+                            onClick = {onSelectRole(role) }
                         )
-                        Spacer(Modifier.width(8.dp))
-                        Text(role.roleId.name)
                     }
                 }
+
+
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .clickable(
+//                            indication = null,
+//                            interactionSource = remember { MutableInteractionSource() }
+//                        ) { onSelectRole(null) }
+//                        .padding(8.dp),
+//                    verticalAlignment = Alignment.CenterVertically
+//                ) {
+//                    RadioButton(
+//                        selected = selectedRole == null,
+//                        onClick = { onSelectRole(null) }
+//                    )
+//                    Spacer(Modifier.width(8.dp))
+//                    Text("Без роли")
+//                }
+//
+//                availableRoles.forEach { role ->
+//                    Row(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .clickable(
+//                                indication = null,
+//                                interactionSource = remember { MutableInteractionSource() }
+//                            ) { onSelectRole(role) }
+//                            .padding(8.dp),
+//                        verticalAlignment = Alignment.CenterVertically
+//                    ) {
+//                        RadioButton(
+//                            selected = selectedRole == role,
+//                            onClick = { onSelectRole(role) }
+//                        )
+//                        Spacer(Modifier.width(8.dp))
+//                        Text(role.roleId.name)
+//                    }
+//                }
             }
         },
         confirmButton = {},

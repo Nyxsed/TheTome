@@ -59,7 +59,7 @@ fun CircleItem(
             TextArc(text = bottomText, circleSize = size, position = ArcPosition.BOTTOM)
         }
         if (!centerText.isNullOrEmpty()) {
-            Text("+", fontSize = 6.sp, color = Color.Black, textAlign = TextAlign.Center, lineHeight = 6.sp)
+            Text(centerText, fontSize = 6.sp, color = Color.Black, textAlign = TextAlign.Center, lineHeight = 6.sp)
         }
 
         if (menuItems.isNotEmpty()) {
