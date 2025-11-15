@@ -11,7 +11,7 @@ import ru.nyxsed.thetome.features.start.presentation.StartScreen
 @Composable
 fun AppNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "start") {
-        composable("start") { 
+        composable("start") {
             StartScreen(
                 onNewGameClicked = { navController.navigate("settings") },
                 onRestoreGameClicked = { navController.navigate("restore_game") },
@@ -23,7 +23,9 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
         composable("restore_game") {
-            GameScreen()
+            GameScreen(
+                onEditGameClicked = { navController.navigate("settings") }
+            )
         }
     }
 }

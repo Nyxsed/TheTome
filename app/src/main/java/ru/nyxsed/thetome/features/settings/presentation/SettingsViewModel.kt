@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Scenery
+import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
 import ru.nyxsed.thetome.core.domain.usecase.RoleDistributionUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
@@ -19,13 +22,32 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val roleDistributionUseCase: RoleDistributionUseCase,
     private val saveGameStateUseCase: SaveGameStateUseCase,
+    private val loadGameStateUseCase: LoadGameStateUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SettingsState())
     val state = _state.asStateFlow()
 
     init {
-        changePlayerCount(5)
+        viewModelScope.launch {
+            loadGameStateUseCase()
+                .onStart {
+                    changePlayerCount(5)
+                }
+                .filterNotNull()
+                .collect { loadedState ->
+                _state.update {
+                    val playerCount = loadedState.players?.size ?: 5
+                    it.copy(
+                        selectedScenery = loadedState.scenery,
+                        playerCount = playerCount,
+                        players = loadedState.players,
+                        roleDistribution = roleDistributionUseCase(playerCount),
+                        chosenRoles = loadedState.chosenRoles!!
+                    )
+                }
+            }
+        }
     }
 
     fun changePlayerCount(playerCount: Int) {
@@ -50,16 +72,20 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun saveGameState() {
-        val players = _state.value.chosenRoles.mapIndexed { index, role ->
+        val roles = _state.value.chosenRoles
+        val oldPlayers = _state.value.players
+
+        val players = List(roles.size) { index ->
+            val oldName = oldPlayers?.getOrNull(index)?.name
             Player(
                 id = index,
-                name = null,
+                name = oldName,
                 role = null
             )
         }
         val gameState = GameState(
             scenery = _state.value.selectedScenery,
-            chosenRoles = _state.value.chosenRoles,
+            chosenRoles = roles,
             players = players
         )
         viewModelScope.launch {

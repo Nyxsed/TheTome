@@ -1,18 +1,11 @@
 package ru.nyxsed.thetome.features.settings.presentation
 
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -77,7 +70,7 @@ fun SettingsContent(
 
         Button(
             enabled = state.chosenRoles.size == state.playerCount,
-            onClick = { onStartGameClicked()}
+            onClick = { onStartGameClicked() }
         ) {
             Text("Start Game")
         }
@@ -146,7 +139,7 @@ fun RoleSelector(
             text = "${roleType.name}: $selectedRolesCountByType / ${roleDistribution[roleType]}",
             modifier = Modifier.padding(top = 8.dp)
         )
-        
+
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()
