@@ -288,24 +288,22 @@ fun TokenPickerDialog(
         onDismissRequest = onDismiss,
         title = { Text("Choose token") },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                availableTokens.forEach { token ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(
-                                indication = null,
-                                interactionSource = remember { MutableInteractionSource() }
-                            ) { onPickToken(token) }
-                            .padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = false,
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center // центрируем FlowRow
+            ) {
+                FlowRow(
+                    modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    availableTokens.forEach { token ->
+                        CircleItem(
+                            size = 70.dp,
+                            backgroundColor = Color.DarkGray,
+                            bottomText = token.name,
                             onClick = { onPickToken(token) }
                         )
-                        Spacer(Modifier.width(8.dp))
-                        Text(token.name)
                     }
                 }
             }
