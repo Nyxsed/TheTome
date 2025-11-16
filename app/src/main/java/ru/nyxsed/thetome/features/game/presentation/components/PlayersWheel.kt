@@ -1,9 +1,7 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +30,6 @@ fun PlayersWheel(
 ) {
     var renameTarget by remember { mutableStateOf<Player?>(null) }
     var renameText by remember { mutableStateOf("") }
-
     RenamePlayerDialog(
         target = renameTarget,
         name = renameText,
@@ -47,26 +44,24 @@ fun PlayersWheel(
         onDismiss = { renameTarget = null }
     )
 
-
     var roleTarget by remember { mutableStateOf<Player?>(null) }
-    var selectedRole by remember { mutableStateOf<Role?>(null) }
-
-    RolePickerDialog(
-        target = roleTarget,
-        chosenRoles = state.chosenRoles,
-        players = state.players,
-        selectedRole = selectedRole,
-        onSelectRole = { role ->
-            val target = roleTarget
-            if (target != null) onChangeRole(target, role)
-            roleTarget = null
-        },
-        onDismiss = { roleTarget = null }
-    )
+    if (roleTarget != null) {
+        val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
+        val availableRoles = state.chosenRoles?.filter { role ->
+            role !in takenRoles || roleTarget?.role == role
+        } ?: emptyList()
+        RolePickerDialog(
+            availableRoles = availableRoles,
+            onSelectRole = { role ->
+                val target = roleTarget
+                if (target != null) onChangeRole(target, role)
+                roleTarget = null
+            },
+            onDismiss = { roleTarget = null }
+        )
+    }
 
     var tokenTargetPlayer by remember { mutableStateOf<Player?>(null) }
-    var selectedToken by remember { mutableStateOf<Token?>(null) }
-
     TokenPickerDialog(
         target = tokenTargetPlayer,
         chosenRoles = state.chosenRoles,
@@ -117,7 +112,6 @@ fun PlayersWheel(
                     },
                     CircleMenuItem("Change Role") {
                         roleTarget = player
-                        selectedRole = null
                     },
                     CircleMenuItem("Kill player") {
                         onChangeAliveStatus(player)
@@ -151,7 +145,6 @@ fun PlayersWheel(
                 )
             }
 
-            // Добавочный "+"
             val nextTokenIndex = player.tokens.size
             val plusRadiusPx = with(LocalDensity.current) { baseTokenRadius.toPx() } + nextTokenIndex * tokenSpacingPx
             val xPlus = xOuter - plusRadiusPx * cos(angleRad)
@@ -168,172 +161,4 @@ fun PlayersWheel(
             )
         }
     }
-}
-
-@Composable
-fun RenamePlayerDialog(
-    target: Player?,
-    name: String,
-    onNameChange: (String) -> Unit,
-    onConfirm: () -> Unit,
-    onDismiss: () -> Unit,
-) {
-    if (target == null) return
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Rename player") },
-        text = {
-            OutlinedTextField(
-                value = name,
-                onValueChange = onNameChange,
-                label = { Text("Name") },
-                singleLine = true
-            )
-        },
-        confirmButton = {
-            TextButton(onClick = onConfirm) { Text("Ok") }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
-        }
-    )
-}
-
-
-@Composable
-fun RolePickerDialog(
-    target: Player?,
-    chosenRoles: List<Role>?,
-    players: List<Player>?,
-    selectedRole: Role?,
-    onSelectRole: (Role?) -> Unit,
-    onDismiss: () -> Unit,
-) {
-    if (target == null || chosenRoles.isNullOrEmpty()) return
-
-    val availableRoles = remember(chosenRoles, players) {
-        chosenRoles.filter { role -> players?.none { it != target && it.role == role } == true }
-    }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Pick a role") },
-        text = {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                FlowRow(
-                    modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    CircleItem(
-                        size = 70.dp,
-                        backgroundColor = Color.DarkGray,
-                        centerText = "No Role",
-                        onClick = {onSelectRole(null)}
-                    )
-
-                    availableRoles.forEach { role ->
-                        CircleItem(
-                            size = 70.dp,
-                            backgroundColor = Color.DarkGray,
-                            bottomText = role.roleId.name,
-                            onClick = {onSelectRole(role) }
-                        )
-                    }
-                }
-
-
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .clickable(
-//                            indication = null,
-//                            interactionSource = remember { MutableInteractionSource() }
-//                        ) { onSelectRole(null) }
-//                        .padding(8.dp),
-//                    verticalAlignment = Alignment.CenterVertically
-//                ) {
-//                    RadioButton(
-//                        selected = selectedRole == null,
-//                        onClick = { onSelectRole(null) }
-//                    )
-//                    Spacer(Modifier.width(8.dp))
-//                    Text("Без роли")
-//                }
-//
-//                availableRoles.forEach { role ->
-//                    Row(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .clickable(
-//                                indication = null,
-//                                interactionSource = remember { MutableInteractionSource() }
-//                            ) { onSelectRole(role) }
-//                            .padding(8.dp),
-//                        verticalAlignment = Alignment.CenterVertically
-//                    ) {
-//                        RadioButton(
-//                            selected = selectedRole == role,
-//                            onClick = { onSelectRole(role) }
-//                        )
-//                        Spacer(Modifier.width(8.dp))
-//                        Text(role.roleId.name)
-//                    }
-//                }
-            }
-        },
-        confirmButton = {},
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Отмена") }
-        }
-    )
-}
-
-@Composable
-fun TokenPickerDialog(
-    target: Player?,
-    chosenRoles: List<Role>?,
-    players: List<Player>?,
-    onPickToken: (Token) -> Unit,
-    onDismiss: () -> Unit,
-) {
-    if (target == null) return
-
-    val availableTokens = remember(chosenRoles, players) {
-        val all = chosenRoles?.flatMap { it.tokens } ?: emptyList()
-        all.filter { token -> players?.none { token in it.tokens } == true }
-    }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Choose token") },
-        text = {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center // центрируем FlowRow
-            ) {
-                FlowRow(
-                    modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    availableTokens.forEach { token ->
-                        CircleItem(
-                            size = 70.dp,
-                            backgroundColor = Color.DarkGray,
-                            bottomText = token.name,
-                            onClick = { onPickToken(token) }
-                        )
-                    }
-                }
-            }
-        },
-        confirmButton = {},
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Отмена") }
-        }
-    )
 }

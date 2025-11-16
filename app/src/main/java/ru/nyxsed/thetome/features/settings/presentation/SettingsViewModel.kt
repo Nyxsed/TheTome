@@ -86,7 +86,8 @@ class SettingsViewModel @Inject constructor(
         val gameState = GameState(
             scenery = _state.value.selectedScenery,
             chosenRoles = roles,
-            players = players
+            players = players,
+            roleDistribution = _state.value.roleDistribution
         )
         viewModelScope.launch {
             saveGameStateUseCase(gameState)

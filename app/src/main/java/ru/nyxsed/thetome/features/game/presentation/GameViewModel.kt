@@ -12,6 +12,7 @@ import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
+import ru.nyxsed.thetome.core.domain.usecase.RoleDistributionUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
 
@@ -32,6 +33,8 @@ class GameViewModel @Inject constructor(
                         scenery = loadedGame?.scenery,
                         players = loadedGame?.players,
                         chosenRoles = loadedGame?.chosenRoles,
+                        roleDistribution = loadedGame?.roleDistribution,
+                        demonBluffs = loadedGame?.demonBluffs ?: emptyList()
                     )
                 }
             }
@@ -81,6 +84,13 @@ class GameViewModel @Inject constructor(
                 if (currentPlayer == player) currentPlayer.copy(role = role) else currentPlayer
             }
             currentState.copy(players = updatedPlayers)
+        }
+        saveGameState()
+    }
+
+    fun changeDemonBluffs(bluffs: List<Role?>) {
+        _state.update {
+            it.copy(demonBluffs = bluffs)
         }
         saveGameState()
     }

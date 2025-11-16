@@ -26,6 +26,7 @@ class StartViewModel @Inject constructor(
                     scenery = loadedGame?.scenery,
                     players = emptyList(),
                     chosenRoles = loadedGame?.chosenRoles,
+                    roleDistribution = loadedGame?.roleDistribution
                 ) }
             }
 
