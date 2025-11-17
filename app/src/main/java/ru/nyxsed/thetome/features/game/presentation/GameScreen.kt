@@ -1,27 +1,23 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.core.domain.models.RoleType
-import ru.nyxsed.thetome.features.game.presentation.components.DemonBluff
-import ru.nyxsed.thetome.features.game.presentation.components.KillParticipation
-import ru.nyxsed.thetome.features.game.presentation.components.PlayersWheel
-import ru.nyxsed.thetome.features.game.presentation.components.Reminder
-import ru.nyxsed.thetome.features.game.presentation.components.TopButtonsRow
+import ru.nyxsed.thetome.features.game.presentation.components.*
 
 @Composable
 fun GameScreen(
     viewModel: GameViewModel = hiltViewModel(),
     onEditGameClicked: () -> Unit,
+    onCardClicked: (Int, List<Role?>?) -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -36,11 +32,32 @@ fun GameScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         TopButtonsRow(
-            onAdd = { },
-            onEdit = {
+            onEditClicked = {
                 onEditGameClicked()
             },
-            onSettings = { }
+            menuItems = listOf(
+                CardsMenuItem(stringResource(R.string.menu_demon)) {
+                    onCardClicked(R.string.menu_demon, emptyList())
+                },
+                CardsMenuItem(stringResource(R.string.menu_minions)) {
+                    onCardClicked(R.string.menu_minions, emptyList())
+                },
+                CardsMenuItem(stringResource(R.string.menu_not_in_play)) {
+                    onCardClicked(R.string.menu_not_in_play, state.demonBluffs)
+                },
+                CardsMenuItem(stringResource(R.string.menu_use_ability)) {
+                    onCardClicked(R.string.menu_use_ability, emptyList())
+                },
+                CardsMenuItem(stringResource(R.string.menu_make_choice)) {
+                    onCardClicked(R.string.menu_make_choice, emptyList())
+                },
+                CardsMenuItem(stringResource(R.string.menu_nominated_today)) {
+                    onCardClicked(R.string.menu_nominated_today, emptyList())
+                },
+                CardsMenuItem(stringResource(R.string.menu_voted_today)) {
+                    onCardClicked(R.string.menu_voted_today, emptyList())
+                }
+            )
         )
 
         Spacer(Modifier.height(180.dp))
@@ -59,6 +76,9 @@ fun GameScreen(
                 },
                 onChangeRole = { player, role ->
                     viewModel.changeRole(player, role)
+                },
+                onShowCardClicked = { role ->
+                    onCardClicked(0, listOf(role))
                 },
             )
         }

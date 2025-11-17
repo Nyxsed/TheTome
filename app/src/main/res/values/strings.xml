@@ -11,6 +11,18 @@
     <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. show prepared bluffs</string>
     <string name="action_second_night_poisoner">Wake the Poisoner. They point at any player. Put the POISONED reminder token by the chosen players character token</string>
 
+    <string name="menu_demon">This is the Demon</string>
+    <string name="menu_minions">These are your Minions</string>
+    <string name="menu_not_in_play">These characters are not in play</string>
+    <string name="menu_use_ability">Use your ability?</string>
+    <string name="menu_make_choice">Make a choice</string>
+    <string name="menu_nominated_today">Did you nominate today?</string>
+    <string name="menu_voted_today">Did you vote today?</string>
+
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_change_role">Change role</string>
+    <string name="menu_kill_player">Kill player</string>
+    <string name="menu_show_card">Show card</string>
 </resources>

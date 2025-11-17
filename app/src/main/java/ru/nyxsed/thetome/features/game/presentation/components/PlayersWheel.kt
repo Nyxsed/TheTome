@@ -7,9 +7,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
+import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -27,6 +29,7 @@ fun PlayersWheel(
     onChangeAliveStatus: (Player) -> Unit,
     onRenamePlayer: (Player, String) -> Unit,
     onChangeRole: (Player, Role?) -> Unit,
+    onShowCardClicked: (Role?) -> Unit,
 ) {
     var renameTarget by remember { mutableStateOf<Player?>(null) }
     var renameText by remember { mutableStateOf("") }
@@ -98,6 +101,33 @@ fun PlayersWheel(
             val xOuter = radiusOuterPx * cos(angleRad)
             val yOuter = radiusOuterPx * sin(angleRad)
 
+            val menuItems = buildList {
+                add(
+                    CircleMenuItem(stringResource(R.string.menu_rename)) {
+                        renameTarget = player
+                        renameText = player.name ?: ""
+                    }
+                )
+                add(
+                    CircleMenuItem(stringResource(R.string.menu_change_role)) {
+                        roleTarget = player
+                    }
+                )
+
+                if (player.role != null) {
+                    add(
+                        CircleMenuItem(stringResource(R.string.menu_kill_player)) {
+                            onChangeAliveStatus(player)
+                        }
+                    )
+                    add(
+                        CircleMenuItem(stringResource(R.string.menu_show_card)) {
+                            onShowCardClicked(player.role)
+                        }
+                    )
+                }
+            }
+
             // Внешний кружок игрока
             CircleItem(
                 modifier = Modifier.offset { IntOffset(xOuter.roundToInt(), yOuter.roundToInt()) },
@@ -105,19 +135,9 @@ fun PlayersWheel(
                 backgroundColor = if (player.isAlive) Color.Gray else Color.Red,
                 topText = player.name ?: "",
                 bottomText = player.role?.roleId?.name ?: "",
-                menuItems = listOf(
-                    CircleMenuItem("Rename") {
-                        renameTarget = player
-                        renameText = player.name ?: ""
-                    },
-                    CircleMenuItem("Change Role") {
-                        roleTarget = player
-                    },
-                    CircleMenuItem("Kill player") {
-                        onChangeAliveStatus(player)
-                    }
-                )
+                menuItems = menuItems
             )
+
 
             // Кружки токенов
             val baseTokenRadius = playerCircleSize / 2 + 10.dp

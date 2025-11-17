@@ -1,33 +1,27 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import ru.nyxsed.thetome.core.presentation.components.CircleMenuItem
+import kotlin.collections.isNotEmpty
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopButtonsRow(
     modifier: Modifier = Modifier,
-    onAdd: () -> Unit,
-    onEdit: () -> Unit,
-    onSettings: () -> Unit,
+    menuItems: List<CardsMenuItem> = emptyList(),
+    onEditClicked: () -> Unit,
 ) {
+    var isMenuExpanded by remember { mutableStateOf(false) }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -36,11 +30,30 @@ fun TopButtonsRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         SmallRoundIconButton(
-            onClick = onAdd,
+            onClick = {
+                isMenuExpanded = true
+            },
             icon = {
+                if (menuItems.isNotEmpty()) {
+                    DropdownMenu(
+                        expanded = isMenuExpanded,
+                        onDismissRequest = { isMenuExpanded = false }
+                    ) {
+                        menuItems.forEach { item ->
+                            DropdownMenuItem(
+                                text = { Text(item.title) },
+                                onClick = {
+                                    isMenuExpanded = false
+                                    item.onClick()
+                                }
+                            )
+                        }
+                    }
+                }
+
                 Icon(
-                    contentDescription = "Add",
-                    imageVector = Icons.Default.Add,
+                    contentDescription = "Cards",
+                    imageVector = Icons.Default.DateRange,
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
@@ -49,7 +62,7 @@ fun TopButtonsRow(
         Spacer(modifier = Modifier.width(12.dp))
 
         SmallRoundIconButton(
-            onClick = onEdit,
+            onClick = onEditClicked,
             icon = {
                 Icon(
                     contentDescription = "edit",
@@ -58,18 +71,10 @@ fun TopButtonsRow(
                 )
             }
         )
-
-        Spacer(modifier = Modifier.width(12.dp))
-
-        SmallRoundIconButton(
-            onClick = onSettings,
-            icon = {
-                Icon(
-                    contentDescription = "settings",
-                    imageVector = Icons.Default.Settings,
-                    tint = MaterialTheme.colorScheme.onPrimary
-                )
-            }
-        )
     }
 }
+
+data class CardsMenuItem(
+    val title: String,
+    val onClick: () -> Unit,
+)
