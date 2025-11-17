@@ -2,8 +2,10 @@
     <string name="app_name">TheTome</string>
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
+    <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
     <string name="action_prepare_washerwoman">Put the Washerwomans TOWNSFOLK reminder token by any Townsfolk character token, and put the Washerwomans WRONG reminder token by any other character token</string>
     <string name="action_start_night_phase">Start the Night Phase</string>
+    <string name="action_voting">Wait 3–5 minutes and start voting process</string>
     <string name="action_start_day_phase">Start the Day Phase</string>
     <string name="action_show_demon">Wake all minions, show THIS IS THE DEMON card point to the Demon</string>
     <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. show prepared bluffs</string>

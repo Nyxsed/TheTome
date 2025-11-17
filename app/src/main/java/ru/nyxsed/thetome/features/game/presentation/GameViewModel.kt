@@ -25,16 +25,12 @@ class GameViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             loadGameUseCase().collect { loadedGame ->
-                _state.update {
-                    it.copy(
-                        scenery = loadedGame?.scenery,
-                        players = loadedGame?.players,
-                        chosenRoles = loadedGame?.chosenRoles,
-                        roleDistribution = loadedGame?.roleDistribution,
-                        demonBluffs = loadedGame?.demonBluffs ?: emptyList()
-                    )
+                loadedGame?.let { game ->
+                    _state.value = game
+                    val actions = getActionList(game)
+                    val current = actions.getOrNull(game.actionIndex)
+                    _state.value = _state.value.copy(currentAction = current)
                 }
-                updateCurrentAction()
             }
         }
     }
@@ -94,24 +90,55 @@ class GameViewModel @Inject constructor(
     }
 
     private fun getActionList(state: GameState): List<Action> {
-        Log.d("resolveActionList", state.toString())
-        val list = when {
-            state.currentPhase == GamePhase.PREPARE ->
-                state.scenery?.prepareActions ?: emptyList()
+        val chosenRoles = state.chosenRoles
+        val aliveRoles = state.players?.filter { it.isAlive }?.map { it.role }
 
-            state.currentPhase == GamePhase.FIRST_NIGHT ->
-                state.scenery?.firstNightActions ?: emptyList()
+        val list = when (state.currentPhase) {
+            GamePhase.PREPARE ->
+                state.scenery?.prepareActions
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYERS_7 && state.players?.size!! < 7
+                    }
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                    }
+                    ?: emptyList()
 
-            else ->
-                state.scenery?.secondNightActions ?: emptyList()
+            GamePhase.FIRST_NIGHT ->
+                state.scenery?.firstNightActions
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYERS_7 && state.players?.size!! < 7
+                    }
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                    }
+                    ?: emptyList()
+
+            GamePhase.SECOND_NIGHT ->
+                state.scenery?.secondNightActions
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                    }
+                    ?.filter { action ->
+                        aliveRoles?.contains(action.role) == true
+                    } ?: emptyList()
+
+            GamePhase.DAY ->
+                state.scenery?.dayActions
+                    ?.filterNot { action ->
+                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                    }
+                    ?.filter { action ->
+                        aliveRoles?.contains(action.role) == true
+                    } ?: emptyList()
         }
-
         return list
     }
 
     private fun updateCurrentAction() {
         val actions = getActionList(_state.value)
         _state.update { it.copy(currentAction = actions[_state.value.actionIndex]) }
+        saveGameState()
     }
 
     fun moveToNextAction() {
@@ -123,21 +150,29 @@ class GameViewModel @Inject constructor(
         if (!isLast) {
             _state.update { it.copy(actionIndex = state.actionIndex + 1) }
         } else {
-            if (state.currentPhase == GamePhase.PREPARE) {
-                _state.update {
-                    it.copy(currentPhase = GamePhase.FIRST_NIGHT, actionIndex = 0)
+            when (state.currentPhase) {
+                GamePhase.PREPARE -> {
+                    _state.update {
+                        it.copy(currentPhase = GamePhase.FIRST_NIGHT, actionIndex = 0)
+                    }
                 }
-            }
 
-            if (state.currentPhase == GamePhase.FIRST_NIGHT) {
-                _state.update {
-                    it.copy(currentPhase = GamePhase.SECOND_NIGHT, actionIndex = 0)
+                GamePhase.FIRST_NIGHT -> {
+                    _state.update {
+                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0)
+                    }
                 }
-            }
 
-            if (state.currentPhase == GamePhase.SECOND_NIGHT) {
-                _state.update {
-                    it.copy(actionIndex = 0)
+                GamePhase.DAY -> {
+                    _state.update {
+                        it.copy(currentPhase = GamePhase.SECOND_NIGHT, actionIndex = 0)
+                    }
+                }
+
+                GamePhase.SECOND_NIGHT -> {
+                    _state.update {
+                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0)
+                    }
                 }
             }
         }
@@ -153,7 +188,6 @@ class GameViewModel @Inject constructor(
             _state.update { it.copy(actionIndex = state.actionIndex - 1) }
         } else {
             when (state.currentPhase) {
-
                 GamePhase.PREPARE -> {
                     _state.update { it.copy(actionIndex = 0) }
                 }
@@ -169,17 +203,26 @@ class GameViewModel @Inject constructor(
                 }
 
                 GamePhase.SECOND_NIGHT -> {
-                    val firstNight = state.scenery?.firstNightActions ?: emptyList()
+                    val day = state.scenery?.dayActions ?: emptyList()
                     _state.update {
                         it.copy(
-                            currentPhase = GamePhase.FIRST_NIGHT,
-                            actionIndex = (firstNight.lastIndex).coerceAtLeast(0)
+                            currentPhase = GamePhase.DAY,
+                            actionIndex = (day.lastIndex).coerceAtLeast(0)
+                        )
+                    }
+                }
+
+                GamePhase.DAY -> {
+                    val secondNight = state.scenery?.secondNightActions ?: emptyList()
+                    _state.update {
+                        it.copy(
+                            currentPhase = GamePhase.SECOND_NIGHT,
+                            actionIndex = (secondNight.lastIndex).coerceAtLeast(0)
                         )
                     }
                 }
             }
         }
-
         updateCurrentAction()
     }
 }

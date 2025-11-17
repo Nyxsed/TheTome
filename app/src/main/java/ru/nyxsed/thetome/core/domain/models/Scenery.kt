@@ -10,6 +10,7 @@ sealed class Scenery(
     val prepareActions: List<Action>,
     val firstNightActions: List<Action>,
     val secondNightActions: List<Action>,
+    val dayActions: List<Action>,
     val firstNightOrder: List<Role>,
     val secondNightOrder: List<Role>,
 ) {
@@ -42,17 +43,22 @@ sealed class Scenery(
         ),
         prepareActions = listOf(
             Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
             Action(actionType = ActionType.PLAYER, role = Role.Washerwoman, actionResId = Role.Washerwoman.prepareActionId),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_night_phase),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase),
         ),
         firstNightActions = listOf(
             Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
             Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_minions_and_bluffs),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_day_phase),
+            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
         ),
         secondNightActions = listOf(
             Action(actionType = ActionType.PLAYER, role = Role.Poisoner, actionResId = Role.Poisoner.secondNightAction),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_day_phase),
+            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+        ),
+        dayActions = listOf(
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
         ),
         firstNightOrder = listOf(
             Role.Poisoner,

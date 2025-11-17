@@ -3,6 +3,7 @@ package ru.nyxsed.thetome.features.game.presentation.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -25,7 +26,7 @@ import ru.nyxsed.thetome.core.presentation.components.CircleItem
 @Composable
 fun Reminder(
     modifier: Modifier = Modifier,
-    action: Action,
+    action: Action?,
     onBeforeClicked: () -> Unit,
     onAfterClicked: () -> Unit,
 ) {
@@ -34,7 +35,7 @@ fun Reminder(
             .padding(8.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.Center
     ) {
         SmallRoundIconButton(
             onClick = onBeforeClicked,
@@ -50,23 +51,24 @@ fun Reminder(
         Column(modifier = Modifier
             .padding(8.dp)
             .weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            if (action.role != null) {
+            if (action?.role != null) {
                 CircleItem(
                     size = 80.dp,
                     backgroundColor = Color.DarkGray,
-                    bottomText = action.role.type.name,
+                    bottomText = action.role.roleId.name,
                 )
             }
-
-            Text(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .weight(1f),
-                text = stringResource(action.actionResId) ?: "",
-                textAlign = TextAlign.Center
-            )
+            action?.let {
+                Text(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    text = stringResource(it.actionResId),
+                    textAlign = TextAlign.Center
+                )
+            }
         }
 
         SmallRoundIconButton(
