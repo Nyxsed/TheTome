@@ -1,11 +1,15 @@
 package ru.nyxsed.thetome.core.domain.models
 
 import kotlinx.serialization.Serializable
+import ru.nyxsed.thetome.R
 
 @Serializable
 sealed class Scenery(
     val sceneryId: SceneryId,
     val roles: List<Role>,
+    val prepareActions: List<Action>,
+    val firstNightActions: List<Action>,
+    val secondNightActions: List<Action>,
     val firstNightOrder: List<Role>,
     val secondNightOrder: List<Role>,
 ) {
@@ -35,6 +39,20 @@ sealed class Scenery(
             Role.Baron,
             Role.ScarletWoman,
             Role.Imp,
+        ),
+        prepareActions = listOf(
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
+            Action(actionType = ActionType.PLAYER, role = Role.Washerwoman, actionResId = Role.Washerwoman.prepareActionId),
+            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_night_phase),
+        ),
+        firstNightActions = listOf(
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_minions_and_bluffs),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_day_phase),
+        ),
+        secondNightActions = listOf(
+            Action(actionType = ActionType.PLAYER, role = Role.Poisoner, actionResId = Role.Poisoner.secondNightAction),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_day_phase),
         ),
         firstNightOrder = listOf(
             Role.Poisoner,

@@ -1,19 +1,25 @@
 package ru.nyxsed.thetome.core.domain.models
 
+
+import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
+import ru.nyxsed.thetome.R
 
 @Serializable
 sealed class Role(
     val roleId: RoleId,
     val type: RoleType,
-    val tokens: List<Token> = emptyList()
+    val tokens: List<Token> = emptyList(),
+    @StringRes val prepareActionId: Int = 0,
+    @StringRes val secondNightAction: Int = 0,
 ) {
     //Townsfolks
     @Serializable
     data object Washerwoman : Role(
         roleId = RoleId.WASHERWOMAN,
         type = RoleType.TOWNSFOLK,
-        tokens = listOf(Token.WasherwomanTownsfolk, Token.WasherwomanWrong)
+        tokens = listOf(Token.WasherwomanTownsfolk, Token.WasherwomanWrong),
+        prepareActionId = R.string.action_prepare_washerwoman,
     )
 
     @Serializable
@@ -118,7 +124,8 @@ sealed class Role(
     @Serializable
     data object Poisoner : Role(
         roleId = RoleId.POISONER,
-        type = RoleType.MINION
+        type = RoleType.MINION,
+        secondNightAction = R.string.action_second_night_poisoner,
     )
 
     @Serializable

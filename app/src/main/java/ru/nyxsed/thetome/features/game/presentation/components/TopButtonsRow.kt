@@ -73,31 +73,3 @@ fun TopButtonsRow(
         )
     }
 }
-
-@Composable
-fun SmallRoundIconButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit,
-    icon: @Composable () -> Unit,
-) {
-    Surface(
-        modifier = modifier
-            .size(40.dp)
-            .clip(CircleShape)
-            .clickable(
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() }
-            ) { onClick() },
-        shape = CircleShape,
-        color = MaterialTheme.colorScheme.primary,
-        tonalElevation = 2.dp,
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            icon()
-        }
-    }
-}

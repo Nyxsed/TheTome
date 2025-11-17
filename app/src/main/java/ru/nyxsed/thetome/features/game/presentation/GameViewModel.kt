@@ -1,5 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -7,12 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.nyxsed.thetome.core.domain.models.GameState
-import ru.nyxsed.thetome.core.domain.models.Player
-import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.core.domain.models.Token
+import ru.nyxsed.thetome.core.domain.models.*
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
-import ru.nyxsed.thetome.core.domain.usecase.RoleDistributionUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
 
@@ -37,6 +34,7 @@ class GameViewModel @Inject constructor(
                         demonBluffs = loadedGame?.demonBluffs ?: emptyList()
                     )
                 }
+                updateCurrentAction()
             }
         }
     }
@@ -93,5 +91,95 @@ class GameViewModel @Inject constructor(
             it.copy(demonBluffs = bluffs)
         }
         saveGameState()
+    }
+
+    private fun getActionList(state: GameState): List<Action> {
+        Log.d("resolveActionList", state.toString())
+        val list = when {
+            state.currentPhase == GamePhase.PREPARE ->
+                state.scenery?.prepareActions ?: emptyList()
+
+            state.currentPhase == GamePhase.FIRST_NIGHT ->
+                state.scenery?.firstNightActions ?: emptyList()
+
+            else ->
+                state.scenery?.secondNightActions ?: emptyList()
+        }
+
+        return list
+    }
+
+    private fun updateCurrentAction() {
+        val actions = getActionList(_state.value)
+        _state.update { it.copy(currentAction = actions[_state.value.actionIndex]) }
+    }
+
+    fun moveToNextAction() {
+        val state = _state.value
+        val actions = getActionList(state)
+
+        val isLast = state.actionIndex == actions.lastIndex
+
+        if (!isLast) {
+            _state.update { it.copy(actionIndex = state.actionIndex + 1) }
+        } else {
+            if (state.currentPhase == GamePhase.PREPARE) {
+                _state.update {
+                    it.copy(currentPhase = GamePhase.FIRST_NIGHT, actionIndex = 0)
+                }
+            }
+
+            if (state.currentPhase == GamePhase.FIRST_NIGHT) {
+                _state.update {
+                    it.copy(currentPhase = GamePhase.SECOND_NIGHT, actionIndex = 0)
+                }
+            }
+
+            if (state.currentPhase == GamePhase.SECOND_NIGHT) {
+                _state.update {
+                    it.copy(actionIndex = 0)
+                }
+            }
+        }
+        updateCurrentAction()
+    }
+
+    fun moveToPreviousAction() {
+        val state = _state.value
+
+        val isFirst = state.actionIndex == 0
+
+        if (!isFirst) {
+            _state.update { it.copy(actionIndex = state.actionIndex - 1) }
+        } else {
+            when (state.currentPhase) {
+
+                GamePhase.PREPARE -> {
+                    _state.update { it.copy(actionIndex = 0) }
+                }
+
+                GamePhase.FIRST_NIGHT -> {
+                    val prepare = state.scenery?.prepareActions ?: emptyList()
+                    _state.update {
+                        it.copy(
+                            currentPhase = GamePhase.PREPARE,
+                            actionIndex = (prepare.lastIndex).coerceAtLeast(0)
+                        )
+                    }
+                }
+
+                GamePhase.SECOND_NIGHT -> {
+                    val firstNight = state.scenery?.firstNightActions ?: emptyList()
+                    _state.update {
+                        it.copy(
+                            currentPhase = GamePhase.FIRST_NIGHT,
+                            actionIndex = (firstNight.lastIndex).coerceAtLeast(0)
+                        )
+                    }
+                }
+            }
+        }
+
+        updateCurrentAction()
     }
 }

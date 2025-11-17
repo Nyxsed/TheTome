@@ -15,7 +15,7 @@ fun KillParticipation(
     Text(
         text = "👩‍🌾:" + roleDistribution?.get(RoleType.TOWNSFOLK) +
                 "👩‍🦽:" + roleDistribution?.get(RoleType.OUTSIDER) +
-                " 🤵‍♂️:" + roleDistribution?.get(RoleType.MINION) +
+                "🤵‍♂️:" + roleDistribution?.get(RoleType.MINION) +
                 " 😈:" + roleDistribution?.get(RoleType.DEMON) +
                 " ⚖️: " + neededToKill
     )

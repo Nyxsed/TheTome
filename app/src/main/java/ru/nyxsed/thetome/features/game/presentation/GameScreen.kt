@@ -9,9 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.features.game.presentation.components.DemonBluff
 import ru.nyxsed.thetome.features.game.presentation.components.KillParticipation
 import ru.nyxsed.thetome.features.game.presentation.components.PlayersWheel
+import ru.nyxsed.thetome.features.game.presentation.components.Reminder
 import ru.nyxsed.thetome.features.game.presentation.components.TopButtonsRow
 
 @Composable
@@ -39,7 +43,7 @@ fun GameScreen(
             onSettings = { }
         )
 
-        Spacer(Modifier.height(200.dp))
+        Spacer(Modifier.height(180.dp))
 
         if (!state.players.isNullOrEmpty()) {
             PlayersWheel(
@@ -59,7 +63,7 @@ fun GameScreen(
             )
         }
 
-        Spacer(Modifier.height(200.dp))
+        Spacer(Modifier.height(180.dp))
 
         Row(
             modifier = Modifier
@@ -77,5 +81,14 @@ fun GameScreen(
                 players = state.players
             )
         }
+
+        Spacer(Modifier.height(20.dp))
+
+        Reminder(
+            modifier = Modifier.weight(1f),
+            action = state.currentAction,
+            onBeforeClicked = { viewModel.moveToPreviousAction() },
+            onAfterClicked = { viewModel.moveToNextAction() },
+        )
     }
 }
