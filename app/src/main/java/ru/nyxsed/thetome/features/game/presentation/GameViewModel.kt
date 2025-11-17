@@ -146,8 +146,23 @@ class GameViewModel @Inject constructor(
     }
 
     private fun updateCurrentAction() {
-        val actions = getActionList(_state.value)
-        _state.update { it.copy(currentAction = actions[_state.value.actionIndex]) }
+        val state = _state.value
+        val actions = getActionList(state)
+
+        if (actions.isEmpty()) {
+            _state.update { it.copy(currentAction = null, actionIndex = 0) }
+            saveGameState()
+            return
+        }
+
+        val safeIndex = state.actionIndex.coerceIn(0, actions.lastIndex)
+
+        if (safeIndex != state.actionIndex) {
+            _state.update { it.copy(actionIndex = safeIndex) }
+        }
+
+        _state.update { it.copy(currentAction = actions[safeIndex]) }
+
         saveGameState()
     }
 

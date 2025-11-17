@@ -81,7 +81,7 @@ fun GameScreen(
                     viewModel.changeRole(player, role)
                 },
                 onShowCardClicked = { role ->
-                    onCardClicked(0, listOf(role))
+                    onCardClicked(role?.ability!!, listOf(role))
                 },
             )
         }

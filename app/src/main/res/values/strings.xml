@@ -3,13 +3,12 @@
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
-    <string name="action_prepare_washerwoman">Put the Washerwomans TOWNSFOLK reminder token by any Townsfolk character token, and put the Washerwomans WRONG reminder token by any other character token</string>
+    <string name="action_start_first_night_phase">Start the First Night Phase</string>
     <string name="action_start_night_phase">Start the Night Phase</string>
     <string name="action_voting">Wait 3–5 minutes and start voting process</string>
     <string name="action_start_day_phase">Start the Day Phase</string>
     <string name="action_show_demon">Wake all minions, show THIS IS THE DEMON card point to the Demon</string>
     <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. show prepared bluffs</string>
-    <string name="action_second_night_poisoner">Wake the Poisoner. They point at any player. Put the POISONED reminder token by the chosen players character token</string>
 
     <string name="menu_demon">This is the Demon</string>
     <string name="menu_minions">These are your Minions</string>
@@ -19,11 +18,27 @@
     <string name="menu_nominated_today">Did you nominate today?</string>
     <string name="menu_voted_today">Did you vote today?</string>
 
-    <string name="role_name_imp">Imp</string>
-    <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
     <string name="menu_rename">Rename</string>
     <string name="menu_change_role">Change role</string>
     <string name="menu_kill_player">Kill player</string>
     <string name="menu_show_card">Show card</string>
     <string name="menu_spend_ghost_vote">Spend Ghost Vote</string>
+
+    <string name="role_name_imp">Imp</string>
+    <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
+    <string name="action_second_night_imp">
+        Wake the Imp. The Imp points at any player. The chosen player dies — put the Imps DEAD reminder by the chosen players character token
+        If the Imp killed themself at night, choose an alive Minion and replace their character token with a Imp token. Wake the new Imp, show them the YOU ARE info token, then show them the Imp token
+    </string>
+
+    <string name="role_name_poisoner">Poisoner</string>
+    <string name="role_ability_poisoner">Each night, choose a player: they are poisoned tonight and tomorrow day</string>
+    <string name="action_second_night_poisoner">Wake the Poisoner. They point at any player. Put the POISONED reminder token by the chosen players character token</string>
+
+    <string name="role_name_washerwoman">Washerwoman</string>
+    <string name="role_ability_washerwoman">You start knowing that 1 of 2 players is a particular Townsfolk</string>
+    <string name="action_prepare_washerwoman">Put the Washerwomans TOWNSFOLK reminder token by any Townsfolk character token, and put the Washerwomans WRONG reminder token by any other character token</string>
+    <string name="action_first_night_washerwoman">wake the Washerwoman and point to the players marked TOWNSFOLK and WRONG. Show the character token marked TOWNSFOLK to the Washerwoman</string>
+
+
 </resources>

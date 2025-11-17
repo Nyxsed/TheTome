@@ -10,6 +10,8 @@ sealed class Role(
     val roleId: RoleId,
     val type: RoleType,
     val tokens: List<Token> = emptyList(),
+    @StringRes val roleName: Int = 0,
+    @StringRes val ability: Int = 0,
     @StringRes val prepareActionId: Int = 0,
     @StringRes val secondNightAction: Int = 0,
 ) {
@@ -19,6 +21,8 @@ sealed class Role(
         roleId = RoleId.WASHERWOMAN,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.WasherwomanTownsfolk, Token.WasherwomanWrong),
+        roleName = R.string.role_name_washerwoman,
+        ability = R.string.role_ability_washerwoman,
         prepareActionId = R.string.action_prepare_washerwoman,
     )
 
@@ -125,6 +129,8 @@ sealed class Role(
     data object Poisoner : Role(
         roleId = RoleId.POISONER,
         type = RoleType.MINION,
+        roleName = R.string.role_name_poisoner,
+        ability = R.string.role_ability_poisoner,
         secondNightAction = R.string.action_second_night_poisoner,
     )
 
@@ -150,6 +156,9 @@ sealed class Role(
     @Serializable
     data object Imp : Role(
         roleId = RoleId.IMP,
-        type = RoleType.DEMON
+        type = RoleType.DEMON,
+        roleName = R.string.role_name_imp,
+        ability = R.string.role_ability_imp,
+        secondNightAction = R.string.action_second_night_imp,
     )
 }
