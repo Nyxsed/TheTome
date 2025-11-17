@@ -62,6 +62,16 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+    fun onChangeGhostVoteStatus(player: Player) {
+        _state.update { currentState ->
+            val updatedPlayers = currentState.players?.map { currentPlayer ->
+                if (currentPlayer == player) currentPlayer.copy(haveGhostVote = !currentPlayer.haveGhostVote) else currentPlayer
+            }
+            currentState.copy(players = updatedPlayers)
+        }
+        saveGameState()
+    }
+
     fun renamePlayer(player: Player, name: String) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->

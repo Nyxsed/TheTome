@@ -27,6 +27,7 @@ fun PlayersWheel(
     state: GameState,
     onUpdateTokens: (Player, List<Token>) -> Unit,
     onChangeAliveStatus: (Player) -> Unit,
+    onChangeGhostVoteStatus: (Player) -> Unit,
     onRenamePlayer: (Player, String) -> Unit,
     onChangeRole: (Player, Role?) -> Unit,
     onShowCardClicked: (Role?) -> Unit,
@@ -126,6 +127,14 @@ fun PlayersWheel(
                         }
                     )
                 }
+
+                if (!player.isAlive) {
+                    add(
+                        CircleMenuItem(stringResource(R.string.menu_spend_ghost_vote)) {
+                            onChangeGhostVoteStatus(player)
+                        }
+                    )
+                }
             }
 
             // Внешний кружок игрока
@@ -135,7 +144,9 @@ fun PlayersWheel(
                 backgroundColor = if (player.isAlive) Color.Gray else Color.Red,
                 topText = player.name ?: "",
                 bottomText = player.role?.roleId?.name ?: "",
-                menuItems = menuItems
+                menuItems = menuItems,
+                isAlive = player.isAlive,
+                haveGhostVote = player.haveGhostVote,
             )
 
 

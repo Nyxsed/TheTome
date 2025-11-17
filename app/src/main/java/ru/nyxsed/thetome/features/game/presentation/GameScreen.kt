@@ -71,6 +71,9 @@ fun GameScreen(
                 onChangeAliveStatus = {
                     viewModel.changeAliveStatus(it)
                 },
+                onChangeGhostVoteStatus = {
+                    viewModel.onChangeGhostVoteStatus(it)
+                },
                 onRenamePlayer = { player, name ->
                     viewModel.renamePlayer(player, name)
                 },

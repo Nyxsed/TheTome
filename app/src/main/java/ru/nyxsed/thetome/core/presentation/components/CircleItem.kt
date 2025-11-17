@@ -27,7 +27,9 @@ fun CircleItem(
     centerText: String? = null,
     menuItems: List<CircleMenuItem> = emptyList(),
     onClick: (() -> Unit)? = null,
-    isClickableEnabled : Boolean = true,
+    isClickableEnabled: Boolean = true,
+    isAlive: Boolean = true,
+    haveGhostVote: Boolean = true,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
 
@@ -77,6 +79,15 @@ fun CircleItem(
                     )
                 }
             }
+        }
+    }
+    if (!isAlive && haveGhostVote) {
+        Box(
+            modifier = modifier
+                .size(size/2)
+                .background(Color.White, CircleShape)
+        ) {
+
         }
     }
 }

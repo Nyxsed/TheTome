@@ -10,4 +10,5 @@ data class Player(
     val tokens: List<Token> = emptyList(),
     val isAlive : Boolean = true,
     val isDrunk : Boolean = false,
+    val haveGhostVote: Boolean = true,
 )

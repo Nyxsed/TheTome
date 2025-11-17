@@ -25,4 +25,5 @@
     <string name="menu_change_role">Change role</string>
     <string name="menu_kill_player">Kill player</string>
     <string name="menu_show_card">Show card</string>
+    <string name="menu_spend_ghost_vote">Spend Ghost Vote</string>
 </resources>
