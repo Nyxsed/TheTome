@@ -9,8 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.nyxsed.thetome.core.presentation.components.CircleMenuItem
-import kotlin.collections.isNotEmpty
+import ru.nyxsed.thetome.core.domain.models.Role
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,9 +17,12 @@ import kotlin.collections.isNotEmpty
 fun TopButtonsRow(
     modifier: Modifier = Modifier,
     menuItems: List<CardsMenuItem> = emptyList(),
+    menuItemRole: CardsMenuItem,
+    sceneryRoles: List<Role>?,
     onEditClicked: () -> Unit,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
+    var isDialogVisible by remember { mutableStateOf(false) }
 
     Row(
         modifier = modifier
@@ -34,23 +36,27 @@ fun TopButtonsRow(
                 isMenuExpanded = true
             },
             icon = {
-                if (menuItems.isNotEmpty()) {
-                    DropdownMenu(
-                        expanded = isMenuExpanded,
-                        onDismissRequest = { isMenuExpanded = false }
-                    ) {
-                        menuItems.forEach { item ->
-                            DropdownMenuItem(
-                                text = { Text(item.title) },
-                                onClick = {
-                                    isMenuExpanded = false
-                                    item.onClick()
-                                }
-                            )
-                        }
+                DropdownMenu(
+                    expanded = isMenuExpanded,
+                    onDismissRequest = { isMenuExpanded = false }
+                ) {
+                    menuItems.forEach { item ->
+                        DropdownMenuItem(
+                            text = { Text(item.title) },
+                            onClick = {
+                                isMenuExpanded = false
+                                item.onClick(null)
+                            }
+                        )
                     }
+                    DropdownMenuItem(
+                        text = { Text(menuItemRole.title) },
+                        onClick = {
+                            isMenuExpanded = false
+                            isDialogVisible = true
+                        }
+                    )
                 }
-
                 Icon(
                     contentDescription = "Cards",
                     imageVector = Icons.Default.DateRange,
@@ -71,10 +77,22 @@ fun TopButtonsRow(
                 )
             }
         )
+
+        if (isDialogVisible) {
+            RolePickerDialog(
+                availableRoles = sceneryRoles,
+                onSelectRole = {
+                    menuItemRole.onClick(it)
+                },
+                onDismiss = {
+                    isDialogVisible= false
+                }
+            )
+        }
     }
 }
 
 data class CardsMenuItem(
     val title: String,
-    val onClick: () -> Unit,
+    val onClick: (Role?) -> Unit,
 )

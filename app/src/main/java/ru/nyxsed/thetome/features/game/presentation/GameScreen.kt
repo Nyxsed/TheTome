@@ -32,6 +32,7 @@ fun GameScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         TopButtonsRow(
+            sceneryRoles = state.scenery?.roles,
             onEditClicked = {
                 onEditGameClicked()
             },
@@ -57,7 +58,10 @@ fun GameScreen(
                 CardsMenuItem(stringResource(R.string.menu_voted_today)) {
                     onCardClicked(R.string.menu_voted_today, emptyList())
                 }
-            )
+            ),
+            menuItemRole = CardsMenuItem(stringResource(R.string.menu_show_role)) { role ->
+                onCardClicked(role?.ability!!, listOf(role))
+            }
         )
 
         Spacer(Modifier.height(180.dp))

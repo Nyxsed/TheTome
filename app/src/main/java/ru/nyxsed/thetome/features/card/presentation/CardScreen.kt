@@ -27,12 +27,14 @@ fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             if (stringResourceId != 0) {
+                val text = stringResource(stringResourceId)
+                val isLong = text.length > 50
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(stringResourceId),
+                    text = text,
                     softWrap = true,
-                    fontSize = 50.sp,
-                    lineHeight = 60.sp,
+                    fontSize = if (isLong) 32.sp else 50.sp,
+                    lineHeight = if (isLong) 40.sp else 60.sp,
                     textAlign = TextAlign.Center
                 )
             }

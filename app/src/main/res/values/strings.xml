@@ -13,6 +13,7 @@
     <string name="menu_demon">This is the Demon</string>
     <string name="menu_minions">These are your Minions</string>
     <string name="menu_not_in_play">These characters are not in play</string>
+    <string name="menu_show_role">Show a role</string>
     <string name="menu_use_ability">Use your ability?</string>
     <string name="menu_make_choice">Make a choice</string>
     <string name="menu_nominated_today">Did you nominate today?</string>
