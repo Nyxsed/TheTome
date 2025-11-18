@@ -144,6 +144,7 @@ fun PlayersWheel(
                 modifier = Modifier.offset { IntOffset(xOuter.roundToInt(), yOuter.roundToInt()) },
                 size = playerCircleSize,
                 backgroundColor = if (player.isAlive) Color.Gray else Color.Red,
+                centerIcon = player.role?.iconRes,
                 topText = player.name ?: "",
                 bottomText = title,
                 menuItems = menuItems,
@@ -170,6 +171,7 @@ fun PlayersWheel(
                     modifier = Modifier.offset { IntOffset(xToken.roundToInt(), yToken.roundToInt()) },
                     size = tokenSize,
                     backgroundColor = Color.DarkGray,
+                    centerIcon = token.iconRes,
                     bottomText = stringResource(token.nameResId),
                     onClick = {
                         val newTokens = player.tokens.toMutableList().also { it.removeAt(tokenIndex) }

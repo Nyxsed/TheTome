@@ -25,6 +25,7 @@ fun DemonBluff(
             CircleItem(
                 size = 40.dp,
                 backgroundColor = Color.DarkGray,
+                centerIcon = role?.iconRes,
                 bottomText = title,
                 onClick = { dialogIndex = index }
             )

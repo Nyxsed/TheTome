@@ -1,5 +1,7 @@
 package ru.nyxsed.thetome.core.presentation.components
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -13,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
@@ -25,6 +28,7 @@ fun CircleItem(
     topText: String? = null,
     bottomText: String? = null,
     centerText: String? = null,
+    @DrawableRes centerIcon: Int? = null,
     menuItems: List<CircleMenuItem> = emptyList(),
     onClick: (() -> Unit)? = null,
     isClickableEnabled: Boolean = true,
@@ -54,6 +58,13 @@ fun CircleItem(
             ),
         contentAlignment = Alignment.Center
     ) {
+        if (centerIcon != null) {
+            Image(
+                painter = painterResource(centerIcon),
+                contentDescription = null,
+                modifier = Modifier.size(size * 0.9f)
+            )
+        }
         if (!topText.isNullOrEmpty()) {
             TextArc(text = topText, circleSize = size, position = ArcPosition.TOP)
         }

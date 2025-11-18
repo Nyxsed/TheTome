@@ -43,6 +43,7 @@ fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
                 val title = role?.roleName?.let { stringResource(it) } ?: "—"
                 CircleItem(
                     modifier = Modifier.padding(8.dp),
+                    centerIcon = role?.iconRes,
                     bottomText = title,
                     size = 200.dp,
                     backgroundColor = Color.DarkGray

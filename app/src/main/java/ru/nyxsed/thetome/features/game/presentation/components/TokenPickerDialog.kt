@@ -51,6 +51,7 @@ fun TokenPickerDialog(
                         CircleItem(
                             size = 70.dp,
                             backgroundColor = Color.DarkGray,
+                            centerIcon = token.iconRes,
                             bottomText = stringResource(token.nameResId),
                             onClick = { onPickToken(token) }
                         )

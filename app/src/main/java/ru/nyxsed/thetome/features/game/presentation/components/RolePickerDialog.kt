@@ -48,6 +48,7 @@ fun RolePickerDialog(
                         CircleItem(
                             size = 70.dp,
                             backgroundColor = Color.DarkGray,
+                            centerIcon = role.iconRes,
                             bottomText = stringResource(role.roleName),
                             onClick = { onSelectRole(role) }
                         )
