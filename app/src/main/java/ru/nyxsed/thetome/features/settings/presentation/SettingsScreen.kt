@@ -5,11 +5,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
@@ -160,11 +160,15 @@ fun RoleSelector(
                     val isEnabled = isSelected || selectedRoles.size < maxSelection
 
                     CircleItem(
+                        itemType = ItemType.PLAYER_CIRCLE,
                         size = 70.dp,
-                        backgroundColor = if (isSelected) Color.Green else if (isEnabled) Color.Gray else Color.LightGray,
+//                        backgroundColor = if (isSelected) Color.Green else if (isEnabled) Color.LightGray else Color.Gray,
                         centerIcon = role.iconRes,
                         bottomText = stringResource(role.roleName),
                         isClickableEnabled = isEnabled,
+                        isSelected = isSelected,
+                        isEnabled = isEnabled,
+                        haveGhostVote = false,
                         onClick = {
                             onRoleClick(role)
                         }

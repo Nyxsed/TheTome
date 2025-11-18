@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
@@ -42,11 +43,11 @@ fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
             roles?.forEach { role ->
                 val title = role?.roleName?.let { stringResource(it) } ?: "—"
                 CircleItem(
+                    itemType = ItemType.PLAYER_CIRCLE,
                     modifier = Modifier.padding(8.dp),
                     centerIcon = role?.iconRes,
                     bottomText = title,
-                    size = 200.dp,
-                    backgroundColor = Color.DarkGray
+                    size = 200.dp
                 )
             }
         }

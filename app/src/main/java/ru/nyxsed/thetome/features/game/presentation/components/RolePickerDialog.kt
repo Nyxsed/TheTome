@@ -16,6 +16,7 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import kotlin.collections.forEach
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.domain.models.ItemType
 
 @Composable
 fun RolePickerDialog(
@@ -38,16 +39,16 @@ fun RolePickerDialog(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     CircleItem(
+                        itemType = ItemType.PLAYER_CIRCLE,
                         size = 70.dp,
-                        backgroundColor = Color.DarkGray,
                         centerText = stringResource(R.string.text_no_role),
                         onClick = { onSelectRole(null) }
                     )
 
                     availableRoles.forEach { role ->
                         CircleItem(
+                            itemType = ItemType.PLAYER_CIRCLE,
                             size = 70.dp,
-                            backgroundColor = Color.DarkGray,
                             centerIcon = role.iconRes,
                             bottomText = stringResource(role.roleName),
                             onClick = { onSelectRole(role) }

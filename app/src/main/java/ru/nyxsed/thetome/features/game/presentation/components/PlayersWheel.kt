@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
@@ -13,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
@@ -141,14 +141,14 @@ fun PlayersWheel(
             // Внешний кружок игрока
             val title = player.role?.roleName?.let { stringResource(it) } ?: ""
             CircleItem(
+                itemType = ItemType.PLAYER_CIRCLE,
                 modifier = Modifier.offset { IntOffset(xOuter.roundToInt(), yOuter.roundToInt()) },
                 size = playerCircleSize,
-                backgroundColor = if (player.isAlive) Color.Gray else Color.Red,
                 centerIcon = player.role?.iconRes,
                 topText = player.name ?: "",
                 bottomText = title,
                 menuItems = menuItems,
-                isAlive = player.isAlive,
+                isEnabled = player.isAlive,
                 haveGhostVote = player.haveGhostVote,
             )
 
@@ -168,9 +168,9 @@ fun PlayersWheel(
                 val yToken = yOuter - tokenRadiusPx * sin(angleRad)
 
                 CircleItem(
+                    itemType = ItemType.TOKEN_CIRCLE,
                     modifier = Modifier.offset { IntOffset(xToken.roundToInt(), yToken.roundToInt()) },
                     size = tokenSize,
-                    backgroundColor = Color.DarkGray,
                     centerIcon = token.iconRes,
                     bottomText = stringResource(token.nameResId),
                     onClick = {
@@ -186,9 +186,9 @@ fun PlayersWheel(
             val yPlus = yOuter - plusRadiusPx * sin(angleRad)
 
             CircleItem(
+                itemType = ItemType.TOKEN_CIRCLE,
                 modifier = Modifier.offset { IntOffset(xPlus.roundToInt(), yPlus.roundToInt()) },
                 size = tokenSize,
-                backgroundColor = Color.DarkGray,
                 centerText = "+",
                 onClick = {
                     tokenTargetPlayer = player

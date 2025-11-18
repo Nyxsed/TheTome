@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
@@ -49,8 +50,8 @@ fun TokenPickerDialog(
                 ) {
                     availableTokens.forEach { token ->
                         CircleItem(
+                            itemType = ItemType.TOKEN_CIRCLE,
                             size = 70.dp,
-                            backgroundColor = Color.DarkGray,
                             centerIcon = token.iconRes,
                             bottomText = stringResource(token.nameResId),
                             onClick = { onPickToken(token) }

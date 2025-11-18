@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Action
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
 @Composable
@@ -51,8 +52,8 @@ fun Reminder(
         ) {
             if (action?.role != null) {
                 CircleItem(
+                    itemType = ItemType.PLAYER_CIRCLE,
                     size = 80.dp,
-                    backgroundColor = Color.DarkGray,
                     centerIcon = action.role.iconRes,
                     bottomText = stringResource(action.role.roleName),
                 )

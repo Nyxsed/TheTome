@@ -6,6 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
@@ -23,8 +24,8 @@ fun DemonBluff(
             val role = demonBluffRoles.getOrNull(index)
             val title = role?.roleName?.let { stringResource(it) } ?: "—"
             CircleItem(
+                itemType = ItemType.PLAYER_CIRCLE,
                 size = 40.dp,
-                backgroundColor = Color.DarkGray,
                 centerIcon = role?.iconRes,
                 bottomText = title,
                 onClick = { dialogIndex = index }
