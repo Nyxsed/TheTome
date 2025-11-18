@@ -1,14 +1,18 @@
 package ru.nyxsed.thetome.core.presentation.components
 
 import android.graphics.Paint
+import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -20,50 +24,61 @@ fun TextArc(
     color: Color = Color.Black,
     position: ArcPosition,
 ) {
-    Canvas(modifier = Modifier.size(circleSize)) {
-        if (text.isEmpty()) return@Canvas
+    if (text.isEmpty()) return
 
+    val fontSizePx = remember(circleSize) {
+        when {
+            circleSize.value <= 20f -> circleSize.value * 0.5f
+            circleSize.value <= 30f -> circleSize.value * 0.5f
+            else -> circleSize.value * 0.3f
+        }
+    }
+
+    val letterSpacing = remember(circleSize) {
+        when {
+            circleSize.value <= 20f -> 1.2f
+            circleSize.value <= 30f -> 1.6f
+            else -> 2.2f
+        }
+    }
+
+    // Paint для текста, кэшируемый по цвету
+    val paint = remember(color) {
+        Paint().apply {
+            this.color = color.toArgb()
+            this.isAntiAlias = true
+            this.textAlign = Paint.Align.CENTER
+            this.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+        }
+    }
+
+    // Кэшируем ширину текста
+    val textWidthPx = remember(text, fontSizePx) {
+        text.map { paint.measureText(it.toString()) }.sum()
+    }
+
+    Canvas(modifier = Modifier.size(circleSize)) {
         val canvasRadius = size.minDimension / 2f
         val centerX = size.width / 2f
         val centerY = size.height / 2f
 
-        // Динамический коэффициент для шрифта в зависимости от размера круга
-        val sizeFactor = when {
-            canvasRadius < 50f -> 0.3f // маленький круг — увеличиваем шрифт
-            canvasRadius < 100f -> 0.32f
-            else -> 0.2f // большой круг — немного меньше
-        }
+        paint.textSize = fontSizePx
 
-        // Авто-подбор размера шрифта по радиусу круга
-        val fontSizePx = canvasRadius * sizeFactor
-        val paint = Paint().apply {
-            this.color = color.toArgb()
-            this.textSize = fontSizePx
-            this.isAntiAlias = true
-            this.textAlign = Paint.Align.CENTER
-        }
-
-        // Расчет sweepAngle исходя из ширины текста и радиуса
-        val textWidthPx = text.map { paint.measureText(it.toString()).toDouble() }.sum()
-        // Общий угол для текста в радианах: длина дуги = radius * angle
-        val totalAngleRad = textWidthPx / canvasRadius
-        val charAngleRad = if (text.length > 1) totalAngleRad / (text.length - 1) else 0.0
+        // Увеличиваем общий угол для регулировки расстояния между буквами
+        val totalAngleRadAdjusted = (textWidthPx / canvasRadius) * letterSpacing
+        val charAngleRad = if (text.length > 1) totalAngleRadAdjusted / (text.length - 1) else 0.0
 
         text.forEachIndexed { index, char ->
             val angleRad = when (position) {
-                ArcPosition.TOP -> -Math.PI / 2 - totalAngleRad / 2 + index * charAngleRad
-                ArcPosition.BOTTOM -> Math.PI / 2 + totalAngleRad / 2 - index * charAngleRad
+                ArcPosition.TOP -> -Math.PI / 2 - totalAngleRadAdjusted / 2 + index.toFloat() * charAngleRad.toFloat()
+                ArcPosition.BOTTOM -> Math.PI / 2 + totalAngleRadAdjusted / 2 - index.toFloat() * charAngleRad.toFloat()
             }
 
-
-            // Радиус для верхней дуги учитывает высоту шрифта
-            val radiusOffset = fontSizePx / 2f
             val metrics = paint.fontMetrics
             val textHeight = metrics.descent - metrics.ascent
-
             val adjustedRadius = when (position) {
-                ArcPosition.TOP -> canvasRadius - textHeight // прижимаем текст к верхнему краю
-                ArcPosition.BOTTOM -> canvasRadius - textHeight / 2f // чуть выше нижнего края
+                ArcPosition.TOP -> canvasRadius - textHeight
+                ArcPosition.BOTTOM -> canvasRadius - textHeight / 2f
             }
 
             val x = centerX + adjustedRadius * cos(angleRad).toFloat()
@@ -82,3 +97,54 @@ fun TextArc(
 }
 
 enum class ArcPosition { TOP, BOTTOM }
+
+@Preview
+@Composable
+fun TextArcPreview84() {
+    TextArc(
+        text = "Никита",
+        circleSize = 84.dp, // 84 74 64 30 20
+        color = Color.White,
+        position = ArcPosition.TOP
+    )
+}
+@Preview
+@Composable
+fun TextArcPreview74() {
+    TextArc(
+        text = "Андрей",
+        circleSize = 74.dp, // 84 74 64 30 20
+        color = Color.White,
+        position = ArcPosition.TOP
+    )
+}
+@Preview
+@Composable
+fun TextArcPreview64() {
+    TextArc(
+        text = "Андрей",
+        circleSize = 64.dp, // 84 74 64 30 20
+        color = Color.White,
+        position = ArcPosition.TOP
+    )
+}
+@Preview
+@Composable
+fun TextArcPreview30() {
+    TextArc(
+        text = "Андрей",
+        circleSize = 30.dp, // 84 74 64 30 20
+        color = Color.White,
+        position = ArcPosition.TOP
+    )
+}
+@Preview
+@Composable
+fun TextArcPreview20() {
+    TextArc(
+        text = "Андрей",
+        circleSize = 20.dp, // 84 74 64 30 20
+        color = Color.White,
+        position = ArcPosition.TOP
+    )
+}
