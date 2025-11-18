@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
@@ -35,7 +36,7 @@ fun TokenPickerDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Choose token") },
+        title = { Text(stringResource(R.string.text_choose_token)) },
         text = {
             Box(
                 modifier = Modifier.fillMaxWidth(),
@@ -59,7 +60,7 @@ fun TokenPickerDialog(
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.text_cancel)) }
         }
     )
 }

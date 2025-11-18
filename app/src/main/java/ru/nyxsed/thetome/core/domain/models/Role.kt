@@ -7,7 +7,6 @@ import ru.nyxsed.thetome.R
 
 @Serializable
 sealed class Role(
-    val roleId: RoleId,
     val type: RoleType,
     val tokens: List<Token> = emptyList(),
     @StringRes val roleName: Int = 0,
@@ -20,7 +19,6 @@ sealed class Role(
     //Townsfolks
     @Serializable
     data object Washerwoman : Role(
-        roleId = RoleId.WASHERWOMAN,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.WasherwomanTownsfolk, Token.WasherwomanWrong),
         roleName = R.string.role_name_washerwoman,
@@ -31,7 +29,6 @@ sealed class Role(
 
     @Serializable
     data object Librarian : Role(
-        roleId = RoleId.LIBRARIAN,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.LibrarianOutsider, Token.LibrarianWrong),
         roleName = R.string.role_name_librarian,
@@ -42,7 +39,6 @@ sealed class Role(
 
     @Serializable
     data object Investigator : Role(
-        roleId = RoleId.INVESTIGATOR,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.InvestigatorMinion, Token.InvestigatorWrong),
         roleName = R.string.role_name_investigator,
@@ -53,7 +49,6 @@ sealed class Role(
 
     @Serializable
     data object Chef : Role(
-        roleId = RoleId.CHEF,
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_chef,
         ability = R.string.role_ability_chef,
@@ -62,7 +57,6 @@ sealed class Role(
 
     @Serializable
     data object FortuneTeller : Role(
-        roleId = RoleId.FORTUNE_TELLER,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.FortuneTellerRedHerring),
         roleName = R.string.role_name_fortune_teller,
@@ -73,7 +67,6 @@ sealed class Role(
 
     @Serializable
     data object Empath : Role(
-        roleId = RoleId.EMPATH,
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_empath,
         ability = R.string.role_ability_empath,
@@ -83,7 +76,6 @@ sealed class Role(
 
     @Serializable
     data object Undertaker : Role(
-        roleId = RoleId.UNDERTAKER,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.UndertakerDiedToday),
         roleName = R.string.role_name_undertaker,
@@ -94,7 +86,6 @@ sealed class Role(
 
     @Serializable
     data object Monk : Role(
-        roleId = RoleId.MONK,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.MonkSafe),
         roleName = R.string.role_name_monk,
@@ -104,7 +95,6 @@ sealed class Role(
 
     @Serializable
     data object Ravenkeeper : Role(
-        roleId = RoleId.RAVENKEEPER,
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_ravenkeeper,
         ability = R.string.role_ability_ravenkeeper,
@@ -113,7 +103,6 @@ sealed class Role(
 
     @Serializable
     data object Virgin : Role(
-        roleId = RoleId.VIRGIN,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.VirginNoAbility),
         roleName = R.string.role_name_virgin,
@@ -122,7 +111,6 @@ sealed class Role(
 
     @Serializable
     data object Slayer : Role(
-        roleId = RoleId.SLAYER,
         type = RoleType.TOWNSFOLK,
         tokens = listOf(Token.SlayerNoAbility),
         roleName = R.string.role_name_slayer,
@@ -131,7 +119,6 @@ sealed class Role(
 
     @Serializable
     data object Soldier : Role(
-        roleId = RoleId.SOLDIER,
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_soldier,
         ability = R.string.role_ability_soldier,
@@ -139,7 +126,6 @@ sealed class Role(
 
     @Serializable
     data object Mayor : Role(
-        roleId = RoleId.MAYOR,
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_mayor,
         ability = R.string.role_ability_mayor,
@@ -148,7 +134,6 @@ sealed class Role(
     //Outsiders
     @Serializable
     data object Butler : Role(
-        roleId = RoleId.BUTLER,
         type = RoleType.OUTSIDER,
         tokens = listOf(Token.ButlerMaster),
         roleName = R.string.role_name_butler,
@@ -160,7 +145,6 @@ sealed class Role(
 
     @Serializable
     data object Saint : Role(
-        roleId = RoleId.SAINT,
         type = RoleType.OUTSIDER,
         roleName = R.string.role_name_saint,
         ability = R.string.role_ability_saint,
@@ -168,7 +152,6 @@ sealed class Role(
 
     @Serializable
     data object Recluse : Role(
-        roleId = RoleId.RECLUSE,
         type = RoleType.OUTSIDER,
         roleName = R.string.role_name_recluse,
         ability = R.string.role_ability_recluse,
@@ -177,7 +160,6 @@ sealed class Role(
 
     @Serializable
     data object Drunk : Role(
-        roleId = RoleId.DRUNK,
         type = RoleType.OUTSIDER,
         roleName = R.string.role_name_Drunk,
         ability = R.string.role_ability_Drunk,
@@ -187,7 +169,6 @@ sealed class Role(
     //Minions
     @Serializable
     data object Poisoner : Role(
-        roleId = RoleId.POISONER,
         type = RoleType.MINION,
         tokens = listOf(Token.PoisonerPoison),
         roleName = R.string.role_name_poisoner,
@@ -198,7 +179,6 @@ sealed class Role(
 
     @Serializable
     data object Spy : Role(
-        roleId = RoleId.SPY,
         type = RoleType.MINION,
         roleName = R.string.role_name_spy,
         ability = R.string.role_ability_spy,
@@ -208,7 +188,6 @@ sealed class Role(
 
     @Serializable
     data object Baron : Role(
-        roleId = RoleId.BARON,
         type = RoleType.MINION,
         roleName = R.string.role_name_baron,
         ability = R.string.role_ability_baron,
@@ -217,7 +196,6 @@ sealed class Role(
 
     @Serializable
     data object ScarletWoman : Role(
-        roleId = RoleId.SCARLET_WOMAN,
         type = RoleType.MINION,
         roleName = R.string.role_name_scarlet_woman,
         ability = R.string.role_ability_scarlet_woman,
@@ -227,7 +205,6 @@ sealed class Role(
     //Demons
     @Serializable
     data object Imp : Role(
-        roleId = RoleId.IMP,
         type = RoleType.DEMON,
         tokens = listOf(Token.ImpKill),
         roleName = R.string.role_name_imp,

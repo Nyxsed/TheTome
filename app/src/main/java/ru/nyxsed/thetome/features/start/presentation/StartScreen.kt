@@ -15,9 +15,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.features.game.presentation.GameViewModel
 
@@ -54,7 +56,7 @@ fun StartScreenContent(
                 .fillMaxWidth(),
             onClick =  onNewGameClicked,
         ) {
-            Text("New Game")
+            Text(stringResource(R.string.text_new_game))
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -64,7 +66,7 @@ fun StartScreenContent(
                     .fillMaxWidth(),
                 onClick = onRestoreGameClicked,
             ) {
-                Text("Restore Game")
+                Text(stringResource(R.string.text_restore_game))
             }
         }
     }

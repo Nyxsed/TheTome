@@ -5,7 +5,7 @@ import ru.nyxsed.thetome.R
 
 @Serializable
 sealed class Scenery(
-    val sceneryId: SceneryId,
+    val sceneryNameRes: Int,
     val roles: List<Role>,
     val prepareActions: List<Action>,
     val firstNightActions: List<Action>,
@@ -15,7 +15,7 @@ sealed class Scenery(
 ) {
     @Serializable
     data object TroubleBrewing : Scenery(
-        sceneryId = SceneryId.TROUBLE_BREWING,
+        sceneryNameRes = R.string.scenery_name_trouble_brewing,
         roles = listOf(
             Role.Washerwoman,
             Role.Librarian,

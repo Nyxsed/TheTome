@@ -1,7 +1,6 @@
 package ru.nyxsed.thetome.core.domain.models
 
 import kotlinx.serialization.Serializable
-import ru.nyxsed.thetome.R
 
 @Serializable
 data class GameState(

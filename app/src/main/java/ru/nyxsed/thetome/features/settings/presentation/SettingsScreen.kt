@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
@@ -73,7 +74,7 @@ fun SettingsContent(
             enabled = state.chosenRoles.size == state.playerCount,
             onClick = { onStartGameClicked() }
         ) {
-            Text("Start Game")
+            Text(stringResource(R.string.text_start_game))
         }
     }
 }
@@ -83,7 +84,7 @@ fun PlayerCountSlider(
     sliderPosition: Float,
     onValueChange: (Float) -> Unit,
 ) {
-    Text("Player count: ${sliderPosition.toInt()}")
+    Text(stringResource(R.string.text_player_count, sliderPosition.toInt()))
     Slider(
         modifier = Modifier.width(300.dp),
         value = sliderPosition,
@@ -103,10 +104,12 @@ fun SceneryDropdown(
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("Scenery: ")
+        Text(stringResource(R.string.text_scenery))
         Box {
             TextButton(onClick = { expanded = true }) {
-                Text(selectedScenery?.sceneryId?.name ?: "Choose Scenery")
+                val title = selectedScenery?.sceneryNameRes?.let { stringResource(it) }
+                    ?: stringResource(R.string.text_choose_scenery)
+                Text(title)
             }
             DropdownMenu(
                 expanded = expanded,
@@ -114,7 +117,7 @@ fun SceneryDropdown(
             ) {
                 items.forEach { scenery ->
                     DropdownMenuItem(
-                        text = { Text(scenery.sceneryId.name) },
+                        text = { Text(stringResource(scenery.sceneryNameRes)) },
                         onClick = {
                             onSelected(scenery)
                             expanded = false
@@ -137,7 +140,7 @@ fun RoleSelector(
     RoleType.entries.forEach { roleType ->
         val selectedRolesCountByType = selectedRoles.filter { it.type == roleType }.size
         Text(
-            text = "${roleType.name}: $selectedRolesCountByType / ${roleDistribution[roleType]}",
+            text = "${stringResource(roleType.resId)}: $selectedRolesCountByType / ${roleDistribution[roleType]}",
             modifier = Modifier.padding(top = 8.dp)
         )
 
@@ -171,7 +174,7 @@ fun RoleSelector(
     }
 
     Text(
-        text = "Players: ${selectedRoles.size} / $maxSelection",
+        text = stringResource(R.string.text_players, selectedRoles.size, maxSelection),
         modifier = Modifier.padding(top = 8.dp)
     )
 }

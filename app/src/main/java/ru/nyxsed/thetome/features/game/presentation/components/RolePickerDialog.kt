@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import kotlin.collections.forEach
+import ru.nyxsed.thetome.R
 
 @Composable
 fun RolePickerDialog(
@@ -26,7 +27,7 @@ fun RolePickerDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Pick a role") },
+        title = { Text(stringResource(R.string.text_pick_a_role)) },
         text = {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -39,7 +40,7 @@ fun RolePickerDialog(
                     CircleItem(
                         size = 70.dp,
                         backgroundColor = Color.DarkGray,
-                        centerText = "No Role",
+                        centerText = stringResource(R.string.text_no_role),
                         onClick = { onSelectRole(null) }
                     )
 
@@ -56,7 +57,7 @@ fun RolePickerDialog(
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.text_cancel)) }
         }
     )
 }
