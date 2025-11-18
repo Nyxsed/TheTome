@@ -70,6 +70,7 @@ fun PlayersWheel(
         target = tokenTargetPlayer,
         chosenRoles = state.chosenRoles,
         players = state.players,
+        sceneryTokens = state.scenery?.sceneryTokens!!,
         onPickToken = { token ->
             tokenTargetPlayer?.let { player ->
                 val newTokens = player.tokens.toMutableList().also { it.add(token) }
@@ -138,12 +139,13 @@ fun PlayersWheel(
             }
 
             // Внешний кружок игрока
+            val title = player.role?.roleName?.let { stringResource(it) } ?: ""
             CircleItem(
                 modifier = Modifier.offset { IntOffset(xOuter.roundToInt(), yOuter.roundToInt()) },
                 size = playerCircleSize,
                 backgroundColor = if (player.isAlive) Color.Gray else Color.Red,
                 topText = player.name ?: "",
-                bottomText = player.role?.roleId?.name ?: "",
+                bottomText = title,
                 menuItems = menuItems,
                 isAlive = player.isAlive,
                 haveGhostVote = player.haveGhostVote,
@@ -168,7 +170,7 @@ fun PlayersWheel(
                     modifier = Modifier.offset { IntOffset(xToken.roundToInt(), yToken.roundToInt()) },
                     size = tokenSize,
                     backgroundColor = Color.DarkGray,
-                    bottomText = token.name,
+                    bottomText = stringResource(token.nameResId),
                     onClick = {
                         val newTokens = player.tokens.toMutableList().also { it.removeAt(tokenIndex) }
                         onUpdateTokens(player, newTokens)

@@ -38,9 +38,10 @@ fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
             }
             Spacer(modifier = Modifier.height(16.dp))
             roles?.forEach { role ->
+                val title = role?.roleName?.let { stringResource(it) } ?: "—"
                 CircleItem(
                     modifier = Modifier.padding(8.dp),
-                    bottomText = role?.roleId?.name,
+                    bottomText = title,
                     size = 200.dp,
                     backgroundColor = Color.DarkGray
                 )

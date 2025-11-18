@@ -53,7 +53,7 @@ fun Reminder(
                 CircleItem(
                     size = 80.dp,
                     backgroundColor = Color.DarkGray,
-                    bottomText = action.role.roleId.name,
+                    bottomText = stringResource(action.role.roleName),
                 )
             }
             action?.let {

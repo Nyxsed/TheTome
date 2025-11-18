@@ -6,6 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -158,7 +159,7 @@ fun RoleSelector(
                     CircleItem(
                         size = 70.dp,
                         backgroundColor = if (isSelected) Color.Green else if (isEnabled) Color.Gray else Color.LightGray,
-                        bottomText = role.roleId.name,
+                        bottomText = stringResource(role.roleName),
                         isClickableEnabled = isEnabled,
                         onClick = {
                             onRoleClick(role)

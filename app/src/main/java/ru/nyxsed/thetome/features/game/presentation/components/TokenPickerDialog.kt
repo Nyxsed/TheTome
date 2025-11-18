@@ -1,10 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -13,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -24,14 +21,16 @@ fun TokenPickerDialog(
     target: Player?,
     chosenRoles: List<Role>?,
     players: List<Player>?,
+    sceneryTokens: List<Token>,
     onPickToken: (Token) -> Unit,
     onDismiss: () -> Unit,
 ) {
     if (target == null) return
 
     val availableTokens = remember(chosenRoles, players) {
-        val all = chosenRoles?.flatMap { it.tokens } ?: emptyList()
-        all.filter { token -> players?.none { token in it.tokens } == true }
+        val chosenRolesTokens = chosenRoles?.flatMap { it.tokens } ?: emptyList()
+        val filteredChosenRolesTokens = chosenRolesTokens.filter { token -> players?.none { token in it.tokens } == true }
+        sceneryTokens + filteredChosenRolesTokens
     }
 
     AlertDialog(
@@ -51,7 +50,7 @@ fun TokenPickerDialog(
                         CircleItem(
                             size = 70.dp,
                             backgroundColor = Color.DarkGray,
-                            bottomText = token.name,
+                            bottomText = stringResource(token.nameResId),
                             onClick = { onPickToken(token) }
                         )
                     }

@@ -10,6 +10,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
@@ -46,7 +47,7 @@ fun RolePickerDialog(
                         CircleItem(
                             size = 70.dp,
                             backgroundColor = Color.DarkGray,
-                            bottomText = role.roleId.name,
+                            bottomText = stringResource(role.roleName),
                             onClick = { onSelectRole(role) }
                         )
                     }

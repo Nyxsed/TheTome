@@ -130,7 +130,7 @@ class GameViewModel @Inject constructor(
                         action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?.filter { action ->
-                        aliveRoles?.contains(action.role) == true
+                        (aliveRoles?.contains(action.role) == true) || (action.actionType == ActionType.NIGHT)
                     } ?: emptyList()
 
             GamePhase.DAY ->
@@ -139,7 +139,7 @@ class GameViewModel @Inject constructor(
                         action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?.filter { action ->
-                        aliveRoles?.contains(action.role) == true
+                        (aliveRoles?.contains(action.role) == true) || (action.actionType == ActionType.DAY)
                     } ?: emptyList()
         }
         return list
@@ -148,20 +148,13 @@ class GameViewModel @Inject constructor(
     private fun updateCurrentAction() {
         val state = _state.value
         val actions = getActionList(state)
-
-        if (actions.isEmpty()) {
-            _state.update { it.copy(currentAction = null, actionIndex = 0) }
-            saveGameState()
-            return
+        Log.d("updateCurrentAction", state.toString())
+        Log.d("updateCurrentAction", actions.toString())
+        _state.update {
+            it.copy(
+                currentAction = actions[state.actionIndex]
+            )
         }
-
-        val safeIndex = state.actionIndex.coerceIn(0, actions.lastIndex)
-
-        if (safeIndex != state.actionIndex) {
-            _state.update { it.copy(actionIndex = safeIndex) }
-        }
-
-        _state.update { it.copy(currentAction = actions[safeIndex]) }
 
         saveGameState()
     }
@@ -206,7 +199,6 @@ class GameViewModel @Inject constructor(
 
     fun moveToPreviousAction() {
         val state = _state.value
-
         val isFirst = state.actionIndex == 0
 
         if (!isFirst) {
@@ -218,36 +210,37 @@ class GameViewModel @Inject constructor(
                 }
 
                 GamePhase.FIRST_NIGHT -> {
-                    val prepare = state.scenery?.prepareActions ?: emptyList()
+                    val prevActions = getActionList(state.copy(currentPhase = GamePhase.PREPARE))
                     _state.update {
                         it.copy(
                             currentPhase = GamePhase.PREPARE,
-                            actionIndex = (prepare.lastIndex).coerceAtLeast(0)
-                        )
-                    }
-                }
-
-                GamePhase.SECOND_NIGHT -> {
-                    val day = state.scenery?.dayActions ?: emptyList()
-                    _state.update {
-                        it.copy(
-                            currentPhase = GamePhase.DAY,
-                            actionIndex = (day.lastIndex).coerceAtLeast(0)
+                            actionIndex = prevActions.lastIndex
                         )
                     }
                 }
 
                 GamePhase.DAY -> {
-                    val secondNight = state.scenery?.secondNightActions ?: emptyList()
+                    val prevActions = getActionList(state.copy(currentPhase = GamePhase.SECOND_NIGHT))
                     _state.update {
                         it.copy(
                             currentPhase = GamePhase.SECOND_NIGHT,
-                            actionIndex = (secondNight.lastIndex).coerceAtLeast(0)
+                            actionIndex = prevActions.lastIndex
+                        )
+                    }
+                }
+
+                GamePhase.SECOND_NIGHT -> {
+                    val prevActions = getActionList(state.copy(currentPhase = GamePhase.DAY))
+                    _state.update {
+                        it.copy(
+                            currentPhase = GamePhase.DAY,
+                            actionIndex = prevActions.lastIndex
                         )
                     }
                 }
             }
         }
+
         updateCurrentAction()
     }
 }

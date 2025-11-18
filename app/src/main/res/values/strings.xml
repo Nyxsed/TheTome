@@ -24,6 +24,21 @@
     <string name="menu_show_card">Show card</string>
     <string name="menu_spend_ghost_vote">Spend Ghost Vote</string>
 
+    <string name="token_good">Good</string>
+    <string name="token_evil">Evil</string>
+    <string name="token_townsfolk">Townsfolk</string>
+    <string name="token_wrong">Wrong</string>
+    <string name="token_outsider">Outsider</string>
+    <string name="token_kill">Kill</string>
+    <string name="token_poison">Poison</string>
+    <string name="token_minion">Minion</string>
+    <string name="token_red_herring">Red Herring</string>
+    <string name="token_master">Master</string>
+    <string name="token_safe">Safe</string>
+    <string name="token_died_today">Died Today</string>
+    <string name="token_no_ability">No Ability</string>
+    <string name="token_drunk">Drunk</string>
+
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
     <string name="action_second_night_imp">
@@ -35,10 +50,85 @@
     <string name="role_ability_poisoner">Each night, choose a player: they are poisoned tonight and tomorrow day</string>
     <string name="action_second_night_poisoner">Wake the Poisoner. They point at any player. Put the POISONED reminder token by the chosen players character token</string>
 
+    <string name="role_name_spy">Spy</string>
+    <string name="role_ability_spy">Each night, you see the Grimoire. You might register as good - as a Townsfolk or Outsider, even if dead</string>
+    <string name="action_second_spy">Wake the Spy and show them the Grimoire for as long as they need</string>
+
     <string name="role_name_washerwoman">Washerwoman</string>
     <string name="role_ability_washerwoman">You start knowing that 1 of 2 players is a particular Townsfolk</string>
     <string name="action_prepare_washerwoman">Put the Washerwomans TOWNSFOLK reminder token by any Townsfolk character token, and put the Washerwomans WRONG reminder token by any other character token</string>
-    <string name="action_first_night_washerwoman">wake the Washerwoman and point to the players marked TOWNSFOLK and WRONG. Show the character token marked TOWNSFOLK to the Washerwoman</string>
+    <string name="action_first_night_washerwoman">Wake the Washerwoman and point to the players marked TOWNSFOLK and WRONG. Show the character token marked TOWNSFOLK to the Washerwoman</string>
 
+    <string name="role_name_librarian">Librarian</string>
+    <string name="role_ability_librarian">You start knowing that 1 of 2 players is a particular Outsider(Or that zero are in play)</string>
+    <string name="action_prepare_librarian">Put the Librarians OUTSIDER reminder token by any Outsider character token, and put the Librarians WRONG reminder token by any other character token</string>
+    <string name="action_first_night_librarian">Wake the Librarian and point to the players marked OUTSIDER and WRONG. Show the character token marked OUTSIDER to the Librarian</string>
+
+    <string name="role_name_investigator">Investigator</string>
+    <string name="role_ability_investigator">You start knowing that 1 of 2 players is a particular Minion</string>
+    <string name="action_prepare_investigator">Put the Investigators MINION reminder token by any Minion character token, and put the Investigators WRONG reminder token by any other character token</string>
+    <string name="action_first_night_investigator">Wake the Investigator and point to the players marked MINION and WRONG. Show the character token marked MINION to the Investigator</string>
+
+    <string name="role_name_chef">Chef</string>
+    <string name="role_ability_chef">You start knowing how many pairs of evil players there are</string>
+    <string name="action_first_night_chef">Wake the Chef. Show the Chef fingers (0, 1, 2, etc.) equaling the number of pairs of neighboring evil players</string>
+
+    <string name="role_name_empath">Empath</string>
+    <string name="role_ability_empath">Each night, you learn how many of your 2 alive neighbors are evil</string>
+    <string name="action_second_night_empath">Wake the Empath. Show them fingers (0, 1, or 2) equaling the number of evil players neighbouring the Empath</string>
+
+    <string name="role_name_fortune_teller">Fortune Teller</string>
+    <string name="role_ability_fortune_teller">Each night, choose 2 players: you learn if either is a Demon. There is a good player that registers as a Demon to you</string>
+    <string name="action_prepare_fortune_teller">Put the Fortune Tellers RED HERRING reminder token by any good character token, marking that player as the Red Herring</string>
+    <string name="action_second_night_fortune_teller">Wake the Fortune Teller. The Fortune Teller points at any two players. If either chosen player is a Demon or the Red Herring, nod your head yes. Otherwise, shake your head no</string>
+
+    <string name="role_name_butler">Butler</string>
+    <string name="role_ability_butler">Each night, choose a player (not yourself): tomorrow, you may only vote if they are voting too</string>
+    <string name="action_second_night_butler">Wake the Butler. They point at any player. Mark this player with the MASTER reminder token</string>
+    <string name="action_day_butler">During a nomination, the Butler may only have their hand raised to vote if the Master has their hand raised to vote or if the Masters vote has already been counted</string>
+
+    <string name="role_name_monk">Monk</string>
+    <string name="role_ability_monk">Each night*, choose a player (not yourself): they are safe from the Demon tonight. The Monks protection also prevents all other harmful effects of the Demons ability, such as poisoning or turning the protected player evil</string>
+    <string name="action_second_night_monk">Wake the Monk. The Monk points at any player except themself. If the Demon attacks the player marked SAFE, the player remains alive</string>
+
+    <string name="role_name_scarlet_woman">Scarlet Woman</string>
+    <string name="role_ability_scarlet_woman">If there are 5 or more players alive and the Demon dies, you become the Demon</string>
+    <string name="action_second_night_scarlet_woman">If the Demon dies and there were five or more alive players immediately before the Demon died, replace the Scarlet Woman token with a spare Demon token. show them the YOU ARE info token</string>
+
+    <string name="role_name_ravenkeeper">Ravenkeeper</string>
+    <string name="role_ability_ravenkeeper">If you die at night, you are woken to choose a player: you learn their character</string>
+    <string name="action_second_night_ravenkeeper">If the Ravenkeeper died tonight, wake them. They point at any player. Show the chosen players character token to the Ravenkeeper</string>
+
+    <string name="role_name_undertaker">Undertaker</string>
+    <string name="role_ability_undertaker">Each night*, you learn which character died by execution today</string>
+    <string name="action_second_night_undertaker">if any player died by execution today, wake the Undertaker. Show the character token marked DIED TODAY to the Undertaker</string>
+    <string name="action_day_undertaker">If a player dies by execution, put the Undertakers DIED TODAY reminder token by the dead players character token</string>
+
+    <string name="role_name_soldier">Soldier</string>
+    <string name="role_ability_soldier">You are safe from the Demon</string>
+
+    <string name="role_name_mayor">Mayor</string>
+    <string name="role_ability_mayor">If only 3 players live and no execution occurs, your team wins. If you die at night, another player might die instead</string>
+
+    <string name="role_name_slayer">Slayer</string>
+    <string name="role_ability_slayer">Once per game, during the day, publicly choose a player: if they are the Demon, they die</string>
+
+    <string name="role_name_virgin">Virgin</string>
+    <string name="role_ability_virgin">The 1st time you are nominated, if the nominator is a Townsfolk, they are executed immediately</string>
+
+    <string name="role_name_saint">Saint</string>
+    <string name="role_ability_saint">If you die by execution, your team loses</string>
+
+    <string name="role_name_recluse">Recluse</string>
+    <string name="role_ability_recluse">You might register as evil and as a Minion or Demon, even if dead</string>
+    <string name="action_prepare_recluse">You can mark Recluse with Evil token for remind you its looks like evil</string>
+
+    <string name="role_name_baron">Baron</string>
+    <string name="role_ability_baron">There are extra Outsiders in play</string>
+    <string name="action_prepare_baron">While setting up the game, remove any two Townsfolk character tokens and add any two Outsider character tokens</string>
+
+    <string name="role_name_Drunk">Drunk</string>
+    <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
+    <string name="action_prepare_Drunk">Return to Settings screen and remove Drunk role. Add some Townsfolk role. After setting up mark some Townsfolk as Drunk</string>
 
 </resources>
