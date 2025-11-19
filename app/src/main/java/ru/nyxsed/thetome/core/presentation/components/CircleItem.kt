@@ -1,7 +1,5 @@
 package ru.nyxsed.thetome.core.presentation.components
 
-import android.R.attr.scaleX
-import android.R.attr.scaleY
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -20,11 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ColorMatrix
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -52,7 +46,6 @@ fun CircleItem(
     menuItems: List<CircleMenuItem> = emptyList(),
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
-    isClickableEnabled: Boolean = true,
     isEnabled: Boolean = true,
     haveGhostVote: Boolean = true,
     isSelected: Boolean = false,

@@ -187,7 +187,6 @@ fun RoleSelector(
                         size = 70.dp,
                         centerIcon = role.iconRes,
                         bottomText = stringResource(role.roleName),
-                        isClickableEnabled = isEnabled,
                         isSelected = isSelected,
                         isEnabled = isEnabled,
                         haveGhostVote = false,

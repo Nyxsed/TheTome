@@ -1,14 +1,7 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -16,14 +9,9 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -75,12 +63,12 @@ fun Reminder(
                 targetState = action,
                 transitionSpec = {
                     val slideIn = when (direction) {
-                        SlideDirection.LEFT  -> slideInHorizontally { -it }
+                        SlideDirection.LEFT -> slideInHorizontally { -it }
                         SlideDirection.RIGHT -> slideInHorizontally { it }
                     }
 
                     val slideOut = when (direction) {
-                        SlideDirection.LEFT  -> slideOutHorizontally { it }
+                        SlideDirection.LEFT -> slideOutHorizontally { it }
                         SlideDirection.RIGHT -> slideOutHorizontally { -it }
                     }
 

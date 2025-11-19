@@ -1,7 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
@@ -108,7 +107,7 @@ fun PlayersWheel(
         val radiusOuterPx = with(LocalDensity.current) { maxRadius.toPx() }
 
         val playerCircleSize = when {
-            state.players?.size!! <= 6 -> 100.dp
+            state.players.size <= 6 -> 100.dp
             state.players.size <= 10 -> 80.dp
             else -> 70.dp
         }
