@@ -20,6 +20,9 @@
     <string name="text_outsider">Outsider</string>
     <string name="text_minion">Minion</string>
     <string name="text_demon">Demon</string>
+    <string name="text_edit_game_attention">State of the game would be renewed</string>
+    <string name="text_edit_game">Edit game?</string>
+    <string name="text_press_again">Press again</string>
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
@@ -155,8 +158,5 @@
     <string name="role_name_Drunk">Drunk</string>
     <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
     <string name="action_prepare_Drunk">Return to Settings screen and remove Drunk role. Add some Townsfolk role. After setting up mark some Townsfolk as Drunk</string>
-    <string name="text_edit_game_attention">State of the game would be renewed</string>
-    <string name="text_edit_game">Edit game?</string>
-    <string name="text_press_again">Press again</string>
 
 </resources>

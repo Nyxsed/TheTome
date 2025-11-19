@@ -15,6 +15,7 @@ import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
+import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
 import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 @Composable
@@ -147,6 +148,18 @@ fun RoleSelector(
     onRoleClick: (Role) -> Unit,
     roleDistribution: Map<RoleType, Int>,
 ) {
+    var isRoleInfoDialogRaised by remember { mutableStateOf(false) }
+    var roleInfoTarget by remember { mutableStateOf<Role?>(null) }
+    if (isRoleInfoDialogRaised && roleInfoTarget != null) {
+        RoleInfoDialog(
+            role = roleInfoTarget!!,
+            onDismiss = {
+                isRoleInfoDialogRaised = false
+                roleInfoTarget = null
+            }
+        )
+    }
+
     RoleType.entries.forEach { roleType ->
         val selectedRolesCountByType = selectedRoles.filter { it.type == roleType }.size
         Text(
@@ -180,6 +193,10 @@ fun RoleSelector(
                         haveGhostVote = false,
                         onClick = {
                             onRoleClick(role)
+                        },
+                        onLongClick = {
+                            roleInfoTarget = role
+                            isRoleInfoDialogRaised = true
                         }
                     )
 

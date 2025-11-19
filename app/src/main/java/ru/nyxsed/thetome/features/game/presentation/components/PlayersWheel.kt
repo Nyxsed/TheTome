@@ -16,6 +16,7 @@ import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.*
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.CircleMenuItem
+import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -78,6 +79,18 @@ fun PlayersWheel(
         },
         onDismiss = { tokenTargetPlayer = null }
     )
+
+    var isRoleInfoDialogRaised by remember { mutableStateOf(false) }
+    var roleInfoTarget by remember { mutableStateOf<Role?>(null) }
+    if (isRoleInfoDialogRaised && roleInfoTarget != null) {
+        RoleInfoDialog(
+            role = roleInfoTarget!!,
+            onDismiss = {
+                isRoleInfoDialogRaised = false
+                roleInfoTarget = null
+            }
+        )
+    }
 
     BoxWithConstraints(
         modifier = Modifier
@@ -159,6 +172,10 @@ fun PlayersWheel(
                 menuItems = menuItems,
                 isEnabled = player.isAlive,
                 haveGhostVote = player.haveGhostVote,
+                onLongClick = {
+                    isRoleInfoDialogRaised = true
+                    roleInfoTarget = player.role
+                }
             )
 
 

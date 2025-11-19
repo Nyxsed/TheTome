@@ -1,16 +1,12 @@
 package ru.nyxsed.thetome.features.game.presentation
 
-import android.widget.Toast
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
@@ -25,7 +21,7 @@ fun GameScreen(
     viewModel: GameViewModel = hiltViewModel(),
     onEditGameClicked: () -> Unit,
     onCardClicked: (Int, List<Role?>?) -> Unit,
-    onDoublePressBack : () -> Unit,
+    onDoublePressBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
