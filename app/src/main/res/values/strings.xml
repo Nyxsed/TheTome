@@ -3,6 +3,7 @@
 
     <string name="text_rename_player">Rename player</string>
     <string name="text_ok">Ok</string>
+    <string name="text_yes">Yes</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_start_game">Start Game</string>
     <string name="text_player_count">Player count: %1$d</string>
@@ -148,11 +149,14 @@
     <string name="action_prepare_recluse">You can mark Recluse with Evil token for remind you its looks like evil</string>
 
     <string name="role_name_baron">Baron</string>
-    <string name="role_ability_baron">There are extra Outsiders in play</string>
+    <string name="role_ability_baron">There are extra Outsiders in play(+2)</string>
     <string name="action_prepare_baron">While setting up the game, remove any two Townsfolk character tokens and add any two Outsider character tokens</string>
 
     <string name="role_name_Drunk">Drunk</string>
     <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
     <string name="action_prepare_Drunk">Return to Settings screen and remove Drunk role. Add some Townsfolk role. After setting up mark some Townsfolk as Drunk</string>
+    <string name="text_edit_game_attention">State of the game would be renewed</string>
+    <string name="text_edit_game">Edit game?</string>
+    <string name="text_press_again">Press again</string>
 
 </resources>

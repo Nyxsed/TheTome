@@ -35,6 +35,9 @@ fun AppNavHost(navController: NavHostController) {
                     val cleanRoles = roles?.filterNotNull()
                     val rolesJson = Json.encodeToString(cleanRoles)
                     navController.navigate("card/$stringResourceId/$rolesJson")
+                },
+                onDoublePressBack = {
+                    navController.popBackStack()
                 }
             )
         }
@@ -46,7 +49,13 @@ fun AppNavHost(navController: NavHostController) {
             val stringResourceId = backStackEntry.arguments?.getInt("stringResourceId") ?: 0
             val rolesJson = backStackEntry.arguments?.getString("rolesJson") ?: "[]"
             val roles = Json.decodeFromString<List<Role>>(rolesJson)
-            CardScreen(stringResourceId = stringResourceId, roles = roles)
+            CardScreen(
+                stringResourceId = stringResourceId,
+                roles = roles,
+                onDoublePressBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

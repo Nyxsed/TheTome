@@ -30,6 +30,7 @@ fun TextArc(
             circleSize.value <= 40f -> circleSize.value * 0.5f
             circleSize.value <= 80f -> circleSize.value * 0.4f
             circleSize.value <= 90f -> circleSize.value * 0.35f
+            circleSize.value <= 100f -> circleSize.value * 0.35f
             else -> circleSize.value * 0.31f
         }
 
@@ -40,6 +41,7 @@ fun TextArc(
             circleSize.value <= 50f -> 2.1f
             circleSize.value <= 70f -> 2.7f
             circleSize.value <= 90f -> 2.9f
+            circleSize.value <= 100f -> 3.5f
             else -> 6f
         }
 

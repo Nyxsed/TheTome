@@ -3,8 +3,7 @@ package ru.nyxsed.thetome.core.presentation.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DropdownMenu
@@ -20,7 +19,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +44,7 @@ fun CircleItem(
     @DrawableRes centerIcon: Int? = null,
     menuItems: List<CircleMenuItem> = emptyList(),
     onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
     isClickableEnabled: Boolean = true,
     isEnabled: Boolean = true,
     haveGhostVote: Boolean = true,
@@ -57,14 +60,38 @@ fun CircleItem(
         ItemType.PLAYER_CIRCLE -> Color.Black
         ItemType.TOKEN_CIRCLE -> Color.White
     }
+
+    val haptic = LocalHapticFeedback.current
+
+    val gestureModifier = if (onClick != null || onLongClick != null || menuItems.isNotEmpty()) {
+        Modifier.pointerInput(onClick, onLongClick, menuItems) {
+            detectTapGestures(
+                onTap = {
+                    if (menuItems.isEmpty()) {
+                        onClick?.invoke()
+                    } else {
+                        isMenuExpanded = true
+                    }
+                },
+                onLongPress = {
+                    onLongClick?.invoke()
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                }
+            )
+        }
+    } else {
+        Modifier
+    }
+
     Box(
         modifier = modifier
+            .then(gestureModifier)
             .size(size)
             .drawBehind {
                 if (!isAddToken) {
                     val brushColor = if (isSelected) Color.Red else Color.Black
                     val baseRadius = size.toPx() / 2
-                    val radius = if (isSelected) baseRadius * 1.15f  else baseRadius * 1.1f
+                    val radius = if (isSelected) baseRadius * 1.15f else baseRadius * 1.1f
                     drawCircle(
                         brush = Brush.radialGradient(
                             Pair(0.93f, brushColor),
@@ -74,22 +101,7 @@ fun CircleItem(
                         radius = radius,
                     )
                 }
-            }
-            .then(
-                if (onClick != null || menuItems.isNotEmpty()) {
-                    Modifier.clickable(
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() },
-                        enabled = isClickableEnabled
-                    ) {
-                        if (menuItems.isEmpty()) {
-                            onClick?.invoke()
-                        } else {
-                            isMenuExpanded = true
-                        }
-                    }
-                } else Modifier
-            ),
+            },
         contentAlignment = Alignment.Center
     ) {
         val colorFilter = if (!isEnabled) ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }) else null
@@ -155,7 +167,7 @@ data class CircleMenuItem(
 @Preview(showBackground = true)
 @Composable
 fun CircleItemPlayerPreview() {
-    val sizes = listOf(200.dp, 90.dp, 80.dp, 70.dp, 60.dp, 50.dp)
+    val sizes = listOf(200.dp, 100.dp, 90.dp, 80.dp, 70.dp, 60.dp, 50.dp)
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.padding(16.dp)

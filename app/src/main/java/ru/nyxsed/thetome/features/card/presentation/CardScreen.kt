@@ -5,19 +5,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.presentation.components.BackHandlerInterceptor
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 
 @Composable
-fun CardScreen(stringResourceId: Int, roles: List<Role?>?) {
-    CardContent(stringResourceId = stringResourceId, roles = roles)
+fun CardScreen(
+    stringResourceId: Int,
+    roles: List<Role?>?,
+    onDoublePressBack: () -> Unit,
+) {
+    BackHandlerInterceptor(
+        onDoublePressed = onDoublePressBack
+    )
+
+    CardContent(
+        stringResourceId = stringResourceId,
+        roles = roles
+    )
 }
 
 @Composable

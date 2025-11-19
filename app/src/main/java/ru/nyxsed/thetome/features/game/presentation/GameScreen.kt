@@ -1,19 +1,22 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
+import ru.nyxsed.thetome.core.presentation.components.BackHandlerInterceptor
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.features.game.presentation.components.*
 
@@ -22,8 +25,13 @@ fun GameScreen(
     viewModel: GameViewModel = hiltViewModel(),
     onEditGameClicked: () -> Unit,
     onCardClicked: (Int, List<Role?>?) -> Unit,
+    onDoublePressBack : () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
+
+    BackHandlerInterceptor(
+        onDoublePressed = onDoublePressBack
+    )
 
     GameContent(
         state = state,
@@ -70,8 +78,9 @@ fun GameContent(
     onMoveToPreviousAction: () -> Unit,
     onMoveToNextAction: () -> Unit,
 ) {
-    GameScreenBackground(state.currentPhase)
+    var isEditDialogRaised by remember { mutableStateOf(false) }
 
+    GameScreenBackground(state.currentPhase)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,7 +94,7 @@ fun GameContent(
         TopButtonsRow(
             sceneryRoles = state.scenery?.roles,
             onEditClicked = {
-                onEditGame()
+                isEditDialogRaised = true
             },
             menuItems = listOf(
                 CardsMenuItem(stringResource(R.string.menu_demon)) {
@@ -170,5 +179,16 @@ fun GameContent(
             onBeforeClicked = { onMoveToPreviousAction() },
             onAfterClicked = { onMoveToNextAction() },
         )
+
+        if (isEditDialogRaised) {
+            EditGameDialog(
+                onConfirm = {
+                    onEditGame()
+                },
+                onDismiss = {
+                    isEditDialogRaised = false
+                }
+            )
+        }
     }
 }

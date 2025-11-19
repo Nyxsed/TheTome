@@ -84,14 +84,20 @@ fun PlayersWheel(
             .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
-        val maxRadius = (min(maxWidth, maxHeight) / 2) - 32.dp
+        val playersCount = state.players!!.size
+
+        val maxRadius = when {
+            playersCount <= 6 -> (min(maxWidth, maxHeight) / 2) - 38.dp
+            playersCount <= 10 -> (min(maxWidth, maxHeight) / 2) - 38.dp
+            else -> (min(maxWidth, maxHeight) / 2) - 30.dp
+        }
+
         val radiusOuterPx = with(LocalDensity.current) { maxRadius.toPx() }
 
-        // Масштабируем размер кружка в зависимости от количества игроков
         val playerCircleSize = when {
-            state.players?.size!! <= 6 -> 80.dp
-            state.players.size <= 10 -> 70.dp
-            else -> 60.dp
+            state.players?.size!! <= 6 -> 100.dp
+            state.players.size <= 10 -> 80.dp
+            else -> 70.dp
         }
 
         val angleStep = 360f / state.players.size
@@ -160,8 +166,8 @@ fun PlayersWheel(
             val baseTokenRadius = playerCircleSize / 2 + 10.dp
             val tokenSize = when {
                 state.players.size <= 6 -> 40.dp
-                state.players.size <= 10 -> 30.dp
-                else -> 20.dp
+                state.players.size <= 10 -> 40.dp
+                else -> 35.dp
             }
             val tokenSpacingPx = with(LocalDensity.current) { tokenSize.toPx() + 1f }
 
@@ -176,7 +182,7 @@ fun PlayersWheel(
                     size = tokenSize,
                     centerIcon = token.iconRes,
                     bottomText = stringResource(token.nameResId),
-                    onClick = {
+                    onLongClick = {
                         val newTokens = player.tokens.toMutableList().also { it.removeAt(tokenIndex) }
                         onUpdateTokens(player, newTokens)
                     }
