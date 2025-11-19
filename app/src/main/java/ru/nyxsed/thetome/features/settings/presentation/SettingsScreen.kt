@@ -162,7 +162,6 @@ fun RoleSelector(
                     CircleItem(
                         itemType = ItemType.PLAYER_CIRCLE,
                         size = 70.dp,
-//                        backgroundColor = if (isSelected) Color.Green else if (isEnabled) Color.LightGray else Color.Gray,
                         centerIcon = role.iconRes,
                         bottomText = stringResource(role.roleName),
                         isClickableEnabled = isEnabled,

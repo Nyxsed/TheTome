@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -30,19 +29,30 @@ fun TextArc(
         when {
             circleSize.value <= 20f -> circleSize.value * 0.5f
             circleSize.value <= 30f -> circleSize.value * 0.5f
-            else -> circleSize.value * 0.3f
+            circleSize.value <= 40f -> circleSize.value * 0.5f
+            circleSize.value <= 50f -> circleSize.value * 0.4f
+            circleSize.value <= 60f -> circleSize.value * 0.4f
+            circleSize.value <= 70f -> circleSize.value * 0.4f
+            circleSize.value <= 80f -> circleSize.value * 0.4f
+            circleSize.value <= 90f -> circleSize.value * 0.35f
+            else -> circleSize.value * 0.31f
         }
     }
 
     val letterSpacing = remember(circleSize) {
         when {
-            circleSize.value <= 20f -> 1.2f
+            circleSize.value <= 20f -> 1.1f
             circleSize.value <= 30f -> 1.6f
-            else -> 2.2f
+            circleSize.value <= 40f -> 2.1f
+            circleSize.value <= 50f -> 2.1f
+            circleSize.value <= 60f -> 2.7f
+            circleSize.value <= 70f -> 2.7f
+            circleSize.value <= 80f -> 2.9f
+            circleSize.value <= 90f -> 2.9f
+            else -> 6f
         }
     }
 
-    // Paint для текста, кэшируемый по цвету
     val paint = remember(color) {
         Paint().apply {
             this.color = color.toArgb()
@@ -52,7 +62,6 @@ fun TextArc(
         }
     }
 
-    // Кэшируем ширину текста
     val textWidthPx = remember(text, fontSizePx) {
         text.map { paint.measureText(it.toString()) }.sum()
     }
@@ -98,53 +107,15 @@ fun TextArc(
 
 enum class ArcPosition { TOP, BOTTOM }
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
-fun TextArcPreview84() {
-    TextArc(
-        text = "Никита",
-        circleSize = 84.dp, // 84 74 64 30 20
-        color = Color.White,
-        position = ArcPosition.TOP
-    )
+fun TextArcPlayerPreview() {
+    CircleItemPlayerPreview()
 }
-@Preview
+
+@Preview(showBackground = true)
 @Composable
-fun TextArcPreview74() {
-    TextArc(
-        text = "Андрей",
-        circleSize = 74.dp, // 84 74 64 30 20
-        color = Color.White,
-        position = ArcPosition.TOP
-    )
-}
-@Preview
-@Composable
-fun TextArcPreview64() {
-    TextArc(
-        text = "Андрей",
-        circleSize = 64.dp, // 84 74 64 30 20
-        color = Color.White,
-        position = ArcPosition.TOP
-    )
-}
-@Preview
-@Composable
-fun TextArcPreview30() {
-    TextArc(
-        text = "Андрей",
-        circleSize = 30.dp, // 84 74 64 30 20
-        color = Color.White,
-        position = ArcPosition.TOP
-    )
-}
-@Preview
-@Composable
-fun TextArcPreview20() {
-    TextArc(
-        text = "Андрей",
-        circleSize = 20.dp, // 84 74 64 30 20
-        color = Color.White,
-        position = ArcPosition.TOP
-    )
+fun TextArcTokenPreview() {
+    CircleItemTokenPreview()
 }

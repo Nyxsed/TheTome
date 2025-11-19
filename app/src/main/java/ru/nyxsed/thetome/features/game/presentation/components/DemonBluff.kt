@@ -22,7 +22,7 @@ fun DemonBluff(
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         (0 until 3).forEach { index ->
             val role = demonBluffRoles.getOrNull(index)
-            val title = role?.roleName?.let { stringResource(it) } ?: "—"
+            val title = role?.roleName?.let { stringResource(it) } ?: ""
             CircleItem(
                 itemType = ItemType.PLAYER_CIRCLE,
                 size = 40.dp,

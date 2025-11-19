@@ -89,9 +89,9 @@ fun PlayersWheel(
 
         // Масштабируем размер кружка в зависимости от количества игроков
         val playerCircleSize = when {
-            state.players?.size!! <= 6 -> 84.dp
-            state.players.size <= 10 -> 74.dp
-            else -> 64.dp
+            state.players?.size!! <= 6 -> 80.dp
+            state.players.size <= 10 -> 70.dp
+            else -> 60.dp
         }
 
         val angleStep = 360f / state.players.size
@@ -117,8 +117,9 @@ fun PlayersWheel(
                 )
 
                 if (player.role != null) {
+                    val titleId = if (player.isAlive) R.string.menu_kill_player else R.string.menu_revive_player
                     add(
-                        CircleMenuItem(stringResource(R.string.menu_kill_player)) {
+                        CircleMenuItem(stringResource(titleId)) {
                             onChangeAliveStatus(player)
                         }
                     )
@@ -130,8 +131,9 @@ fun PlayersWheel(
                 }
 
                 if (!player.isAlive) {
+                    val titleId = if (player.haveGhostVote) R.string.menu_spend_ghost_vote else R.string.menu_return_ghost_vote
                     add(
-                        CircleMenuItem(stringResource(R.string.menu_spend_ghost_vote)) {
+                        CircleMenuItem(stringResource(titleId)) {
                             onChangeGhostVoteStatus(player)
                         }
                     )
@@ -156,8 +158,8 @@ fun PlayersWheel(
             // Кружки токенов
             val baseTokenRadius = playerCircleSize / 2 + 10.dp
             val tokenSize = when {
-                state.players.size <= 6 -> 30.dp
-                state.players.size <= 10 -> 20.dp
+                state.players.size <= 6 -> 40.dp
+                state.players.size <= 10 -> 30.dp
                 else -> 20.dp
             }
             val tokenSpacingPx = with(LocalDensity.current) { tokenSize.toPx() + 1f }
@@ -190,6 +192,7 @@ fun PlayersWheel(
                 modifier = Modifier.offset { IntOffset(xPlus.roundToInt(), yPlus.roundToInt()) },
                 size = tokenSize,
                 centerText = "+",
+                isAddToken = true,
                 onClick = {
                     tokenTargetPlayer = player
                 }

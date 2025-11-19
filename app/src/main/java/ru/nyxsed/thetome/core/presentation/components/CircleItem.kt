@@ -5,24 +5,30 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.ItemType
@@ -43,6 +49,7 @@ fun CircleItem(
     isEnabled: Boolean = true,
     haveGhostVote: Boolean = true,
     isSelected: Boolean = false,
+    isAddToken: Boolean = false,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     val backgroundImage = when (itemType) {
@@ -86,10 +93,12 @@ fun CircleItem(
     ) {
         val colorFilter = if (!isEnabled) ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }) else null
         Image(
+            modifier = Modifier
+                .matchParentSize()
+                .alpha(if (isAddToken) 0.05f else 1f),
             painter = backgroundImage,
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.matchParentSize(),
             colorFilter = colorFilter
         )
 
@@ -97,7 +106,7 @@ fun CircleItem(
             Image(
                 painter = painterResource(centerIcon),
                 contentDescription = null,
-                modifier = Modifier.size(size * 0.9f),
+                modifier = Modifier.size(size),
                 colorFilter = colorFilter
             )
         }
@@ -141,3 +150,49 @@ data class CircleMenuItem(
     val title: String,
     val onClick: () -> Unit,
 )
+
+@Preview(showBackground = true)
+@Composable
+fun CircleItemPlayerPreview() {
+    val sizes = listOf(200.dp, 90.dp, 80.dp, 70.dp, 60.dp, 50.dp)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(16.dp)
+    ) {
+        sizes.forEach { size ->
+            Column {
+                Text("size = $size", style = MaterialTheme.typography.labelLarge)
+                CircleItem(
+                    size = size,
+                    itemType = ItemType.PLAYER_CIRCLE,
+                    topText = "Nikita",
+                    bottomText = "Washerwoman",
+                    centerIcon = R.drawable.icon_washerwoman
+                )
+            }
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun CircleItemTokenPreview() {
+    val sizes = listOf(40.dp, 30.dp, 20.dp)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(16.dp)
+    ) {
+        sizes.forEach { size ->
+            Column {
+                Text("size = $size", style = MaterialTheme.typography.labelLarge)
+                CircleItem(
+                    size = size,
+                    itemType = ItemType.TOKEN_CIRCLE,
+                    bottomText = "Washerwoman",
+                    centerIcon = R.drawable.icon_washerwoman
+                )
+            }
+        }
+    }
+}

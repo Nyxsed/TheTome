@@ -41,8 +41,10 @@
     <string name="menu_rename">Rename</string>
     <string name="menu_change_role">Change role</string>
     <string name="menu_kill_player">Kill player</string>
+    <string name="menu_revive_player">Revive player</string>
     <string name="menu_show_card">Show card</string>
     <string name="menu_spend_ghost_vote">Spend Ghost Vote</string>
+    <string name="menu_return_ghost_vote">Return Ghost Vote</string>
 
     <string name="token_good">Good</string>
     <string name="token_evil">Evil</string>
