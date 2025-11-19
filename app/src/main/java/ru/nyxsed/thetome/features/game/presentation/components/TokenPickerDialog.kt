@@ -45,8 +45,8 @@ fun TokenPickerDialog(
             ) {
                 FlowRow(
                     modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     availableTokens.forEach { token ->
                         CircleItem(

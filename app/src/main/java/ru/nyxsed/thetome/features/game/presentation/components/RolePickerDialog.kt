@@ -9,14 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.core.presentation.components.CircleItem
-import kotlin.collections.forEach
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.ItemType
+import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
 @Composable
 fun RolePickerDialog(
@@ -35,8 +33,8 @@ fun RolePickerDialog(
             ) {
                 FlowRow(
                     modifier = Modifier.wrapContentWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     CircleItem(
                         itemType = ItemType.PLAYER_CIRCLE,

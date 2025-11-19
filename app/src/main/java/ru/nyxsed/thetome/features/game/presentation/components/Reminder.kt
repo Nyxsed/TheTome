@@ -1,5 +1,14 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -8,6 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +31,7 @@ import ru.nyxsed.thetome.core.domain.models.Action
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Reminder(
     modifier: Modifier = Modifier,
@@ -25,6 +39,9 @@ fun Reminder(
     onBeforeClicked: () -> Unit,
     onAfterClicked: () -> Unit,
 ) {
+    // направление листания
+    var direction by remember { mutableStateOf(SlideDirection.RIGHT) }
+
     Row(
         modifier = modifier
             .padding(8.dp)
@@ -33,7 +50,10 @@ fun Reminder(
         horizontalArrangement = Arrangement.Center
     ) {
         SmallRoundIconButton(
-            onClick = onBeforeClicked,
+            onClick = {
+                direction = SlideDirection.LEFT
+                onBeforeClicked()
+            },
             icon = {
                 Icon(
                     contentDescription = "before",
@@ -50,26 +70,60 @@ fun Reminder(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            if (action?.role != null) {
-                CircleItem(
-                    itemType = ItemType.PLAYER_CIRCLE,
-                    size = 80.dp,
-                    centerIcon = action.role.iconRes,
-                    bottomText = stringResource(action.role.roleName),
-                )
-            }
-            action?.let {
-                Text(
-                    modifier = Modifier
-                        .padding(8.dp),
-                    text = stringResource(it.actionResId),
-                    textAlign = TextAlign.Center
-                )
+
+            AnimatedContent(
+                targetState = action,
+                transitionSpec = {
+                    val slideIn = when (direction) {
+                        SlideDirection.LEFT  -> slideInHorizontally { -it }
+                        SlideDirection.RIGHT -> slideInHorizontally { it }
+                    }
+
+                    val slideOut = when (direction) {
+                        SlideDirection.LEFT  -> slideOutHorizontally { it }
+                        SlideDirection.RIGHT -> slideOutHorizontally { -it }
+                    }
+
+                    (slideIn + fadeIn() togetherWith slideOut + fadeOut())
+                        .using(
+                            SizeTransform(
+                                clip = false,
+                                sizeAnimationSpec = { _, _ -> tween(0) } // ключевая строка
+                            )
+                        )
+                },
+                label = "action_transition"
+            ) { animatedAction ->
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    if (animatedAction?.role != null) {
+                        CircleItem(
+                            itemType = ItemType.PLAYER_CIRCLE,
+                            size = 80.dp,
+                            centerIcon = animatedAction.role.iconRes,
+                            bottomText = stringResource(animatedAction.role.roleName),
+                        )
+                    }
+
+                    animatedAction?.let {
+                        Text(
+                            modifier = Modifier.padding(8.dp),
+                            text = stringResource(it.actionResId),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
             }
         }
 
         SmallRoundIconButton(
-            onClick = onAfterClicked,
+            onClick = {
+                direction = SlideDirection.RIGHT
+                onAfterClicked()
+            },
             icon = {
                 Icon(
                     contentDescription = "after",
@@ -80,3 +134,5 @@ fun Reminder(
         )
     }
 }
+
+enum class SlideDirection { LEFT, RIGHT }

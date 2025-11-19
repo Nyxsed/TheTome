@@ -1,6 +1,11 @@
 package ru.nyxsed.thetome.core.presentation.components
 
+import android.R.attr.scaleX
+import android.R.attr.scaleY
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -19,9 +24,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -61,6 +68,24 @@ fun CircleItem(
         ItemType.TOKEN_CIRCLE -> Color.White
     }
 
+    val scale by animateFloatAsState(
+        targetValue = if (isMenuExpanded) 1.3f else 1f, // коэффициент увеличения
+        animationSpec = tween(200),
+        label = "circleScale"
+    )
+
+    val animatedBrushColor by animateColorAsState(
+        targetValue = if (isSelected) Color.Red else Color.Black,
+        animationSpec = tween(durationMillis = 250)
+    )
+
+    val density = LocalDensity.current
+    val baseRadius = with(density) { size.toPx() / 2f }
+    val animatedRadius by animateFloatAsState(
+        targetValue = if (isSelected) baseRadius * 1.15f else baseRadius * 1.1f,
+        animationSpec = tween(durationMillis = 250)
+    )
+
     val haptic = LocalHapticFeedback.current
 
     val gestureModifier = if (onClick != null || onLongClick != null || menuItems.isNotEmpty()) {
@@ -87,18 +112,19 @@ fun CircleItem(
         modifier = modifier
             .then(gestureModifier)
             .size(size)
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
             .drawBehind {
                 if (!isAddToken) {
-                    val brushColor = if (isSelected) Color.Red else Color.Black
-                    val baseRadius = size.toPx() / 2
-                    val radius = if (isSelected) baseRadius * 1.15f else baseRadius * 1.1f
                     drawCircle(
                         brush = Brush.radialGradient(
-                            Pair(0.93f, brushColor),
+                            Pair(0.93f, animatedBrushColor),
                             Pair(1.00f, Color.Transparent),
-                            radius = radius,
+                            radius = animatedRadius,
                         ),
-                        radius = radius,
+                        radius = animatedRadius,
                     )
                 }
             },
