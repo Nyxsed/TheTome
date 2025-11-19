@@ -5,11 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -20,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
@@ -64,13 +61,21 @@ fun CircleItem(
         modifier = modifier
             .size(size)
             .drawBehind {
+                val radius = size.toPx() / 2
                 if (isSelected) {
-                    val glowColor = Color.Green
-                    val radius = size.toPx() / 2
                     drawCircle(
-                        color = glowColor,
+                        color = Color.Green,
                         radius = radius + 10f,
                         alpha = 0.8f
+                    )
+                } else if (!isAddToken) {
+                    drawCircle(
+                        brush = Brush.radialGradient(
+                            Pair(0.93f, Color.Black),
+                            Pair(1.00f, Color.Transparent),
+                            radius = radius * 1.1f,
+                        ),
+                        radius = radius * 1.1f,
                     )
                 }
             }
