@@ -61,21 +61,17 @@ fun CircleItem(
         modifier = modifier
             .size(size)
             .drawBehind {
-                val radius = size.toPx() / 2
-                if (isSelected) {
-                    drawCircle(
-                        color = Color.Green,
-                        radius = radius + 10f,
-                        alpha = 0.8f
-                    )
-                } else if (!isAddToken) {
+                if (!isAddToken) {
+                    val brushColor = if (isSelected) Color.Red else Color.Black
+                    val baseRadius = size.toPx() / 2
+                    val radius = if (isSelected) baseRadius * 1.15f  else baseRadius * 1.1f
                     drawCircle(
                         brush = Brush.radialGradient(
-                            Pair(0.93f, Color.Black),
+                            Pair(0.93f, brushColor),
                             Pair(1.00f, Color.Transparent),
-                            radius = radius * 1.1f,
+                            radius = radius,
                         ),
-                        radius = radius * 1.1f,
+                        radius = radius,
                     )
                 }
             }

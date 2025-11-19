@@ -1,7 +1,9 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -11,11 +13,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
 import ru.nyxsed.thetome.R
-import ru.nyxsed.thetome.core.domain.models.GameState
-import ru.nyxsed.thetome.core.domain.models.ItemType
-import ru.nyxsed.thetome.core.domain.models.Player
-import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.core.domain.models.Token
+import ru.nyxsed.thetome.core.domain.models.*
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.CircleMenuItem
 import kotlin.math.cos
@@ -82,6 +80,8 @@ fun PlayersWheel(
     )
 
     BoxWithConstraints(
+        modifier = Modifier
+            .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
         val maxRadius = (min(maxWidth, maxHeight) / 2) - 32.dp
@@ -131,7 +131,8 @@ fun PlayersWheel(
                 }
 
                 if (!player.isAlive) {
-                    val titleId = if (player.haveGhostVote) R.string.menu_spend_ghost_vote else R.string.menu_return_ghost_vote
+                    val titleId =
+                        if (player.haveGhostVote) R.string.menu_spend_ghost_vote else R.string.menu_return_ghost_vote
                     add(
                         CircleMenuItem(stringResource(titleId)) {
                             onChangeGhostVoteStatus(player)
