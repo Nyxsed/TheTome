@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 
 @Composable
@@ -31,7 +32,7 @@ fun SmallRoundIconButton(
                 interactionSource = remember { MutableInteractionSource() }
             ) { onClick() },
         shape = CircleShape,
-        color = MaterialTheme.colorScheme.primary,
+        color = DarkPurple,
         tonalElevation = 2.dp,
     ) {
         Box(

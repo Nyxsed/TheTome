@@ -2,10 +2,10 @@ package ru.nyxsed.thetome.core.presentation.components
 
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.nativeCanvas
@@ -25,46 +25,35 @@ fun TextArc(
 ) {
     if (text.isEmpty()) return
 
-    val fontSizePx = remember(circleSize) {
+    val fontSizePx =
         when {
-            circleSize.value <= 20f -> circleSize.value * 0.5f
-            circleSize.value <= 30f -> circleSize.value * 0.5f
             circleSize.value <= 40f -> circleSize.value * 0.5f
-            circleSize.value <= 50f -> circleSize.value * 0.4f
-            circleSize.value <= 60f -> circleSize.value * 0.4f
-            circleSize.value <= 70f -> circleSize.value * 0.4f
             circleSize.value <= 80f -> circleSize.value * 0.4f
             circleSize.value <= 90f -> circleSize.value * 0.35f
             else -> circleSize.value * 0.31f
         }
-    }
 
-    val letterSpacing = remember(circleSize) {
+    val letterSpacing =
         when {
             circleSize.value <= 20f -> 1.1f
             circleSize.value <= 30f -> 1.6f
-            circleSize.value <= 40f -> 2.1f
             circleSize.value <= 50f -> 2.1f
-            circleSize.value <= 60f -> 2.7f
             circleSize.value <= 70f -> 2.7f
-            circleSize.value <= 80f -> 2.9f
             circleSize.value <= 90f -> 2.9f
             else -> 6f
         }
-    }
 
-    val paint = remember(color) {
+    val paint =
         Paint().apply {
             this.color = color.toArgb()
             this.isAntiAlias = true
             this.textAlign = Paint.Align.CENTER
             this.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         }
-    }
 
-    val textWidthPx = remember(text, fontSizePx) {
-        text.map { paint.measureText(it.toString()) }.sum()
-    }
+
+    val textWidthPx = text.map { paint.measureText(it.toString()) }.sum()
+    Log.d("textWidthPx", textWidthPx.toString())
 
     Canvas(modifier = Modifier.size(circleSize)) {
         val canvasRadius = size.minDimension / 2f

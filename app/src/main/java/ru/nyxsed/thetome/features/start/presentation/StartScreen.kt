@@ -1,27 +1,20 @@
 package ru.nyxsed.thetome.features.start.presentation
 
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
-import ru.nyxsed.thetome.features.game.presentation.GameViewModel
+import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 
 @Composable
@@ -54,7 +47,9 @@ fun StartScreenContent(
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            onClick =  onNewGameClicked,
+            onClick = onNewGameClicked,
+            colors = ButtonDefaults.buttonColors()
+                .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
         ) {
             Text(stringResource(R.string.text_new_game))
         }
@@ -65,6 +60,8 @@ fun StartScreenContent(
                 modifier = Modifier
                     .fillMaxWidth(),
                 onClick = onRestoreGameClicked,
+                colors = ButtonDefaults.buttonColors()
+                    .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
             ) {
                 Text(stringResource(R.string.text_restore_game))
             }

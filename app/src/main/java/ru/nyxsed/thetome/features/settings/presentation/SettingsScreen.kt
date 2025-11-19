@@ -14,6 +14,7 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
+import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 @Composable
 fun SettingsScreen(
@@ -45,7 +46,7 @@ fun SettingsContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(8.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -72,7 +73,9 @@ fun SettingsContent(
 
         Button(
             enabled = state.chosenRoles.size == state.playerCount,
-            onClick = { onStartGameClicked() }
+            onClick = { onStartGameClicked() },
+            colors = ButtonDefaults.buttonColors()
+                .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
         ) {
             Text(stringResource(R.string.text_start_game))
         }
@@ -91,6 +94,8 @@ fun PlayerCountSlider(
         onValueChange = { onValueChange(it) },
         steps = 9,
         valueRange = 5f..15f,
+        colors = SliderDefaults.colors()
+            .copy(thumbColor = DarkPurple, activeTrackColor = DarkPurple, inactiveTrackColor = DarkPurple.copy(alpha = 0.5f))
     )
 }
 
@@ -106,7 +111,10 @@ fun SceneryDropdown(
     ) {
         Text(stringResource(R.string.text_scenery))
         Box {
-            TextButton(onClick = { expanded = true }) {
+            TextButton(
+                colors = ButtonDefaults.textButtonColors().copy(contentColor = DarkPurple),
+                onClick = { expanded = true }
+            ) {
                 val title = selectedScenery?.sceneryNameRes?.let { stringResource(it) }
                     ?: stringResource(R.string.text_choose_scenery)
                 Text(title)
@@ -147,9 +155,9 @@ fun RoleSelector(
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+                .padding(horizontal = 4.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             availableRoles
                 ?.filter { role ->
