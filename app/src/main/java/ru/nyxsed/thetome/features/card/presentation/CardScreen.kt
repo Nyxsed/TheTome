@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
+import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 
 @Composable
 fun CardScreen(stringResourceId: Int, roles: List<Role?>?) {
@@ -21,6 +22,7 @@ fun CardScreen(stringResourceId: Int, roles: List<Role?>?) {
 
 @Composable
 fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
+    GameScreenBackground(null)
     Box(
         modifier = Modifier
             .fillMaxSize(),

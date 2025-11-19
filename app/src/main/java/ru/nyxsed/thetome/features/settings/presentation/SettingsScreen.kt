@@ -14,6 +14,7 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
+import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 @Composable
@@ -43,6 +44,7 @@ fun SettingsContent(
     onRoleSelected: (Role) -> Unit,
     onStartGameClicked: () -> Unit,
 ) {
+    GameScreenBackground(null)
     Column(
         modifier = Modifier
             .fillMaxSize()

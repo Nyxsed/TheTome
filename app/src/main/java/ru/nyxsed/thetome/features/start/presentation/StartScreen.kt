@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
+import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 
@@ -38,6 +39,7 @@ fun StartScreenContent(
     onNewGameClicked: () -> Unit,
     onRestoreGameClicked: () -> Unit,
 ) {
+    GameScreenBackground(null)
     Column(
         modifier = Modifier
             .fillMaxSize()

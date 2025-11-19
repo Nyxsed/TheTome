@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.features.game.presentation.components.*
 
 @Composable
@@ -20,6 +21,8 @@ fun GameScreen(
     onCardClicked: (Int, List<Role?>?) -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
+
+    GameScreenBackground(state.currentPhase)
 
     Column(
         modifier = Modifier
