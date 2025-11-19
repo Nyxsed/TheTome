@@ -10,7 +10,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.domain.models.GameState
+import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
+import ru.nyxsed.thetome.core.domain.models.Token
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.features.game.presentation.components.*
 
@@ -22,6 +25,51 @@ fun GameScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
+    GameContent(
+        state = state,
+        onEditGame = onEditGameClicked,
+        onCard = onCardClicked,
+        onUpdateTokensClicked = { player, tokens ->
+            viewModel.updateTokens(player = player, tokens = tokens)
+        },
+        onChangeAliveStatus = {
+            viewModel.changeAliveStatus(it)
+        },
+        onChangeGhostVoteStatus = {
+            viewModel.onChangeGhostVoteStatus(it)
+        },
+        onRenamePlayer = { player, name ->
+            viewModel.renamePlayer(player, name)
+        },
+        onChangeRole = { player, role ->
+            viewModel.changeRole(player, role)
+        },
+        onChangeBluffs = {
+            viewModel.changeDemonBluffs(it)
+        },
+        onMoveToPreviousAction = {
+            viewModel.moveToPreviousAction()
+        },
+        onMoveToNextAction = {
+            viewModel.moveToNextAction()
+        },
+    )
+}
+
+@Composable
+fun GameContent(
+    state: GameState,
+    onEditGame: () -> Unit,
+    onCard: (Int, List<Role?>?) -> Unit,
+    onUpdateTokensClicked: (Player, List<Token>) -> Unit,
+    onChangeAliveStatus: (Player) -> Unit,
+    onChangeGhostVoteStatus: (Player) -> Unit,
+    onRenamePlayer: (Player, String) -> Unit,
+    onChangeRole: (Player, Role?) -> Unit,
+    onChangeBluffs: (List<Role?>) -> Unit,
+    onMoveToPreviousAction: () -> Unit,
+    onMoveToNextAction: () -> Unit,
+) {
     GameScreenBackground(state.currentPhase)
 
     Column(
@@ -37,33 +85,33 @@ fun GameScreen(
         TopButtonsRow(
             sceneryRoles = state.scenery?.roles,
             onEditClicked = {
-                onEditGameClicked()
+                onEditGame()
             },
             menuItems = listOf(
                 CardsMenuItem(stringResource(R.string.menu_demon)) {
-                    onCardClicked(R.string.menu_demon, emptyList())
+                    onCard(R.string.menu_demon, emptyList())
                 },
                 CardsMenuItem(stringResource(R.string.menu_minions)) {
-                    onCardClicked(R.string.menu_minions, emptyList())
+                    onCard(R.string.menu_minions, emptyList())
                 },
                 CardsMenuItem(stringResource(R.string.menu_not_in_play)) {
-                    onCardClicked(R.string.menu_not_in_play, state.demonBluffs)
+                    onCard(R.string.menu_not_in_play, state.demonBluffs)
                 },
                 CardsMenuItem(stringResource(R.string.menu_use_ability)) {
-                    onCardClicked(R.string.menu_use_ability, emptyList())
+                    onCard(R.string.menu_use_ability, emptyList())
                 },
                 CardsMenuItem(stringResource(R.string.menu_make_choice)) {
-                    onCardClicked(R.string.menu_make_choice, emptyList())
+                    onCard(R.string.menu_make_choice, emptyList())
                 },
                 CardsMenuItem(stringResource(R.string.menu_nominated_today)) {
-                    onCardClicked(R.string.menu_nominated_today, emptyList())
+                    onCard(R.string.menu_nominated_today, emptyList())
                 },
                 CardsMenuItem(stringResource(R.string.menu_voted_today)) {
-                    onCardClicked(R.string.menu_voted_today, emptyList())
+                    onCard(R.string.menu_voted_today, emptyList())
                 }
             ),
             menuItemRole = CardsMenuItem(stringResource(R.string.menu_show_role)) { role ->
-                onCardClicked(role?.ability!!, listOf(role))
+                onCard(role?.ability!!, listOf(role))
             }
         )
 
@@ -73,22 +121,22 @@ fun GameScreen(
             PlayersWheel(
                 state = state,
                 onUpdateTokens = { player, tokens ->
-                    viewModel.updateTokens(player = player, tokens = tokens)
+                    onUpdateTokensClicked(player, tokens)
                 },
                 onChangeAliveStatus = {
-                    viewModel.changeAliveStatus(it)
+                    onChangeAliveStatus(it)
                 },
                 onChangeGhostVoteStatus = {
-                    viewModel.onChangeGhostVoteStatus(it)
+                    onChangeGhostVoteStatus(it)
                 },
                 onRenamePlayer = { player, name ->
-                    viewModel.renamePlayer(player, name)
+                    onRenamePlayer(player, name)
                 },
                 onChangeRole = { player, role ->
-                    viewModel.changeRole(player, role)
+                    onChangeRole(player, role)
                 },
                 onShowCardClicked = { role ->
-                    onCardClicked(role?.ability!!, listOf(role))
+                    onCard(role?.ability!!, listOf(role))
                 },
             )
         }
@@ -104,7 +152,9 @@ fun GameScreen(
             DemonBluff(
                 demonBluffRoles = state.demonBluffs,
                 availableRoles = state.availableBluffRoles,
-                onChangeBluffs = { viewModel.changeDemonBluffs(it) },
+                onChangeBluffs = {
+                    onChangeBluffs(it)
+                },
             )
             KillParticipation(
                 roleDistribution = state.roleDistribution,
@@ -117,8 +167,8 @@ fun GameScreen(
         Reminder(
             modifier = Modifier.weight(1f),
             action = state.currentAction,
-            onBeforeClicked = { viewModel.moveToPreviousAction() },
-            onAfterClicked = { viewModel.moveToNextAction() },
+            onBeforeClicked = { onMoveToPreviousAction() },
+            onAfterClicked = { onMoveToNextAction() },
         )
     }
 }
