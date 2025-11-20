@@ -55,7 +55,6 @@ fun TextArc(
 
 
     val textWidthPx = text.map { paint.measureText(it.toString()) }.sum()
-    Log.d("textWidthPx", textWidthPx.toString())
 
     Canvas(modifier = Modifier.size(circleSize)) {
         val canvasRadius = size.minDimension / 2f

@@ -120,7 +120,7 @@ fun GameContent(
             }
         )
 
-        Spacer(Modifier.height(180.dp))
+        Spacer(Modifier.height(150.dp))
 
         if (!state.players.isNullOrEmpty()) {
             PlayersWheel(
@@ -146,7 +146,7 @@ fun GameContent(
             )
         }
 
-        Spacer(Modifier.height(180.dp))
+        Spacer(Modifier.height(140.dp))
 
         Row(
             modifier = Modifier
@@ -167,7 +167,7 @@ fun GameContent(
             )
         }
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(8.dp))
 
         Reminder(
             modifier = Modifier.weight(1f),

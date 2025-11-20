@@ -148,8 +148,6 @@ class GameViewModel @Inject constructor(
     private fun updateCurrentAction() {
         val state = _state.value
         val actions = getActionList(state)
-        Log.d("updateCurrentAction", state.toString())
-        Log.d("updateCurrentAction", actions.toString())
         _state.update {
             it.copy(
                 currentAction = actions[state.actionIndex]

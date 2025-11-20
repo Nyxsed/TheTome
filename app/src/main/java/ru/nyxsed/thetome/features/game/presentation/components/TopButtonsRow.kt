@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Role
 
@@ -36,34 +37,35 @@ fun TopButtonsRow(
                 isMenuExpanded = true
             },
             icon = {
-                DropdownMenu(
-                    expanded = isMenuExpanded,
-                    onDismissRequest = { isMenuExpanded = false }
-                ) {
-                    menuItems.forEach { item ->
-                        DropdownMenuItem(
-                            text = { Text(item.title) },
-                            onClick = {
-                                isMenuExpanded = false
-                                item.onClick(null)
-                            }
-                        )
-                    }
-                    DropdownMenuItem(
-                        text = { Text(menuItemRole.title) },
-                        onClick = {
-                            isMenuExpanded = false
-                            isDialogVisible = true
-                        }
-                    )
-                }
                 Icon(
                     contentDescription = "Cards",
                     imageVector = Icons.Default.DateRange,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = Color.White
                 )
             }
         )
+
+        DropdownMenu(
+            expanded = isMenuExpanded,
+            onDismissRequest = { isMenuExpanded = false }
+        ) {
+            menuItems.forEach { item ->
+                DropdownMenuItem(
+                    text = { Text(item.title) },
+                    onClick = {
+                        isMenuExpanded = false
+                        item.onClick(null)
+                    }
+                )
+            }
+            DropdownMenuItem(
+                text = { Text(menuItemRole.title) },
+                onClick = {
+                    isMenuExpanded = false
+                    isDialogVisible = true
+                }
+            )
+        }
 
         Spacer(modifier = Modifier.width(12.dp))
 
@@ -73,7 +75,7 @@ fun TopButtonsRow(
                 Icon(
                     contentDescription = "edit",
                     imageVector = Icons.Default.Edit,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = Color.White
                 )
             }
         )
@@ -85,7 +87,7 @@ fun TopButtonsRow(
                     menuItemRole.onClick(it)
                 },
                 onDismiss = {
-                    isDialogVisible= false
+                    isDialogVisible = false
                 }
             )
         }

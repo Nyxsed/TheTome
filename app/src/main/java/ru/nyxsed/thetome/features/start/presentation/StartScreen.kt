@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -53,7 +54,7 @@ fun StartScreenContent(
             colors = ButtonDefaults.buttonColors()
                 .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
         ) {
-            Text(stringResource(R.string.text_new_game))
+            Text(text = stringResource(R.string.text_new_game), color = Color.White)
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -65,7 +66,7 @@ fun StartScreenContent(
                 colors = ButtonDefaults.buttonColors()
                     .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
             ) {
-                Text(stringResource(R.string.text_restore_game))
+                Text(stringResource(R.string.text_restore_game), color = Color.White)
             }
         }
     }

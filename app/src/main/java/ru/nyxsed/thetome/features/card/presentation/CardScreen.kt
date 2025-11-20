@@ -60,7 +60,7 @@ fun CardContent(stringResourceId: Int, roles: List<Role?>?) {
                     modifier = Modifier.padding(8.dp),
                     centerIcon = role?.iconRes,
                     bottomText = title,
-                    size = 200.dp
+                    size = 150.dp
                 )
             }
         }

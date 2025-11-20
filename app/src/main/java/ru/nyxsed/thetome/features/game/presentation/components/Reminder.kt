@@ -7,11 +7,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,7 +46,7 @@ fun Reminder(
                 Icon(
                     contentDescription = "before",
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = Color.White
                 )
             }
         )
@@ -90,7 +90,7 @@ fun Reminder(
                     if (animatedAction?.role != null) {
                         CircleItem(
                             itemType = ItemType.PLAYER_CIRCLE,
-                            size = 80.dp,
+                            size = 60.dp,
                             centerIcon = animatedAction.role.iconRes,
                             bottomText = stringResource(animatedAction.role.roleName),
                         )
@@ -116,7 +116,7 @@ fun Reminder(
                 Icon(
                     contentDescription = "after",
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = Color.White
                 )
             }
         )

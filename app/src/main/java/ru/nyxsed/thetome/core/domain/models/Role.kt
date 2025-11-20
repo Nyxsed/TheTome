@@ -67,6 +67,7 @@ sealed class Role(
         tokens = listOf(Token.FortuneTellerRedHerring),
         roleName = R.string.role_name_fortune_teller,
         ability = R.string.role_ability_fortune_teller,
+        prepareActionId = R.string.action_prepare_fortune_teller,
         firstNightAction = R.string.action_second_night_fortune_teller,
         secondNightAction = R.string.action_second_night_fortune_teller,
         iconRes = R.drawable.icon_fortuneteller,

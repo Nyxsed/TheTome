@@ -1,10 +1,13 @@
 package ru.nyxsed.thetome.features.settings.presentation
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -49,8 +52,12 @@ fun SettingsContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp),
-        verticalArrangement = Arrangement.Center,
+            .padding(
+                WindowInsets.safeDrawing
+                    .only(WindowInsetsSides.Top)
+                    .asPaddingValues()
+            )
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PlayerCountSlider(
@@ -75,12 +82,13 @@ fun SettingsContent(
         )
 
         Button(
+            modifier = Modifier.padding(bottom = 30.dp),
             enabled = state.chosenRoles.size == state.playerCount,
             onClick = { onStartGameClicked() },
             colors = ButtonDefaults.buttonColors()
                 .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
         ) {
-            Text(stringResource(R.string.text_start_game))
+            Text(text = stringResource(R.string.text_start_game), color = Color.White)
         }
     }
 }
@@ -169,10 +177,10 @@ fun RoleSelector(
 
         FlowRow(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 4.dp),
+                .padding(top = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            maxItemsInEachRow = 4
         ) {
             availableRoles
                 ?.filter { role ->

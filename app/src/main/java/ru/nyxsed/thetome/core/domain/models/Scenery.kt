@@ -48,6 +48,7 @@ sealed class Scenery(
             Action(actionType = ActionType.PLAYER, role = Role.Washerwoman, actionResId = Role.Washerwoman.prepareActionId),
             Action(actionType = ActionType.PLAYER, role = Role.Librarian, actionResId = Role.Librarian.prepareActionId),
             Action(actionType = ActionType.PLAYER, role = Role.FortuneTeller, actionResId = Role.FortuneTeller.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.Investigator, actionResId = Role.Investigator.prepareActionId),
             Action(actionType = ActionType.PLAYER, role = Role.Recluse, actionResId = Role.Recluse.prepareActionId),
             Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
         ),
