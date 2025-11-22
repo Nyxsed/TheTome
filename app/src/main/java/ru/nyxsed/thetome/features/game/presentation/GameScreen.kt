@@ -75,6 +75,9 @@ fun GameContent(
     onMoveToNextAction: () -> Unit,
 ) {
     var isEditDialogRaised by remember { mutableStateOf(false) }
+    var isPickRoleDialogRaised by remember { mutableStateOf(false) }
+    var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
+    var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
 
     GameScreenBackground(state.currentPhase)
     Column(
@@ -84,8 +87,7 @@ fun GameContent(
                 WindowInsets.safeDrawing
                     .only(WindowInsetsSides.Top)
                     .asPaddingValues()
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            )
     ) {
         TopButtonsRow(
             sceneryRoles = state.scenery?.roles,
@@ -120,34 +122,20 @@ fun GameContent(
             }
         )
 
-        Spacer(Modifier.height(150.dp))
-
+        Spacer(Modifier.height(20.dp))
         if (!state.players.isNullOrEmpty()) {
             PlayersWheel(
-                state = state,
-                onUpdateTokens = { player, tokens ->
-                    onUpdateTokensClicked(player, tokens)
+                players = state.players,
+                onClick = { player ->
+                    targetEditPlayer = player
                 },
-                onChangeAliveStatus = {
-                    onChangeAliveStatus(it)
-                },
-                onChangeGhostVoteStatus = {
-                    onChangeGhostVoteStatus(it)
-                },
-                onRenamePlayer = { player, name ->
-                    onRenamePlayer(player, name)
-                },
-                onChangeRole = { player, role ->
-                    onChangeRole(player, role)
-                },
-                onShowCardClicked = { role ->
-                    onCard(role?.ability!!, listOf(role))
-                },
+                onLongClick = {
+                    targetTokenPlayer = it
+                }
             )
         }
 
-        Spacer(Modifier.height(140.dp))
-
+        Spacer(Modifier.height(20.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -163,18 +151,66 @@ fun GameContent(
             )
             KillParticipation(
                 roleDistribution = state.roleDistribution,
-                players = state.players
+                players = state.players,
+                dayNumber = state.currentDay,
             )
         }
 
         Spacer(Modifier.height(8.dp))
-
         Reminder(
             modifier = Modifier.weight(1f),
             action = state.currentAction,
             onBeforeClicked = { onMoveToPreviousAction() },
             onAfterClicked = { onMoveToNextAction() },
         )
+
+        if (targetEditPlayer != null) {
+            EditPlayerDialog(
+                player = targetEditPlayer!!,
+                onDismissRequest = {
+                    targetEditPlayer = null
+                },
+                onChangeName = { player, name ->
+                    onRenamePlayer(player, name)
+                    targetEditPlayer = null
+                },
+                onChangeAliveStatus = {
+                    onChangeAliveStatus(it)
+                    targetEditPlayer = null
+                },
+                onChangeGhostVote = {
+                    onChangeGhostVoteStatus(it)
+                    targetEditPlayer = null
+                },
+                onShowRolePicker = {
+                    isPickRoleDialogRaised = true
+                },
+                onShowCardClicked = { role ->
+                    onCard(role.ability, listOf(role))
+                },
+            )
+        }
+
+        val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
+        val availableRoles = state.chosenRoles?.filter { role ->
+            role !in takenRoles || targetEditPlayer?.role == role
+        } ?: emptyList()
+
+        if (targetEditPlayer != null && isPickRoleDialogRaised) {
+            RolePickerDialog(
+                availableRoles = availableRoles,
+                onSelectRole = { role ->
+                    onChangeRole(targetEditPlayer!!, role)
+                    targetEditPlayer = null
+                    isPickRoleDialogRaised = false
+                },
+                onDismiss = {
+                    targetEditPlayer = null
+                    isPickRoleDialogRaised = false
+                }
+            )
+        }
+
 
         if (isEditDialogRaised) {
             EditGameDialog(
@@ -184,6 +220,23 @@ fun GameContent(
                 onDismiss = {
                     isEditDialogRaised = false
                 }
+            )
+        }
+
+        if (targetTokenPlayer != null) {
+            TokenPickerDialog(
+                target = targetTokenPlayer,
+                chosenRoles = state.chosenRoles,
+                players = state.players,
+                sceneryTokens = state.scenery?.sceneryTokens!!,
+                onPickToken = { token ->
+                    targetTokenPlayer?.let { player ->
+                        val newTokens = player.tokens.toMutableList().also { it.add(token) }
+                        onUpdateTokensClicked(targetTokenPlayer!!, newTokens)
+                    }
+                    targetTokenPlayer = null
+                },
+                onDismiss = { targetTokenPlayer = null }
             )
         }
     }

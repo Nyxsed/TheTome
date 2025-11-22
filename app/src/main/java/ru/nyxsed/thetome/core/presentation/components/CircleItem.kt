@@ -9,16 +9,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -43,15 +44,12 @@ fun CircleItem(
     bottomText: String? = null,
     centerText: String? = null,
     @DrawableRes centerIcon: Int? = null,
-    menuItems: List<CircleMenuItem> = emptyList(),
-    onClick: (() -> Unit)? = null,
-    onLongClick: (() -> Unit)? = null,
     isEnabled: Boolean = true,
     haveGhostVote: Boolean = true,
     isSelected: Boolean = false,
-    isAddToken: Boolean = false,
+    onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
 ) {
-    var isMenuExpanded by remember { mutableStateOf(false) }
     val backgroundImage = when (itemType) {
         ItemType.PLAYER_CIRCLE -> painterResource(id = R.drawable.bg_player)
         ItemType.TOKEN_CIRCLE -> painterResource(id = R.drawable.bg_token)
@@ -61,12 +59,6 @@ fun CircleItem(
         ItemType.TOKEN_CIRCLE -> Color.White
     }
 
-    val scale by animateFloatAsState(
-        targetValue = if (isMenuExpanded) 1.3f else 1f, // коэффициент увеличения
-        animationSpec = tween(200),
-        label = "circleScale"
-    )
-
     val animatedBrushColor by animateColorAsState(
         targetValue = if (isSelected) Color.Red else Color.Black,
         animationSpec = tween(durationMillis = 250)
@@ -74,22 +66,17 @@ fun CircleItem(
 
     val density = LocalDensity.current
     val baseRadius = with(density) { size.toPx() / 2f }
-    val animatedRadius by animateFloatAsState(
+    val animatedShadowRadius by animateFloatAsState(
         targetValue = if (isSelected) baseRadius * 1.15f else baseRadius * 1.1f,
         animationSpec = tween(durationMillis = 250)
     )
 
     val haptic = LocalHapticFeedback.current
-
-    val gestureModifier = if (onClick != null || onLongClick != null || menuItems.isNotEmpty()) {
-        Modifier.pointerInput(onClick, onLongClick, menuItems) {
+    val gestureModifier = if (onClick != null || onLongClick != null) {
+        Modifier.pointerInput(onClick, onLongClick) {
             detectTapGestures(
                 onTap = {
-                    if (menuItems.isEmpty()) {
-                        onClick?.invoke()
-                    } else {
-                        isMenuExpanded = true
-                    }
+                    onClick?.invoke()
                 },
                 onLongPress = {
                     onLongClick?.invoke()
@@ -105,29 +92,23 @@ fun CircleItem(
         modifier = modifier
             .then(gestureModifier)
             .size(size)
-            .graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-            }
             .drawBehind {
-                if (!isAddToken) {
-                    drawCircle(
-                        brush = Brush.radialGradient(
-                            Pair(0.93f, animatedBrushColor),
-                            Pair(1.00f, Color.Transparent),
-                            radius = animatedRadius,
-                        ),
-                        radius = animatedRadius,
-                    )
-                }
+                drawCircle(
+                    brush = Brush.radialGradient(
+                        Pair(0.93f, animatedBrushColor),
+                        Pair(1.00f, Color.Transparent),
+                        radius = animatedShadowRadius,
+                    ),
+                    radius = animatedShadowRadius,
+                )
+
             },
         contentAlignment = Alignment.Center
     ) {
         val colorFilter = if (!isEnabled) ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }) else null
         Image(
             modifier = Modifier
-                .matchParentSize()
-                .alpha(if (isAddToken) 0.05f else 1f),
+                .matchParentSize(),
             painter = backgroundImage,
             contentDescription = null,
             contentScale = ContentScale.Crop,
@@ -152,36 +133,18 @@ fun CircleItem(
             Text(centerText, fontSize = 6.sp, color = textColor, textAlign = TextAlign.Center, lineHeight = 6.sp)
         }
 
-        if (menuItems.isNotEmpty()) {
-            DropdownMenu(
-                expanded = isMenuExpanded,
-                onDismissRequest = { isMenuExpanded = false }
+        if (!isEnabled && haveGhostVote) {
+            Box(
+                modifier = Modifier
+                    .size(size / 2)
+                    .background(Color.White.copy(alpha = 0.8f), shape = CircleShape),
+                contentAlignment = Alignment.Center
             ) {
-                menuItems.forEach { item ->
-                    DropdownMenuItem(
-                        text = { Text(item.title) },
-                        onClick = {
-                            isMenuExpanded = false
-                            item.onClick()
-                        }
-                    )
-                }
+
             }
         }
     }
-    if (!isEnabled && haveGhostVote) {
-        Box(
-            modifier = modifier
-                .size(size / 2)
-                .background(Color.White.copy(alpha = 0.8f), shape = CircleShape)
-        )
-    }
 }
-
-data class CircleMenuItem(
-    val title: String,
-    val onClick: () -> Unit,
-)
 
 @Preview(showBackground = true)
 @Composable

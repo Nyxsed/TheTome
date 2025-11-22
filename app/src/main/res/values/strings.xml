@@ -23,6 +23,13 @@
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
     <string name="text_press_again">Press again</string>
+    <string name="text_rename">Rename</string>
+    <string name="text_change_role">Change role</string>
+    <string name="text_kill_player">Kill player</string>
+    <string name="text_revive_player">Revive player</string>
+    <string name="text_show_card">Show card</string>
+    <string name="text_spend_ghost_vote">Spend Ghost Vote</string>
+    <string name="text_return_ghost_vote">Return Ghost Vote</string>
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
@@ -41,14 +48,6 @@
     <string name="menu_make_choice">Make a choice</string>
     <string name="menu_nominated_today">Did you nominate today?</string>
     <string name="menu_voted_today">Did you vote today?</string>
-
-    <string name="menu_rename">Rename</string>
-    <string name="menu_change_role">Change role</string>
-    <string name="menu_kill_player">Kill player</string>
-    <string name="menu_revive_player">Revive player</string>
-    <string name="menu_show_card">Show card</string>
-    <string name="menu_spend_ghost_vote">Spend Ghost Vote</string>
-    <string name="menu_return_ghost_vote">Return Ghost Vote</string>
 
     <string name="token_good">Good</string>
     <string name="token_evil">Evil</string>

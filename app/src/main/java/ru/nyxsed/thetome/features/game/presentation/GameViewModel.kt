@@ -55,7 +55,8 @@ class GameViewModel @Inject constructor(
     fun changeAliveStatus(player: Player) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
-                if (currentPlayer == player) currentPlayer.copy(isAlive = !currentPlayer.isAlive) else currentPlayer
+                if (currentPlayer.id == player.id) currentPlayer.copy(isAlive = !currentPlayer.isAlive)
+                else currentPlayer
             }
             currentState.copy(players = updatedPlayers)
         }
@@ -175,7 +176,7 @@ class GameViewModel @Inject constructor(
 
                 GamePhase.FIRST_NIGHT -> {
                     _state.update {
-                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0)
+                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0, currentDay = it.currentDay + 1)
                     }
                 }
 
@@ -187,7 +188,7 @@ class GameViewModel @Inject constructor(
 
                 GamePhase.SECOND_NIGHT -> {
                     _state.update {
-                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0)
+                        it.copy(currentPhase = GamePhase.DAY, actionIndex = 0, currentDay = it.currentDay + 1)
                     }
                 }
             }
@@ -232,7 +233,8 @@ class GameViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             currentPhase = GamePhase.DAY,
-                            actionIndex = prevActions.lastIndex
+                            actionIndex = prevActions.lastIndex,
+                            currentDay = it.currentDay - 1,
                         )
                     }
                 }
