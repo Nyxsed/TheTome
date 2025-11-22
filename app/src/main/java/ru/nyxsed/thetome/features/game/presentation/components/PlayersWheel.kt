@@ -12,10 +12,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
-import kotlin.math.*
+import kotlin.math.cos
+import kotlin.math.min
+import kotlin.math.roundToInt
+import kotlin.math.sin
 
 @Composable
 fun PlayersWheel(
@@ -23,8 +27,11 @@ fun PlayersWheel(
     modifier: Modifier = Modifier,
     minCircleSize: Dp = 60.dp,
     maxCircleSize: Dp = 100.dp,
+    minTokenSize: Dp = 20.dp,
+    maxTokenSize: Dp = 40.dp,
     onClick: (Player) -> Unit,
     onLongClick: (Player) -> Unit,
+    onTokenLongClick: (Player, Int) -> Unit,
 ) {
     if (players.isEmpty()) return
 
@@ -46,34 +53,96 @@ fun PlayersWheel(
         val centerX = boxWidthPx / 2f
         val centerY = boxHeightPx / 2f
 
+        // Максимальные размеры
         val maxCirclePx = with(density) { maxCircleSize.toPx() }
-        val radiusPx = (min(boxWidthPx, boxHeightPx) - maxCirclePx) / 2f
+        val maxTokenPx = with(density) { maxTokenSize.toPx() }
 
-        // Размер кружка зависит от количества игроков
-        val circlePx = (2 * Math.PI * radiusPx / players.size * 0.8).toFloat()
-        val circleSize = circlePx.coerceIn(
+        // Вычисление размера игроков (px)
+        val circlePxRaw =
+            (2 * Math.PI * ((min(boxWidthPx, boxHeightPx) - (maxCirclePx + maxTokenPx)) / 2f)
+                    / players.size * 0.8).toFloat()
+
+        val circlePx = circlePxRaw.coerceIn(
             with(density) { minCircleSize.toPx() },
             maxCirclePx
-        ).let { with(density) { it.toDp() } }
+        )
+        val circleSize = with(density) { circlePx.toDp() }
+
+        // Размер токена масштабируется примерно так же
+        val tokenPxRaw = circlePx * 0.4f
+        val tokenPx = tokenPxRaw.coerceIn(
+            with(density) { minTokenSize.toPx() },
+            maxTokenPx
+        )
+        val tokenSize = with(density) { tokenPx.toDp() }
+
+        // Основной радиус — учитывает диаметр игрока + диаметр токена
+        val radiusPx =
+            (min(boxWidthPx, boxHeightPx) - (circlePx + tokenPx)) / 2f
 
         players.forEachIndexed { index, player ->
             key(player.id) {
-                val angleRad = Math.toRadians((-90f + 360f / players.size * index).toDouble())
-                val x = centerX + radiusPx * cos(angleRad) - with(density) { circleSize.toPx() } / 2f
-                val y = centerY + radiusPx * sin(angleRad) - with(density) { circleSize.toPx() } / 2f
+                // Позиция игрока
+                val angleRad = Math.toRadians(
+                    (-90f + 360f / players.size * index).toDouble()
+                )
 
+                val playerX =
+                    centerX + radiusPx * cos(angleRad) - circlePx / 2f
+                val playerY =
+                    centerY + radiusPx * sin(angleRad) - circlePx / 2f
+
+                // ---------- Игрок ----------
                 CircleItem(
-                    modifier = Modifier.offset { IntOffset(x.roundToInt(), y.roundToInt()) },
+                    modifier = Modifier
+                        .offset {
+                            IntOffset(playerX.roundToInt(), playerY.roundToInt())
+                        }.zIndex(0f),
                     size = circleSize,
                     itemType = ItemType.PLAYER_CIRCLE,
-                    topText = player.name ?: "",
-                    bottomText = player.role?.roleName?.let { stringResource(it) } ?: "",
+                    topText = player.name.orEmpty(),
+                    bottomText = player.role?.roleName?.let { stringResource(it) }.orEmpty(),
                     centerIcon = player.role?.iconRes,
                     isEnabled = player.isAlive,
                     haveGhostVote = player.haveGhostVote,
                     onClick = { onClick(player) },
                     onLongClick = { onLongClick(player) }
                 )
+
+                // ---------- Токены игрока ----------
+                val tokens = player.tokens.orEmpty() // список токенов игрока
+                if (tokens.isNotEmpty()) {
+                    val inset = tokenPx * 0.3f
+                    val tokenRadiusPx = (circlePx + tokenPx) / 2f - inset
+
+                    tokens.forEachIndexed { ti, token ->
+                        val tAngle = angleRad +
+                                (2 * Math.PI / tokens.size) * ti
+
+                        val tx =
+                            (playerX + circlePx / 2f) +
+                                    tokenRadiusPx * cos(tAngle) - tokenPx / 2f
+                        val ty =
+                            (playerY + circlePx / 2f) +
+                                    tokenRadiusPx * sin(tAngle) - tokenPx / 2f
+
+                        CircleItem(
+                            modifier = Modifier
+                                .offset {
+                                    IntOffset(tx.roundToInt(), ty.roundToInt())
+                                }
+                                .zIndex(1f),
+                            size = tokenSize,
+                            itemType = ItemType.TOKEN_CIRCLE,
+                            bottomText = stringResource(token.nameResId),
+                            centerIcon = token.iconRes,
+                            isEnabled = true,
+                            haveGhostVote = false,
+                            onClick = { /* нет */ },
+                            onLongClick = { onTokenLongClick(player, ti) },
+                        )
+                    }
+                }
             }
         }
     }

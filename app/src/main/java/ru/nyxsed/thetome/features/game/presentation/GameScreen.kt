@@ -131,6 +131,10 @@ fun GameContent(
                 },
                 onLongClick = {
                     targetTokenPlayer = it
+                },
+                onTokenLongClick = { player, ti ->
+                    val newTokens = player.tokens.toMutableList().also { it.removeAt(ti) }
+                    onUpdateTokensClicked(player, newTokens)
                 }
             )
         }
@@ -142,13 +146,15 @@ fun GameContent(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            DemonBluff(
-                demonBluffRoles = state.demonBluffs,
-                availableRoles = state.availableBluffRoles,
-                onChangeBluffs = {
-                    onChangeBluffs(it)
-                },
-            )
+            if (state.players?.size!! > 6) {
+                DemonBluff(
+                    demonBluffRoles = state.demonBluffs,
+                    availableRoles = state.availableBluffRoles,
+                    onChangeBluffs = {
+                        onChangeBluffs(it)
+                    },
+                )
+            }
             KillParticipation(
                 roleDistribution = state.roleDistribution,
                 players = state.players,

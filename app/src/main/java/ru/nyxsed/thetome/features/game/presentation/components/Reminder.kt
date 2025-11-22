@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.core.domain.models.Action
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
@@ -96,11 +97,20 @@ fun Reminder(
                         )
                     }
 
-                    animatedAction?.let {
+                    animatedAction?.let { action ->
+                        val text = stringResource(action.actionResId)
+
+                        val fontSize = when {
+                            text.length > 200 -> 12.sp
+                            text.length > 25 -> 14.sp
+                            else -> 16.sp
+                        }
+
                         Text(
                             modifier = Modifier.padding(8.dp),
-                            text = stringResource(it.actionResId),
-                            textAlign = TextAlign.Center
+                            text = text,
+                            textAlign = TextAlign.Center,
+                            fontSize = fontSize
                         )
                     }
                 }
