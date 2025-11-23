@@ -1,5 +1,10 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -110,7 +115,7 @@ fun PlayersWheel(
                 )
 
                 // ---------- Токены игрока ----------
-                val tokens = player.tokens.orEmpty() // список токенов игрока
+                val tokens = player.tokens
                 if (tokens.isNotEmpty()) {
                     val inset = tokenPx * 0.3f
                     val tokenRadiusPx = (circlePx + tokenPx) / 2f - inset

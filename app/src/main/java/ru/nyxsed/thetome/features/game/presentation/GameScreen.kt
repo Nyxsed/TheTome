@@ -33,9 +33,6 @@ fun GameScreen(
         state = state,
         onEditGame = onEditGameClicked,
         onCard = onCardClicked,
-        onUpdateTokensClicked = { player, tokens ->
-            viewModel.updateTokens(player = player, tokens = tokens)
-        },
         onChangeAliveStatus = {
             viewModel.changeAliveStatus(it)
         },
@@ -57,6 +54,12 @@ fun GameScreen(
         onMoveToNextAction = {
             viewModel.moveToNextAction()
         },
+        onAddToken = { player, token ->
+            viewModel.addToken(player, token)
+        },
+        onDeleteToken = { player, tokenIndex ->
+            viewModel.deleteToken(player, tokenIndex)
+        }
     )
 }
 
@@ -65,7 +68,6 @@ fun GameContent(
     state: GameState,
     onEditGame: () -> Unit,
     onCard: (Int, List<Role?>?) -> Unit,
-    onUpdateTokensClicked: (Player, List<Token>) -> Unit,
     onChangeAliveStatus: (Player) -> Unit,
     onChangeGhostVoteStatus: (Player) -> Unit,
     onRenamePlayer: (Player, String) -> Unit,
@@ -73,6 +75,8 @@ fun GameContent(
     onChangeBluffs: (List<Role?>) -> Unit,
     onMoveToPreviousAction: () -> Unit,
     onMoveToNextAction: () -> Unit,
+    onAddToken: (Player, Token) -> Unit,
+    onDeleteToken: (Player, Int) -> Unit,
 ) {
     var isEditDialogRaised by remember { mutableStateOf(false) }
     var isPickRoleDialogRaised by remember { mutableStateOf(false) }
@@ -132,9 +136,8 @@ fun GameContent(
                 onLongClick = {
                     targetTokenPlayer = it
                 },
-                onTokenLongClick = { player, ti ->
-                    val newTokens = player.tokens.toMutableList().also { it.removeAt(ti) }
-                    onUpdateTokensClicked(player, newTokens)
+                onTokenLongClick = { player, tokenIndex ->
+                    onDeleteToken(player, tokenIndex)
                 }
             )
         }
@@ -170,7 +173,7 @@ fun GameContent(
             onAfterClicked = { onMoveToNextAction() },
         )
 
-        if (targetEditPlayer != null) {
+        if (targetEditPlayer != null && !isPickRoleDialogRaised) {
             EditPlayerDialog(
                 player = targetEditPlayer!!,
                 onDismissRequest = {
@@ -237,8 +240,7 @@ fun GameContent(
                 sceneryTokens = state.scenery?.sceneryTokens!!,
                 onPickToken = { token ->
                     targetTokenPlayer?.let { player ->
-                        val newTokens = player.tokens.toMutableList().also { it.add(token) }
-                        onUpdateTokensClicked(targetTokenPlayer!!, newTokens)
+                        onAddToken(targetTokenPlayer!!, token)
                     }
                     targetTokenPlayer = null
                 },

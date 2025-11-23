@@ -106,11 +106,18 @@ fun Reminder(
                             else -> 16.sp
                         }
 
+                        val lineHeight = when {
+                            text.length > 200 -> 18.sp
+                            text.length > 25 -> 22.sp
+                            else -> 28.sp
+                        }
+
                         Text(
                             modifier = Modifier.padding(8.dp),
                             text = text,
                             textAlign = TextAlign.Center,
-                            fontSize = fontSize
+                            fontSize = fontSize,
+                            lineHeight = lineHeight
                         )
                     }
                 }

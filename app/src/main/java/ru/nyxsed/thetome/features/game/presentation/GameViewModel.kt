@@ -1,6 +1,5 @@
 package ru.nyxsed.thetome.features.game.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,15 +41,30 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    fun updateTokens(player: Player, tokens: List<Token>) {
+
+    fun deleteToken(player: Player, tokeIndex: Int) {
+        val newTokens = player.tokens.toMutableList().also { it.removeAt(tokeIndex) }
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
-                if (currentPlayer == player) currentPlayer.copy(tokens = tokens) else currentPlayer
+                if (currentPlayer == player) currentPlayer.copy(tokens = newTokens) else currentPlayer
             }
             currentState.copy(players = updatedPlayers)
         }
         saveGameState()
     }
+
+
+    fun addToken(player: Player, token: Token) {
+        val newTokens = player.tokens.toMutableList().also { it.add(token) }
+        _state.update { currentState ->
+            val updatedPlayers = currentState.players?.map { currentPlayer ->
+                if (currentPlayer == player) currentPlayer.copy(tokens = newTokens) else currentPlayer
+            }
+            currentState.copy(players = updatedPlayers)
+        }
+        saveGameState()
+    }
+
 
     fun changeAliveStatus(player: Player) {
         _state.update { currentState ->
@@ -63,6 +77,7 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+
     fun onChangeGhostVoteStatus(player: Player) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
@@ -72,6 +87,7 @@ class GameViewModel @Inject constructor(
         }
         saveGameState()
     }
+
 
     fun renamePlayer(player: Player, name: String) {
         _state.update { currentState ->
@@ -83,6 +99,7 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+
     fun changeRole(player: Player, role: Role?) {
         _state.update { currentState ->
             val updatedPlayers = currentState.players?.map { currentPlayer ->
@@ -93,12 +110,14 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+
     fun changeDemonBluffs(bluffs: List<Role?>) {
         _state.update {
             it.copy(demonBluffs = bluffs)
         }
         saveGameState()
     }
+
 
     private fun getActionList(state: GameState): List<Action> {
         val chosenRoles = state.chosenRoles
@@ -146,6 +165,7 @@ class GameViewModel @Inject constructor(
         return list
     }
 
+
     private fun updateCurrentAction() {
         val state = _state.value
         val actions = getActionList(state)
@@ -157,6 +177,7 @@ class GameViewModel @Inject constructor(
 
         saveGameState()
     }
+
 
     fun moveToNextAction() {
         val state = _state.value
@@ -195,6 +216,7 @@ class GameViewModel @Inject constructor(
         }
         updateCurrentAction()
     }
+
 
     fun moveToPreviousAction() {
         val state = _state.value
@@ -240,7 +262,6 @@ class GameViewModel @Inject constructor(
                 }
             }
         }
-
         updateCurrentAction()
     }
 }
