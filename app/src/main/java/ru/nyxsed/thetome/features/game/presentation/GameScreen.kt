@@ -119,7 +119,10 @@ fun GameContent(
                 },
                 CardsMenuItem(stringResource(R.string.menu_voted_today)) {
                     onCard(R.string.menu_voted_today, emptyList())
-                }
+                },
+                CardsMenuItem(stringResource(R.string.menu_char_selected_you)) {
+                    onCard(R.string.menu_char_selected_you, emptyList()) // TODO picker
+                },
             ),
             menuItemRole = CardsMenuItem(stringResource(R.string.menu_show_role)) { role ->
                 onCard(role?.ability!!, listOf(role))
@@ -197,6 +200,10 @@ fun GameContent(
                 onShowCardClicked = { role ->
                     onCard(role.ability, listOf(role))
                 },
+                onChooseTokenClicked = {
+                    targetTokenPlayer = it
+                    targetEditPlayer = null
+                }
             )
         }
 

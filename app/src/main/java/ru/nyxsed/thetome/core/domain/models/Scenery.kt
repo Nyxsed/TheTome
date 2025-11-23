@@ -1,11 +1,13 @@
 package ru.nyxsed.thetome.core.domain.models
 
+import androidx.annotation.DrawableRes
 import kotlinx.serialization.Serializable
 import ru.nyxsed.thetome.R
 
 @Serializable
 sealed class Scenery(
     val sceneryNameRes: Int,
+    @DrawableRes val iconRes: Int = 0,
     val roles: List<Role>,
     val prepareActions: List<Action>,
     val firstNightActions: List<Action>,
@@ -16,6 +18,7 @@ sealed class Scenery(
     @Serializable
     data object TroubleBrewing : Scenery(
         sceneryNameRes = R.string.scenery_name_trouble_brewing,
+        iconRes = R.drawable.icon_trouble_brewing,
         roles = listOf(
             Role.Washerwoman,
             Role.Librarian,
@@ -88,9 +91,96 @@ sealed class Scenery(
         sceneryTokens = listOf(Token.Good, Token.Evil, Token.DrunkDrunk)
     )
 
+    @Serializable
+    data object UncertainDeath : Scenery(
+        sceneryNameRes = R.string.scenery_name_uncertain_death,
+        iconRes = R.drawable.icon_uncertain_death,
+        roles = listOf(
+            Role.Clockmaker,
+            Role.Grandmother,
+            Role.Librarian,
+            Role.Empath,
+            Role.FortuneTeller,
+            Role.Exorcist,
+            Role.Flowergirl,
+            Role.Oracle,
+            Role.Undertaker,
+            Role.Artist,
+            Role.Slayer,
+            Role.Seamstress,
+            Role.Monk,
+            Role.Lunatic,
+            Role.Mutant,
+            Role.Sweetheart,
+            Role.Recluse,
+            Role.Godfather,
+            Role.Assassin,
+            Role.ScarletWoman,
+            Role.Marionette,
+            Role.NoDashii,
+            Role.Pukka,
+        ),
+        prepareActions = listOf(
+            Action(actionType = ActionType.PLAYER, role = Role.Godfather, actionResId = Role.Godfather.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.Marionette, actionResId = Role.Marionette.prepareActionId),
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
+            Action(actionType = ActionType.PLAYER, role = Role.Librarian, actionResId = Role.Librarian.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.FortuneTeller, actionResId = Role.FortuneTeller.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.Recluse, actionResId = Role.Recluse.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.Grandmother, actionResId = Role.Grandmother.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.Lunatic, actionResId = Role.Lunatic.prepareActionId),
+            Action(actionType = ActionType.PLAYER, role = Role.NoDashii, actionResId = Role.NoDashii.prepareActionId),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
+        ),
+        firstNightActions = listOf(
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
+            Action(actionType = ActionType.PLAYER, role = Role.Lunatic, actionResId = Role.Lunatic.firstNightAction),
+            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_minions_and_bluffs),
+            Action(actionType = ActionType.PLAYER, role = Role.Godfather, actionResId = Role.Godfather.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Pukka, actionResId = Role.Pukka.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Librarian, actionResId = Role.Librarian.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Empath, actionResId = Role.Empath.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.FortuneTeller, actionResId = Role.FortuneTeller.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Grandmother, actionResId = Role.Grandmother.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Clockmaker, actionResId = Role.Clockmaker.firstNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Seamstress, actionResId = Role.Seamstress.firstNightAction),
+            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+        ),
+        secondNightActions = listOf(
+            Action(actionType = ActionType.PLAYER, role = Role.Monk, actionResId = Role.Monk.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.ScarletWoman, actionResId = Role.ScarletWoman.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Lunatic, actionResId = Role.Lunatic.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Exorcist, actionResId = Role.Exorcist.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Pukka, actionResId = Role.Pukka.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.NoDashii, actionResId = Role.NoDashii.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Assassin, actionResId = Role.Assassin.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Godfather, actionResId = Role.Godfather.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Sweetheart, actionResId = Role.Sweetheart.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Grandmother, actionResId = Role.Grandmother.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Empath, actionResId = Role.Empath.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.FortuneTeller, actionResId = Role.FortuneTeller.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Undertaker, actionResId = Role.Undertaker.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Flowergirl, actionResId = Role.Flowergirl.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Oracle, actionResId = Role.Oracle.secondNightAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Seamstress, actionResId = Role.Seamstress.secondNightAction),
+            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+        ),
+        dayActions = listOf(
+            Action(actionType = ActionType.PLAYER, role = Role.Flowergirl, actionResId = Role.Flowergirl.dayAction),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(actionType = ActionType.PLAYER, role = Role.Undertaker, actionResId = Role.Undertaker.dayAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Sweetheart, actionResId = Role.Sweetheart.dayAction),
+            Action(actionType = ActionType.PLAYER, role = Role.Godfather, actionResId = Role.Godfather.dayAction),
+            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
+        ),
+        sceneryTokens = listOf(Token.Good, Token.Evil, Token.MarionetteMarionette),
+    )
+
     companion object {
         val all: List<Scenery> = listOf(
             TroubleBrewing,
+            UncertainDeath
         )
     }
 }

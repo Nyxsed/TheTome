@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -126,9 +127,21 @@ fun SceneryDropdown(
                 colors = ButtonDefaults.textButtonColors().copy(contentColor = DarkPurple),
                 onClick = { expanded = true }
             ) {
-                val title = selectedScenery?.sceneryNameRes?.let { stringResource(it) }
-                    ?: stringResource(R.string.text_choose_scenery)
-                Text(title)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    selectedScenery?.let { scenery ->
+                        Icon(
+                            painter = painterResource(scenery.iconRes),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp),
+                            tint = Color.Unspecified
+                        )
+                        Spacer(Modifier.width(8.dp))
+                    }
+
+                    val title = selectedScenery?.sceneryNameRes?.let { stringResource(it) }
+                        ?: stringResource(R.string.text_choose_scenery)
+                    Text(title)
+                }
             }
             DropdownMenu(
                 expanded = expanded,
@@ -136,7 +149,18 @@ fun SceneryDropdown(
             ) {
                 items.forEach { scenery ->
                     DropdownMenuItem(
-                        text = { Text(stringResource(scenery.sceneryNameRes)) },
+                        text = {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    painter = painterResource(scenery.iconRes),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(24.dp),
+                                    tint = Color.Unspecified
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(scenery.sceneryNameRes))
+                            }
+                        },
                         onClick = {
                             onSelected(scenery)
                             expanded = false

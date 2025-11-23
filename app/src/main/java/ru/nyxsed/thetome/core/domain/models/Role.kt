@@ -147,6 +147,77 @@ sealed class Role(
         iconRes = R.drawable.icon_mayor,
     )
 
+    @Serializable
+    data object Clockmaker : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_clockmaker,
+        ability = R.string.role_ability_clockmaker,
+        firstNightAction = R.string.action_first_night_clockmaker,
+        iconRes = R.drawable.icon_clockmaker,
+    )
+
+    @Serializable
+    data object Grandmother : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_grandmother,
+        ability = R.string.role_ability_grandmother,
+        iconRes = R.drawable.icon_grandmother,
+        prepareActionId = R.string.action_prepare_grandmother,
+        firstNightAction = R.string.action_first_night_grandmother,
+        secondNightAction = R.string.action_second_night_grandmother,
+        tokens = listOf(Token.GrandmotherGrandchild)
+    )
+
+    @Serializable
+    data object Exorcist : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_exorcist,
+        ability = R.string.role_ability_exorcist,
+        iconRes = R.drawable.icon_exorcist,
+        secondNightAction = R.string.action_second_night_exorcist,
+        tokens = listOf(Token.ExorcistChosen)
+    )
+
+    @Serializable
+    data object Flowergirl : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_flowergirl,
+        ability = R.string.role_ability_flowergirl,
+        iconRes = R.drawable.icon_flowergirl,
+        dayAction = R.string.action_day_flowergirl,
+        secondNightAction = R.string.action_second_night_flowergirl,
+        tokens = listOf(Token.FlowergirlNotVoted, Token.FlowergirlVoted)
+    )
+
+    @Serializable
+    data object Oracle : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_oracle,
+        ability = R.string.role_ability_oracle,
+        iconRes = R.drawable.icon_oracle,
+        secondNightAction = R.string.action_second_night_oracle
+    )
+
+    @Serializable
+    data object Artist : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_artist,
+        ability = R.string.role_ability_artist,
+        iconRes = R.drawable.icon_artist,
+        tokens = listOf(Token.ArtistNoAbility)
+    )
+
+    @Serializable
+    data object Seamstress : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_seamstress,
+        ability = R.string.role_ability_seamstress,
+        iconRes = R.drawable.icon_seamstress,
+        firstNightAction = R.string.action_second_night_seamstress,
+        secondNightAction = R.string.action_second_night_seamstress,
+        tokens = listOf(Token.SeamstressNoAbility)
+    )
+
     //Outsiders
     @Serializable
     data object Butler : Role(
@@ -180,10 +251,41 @@ sealed class Role(
     @Serializable
     data object Drunk : Role(
         type = RoleType.OUTSIDER,
-        roleName = R.string.role_name_Drunk,
+        roleName = R.string.role_name_drunk,
         ability = R.string.role_ability_Drunk,
         prepareActionId = R.string.action_prepare_Drunk,
         iconRes = R.drawable.icon_drunk,
+    )
+
+    @Serializable
+    data object Lunatic : Role(
+        type = RoleType.OUTSIDER,
+        roleName = R.string.role_name_lunatic,
+        ability = R.string.role_ability_lunatic,
+        iconRes = R.drawable.icon_lunatic,
+        prepareActionId = R.string.action_prepare_lunatic,
+        firstNightAction = R.string.action_first_night_lunatic,
+        secondNightAction = R.string.action_second_night_lunatic,
+        tokens = listOf(Token.LunaticChosen)
+    )
+
+    @Serializable
+    data object Mutant : Role(
+        type = RoleType.OUTSIDER,
+        roleName = R.string.role_name_mutant,
+        ability = R.string.role_ability_mutant,
+        iconRes = R.drawable.icon_mutant,
+    )
+
+    @Serializable
+    data object Sweetheart : Role(
+        type = RoleType.OUTSIDER,
+        roleName = R.string.role_name_sweetheart,
+        ability = R.string.role_ability_sweetheart,
+        iconRes = R.drawable.icon_sweetheart,
+        dayAction = R.string.action_day_sweethearth,
+        secondNightAction = R.string.action_day_sweethearth,
+        tokens = listOf(Token.SweetheartDrunk),
     )
 
     //Minions
@@ -226,6 +328,38 @@ sealed class Role(
         iconRes = R.drawable.icon_scarletwoman,
     )
 
+    @Serializable
+    data object Godfather : Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_godfather,
+        ability = R.string.role_ability_godfather,
+        iconRes = R.drawable.icon_godfather,
+        prepareActionId = R.string.action_prepare_godfather,
+        firstNightAction = R.string.action_first_night_godfather,
+        secondNightAction = R.string.action_second_night_godfather,
+        dayAction = R.string.action_day_godfather,
+        tokens = listOf(Token.GodfatherDiedToday)
+    )
+
+    @Serializable
+    data object Assassin : Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_assassin,
+        ability = R.string.role_ability_assassin,
+        iconRes = R.drawable.icon_assassin,
+        secondNightAction = R.string.action_second_night_assassin,
+        tokens = listOf(Token.AssassinNoAbility)
+    )
+
+    @Serializable
+    data object  Marionette: Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_marionette,
+        ability = R.string.role_ability_marionette,
+        prepareActionId = R.string.action_prepare_marionette,
+        iconRes = R.drawable.icon_marionette,
+    )
+
     //Demons
     @Serializable
     data object Imp : Role(
@@ -235,5 +369,27 @@ sealed class Role(
         ability = R.string.role_ability_imp,
         secondNightAction = R.string.action_second_night_imp,
         iconRes = R.drawable.icon_imp,
+    )
+
+    @Serializable
+    data object NoDashii : Role(
+        type = RoleType.DEMON,
+        tokens = listOf(Token.NoDashiiPoison, Token.NoDashiiPoison, Token.NoDashiiKill),
+        roleName = R.string.role_name_nodashii,
+        ability = R.string.role_ability_nodashii,
+        prepareActionId = R.string.action_prepare_nodashii,
+        secondNightAction = R.string.action_second_night_nodashii,
+        iconRes = R.drawable.icon_nodashii,
+    )
+
+    @Serializable
+    data object Pukka : Role(
+        type = RoleType.DEMON,
+        tokens = listOf(Token.PukkaKill, Token.PukkaPoison),
+        roleName = R.string.role_name_pukka,
+        ability = R.string.role_ability_pukka,
+        firstNightAction = R.string.action_first_night_pukka,
+        secondNightAction = R.string.action_first_night_pukka,
+        iconRes = R.drawable.icon_pukka,
     )
 }

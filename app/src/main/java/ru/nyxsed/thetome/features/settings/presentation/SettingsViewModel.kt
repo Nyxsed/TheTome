@@ -56,7 +56,12 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun changeScenery(selectedScenery: Scenery) {
-        _state.update { it.copy(selectedScenery = selectedScenery) }
+        _state.update {
+            it.copy(
+                selectedScenery = selectedScenery,
+                chosenRoles = emptyList(),
+            )
+        }
     }
 
     fun toggleRoleSelection(role: Role) {

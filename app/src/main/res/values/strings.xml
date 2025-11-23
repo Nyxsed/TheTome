@@ -48,6 +48,7 @@
     <string name="menu_make_choice">Make a choice</string>
     <string name="menu_nominated_today">Did you nominate today?</string>
     <string name="menu_voted_today">Did you vote today?</string>
+    <string name="menu_char_selected_you">This Character Selected You</string>
 
     <string name="token_good">Good</string>
     <string name="token_evil">Evil</string>
@@ -63,13 +64,19 @@
     <string name="token_died_today">Died Today</string>
     <string name="token_no_ability">No Ability</string>
     <string name="token_drunk">Drunk</string>
+    <string name="token_grandchild">Grandchild</string>
+    <string name="token_chosen">Chosen</string>
+    <string name="token_not_voted">Not voted</string>
+    <string name="token_voted">Voted</string>
+    <string name="token_marionette">Marionette</string>
 
     <string name="scenery_name_trouble_brewing">Trouble Brewing</string>
+    <string name="scenery_name_uncertain_death">Uncertain Death</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
     <string name="action_second_night_imp">
-        Wake the Imp. The Imp points at any player. The chosen player dies — put the Imps DEAD reminder by the chosen players character token
+        Wake the Imp. The Imp points at any player. The chosen player dies — put the Imps Kill reminder by the chosen players character token
         If the Imp killed themself at night, choose an alive Minion and replace their character token with a Imp token. Wake the new Imp, show them the YOU ARE info token, then show them the Imp token
     </string>
 
@@ -154,8 +161,79 @@
     <string name="role_ability_baron">There are extra Outsiders in play(+2)</string>
     <string name="action_prepare_baron">While setting up the game, remove any two Townsfolk character tokens and add any two Outsider character tokens</string>
 
-    <string name="role_name_Drunk">Drunk</string>
+    <string name="role_name_drunk">Drunk</string>
     <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
     <string name="action_prepare_Drunk">Return to Settings screen and remove Drunk role. Add some Townsfolk role. After setting up mark some Townsfolk as Drunk</string>
+
+    <string name="role_name_clockmaker">Clockmaker</string>
+    <string name="role_ability_clockmaker">You start knowing how many steps from the Demon to its nearest Minion</string>
+    <string name="action_first_night_clockmaker">Wake the Clockmaker. Show fingers (1, 2, etc.) equaling the distance in players from the Demon to the nearest Minion, starting with the player neighboring the Demon closer to that Minion</string>
+
+    <string name="role_name_grandmother">Grandmother</string>
+    <string name="role_ability_grandmother">You start knowing a good player and their character. If the Demon kills them, you die too</string>
+    <string name="action_prepare_grandmother">Choose a Grandchild by marking any good character with the GRANDCHILD reminder</string>
+    <string name="action_first_night_grandmother">Wake the Grandmother and show them the character token marked GRANDCHILD, then point at the Grandchild player, then put the Grandmother to sleep</string>
+    <string name="action_second_night_grandmother">If the Demon kills the Grandchild, the Grandmother dies</string>
+
+    <string name="role_name_exorcist">Exorcist</string>
+    <string name="role_ability_exorcist">Each night*, choose a player (different to last night): the Demon, if chosen, learns who you are then doesnt wake tonight</string>
+    <string name="action_second_night_exorcist">Wake the Exorcist. They point at any player. Mark the chosen player’s character token with the CHOSEN reminder. Put the Exorcist to sleep</string>
+
+    <string name="role_name_flowergirl">Flowergirl</string>
+    <string name="role_ability_flowergirl">Each night*, you learn if a Demon voted today</string>
+    <string name="action_day_flowergirl">Each dawn, mark the Flowergirl with the DEMON NOT VOTED reminder. if the Demon votes for any execution, replace the DEMON NOT VOTED reminder with the DEMON VOTED reminder</string>
+    <string name="action_second_night_flowergirl">Wake the Flowergirl. If the Flowergirl is marked DEMON NOT VOTED, shake your head no. If the Flowergirl is marked DEMON VOTED, nod your head yes</string>
+
+    <string name="role_name_oracle">Oracle</string>
+    <string name="role_ability_oracle">Each night*, you learn how many dead players are evil</string>
+    <string name="action_second_night_oracle">Wake the Oracle. Show fingers (0, 1, 2, etc.) equaling the number of dead evil players</string>
+
+    <string name="role_name_artist">Artist</string>
+    <string name="role_ability_artist">Once per game, during the day, privately ask the Storyteller any yes/no question</string>
+
+    <string name="role_name_seamstress">Seamstress</string>
+    <string name="role_ability_seamstress">Once per game, at night, choose 2 players (not yourself): you learn if they are the same alignment</string>
+    <string name="action_second_night_seamstress">Wake the Seamstress. They either shake their head no or point at any two players except themself. f they point at two players, either nod your head yes (to indicate these players have the same alignment) or shake your head no (to indicate these players do not have the same alignment). mark seamstress with the NO ABILITY</string>
+
+    <string name="role_name_lunatic">Lunatic</string>
+    <string name="role_ability_lunatic">You think you are a Demon, but you are not. The Demon knows who you are and who you choose at night</string>
+    <string name="action_prepare_lunatic">Once all tokens have been returned to you, swap the positions of the Lunatic and Demon tokens in the Grimoire</string>
+    <string name="action_first_night_lunatic">Wake the Lunatic and act as if they are the Demon. Show them the THESE ARE YOUR MINIONS info token and point to a number of players equaling the number of Minions in play. Show any three good character tokens as bluffs.
+    During the first night, wake the Demon. Show them the YOU ARE info token, then their Demon
+    token. Show them the THIS PLAYER IS info token, then the Lunatic token, then point at the Lunatic player</string>
+    <string name="action_second_night_lunatic">Wake the Lunatic to act as if they were that Demon. Put a CHOSEN reminder on each player they chose, then put them to sleep. Wake the real Demon, point at the Lunatic, show the Lunatic token to the real Demon, and point at the players that the Lunatic chose. Then the Demon acts as normal</string>
+
+    <string name="role_name_mutant">Mutant</string>
+    <string name="role_ability_mutant">If you are "mad" about being an Outsider, you might be executed</string>
+
+    <string name="role_name_sweetheart">Sweetheart</string>
+    <string name="role_ability_sweetheart">When you die, 1 player is drunk from now on</string>
+    <string name="action_day_sweethearth">If the Sweetheart dies, you choose any one player to become drunk - mark this player with the DRUNK reminder. The Sweetheart does not lose this ability when dead</string>
+
+    <string name="role_name_godfather">Godfather</string>
+    <string name="role_ability_godfather">You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [-1 or +1 Outsider]</string>
+    <string name="action_prepare_godfather">Before putting the character tokens in the bag, either remove one Townsfolk and add one Outsider or remove one Outsider and add one Townsfolk</string>
+    <string name="action_first_night_godfather">Wake the Godfather. Show them the character tokens of all Outsiders in play</string>
+    <string name="action_day_godfather">If an Outsider dies during the day, mark them with the DIED TODAY reminder</string>
+    <string name="action_second_night_godfather">If an Outsider dies during the day, That night, wake the Godfather. They point at any player, they dead</string>
+
+    <string name="role_name_assassin">Assassin</string>
+    <string name="role_ability_assassin">Once per game, at night*, choose a player: they die, even if for some reason they could not</string>
+    <string name="action_second_night_assassin">Wake the Godfather. Show them the character tokens of all Outsiders in play</string>
+
+    <string name="role_name_marionette">Marionette</string>
+    <string name="role_ability_marionette">You think you are a good character, but you are not. The Demon knows who you are. [You neighbor the Demon]</string>
+    <string name="action_prepare_marionette">Return to Settings screen and remove Marionette role. Add some Townsfolk role. After setting up mark Demon neighbor good player as Marionette.
+    During the first night, Wake the Demon. Point to the player marked IS THE MARIONETTE and show the Marionette character token</string>
+
+    <string name="role_name_nodashii">No Dashii</string>
+    <string name="role_ability_nodashii">Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned</string>
+    <string name="action_prepare_nodashii">The two Townsfolk neighboring the No Dashii become poisoned - mark them with POISONED reminders</string>
+    <string name="action_second_night_nodashii">Wake the No Dashii. They point at any player. That player dies. put Kill</string>
+
+    <string name="role_name_pukka">Pukka</string>
+    <string name="role_ability_pukka">Each night, choose a player: they are poisoned. The previously poisoned player dies then becomes healthy</string>
+    <string name="action_first_night_pukka">Wake the Pukka. They point at any player. Put the Pukka to sleep. The chosen player is poisoned — mark them with a POISONED reminder, the other player marked POISONED dies — mark them with a DEAD reminder</string>
+
 
 </resources>

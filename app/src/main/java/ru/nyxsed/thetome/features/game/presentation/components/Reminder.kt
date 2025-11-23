@@ -1,5 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
@@ -96,7 +97,7 @@ fun Reminder(
                             bottomText = stringResource(animatedAction.role.roleName),
                         )
                     }
-
+                    Log.d("reminderAction",action.toString())
                     animatedAction?.let { action ->
                         val text = stringResource(action.actionResId)
 

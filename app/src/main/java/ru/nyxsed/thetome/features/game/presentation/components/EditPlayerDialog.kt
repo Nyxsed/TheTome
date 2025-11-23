@@ -28,6 +28,7 @@ fun EditPlayerDialog(
     onChangeGhostVote: (Player) -> Unit,
     onShowRolePicker: (Player) -> Unit,
     onShowCardClicked: (Role) -> Unit,
+    onChooseTokenClicked: (Player) -> Unit,
 ) {
     var newName by remember { mutableStateOf(player.name ?: "") }
 
@@ -79,28 +80,6 @@ fun EditPlayerDialog(
                 Button(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    onClick = {
-                        onChangeAliveStatus(player)
-                    }
-                ) {
-                    Text(killLabel)
-                }
-
-                if (!player.isAlive) {
-                    Spacer(Modifier.height(8.dp))
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        onClick = { onChangeGhostVote(player) }
-                    ) {
-                        Text(ghostVoteLabel)
-                    }
-                }
-
-                Spacer(Modifier.height(8.dp))
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth(),
                     onClick = { onShowRolePicker(player) }
                 ) {
                     Text(stringResource(R.string.text_change_role))
@@ -111,9 +90,41 @@ fun EditPlayerDialog(
                     Button(
                         modifier = Modifier
                             .fillMaxWidth(),
+                        onClick = {
+                            onChangeAliveStatus(player)
+                        }
+                    ) {
+                        Text(killLabel)
+                    }
+
+
+                    if (!player.isAlive) {
+                        Spacer(Modifier.height(8.dp))
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            onClick = { onChangeGhostVote(player) }
+                        ) {
+                            Text(ghostVoteLabel)
+                        }
+                    }
+
+                    Spacer(Modifier.height(8.dp))
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth(),
                         onClick = { onShowCardClicked(player.role) }
                     ) {
                         Text(stringResource(R.string.text_show_card))
+                    }
+
+                    Spacer(Modifier.height(8.dp))
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = { onChooseTokenClicked(player) }
+                    ) {
+                        Text(stringResource(R.string.text_choose_token))
                     }
                 }
             }

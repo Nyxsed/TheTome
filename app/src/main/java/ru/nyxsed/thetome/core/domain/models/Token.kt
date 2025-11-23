@@ -57,4 +57,50 @@ sealed class Token(
     @Serializable
     data object DrunkDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_drunk)
 
+    @Serializable
+    data object GrandmotherGrandchild : Token(nameResId = R.string.token_grandchild, iconRes = R.drawable.icon_grandmother)
+
+    @Serializable
+    data object ExorcistChosen : Token(nameResId = R.string.token_chosen, iconRes = R.drawable.icon_exorcist)
+
+    @Serializable
+    data object FlowergirlNotVoted : Token(nameResId = R.string.token_not_voted, iconRes = R.drawable.icon_flowergirl)
+
+    @Serializable
+    data object FlowergirlVoted : Token(nameResId = R.string.token_voted, iconRes = R.drawable.icon_flowergirl)
+
+    @Serializable
+    data object ArtistNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_artist)
+
+    @Serializable
+    data object SeamstressNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_seamstress)
+
+    @Serializable
+    data object LunaticChosen : Token(nameResId = R.string.token_chosen, iconRes = R.drawable.icon_lunatic)
+
+    @Serializable
+    data object SweetheartDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_sweetheart)
+
+    @Serializable
+    data object GodfatherDiedToday : Token(nameResId = R.string.token_died_today, iconRes = R.drawable.icon_godfather)
+
+    @Serializable
+    data object AssassinNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_assassin)
+
+    @Serializable
+    data object MarionetteMarionette : Token(nameResId = R.string.token_marionette, iconRes = R.drawable.icon_marionette) // TODO unique token
+
+    @Serializable
+    data object NoDashiiPoison : Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_nodashii)
+
+    @Serializable
+    data object NoDashiiKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_nodashii)
+
+    @Serializable
+    data object PukkaPoison : Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_pukka)
+
+    @Serializable
+    data object PukkaKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_pukka)
+
+
 }
