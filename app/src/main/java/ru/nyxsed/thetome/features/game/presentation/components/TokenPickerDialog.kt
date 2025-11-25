@@ -29,9 +29,29 @@ fun TokenPickerDialog(
     if (target == null) return
 
     val availableTokens = remember(chosenRoles, players) {
+        // 1. Собираем все токены из выбранных ролей (с повторениями)
         val chosenRolesTokens = chosenRoles?.flatMap { it.tokens } ?: emptyList()
-        val filteredChosenRolesTokens = chosenRolesTokens.filter { token -> players?.none { token in it.tokens } == true }
-        sceneryTokens + filteredChosenRolesTokens
+
+        // 2. Считаем, сколько уже назначено игрокам каждого токена
+        val assignedCounts: Map<Token, Int> = players
+            ?.flatMap { it.tokens }
+            ?.groupingBy { it }
+            ?.eachCount()
+            ?: emptyMap()
+
+        // 3. Для каждого токена из ролей вычитаем назначенные
+        val remainingRoleTokens: List<Token> =
+            chosenRolesTokens
+                .groupingBy { it }
+                .eachCount()
+                .flatMap { (token, totalCount) ->
+                    val used = assignedCounts[token] ?: 0
+                    val remaining = totalCount - used
+                    if (remaining > 0) List(remaining) { token } else emptyList()
+                }
+
+        // 4. Добавляем sceneryTokens
+        sceneryTokens + remainingRoleTokens
     }
 
     AlertDialog(

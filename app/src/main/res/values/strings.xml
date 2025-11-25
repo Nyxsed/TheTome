@@ -66,12 +66,18 @@
     <string name="token_drunk">Drunk</string>
     <string name="token_grandchild">Grandchild</string>
     <string name="token_chosen">Chosen</string>
-    <string name="token_not_voted">Not voted</string>
+    <string name="token_not_voted">Not Voted</string>
     <string name="token_voted">Voted</string>
     <string name="token_marionette">Marionette</string>
+    <string name="token_everyone_is_drunk">Everyone Is Drunk</string>
+    <string name="token_cannot_die">Cannot Die</string>
+    <string name="token_survives_execution">Survives Execution</string>
+    <string name="token_alive">Alive</string>
+    <string name="token_3_attacks">3 Attacks</string>
 
     <string name="scenery_name_trouble_brewing">Trouble Brewing</string>
     <string name="scenery_name_uncertain_death">Uncertain Death</string>
+    <string name="scenery_name_bad_moon_rising">Bad Moon Rising</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
@@ -236,4 +242,88 @@
     <string name="action_first_night_pukka">Wake the Pukka. They point at any player. Put the Pukka to sleep. The chosen player is poisoned — mark them with a POISONED reminder, the other player marked POISONED dies — mark them with a DEAD reminder</string>
 
 
+    <string name="role_name_sailor">Sailor</string>
+    <string name="role_ability_sailor">Each night, choose an alive player: either you or they are drunk until dusk. You cant die</string>
+    <string name="action_second_night_sailor">Wake the Sailor. They point at any player. Put the Sailor to sleep. Either the Sailor or this chosen player becomes drunk—mark them with the DRUNK reminder</string>
+    <string name="action_day_sailor">If the sober Sailor is executed, declare that this player is executed but remains alive</string>
+
+    <string name="role_name_chambermaid">Chambermaid</string>
+    <string name="role_ability_chambermaid">Each night, choose 2 alive players (not yourself): you learn how many woke tonight due to their ability</string>
+    <string name="action_second_night_chambermaid">Wake the Chambermaid. They point at any two alive players except themself. Show the Chambermaid fingers (0, 1, or 2) equaling the number of chosen characters who woke tonight</string>
+
+    <string name="role_name_innkeeper">Innkeeper</string>
+    <string name="role_ability_innkeeper">Each night*, choose 2 players: they cant die tonight, but 1 is drunk until dusk</string>
+    <string name="action_second_night_innkeeper">Wake the Innkeeper. They point at any two players. Put the Innkeeper to sleep. Mark the two chosen players with SAFE reminders. One of the chosen players becomes drunk—mark them with the DRUNK reminder. The players marked SAFE cannot die tonight</string>
+    <string name="action_day_innkeeper">Remove the SAFE reminders, remove the DRUNK reminder</string>
+
+    <string name="role_name_gambler">Gambler</string>
+    <string name="role_ability_gambler">Each night*, choose a player and guess their character: if you guess wrong, you die</string>
+    <string name="action_second_night_gambler">Wake the Gambler. They point at any player, then point at any character icon on their character sheet. Put the Gambler to sleep. If the chosen player is a different character from the chosen character icon, the Gambler dies—mark them with the DEAD reminder</string>
+
+    <string name="role_name_gossip">Gossip</string>
+    <string name="role_ability_gossip">Each day, you may make a public statement. Tonight, if it was true, a player dies</string>
+    <string name="action_second_night_gossip">Each night except the first, if the Gossip made a definite, true public statement today, you choose any player. The chosen player dies—mark them with the DEAD reminder</string>
+    <string name="action_day_gossip">If the Gossip makes a definite, true public statement, put the Gossip’s DEAD reminder in the center of the left side of the Grimoire as a reminder to yourself to place it tonight</string>
+
+    <string name="role_name_courtier">Courtier</string>
+    <string name="role_ability_courtier">Once per game, at night, choose a character: they are drunk for 3 nights and 3 days</string>
+    <string name="action_second_night_courtier">Wake the Courtier. They either shake their head no or point at any character icon on their character sheet. If the Courtier chose a character icon and that character is in play, the player of the chosen character becomes drunk for three nights and three days. Mark them with the Courtier’s DRUNK reminder</string>
+
+    <string name="role_name_professor">Professor</string>
+    <string name="role_ability_professor">Once per game, at night*, choose a dead player: if they are a Townsfolk, they are resurrected</string>
+    <string name="action_second_night_professor">Wake the Professor. The Professor either shakes their head no or points to a dead player. Put the Professor to sleep. If the Professor chose a dead Townsfolk, the chosen player becomes alive</string>
+
+    <string name="role_name_minstrel">Minstrel</string>
+    <string name="role_ability_minstrel">When a Minion dies by execution, all other players (except Travellers) are drunk until dusk tomorrow</string>
+    <string name="action_day_minstrel">if a Minion dies by execution, all other players except Travellers become drunk. put the Minstrel’s EVERYONE IS DRUNK. At dusk tomorrow, all players made drunk by the Minstrel become sober</string>
+
+    <string name="role_name_tea_lady">Tea Lady</string>
+    <string name="role_ability_tea_lady">If both your alive neighbors are good, they cant die</string>
+    <string name="action_prepare_tea_lady">If both alive neighbours of the Tea Lady are good, mark those neighbours’ character tokens with the Tea Lady’s CANNOT DIE reminders</string>
+    <string name="action_day_tea_lady">If both alive neighbours of the Tea Lady are good, mark those neighbours’ character tokens with the Tea Lady’s CANNOT DIE reminders</string>
+
+    <string name="role_name_pacifist">Pacifist</string>
+    <string name="role_ability_pacifist">Executed good players might not die</string>
+    <string name="action_day_pacifist">If a good character is executed, declare either that they die or they remain alive</string>
+
+    <string name="role_name_fool">Fool</string>
+    <string name="role_ability_fool">The 1st time you die, you dont</string>
+    <string name="action_first_night_fool">If the Fool would die, they remain alive</string>
+    <string name="action_second_night_fool">If the Fool would die, they remain alive</string>
+    <string name="action_day_fool">If the Fool would die, they remain alive</string>
+
+    <string name="role_name_goon">Goon</string>
+    <string name="role_ability_goon">Each night, the 1st player to choose you with their ability is drunk until dusk. You become their alignment</string>
+    <string name="action_second_night_goon">At night, if a player chooses to use their ability on the Goon and nobody is marked with the Goon’s DRUNK reminder, this player immediately becomes drunk. Change Goon Alignment</string>
+
+    <string name="role_name_tinker">Tinker</string>
+    <string name="role_ability_tinker">You might die at any time</string>
+
+    <string name="role_name_moonchild">Moonchild</string>
+    <string name="role_ability_moonchild">When you learn that you died, publicly choose 1 alive player. Tonight, if it was a good player, they die</string>
+    <string name="action_second_night_moonchild">Tonight, the good player marked with the Moonchild’s DEAD reminder dies</string>
+    <string name="action_day_moonchild">When you learn that you died, publicly choose 1 alive player.  mark their character token with the DEAD reminder</string>
+
+    <string name="role_name_devils_advocate">Devils Advocate</string>
+    <string name="role_ability_devils_advocate">Each night, choose a living player (different to last night): if executed tomorrow, they dont die</string>
+    <string name="action_second_night_devils_advocate">Wake the Devil’s Advocate. They point at any player. Put the Devil’s Advocate to sleep. Mark the chosen player with the SURVIVES EXECUTION reminder</string>
+    <string name="action_day_devils_advocate">If a player marked SURVIVES EXECUTION is executed, declare that the player was executed but remains alive</string>
+
+    <string name="role_name_mastermind">Mastermind</string>
+    <string name="role_ability_mastermind">If the Demon dies by execution (ending the game), play for 1 more day. If a player is then executed, their team loses</string>
+    <string name="action_day_mastermind">If the Demon is executed and dies, and the game would end, continue playing the game</string>
+
+    <string name="role_name_zombuul">Zombuul</string>
+    <string name="role_ability_zombuul">Each night*, if no-one died today, choose a player: they die. The 1st time you die, you live but register as dead</string>
+    <string name="action_second_night_zombuul">if no player is marked DIED TODAY, wake the Zombuul. They point at any player</string>
+    <string name="action_day_zombuul">If a player dies, mark them with the DIED TODAY reminder</string>
+
+    <string name="role_name_shabaloth">Shabaloth</string>
+    <string name="role_ability_shabaloth">Each night*, choose 2 players: they die. A dead player you chose last night might be regurgitated</string>
+    <string name="action_second_night_shabaloth">Just before waking the Shabaloth, you can choose one character marked with the Shabaloths DEAD reminder, and the chosen player becomes alive again. Wake the Shabaloth. They point at any two players, one at a time. In the order chosen, each chosen player dies—mark them with DEAD reminders</string>
+
+    <string name="role_name_po">Po</string>
+    <string name="role_ability_po">Each night*, you may choose a player: they die. If your last choice was no-one, choose 3 players tonight</string>
+    <string name="action_second_night_po">Wake the Po. They either shake their head no or point at any player. If they shook their head no, mark the Po with the 3 ATTACKS reminder. If they chose a player, that player dies—mark them with a DEAD reminder. If the Po wakes to act while marked 3 ATTACKS, they point at any three players, one at a time. In the order chosen, each chosen player dies—mark them with DEAD reminders</string>
+    
 </resources>

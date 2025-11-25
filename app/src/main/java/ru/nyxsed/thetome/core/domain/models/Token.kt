@@ -102,5 +102,60 @@ sealed class Token(
     @Serializable
     data object PukkaKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_pukka)
 
+    @Serializable
+    data object SailorDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_sailor)
 
+    @Serializable
+    data object InnkeeperDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_innkeeper)
+
+    @Serializable
+    data object InnkeeperSafe : Token(nameResId = R.string.token_safe, iconRes = R.drawable.icon_innkeeper)
+
+    @Serializable
+    data object GamblerKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_gambler)
+
+    @Serializable
+    data object GossipKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_gossip)
+
+    @Serializable
+    data object CourtierDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_courtier)
+
+    @Serializable
+    data object CourtierNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_gossip)
+
+    @Serializable
+    data object ProfessorNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_professor)
+
+    @Serializable
+    data object MinstrelEveryoneIsDrunk : Token(nameResId = R.string.token_everyone_is_drunk, iconRes = R.drawable.icon_minstrel)
+
+    @Serializable
+    data object TeaLadyCannotDie : Token(nameResId = R.string.token_cannot_die, iconRes = R.drawable.icon_tealady)
+
+    @Serializable
+    data object FoolNoAbility : Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_fool)
+
+    @Serializable
+    data object MoonchildKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_moonchild)
+
+    @Serializable
+    data object DevilsAdvocateSurvivesExecution : Token(nameResId = R.string.token_survives_execution, iconRes = R.drawable.icon_devilsadvocate)
+
+    @Serializable
+    data object ZombuulKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_zombuul)
+
+    @Serializable
+    data object ZombuulDiedToday : Token(nameResId = R.string.token_died_today, iconRes = R.drawable.icon_zombuul)
+
+    @Serializable
+    data object ShabalothKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_shabaloth)
+
+    @Serializable
+    data object ShabalothAlive : Token(nameResId = R.string.token_alive, iconRes = R.drawable.icon_shabaloth)
+
+    @Serializable
+    data object PoKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
+
+    @Serializable
+    data object Po3Attacks : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
 }
