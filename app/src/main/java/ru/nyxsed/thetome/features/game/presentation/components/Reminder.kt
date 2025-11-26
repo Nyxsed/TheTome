@@ -97,8 +97,14 @@ fun Reminder(
                             bottomText = stringResource(animatedAction.role.roleName),
                         )
                     }
-                    Log.d("reminderAction",action.toString())
+
                     animatedAction?.let { action ->
+
+                        val log = if (action?.role?.roleName != null)
+                            stringResource(action?.role?.roleName!!) else ""
+                        Log.d("reminderAction",log)
+                        Log.d("reminderAction",action.toString())
+
                         val text = stringResource(action.res)
 
                         val fontSize = when {

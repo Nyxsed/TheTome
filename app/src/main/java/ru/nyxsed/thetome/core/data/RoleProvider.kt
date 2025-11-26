@@ -3,8 +3,11 @@ package ru.nyxsed.thetome.core.data
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.data.TokenProvider.ArtistNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.AssassinNoAbility
+import ru.nyxsed.thetome.core.data.TokenProvider.BalloonistKnow
 import ru.nyxsed.thetome.core.data.TokenProvider.BarberHaircut
 import ru.nyxsed.thetome.core.data.TokenProvider.ButlerMaster
+import ru.nyxsed.thetome.core.data.TokenProvider.CannibalLunch
+import ru.nyxsed.thetome.core.data.TokenProvider.CannibalPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.CerenovusMad
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierNoAbility
@@ -18,6 +21,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlVoted
 import ru.nyxsed.thetome.core.data.TokenProvider.FoolNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.FortuneTellerRedHerring
 import ru.nyxsed.thetome.core.data.TokenProvider.GamblerKill
+import ru.nyxsed.thetome.core.data.TokenProvider.GoblinClaimed
 import ru.nyxsed.thetome.core.data.TokenProvider.GodfatherDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.GossipKill
 import ru.nyxsed.thetome.core.data.TokenProvider.GrandmotherGrandchild
@@ -27,6 +31,12 @@ import ru.nyxsed.thetome.core.data.TokenProvider.InnkeeperSafe
 import ru.nyxsed.thetome.core.data.TokenProvider.InvestigatorMinion
 import ru.nyxsed.thetome.core.data.TokenProvider.InvestigatorWrong
 import ru.nyxsed.thetome.core.data.TokenProvider.JugglerCorrect
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay1
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay2
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay3
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay4
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay5
+import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanGoodPlayerExecuted
 import ru.nyxsed.thetome.core.data.TokenProvider.LibrarianOutsider
 import ru.nyxsed.thetome.core.data.TokenProvider.LibrarianWrong
 import ru.nyxsed.thetome.core.data.TokenProvider.LleechKill
@@ -64,6 +74,8 @@ import ru.nyxsed.thetome.core.data.TokenProvider.VirginNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.VortoxKill
 import ru.nyxsed.thetome.core.data.TokenProvider.WasherwomanTownsfolk
 import ru.nyxsed.thetome.core.data.TokenProvider.WasherwomanWrong
+import ru.nyxsed.thetome.core.data.TokenProvider.WidowKnow
+import ru.nyxsed.thetome.core.data.TokenProvider.WidowPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.WitchCursed
 import ru.nyxsed.thetome.core.data.TokenProvider.ZombuulDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.ZombuulKill
@@ -455,6 +467,38 @@ object RoleProvider {
         iconRes = R.drawable.icon_fisherman
     )
 
+    val Balloonist = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_balloonist,
+        ability = R.string.role_ability_balloonist,
+        tokens = listOf(BalloonistKnow, BalloonistKnow, BalloonistKnow, BalloonistKnow),
+        prepareActionId = R.string.action_prepare_balloonist,
+        firstNightActionId = R.string.action_second_night_balloonist,
+        secondNightActionId = R.string.action_second_night_balloonist,
+        iconRes = R.drawable.icon_balloonist
+    )
+
+    val Amnesiac = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_amnesiac,
+        ability = R.string.role_ability_amnesiac,
+        prepareActionId = R.string.action_prepare_amnesiac,
+        firstNightActionId = R.string.action_second_night_amnesiac,
+        secondNightActionId = R.string.action_second_night_amnesiac,
+        iconRes = R.drawable.icon_amnesiac
+    )
+
+    val Cannibal = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_cannibal,
+        ability = R.string.role_ability_cannibal,
+        tokens = listOf(CannibalLunch, CannibalPoison),
+        secondNightActionId = R.string.action_second_night_cannibal,
+        dayActionId = R.string.action_day_cannibal,
+        iconRes = R.drawable.icon_cannibal
+    )
+
+
     //Outsiders
     val Butler = Role(
         type = RoleType.OUTSIDER,
@@ -683,6 +727,25 @@ object RoleProvider {
         iconRes = R.drawable.icon_pithag
     )
 
+    val Widow = Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_widow,
+        ability = R.string.role_ability_widow,
+        tokens = listOf(WidowPoison, WidowKnow),
+        prepareActionId = R.string.action_prepare_widow,
+        firstNightActionId = R.string.action_first_night_widow,
+        iconRes = R.drawable.icon_widow
+    )
+
+    val Goblin = Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_goblin,
+        ability = R.string.role_ability_goblin,
+        tokens = listOf(GoblinClaimed),
+        dayActionId = R.string.action_day_goblin,
+        iconRes = R.drawable.icon_goblin
+    )
+
     //Demons
     val Imp = Role(
         type = RoleType.DEMON,
@@ -788,5 +851,14 @@ object RoleProvider {
         firstNightActionId = R.string.action_first_night_lleech,
         secondNightActionId = R.string.action_second_night_lleech,
         iconRes = R.drawable.icon_lleech
+    )
+
+    val Leviathan = Role(
+        type = RoleType.DEMON,
+        roleName = R.string.role_name_leviathan,
+        ability = R.string.role_ability_leviathan,
+        tokens = listOf(LeviathanDay1, LeviathanDay2, LeviathanDay3, LeviathanDay4, LeviathanDay5, LeviathanGoodPlayerExecuted),
+        dayActionId = R.string.action_day_leviathan,
+        iconRes = R.drawable.icon_leviathan
     )
 }

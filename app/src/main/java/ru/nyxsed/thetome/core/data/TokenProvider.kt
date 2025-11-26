@@ -129,5 +129,22 @@ object TokenProvider {
     val LleechKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_lleech)
     val LleechPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_lleech)
 
+    val BalloonistKnow = Token(nameResId = R.string.token_know, iconRes = R.drawable.icon_balloonist)
+
+    val CannibalPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_cannibal)
+    val CannibalLunch = Token(nameResId = R.string.token_lunch, iconRes = R.drawable.icon_cannibal)
+
+    val WidowPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_widow)
+    val WidowKnow = Token(nameResId = R.string.token_know, iconRes = R.drawable.icon_widow)
+
+    val GoblinClaimed = Token(nameResId = R.string.token_claimed, iconRes = R.drawable.icon_goblin)
+
+    val LeviathanDay1 = Token(nameResId = R.string.token_day_1, iconRes = R.drawable.icon_leviathan)
+    val LeviathanDay2 = Token(nameResId = R.string.token_day_2, iconRes = R.drawable.icon_leviathan)
+    val LeviathanDay3 = Token(nameResId = R.string.token_day_3, iconRes = R.drawable.icon_leviathan)
+    val LeviathanDay4 = Token(nameResId = R.string.token_day_4, iconRes = R.drawable.icon_leviathan)
+    val LeviathanDay5 = Token(nameResId = R.string.token_day_5, iconRes = R.drawable.icon_leviathan)
+    val LeviathanGoodPlayerExecuted = Token(nameResId = R.string.token_good_player_executed, iconRes = R.drawable.icon_leviathan)
+
 
 }

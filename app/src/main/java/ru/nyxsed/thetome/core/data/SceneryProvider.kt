@@ -1055,6 +1055,52 @@ object SceneryProvider {
         sceneryTokens = listOf(Good, Evil, DrunkDrunk)
     )
 
+    val LaissezUnFaire = Scenery(
+        sceneryNameRes = R.string.scenery_name_laissez_un_faire,
+        iconRes = R.drawable.icon_laissez_un_faire,
+        roles = listOf(
+            RoleProvider.Balloonist,
+            RoleProvider.Savant,
+            RoleProvider.Amnesiac,
+            RoleProvider.Fisherman,
+            RoleProvider.Artist,
+            RoleProvider.Cannibal,
+            RoleProvider.Mutant,
+            RoleProvider.Lunatic,
+            RoleProvider.Widow,
+            RoleProvider.Goblin,
+            RoleProvider.Leviathan,
+        ),
+        prepareActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Balloonist, res = RoleProvider.Balloonist.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lunatic, res = RoleProvider.Lunatic.prepareActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Amnesiac, res = RoleProvider.Amnesiac.prepareActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Widow, res = RoleProvider.Widow.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
+        ),
+        firstNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lunatic, res = RoleProvider.Lunatic.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Widow, res = RoleProvider.Widow.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Amnesiac, res = RoleProvider.Amnesiac.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Balloonist, res = RoleProvider.Balloonist.firstNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        secondNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Amnesiac, res = RoleProvider.Amnesiac.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Balloonist, res = RoleProvider.Balloonist.secondNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        dayActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Leviathan, res = RoleProvider.Leviathan.dayActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Goblin, res = RoleProvider.Goblin.dayActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Cannibal, res = RoleProvider.Cannibal.dayActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
+        ),
+        sceneryTokens = listOf(Good, Evil)
+    )
+
     val all = listOf(
         TroubleBrewing,
         BadMoonRising,
@@ -1062,5 +1108,6 @@ object SceneryProvider {
         UncertainDeath,
         NoGreaterJoy,
         ALleechOfDistrust,
+        LaissezUnFaire,
     )
 }

@@ -85,6 +85,15 @@
     <string name="token_cursed">cursed</string>
     <string name="token_mad">mad</string>
     <string name="token_has_ability">has ability</string>
+    <string name="token_know">know</string>
+    <string name="token_lunch">lunch</string>
+    <string name="token_claimed">claimed</string>
+    <string name="token_day_1">day 1</string>
+    <string name="token_day_2">day 2</string>
+    <string name="token_day_3">day 3</string>
+    <string name="token_day_4">day 4</string>
+    <string name="token_day_5">day 5</string>
+    <string name="token_good_player_executed">good player executed</string>
 
     <string name="scenery_name_trouble_brewing">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising">Bad Moon Rising</string>
@@ -92,6 +101,7 @@
     <string name="scenery_name_uncertain_death">Uncertain Death</string>
     <string name="scenery_name_a_lleech_of_distrust">A Lleech of Distrust</string>
     <string name="scenery_name_no_greater_joy">No Greater Joy</string>
+    <string name="scenery_name_laissez_un_faire">Laissez un Faire</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
@@ -421,11 +431,39 @@
     <string name="action_first_night_pixie">Wake the Pixie. Show the Pixie this Townsfolk character token with her MAD reminder</string>
 
     <string name="role_name_fisherman">Fisherman</string>
-    <string name="role_ability_fisherman">Each night, choose a player: you learn their alignment. If you choose a dead player, learn nothing.</string>
+    <string name="role_ability_fisherman">Once per game, during the day, visit the Storyteller for some advice to help your team win</string>
 
     <string name="role_name_lleech">Lleech</string>
-    <string name="role_ability_lleech">Each night, choose a player: if they die tonight, you gain their ability tomorrow. Otherwise, nothing happens.</string>
+    <string name="role_ability_lleech">Each night*, choose a player: they die. You start by choosing a player: they are poisoned. You die if and only if they are dead</string>
     <string name="action_first_night_lleech">Wake the Lleech. They point at any player. That player is poisoned</string>
     <string name="action_second_night_lleech">Wake the Lleech. They point at any player. That player dies—mark them with the DEAD reminder</string>
+
+    <string name="role_name_balloonist">Balloonist</string>
+    <string name="role_ability_balloonist">Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]</string>
+    <string name="action_prepare_balloonist">During setup, you may add an Outsider</string>
+    <string name="action_second_night_balloonist">Wake the Balloonist. Point to the player without KNOW. mark this player KNOW. each type of characters can have only one KNOW</string>
+
+    <string name="role_name_amnesiac">Amnesiac</string>
+    <string name="role_ability_amnesiac">You do not know what your ability is. Each day, privately guess what it is: you learn how accurate you are</string>
+    <string name="action_prepare_amnesiac">Decide what ability the Amnesiac player has. Make Note</string>
+    <string name="action_second_night_amnesiac">Wake Amnesiac if needed</string>
+
+    <string name="role_name_cannibal">Cannibal</string>
+    <string name="role_ability_cannibal">You have the ability of the recently killed executee. If they are evil, you are poisoned until a good player dies by execution</string>
+    <string name="action_day_cannibal">If a good player dies by execution, mark them with the LUNCH reminder, and remove the Cannibal’s POISONED reminder if necessary. The Cannibal now has this good player’s ability (do not say which), and will wake at night when this good character would normally wake. If an evil player dies by execution, mark them with the LUNCH reminder and mark the Cannibal with the POISONED reminder</string>
+    <string name="action_second_night_cannibal">Wake Cannibal if needed</string>
+
+    <string name="role_name_widow">Widow</string>
+    <string name="role_ability_widow">On your 1st night, look at the Grimoire and choose a player: they are poisoned. 1 good player knows a Widow is in play</string>
+    <string name="action_prepare_widow">Mark a good player with the KNOW reminder</string>
+    <string name="action_first_night_widow">Wake the Widow and show them the Grimoire for as long as they need. The Widow points to a character token in the Grimoire. Mark them with a POISONED reminder. Wake the player marked KNOW. Show them the Widow character token</string>
+
+    <string name="role_name_goblin">Goblin</string>
+    <string name="role_ability_goblin">If you publicly claim to be the Goblin when nominated and are executed that day, your team wins</string>
+    <string name="action_day_goblin">If the Goblin claims to be the Goblin when nominated (and before voting begins), declare that this player has claimed to be the Goblin, so that all the group hears. Put the CLAIMED reminder by the Goblin token. If the Goblin is executed, and they are marked CLAIMED, then declare that evil wins</string>
+
+    <string name="role_name_leviathan">Leviathan</string>
+    <string name="role_ability_leviathan">If more than 1 good player is executed, evil wins. All players know you are in play. After day 5, evil wins</string>
+    <string name="action_day_leviathan">Mark the Leviathan with the DAY X reminder, there X is day counter</string>
 
 </resources>
