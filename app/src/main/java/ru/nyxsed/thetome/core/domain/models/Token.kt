@@ -158,4 +158,54 @@ sealed class Token(
 
     @Serializable
     data object Po3Attacks : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
+
+    @Serializable
+    data object SnakeCharmerPoison : Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_snakecharmer)
+
+    @Serializable
+    data object MathematicianAbnormal : Token(nameResId = R.string.token_abnormal, iconRes = R.drawable.icon_mathematician)
+
+    @Serializable
+    data object TowncrierMinionNominated : Token(nameResId = R.string.token_minion_nominated, iconRes = R.drawable.icon_towncrier)
+
+    @Serializable
+    data object PhilosopherIs : Token(nameResId = R.string.token_is_the_philosopher, iconRes = R.drawable.icon_philosopher)
+
+    @Serializable
+    data object PhilosopherDrunk : Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_philosopher)
+
+    @Serializable
+    data object JugglerCorrect : Token(nameResId = R.string.token_correct, iconRes = R.drawable.icon_juggler)
+
+    @Serializable
+    data object BarberHaircut : Token(nameResId = R.string.token_haircuts, iconRes = R.drawable.icon_barber)
+
+    @Serializable
+    data object EvilTwinTwin : Token(nameResId = R.string.token_twin, iconRes = R.drawable.icon_eviltwin)
+
+    @Serializable
+    data object WitchCursed : Token(nameResId = R.string.token_cursed, iconRes = R.drawable.icon_witch)
+
+    @Serializable
+    data object CerenovusMad : Token(nameResId = R.string.token_mad, iconRes = R.drawable.icon_cerenovus)
+
+    @Serializable
+    data object FangGuKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_fanggu)
+
+    @Serializable
+    data object VigormortisHasAbility : Token(nameResId = R.string.token_has_ability, iconRes = R.drawable.icon_vigormortis)
+
+    @Serializable
+    data object VigormortisKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_vigormortis)
+
+    @Serializable
+    data object VigormortisPoison : Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_vigormortis)
+
+    @Serializable
+    data object VortoxKill : Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_vortox)
+
+
+
+
+
 }

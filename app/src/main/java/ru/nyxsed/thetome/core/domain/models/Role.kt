@@ -10,13 +10,13 @@ import ru.nyxsed.thetome.R
 sealed class Role(
     val type: RoleType,
     val tokens: List<Token> = emptyList(),
-    @StringRes val roleName: Int = 0,
-    @StringRes val ability: Int = 0,
+    @StringRes val roleName: Int,
+    @StringRes val ability: Int,
     @StringRes val prepareActionId: Int = 0,
     @StringRes val firstNightActionId: Int = 0,
     @StringRes val secondNightActionId: Int = 0,
     @StringRes val dayActionId: Int = 0,
-    @DrawableRes val iconRes: Int = 0,
+    @DrawableRes val iconRes: Int,
 ) {
     //Townsfolks
     @Serializable
@@ -335,6 +335,89 @@ sealed class Role(
         iconRes = R.drawable.icon_fool
     )
 
+    @Serializable
+    data object Dreamer : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_dreamer,
+        ability = R.string.role_ability_dreamer,
+        firstNightActionId = R.string.action_second_night_dreamer,
+        secondNightActionId = R.string.action_second_night_dreamer,
+        iconRes = R.drawable.icon_dreamer
+    )
+
+    @Serializable
+    data object SnakeCharmer : Role(
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.SnakeCharmerPoison),
+        roleName = R.string.role_name_snake_charmer,
+        ability = R.string.role_ability_snake_charmer,
+        firstNightActionId = R.string.action_second_night_snake_charmer,
+        secondNightActionId = R.string.action_second_night_snake_charmer,
+        iconRes = R.drawable.icon_snakecharmer
+    )
+
+    @Serializable
+    data object Mathematician : Role(
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.MathematicianAbnormal),
+        roleName = R.string.role_name_mathematician,
+        ability = R.string.role_ability_mathematician,
+        firstNightActionId = R.string.action_second_night_mathematician,
+        secondNightActionId = R.string.action_second_night_mathematician,
+        iconRes = R.drawable.icon_mathematician
+    )
+
+    @Serializable
+    data object TownCrier : Role(
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.TowncrierMinionNominated),
+        roleName = R.string.role_name_town_crier,
+        ability = R.string.role_ability_town_crier,
+        secondNightActionId = R.string.action_second_night_town_crier,
+        dayActionId = R.string.action_day_town_crier,
+        iconRes = R.drawable.icon_towncrier
+    )
+
+    @Serializable
+    data object Savant : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_savant,
+        ability = R.string.role_ability_savant,
+        iconRes = R.drawable.icon_savant
+    )
+
+    @Serializable
+    data object Philosopher : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_philosopher,
+        ability = R.string.role_ability_philosopher,
+        tokens = listOf(Token.PhilosopherDrunk, Token.PhilosopherIs),
+        firstNightActionId = R.string.action_second_night_philosopher,
+        secondNightActionId = R.string.action_second_night_philosopher,
+        iconRes = R.drawable.icon_philosopher,
+    )
+
+
+    @Serializable
+    data object Juggler : Role(
+        type = RoleType.TOWNSFOLK,
+        tokens = listOf(Token.JugglerCorrect,Token.JugglerCorrect,Token.JugglerCorrect,Token.JugglerCorrect,Token.JugglerCorrect,),
+        roleName = R.string.role_name_juggler,
+        ability = R.string.role_ability_juggler,
+        secondNightActionId = R.string.action_second_night_juggler,
+        dayActionId = R.string.action_day_juggler,
+        iconRes = R.drawable.icon_juggler
+    )
+
+    @Serializable
+    data object Sage : Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_sage,
+        ability = R.string.role_ability_sage,
+        secondNightActionId = R.string.action_second_night_sage,
+        iconRes = R.drawable.icon_sage
+    )
+
 
     //Outsiders
     @Serializable
@@ -435,6 +518,25 @@ sealed class Role(
         iconRes = R.drawable.icon_moonchild
     )
 
+    @Serializable
+    data object Barber : Role(
+        type = RoleType.OUTSIDER,
+        tokens = listOf(Token.BarberHaircut),
+        roleName = R.string.role_name_barber,
+        ability = R.string.role_ability_barber,
+        secondNightActionId = R.string.action_second_night_barber,
+        dayActionId = R.string.action_day_barber,
+        iconRes = R.drawable.icon_barber
+    )
+
+    @Serializable
+    data object Klutz : Role(
+        type = RoleType.OUTSIDER,
+        roleName = R.string.role_name_klutz,
+        ability = R.string.role_ability_klutz,
+        iconRes = R.drawable.icon_klutz
+    )
+
     //Minions
     @Serializable
     data object Poisoner : Role(
@@ -528,6 +630,48 @@ sealed class Role(
         iconRes = R.drawable.icon_mastermind
     )
 
+    @Serializable
+    data object EvilTwin : Role(
+        type = RoleType.MINION,
+        tokens = listOf(Token.EvilTwinTwin),
+        roleName = R.string.role_name_evil_twin,
+        ability = R.string.role_ability_evil_twin,
+        prepareActionId = R.string.action_prepare_evil_twin,
+        firstNightActionId = R.string.action_first_night_evil_twin,
+        iconRes = R.drawable.icon_eviltwin
+    )
+
+    @Serializable
+    data object Witch : Role(
+        type = RoleType.MINION,
+        tokens = listOf(Token.WitchCursed),
+        roleName = R.string.role_name_witch,
+        ability = R.string.role_ability_witch,
+        firstNightActionId = R.string.action_second_night_witch,
+        secondNightActionId = R.string.action_second_night_witch,
+        iconRes = R.drawable.icon_witch
+    )
+
+    @Serializable
+    data object Cerenovus : Role(
+        type = RoleType.MINION,
+        tokens = listOf(Token.CerenovusMad),
+        roleName = R.string.role_name_cerenovus,
+        ability = R.string.role_ability_cerenovus,
+        firstNightActionId = R.string.action_second_night_cerenovus,
+        secondNightActionId = R.string.action_second_night_cerenovus,
+        iconRes = R.drawable.icon_cerenovus
+    )
+
+    @Serializable
+    data object PitHag : Role(
+        type = RoleType.MINION,
+        roleName = R.string.role_name_pit_hag,
+        ability = R.string.role_ability_pit_hag,
+        secondNightActionId = R.string.action_second_night_pit_hag,
+        iconRes = R.drawable.icon_pithag
+    )
+
     //Demons
     @Serializable
     data object Imp : Role(
@@ -590,5 +734,40 @@ sealed class Role(
         ability = R.string.role_ability_po,
         secondNightActionId = R.string.action_second_night_po,
         iconRes = R.drawable.icon_po
+    )
+
+    @Serializable
+    data object FangGu : Role(
+        type = RoleType.DEMON,
+        tokens = listOf(Token.FangGuKill),
+        roleName = R.string.role_name_fang_gu,
+        ability = R.string.role_ability_fang_gu,
+        prepareActionId = R.string.action_prepare_fang_gu,
+        secondNightActionId = R.string.action_second_night_fang_gu,
+        iconRes = R.drawable.icon_fanggu
+    )
+
+    @Serializable
+    data object Vigormortis : Role(
+        type = RoleType.DEMON,
+        tokens = listOf(Token.VigormortisHasAbility,Token.VigormortisHasAbility,Token.VigormortisHasAbility,Token.VigormortisKill, Token.VigormortisPoison,Token.VigormortisPoison,Token.VigormortisPoison,),
+        roleName = R.string.role_name_vigormortis,
+        ability = R.string.role_ability_vigormortis,
+        prepareActionId = R.string.action_prepare_vigormortis,
+        secondNightActionId = R.string.action_second_night_vigormortis,
+        iconRes = R.drawable.icon_vigormortis
+    )
+
+
+    @Serializable
+    data object Vortox : Role(
+        type = RoleType.DEMON,
+        tokens = listOf(Token.VortoxKill),
+        roleName = R.string.role_name_vortox,
+        ability = R.string.role_ability_vortox,
+        prepareActionId = R.string.action_prepare_vortox,
+        secondNightActionId = R.string.action_second_night_vortox,
+        dayActionId = R.string.action_day_vortox,
+        iconRes = R.drawable.icon_vortox
     )
 }

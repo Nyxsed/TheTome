@@ -51,7 +51,7 @@ fun TokenPickerDialog(
                 }
 
         // 4. Добавляем sceneryTokens
-        sceneryTokens + remainingRoleTokens
+        (sceneryTokens + remainingRoleTokens).distinct()
     }
 
     AlertDialog(
