@@ -249,7 +249,7 @@ fun GameContent(
         }
 
         if (isMemoDialogRaised) {
-            NotesDialog(
+            EditNotesDialog(
                 onDismiss = {
                     isMemoDialogRaised = false
                 },

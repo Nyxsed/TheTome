@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.data.RoleTypeMapper.getDisplayNameId
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
@@ -31,6 +32,7 @@ fun SettingsScreen(
 
     SettingsContent(
         state = state,
+        listScenery = viewModel.listScenery,
         onPlayerCountChanged = { viewModel.changePlayerCount(it) },
         onSceneryChanged = { viewModel.changeScenery(it) },
         onRoleSelected = { viewModel.toggleRoleSelection(it) },
@@ -44,6 +46,7 @@ fun SettingsScreen(
 @Composable
 fun SettingsContent(
     state: SettingsState,
+    listScenery: List<Scenery>,
     onPlayerCountChanged: (Int) -> Unit,
     onSceneryChanged: (Scenery) -> Unit,
     onRoleSelected: (Role) -> Unit,
@@ -69,7 +72,7 @@ fun SettingsContent(
         )
 
         SceneryDropdown(
-            items = Scenery.all,
+            items = listScenery,
             selectedScenery = state.selectedScenery,
             onSelected = { onSceneryChanged(it) },
         )
@@ -195,7 +198,7 @@ fun RoleSelector(
     RoleType.entries.forEach { roleType ->
         val selectedRolesCountByType = selectedRoles.filter { it.type == roleType }.size
         Text(
-            text = "${stringResource(roleType.resId)}: $selectedRolesCountByType / ${roleDistribution[roleType]}",
+            text = "${stringResource(roleType.getDisplayNameId())}: $selectedRolesCountByType / ${roleDistribution[roleType]}",
             modifier = Modifier.padding(top = 8.dp)
         )
 

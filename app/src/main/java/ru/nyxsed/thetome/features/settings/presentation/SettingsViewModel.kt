@@ -13,6 +13,7 @@ import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Scenery
+import ru.nyxsed.thetome.core.domain.usecase.GetListSceneryUseCase
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
 import ru.nyxsed.thetome.core.domain.usecase.RoleDistributionUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
@@ -23,10 +24,12 @@ class SettingsViewModel @Inject constructor(
     private val roleDistributionUseCase: RoleDistributionUseCase,
     private val saveGameStateUseCase: SaveGameStateUseCase,
     private val loadGameStateUseCase: LoadGameStateUseCase,
+    private val getListSceneryUseCase: GetListSceneryUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SettingsState())
     val state = _state.asStateFlow()
+    val listScenery = getListSceneryUseCase()
 
     init {
         viewModelScope.launch {
