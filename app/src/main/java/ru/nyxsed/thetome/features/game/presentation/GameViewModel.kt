@@ -118,6 +118,13 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+    fun editNotes(notes: String) {
+        _state.update {
+            it.copy(notes = notes)
+        }
+        saveGameState()
+    }
+
 
     private fun getActionList(state: GameState): List<Action> {
         val chosenRoles = state.chosenRoles

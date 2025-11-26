@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,12 +19,13 @@ import ru.nyxsed.thetome.core.domain.models.Role
 fun TopButtonsRow(
     modifier: Modifier = Modifier,
     menuItems: List<CardsMenuItem> = emptyList(),
-    menuItemRole: CardsMenuItem,
     sceneryRoles: List<Role>?,
     onEditClicked: () -> Unit,
+    onMemoClicked: () -> Unit,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     var isDialogVisible by remember { mutableStateOf(false) }
+    var dialogItem by remember { mutableStateOf<CardsMenuItem?>(null) }
 
     Row(
         modifier = modifier
@@ -54,26 +56,36 @@ fun TopButtonsRow(
                     text = { Text(item.title) },
                     onClick = {
                         isMenuExpanded = false
-                        item.onClick(null)
+
+                        if (item.showPickerDialog) {
+                            dialogItem = item
+                            isDialogVisible = true
+                        } else {
+                            item.onClick(null)
+                        }
                     }
                 )
             }
-            DropdownMenuItem(
-                text = { Text(menuItemRole.title) },
-                onClick = {
-                    isMenuExpanded = false
-                    isDialogVisible = true
-                }
-            )
         }
 
         Spacer(modifier = Modifier.width(12.dp))
-
         SmallRoundIconButton(
             onClick = onEditClicked,
             icon = {
                 Icon(
                     contentDescription = "edit",
+                    imageVector = Icons.Default.Settings,
+                    tint = Color.White
+                )
+            }
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+        SmallRoundIconButton(
+            onClick = onMemoClicked,
+            icon = {
+                Icon(
+                    contentDescription = "memo",
                     imageVector = Icons.Default.Edit,
                     tint = Color.White
                 )
@@ -84,10 +96,13 @@ fun TopButtonsRow(
             RolePickerDialog(
                 availableRoles = sceneryRoles,
                 onSelectRole = {
-                    menuItemRole.onClick(it)
+                    dialogItem?.onClick(it)
+                    isDialogVisible = true
+                    dialogItem = null
                 },
                 onDismiss = {
                     isDialogVisible = false
+                    dialogItem = null
                 }
             )
         }
@@ -96,5 +111,6 @@ fun TopButtonsRow(
 
 data class CardsMenuItem(
     val title: String,
+    val showPickerDialog: Boolean = false,
     val onClick: (Role?) -> Unit,
 )

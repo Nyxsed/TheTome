@@ -2,7 +2,8 @@
     <string name="app_name">TheTome</string>
 
     <string name="text_rename_player">Rename player</string>
-    <string name="text_ok">Ok</string>
+    <string name="text_all">All</string>
+    <string name="text_ok">OK</string>
     <string name="text_yes">Yes</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_start_game">Start Game</string>
@@ -22,6 +23,7 @@
     <string name="text_demon">Demon</string>
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
+    <string name="text_notes">Notes</string>
     <string name="text_press_again">Press again</string>
     <string name="text_rename">Rename</string>
     <string name="text_change_role">Change role</string>

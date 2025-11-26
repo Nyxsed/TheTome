@@ -33,6 +33,9 @@ fun GameScreen(
         state = state,
         onEditGame = onEditGameClicked,
         onCard = onCardClicked,
+        onEditNotes = {
+            viewModel.editNotes(it)
+        },
         onChangeAliveStatus = {
             viewModel.changeAliveStatus(it)
         },
@@ -67,6 +70,7 @@ fun GameScreen(
 fun GameContent(
     state: GameState,
     onEditGame: () -> Unit,
+    onEditNotes: (String) -> Unit,
     onCard: (Int, List<Role?>?) -> Unit,
     onChangeAliveStatus: (Player) -> Unit,
     onChangeGhostVoteStatus: (Player) -> Unit,
@@ -79,6 +83,7 @@ fun GameContent(
     onDeleteToken: (Player, Int) -> Unit,
 ) {
     var isEditDialogRaised by remember { mutableStateOf(false) }
+    var isMemoDialogRaised by remember { mutableStateOf(false) }
     var isPickRoleDialogRaised by remember { mutableStateOf(false) }
     var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
     var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
@@ -97,6 +102,9 @@ fun GameContent(
             sceneryRoles = state.scenery?.roles,
             onEditClicked = {
                 isEditDialogRaised = true
+            },
+            onMemoClicked = {
+                isMemoDialogRaised = true
             },
             menuItems = listOf(
                 CardsMenuItem(stringResource(R.string.menu_demon)) {
@@ -120,13 +128,13 @@ fun GameContent(
                 CardsMenuItem(stringResource(R.string.menu_voted_today)) {
                     onCard(R.string.menu_voted_today, emptyList())
                 },
-                CardsMenuItem(stringResource(R.string.menu_char_selected_you)) {
-                    onCard(R.string.menu_char_selected_you, emptyList()) // TODO picker
+                CardsMenuItem(stringResource(R.string.menu_char_selected_you), showPickerDialog = true) { role ->
+                    onCard(R.string.menu_char_selected_you, listOf(role))
                 },
-            ),
-            menuItemRole = CardsMenuItem(stringResource(R.string.menu_show_role)) { role ->
-                onCard(role?.ability!!, listOf(role))
-            }
+                CardsMenuItem(stringResource(R.string.menu_show_role), showPickerDialog = true) { role ->
+                    onCard(role?.ability!!, listOf(role))
+                },
+            )
         )
 
         Spacer(Modifier.height(20.dp))
@@ -215,6 +223,7 @@ fun GameContent(
         if (targetEditPlayer != null && isPickRoleDialogRaised) {
             RolePickerDialog(
                 availableRoles = availableRoles,
+                sceneryRoles = state.scenery?.roles,
                 onSelectRole = { role ->
                     onChangeRole(targetEditPlayer!!, role)
                     targetEditPlayer = null
@@ -236,6 +245,16 @@ fun GameContent(
                 onDismiss = {
                     isEditDialogRaised = false
                 }
+            )
+        }
+
+        if (isMemoDialogRaised) {
+            NotesDialog(
+                onDismiss = {
+                    isMemoDialogRaised = false
+                },
+                notes = state.notes,
+                onNotesChange = { onEditNotes(it) }
             )
         }
 
