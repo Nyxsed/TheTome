@@ -99,7 +99,7 @@ fun Reminder(
                     }
                     Log.d("reminderAction",action.toString())
                     animatedAction?.let { action ->
-                        val text = stringResource(action.actionResId)
+                        val text = stringResource(action.res)
 
                         val fontSize = when {
                             text.length > 200 -> 12.sp

@@ -40,172 +40,167 @@ object SceneryProvider {
         ),
         prepareActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Baron,
-                actionResId = RoleProvider.Baron.prepareActionId
+                res = RoleProvider.Baron.prepareActionId
             ),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Drunk, res = RoleProvider.Drunk.prepareActionId),
             Action(
-                actionType = ActionType.PLAYER,
-                role = RoleProvider.Drunk,
-                actionResId = RoleProvider.Drunk.prepareActionId
-            ),
-            Action(
-                actionType = ActionType.PLAYERS_7,
+                type = ActionType.PLAYERS_7,
                 role = null,
-                actionResId = R.string.action_prepare_3_demon_bluffs
+                res = R.string.action_prepare_3_demon_bluffs
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Washerwoman,
-                actionResId = RoleProvider.Washerwoman.prepareActionId
+                res = RoleProvider.Washerwoman.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Librarian,
-                actionResId = RoleProvider.Librarian.prepareActionId
+                res = RoleProvider.Librarian.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.prepareActionId
+                res = RoleProvider.FortuneTeller.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Investigator,
-                actionResId = RoleProvider.Investigator.prepareActionId
+                res = RoleProvider.Investigator.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Recluse,
-                actionResId = RoleProvider.Recluse.prepareActionId
+                res = RoleProvider.Recluse.prepareActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
         ),
         firstNightActions = listOf(
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_demon),
             Action(
-                actionType = ActionType.PLAYERS_7,
+                type = ActionType.PLAYERS_7,
                 role = null,
-                actionResId = R.string.action_show_minions_and_bluffs
+                res = R.string.action_show_minions_and_bluffs
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Poisoner,
-                actionResId = RoleProvider.Poisoner.firstNightActionId
+                res = RoleProvider.Poisoner.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Spy,
-                actionResId = RoleProvider.Spy.firstNightActionId
+                res = RoleProvider.Spy.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Washerwoman,
-                actionResId = RoleProvider.Washerwoman.firstNightActionId
+                res = RoleProvider.Washerwoman.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Librarian,
-                actionResId = RoleProvider.Librarian.firstNightActionId
+                res = RoleProvider.Librarian.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Investigator,
-                actionResId = RoleProvider.Investigator.firstNightActionId
+                res = RoleProvider.Investigator.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Chef,
-                actionResId = RoleProvider.Chef.firstNightActionId
+                res = RoleProvider.Chef.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Empath,
-                actionResId = RoleProvider.Empath.firstNightActionId
+                res = RoleProvider.Empath.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.firstNightActionId
+                res = RoleProvider.FortuneTeller.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Butler,
-                actionResId = RoleProvider.Butler.firstNightActionId
+                res = RoleProvider.Butler.firstNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         secondNightActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Poisoner,
-                actionResId = RoleProvider.Poisoner.secondNightActionId
+                res = RoleProvider.Poisoner.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Monk,
-                actionResId = RoleProvider.Monk.secondNightActionId
+                res = RoleProvider.Monk.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Spy,
-                actionResId = RoleProvider.Spy.secondNightActionId
+                res = RoleProvider.Spy.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.ScarletWoman,
-                actionResId = RoleProvider.ScarletWoman.secondNightActionId
+                res = RoleProvider.ScarletWoman.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Imp,
-                actionResId = RoleProvider.Imp.secondNightActionId
+                res = RoleProvider.Imp.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Ravenkeeper,
-                actionResId = RoleProvider.Ravenkeeper.secondNightActionId
+                res = RoleProvider.Ravenkeeper.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Undertaker,
-                actionResId = RoleProvider.Undertaker.secondNightActionId
+                res = RoleProvider.Undertaker.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Empath,
-                actionResId = RoleProvider.Empath.secondNightActionId
+                res = RoleProvider.Empath.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.secondNightActionId
+                res = RoleProvider.FortuneTeller.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Butler,
-                actionResId = RoleProvider.Butler.secondNightActionId
+                res = RoleProvider.Butler.secondNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         dayActions = listOf(
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Butler,
-                actionResId = RoleProvider.Butler.dayActionId
+                res = RoleProvider.Butler.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Undertaker,
-                actionResId = RoleProvider.Undertaker.dayActionId
+                res = RoleProvider.Undertaker.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
         sceneryTokens = listOf(Good, Evil, DrunkDrunk)
     )
-
 
     val UncertainDeath = Scenery(
         sceneryNameRes = R.string.scenery_name_uncertain_death,
@@ -237,209 +232,209 @@ object SceneryProvider {
         ),
         prepareActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.prepareActionId
+                res = RoleProvider.Godfather.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Marionette,
-                actionResId = RoleProvider.Marionette.prepareActionId
+                res = RoleProvider.Marionette.prepareActionId
             ),
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_prepare_3_demon_bluffs),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Librarian,
-                actionResId = RoleProvider.Librarian.prepareActionId
+                res = RoleProvider.Librarian.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.prepareActionId
+                res = RoleProvider.FortuneTeller.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Recluse,
-                actionResId = RoleProvider.Recluse.prepareActionId
+                res = RoleProvider.Recluse.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.prepareActionId
+                res = RoleProvider.Grandmother.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.prepareActionId
+                res = RoleProvider.Lunatic.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.NoDashii,
-                actionResId = RoleProvider.NoDashii.prepareActionId
+                res = RoleProvider.NoDashii.prepareActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
         ),
         firstNightActions = listOf(
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_demon),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.firstNightActionId
+                res = RoleProvider.Lunatic.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYERS_7,
+                type = ActionType.PLAYERS_7,
                 role = null,
-                actionResId = R.string.action_show_minions_and_bluffs
+                res = R.string.action_show_minions_and_bluffs
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.firstNightActionId
+                res = RoleProvider.Godfather.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Pukka,
-                actionResId = RoleProvider.Pukka.firstNightActionId
+                res = RoleProvider.Pukka.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Librarian,
-                actionResId = RoleProvider.Librarian.firstNightActionId
+                res = RoleProvider.Librarian.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Empath,
-                actionResId = RoleProvider.Empath.firstNightActionId
+                res = RoleProvider.Empath.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.firstNightActionId
+                res = RoleProvider.FortuneTeller.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.firstNightActionId
+                res = RoleProvider.Grandmother.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Clockmaker,
-                actionResId = RoleProvider.Clockmaker.firstNightActionId
+                res = RoleProvider.Clockmaker.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Seamstress,
-                actionResId = RoleProvider.Seamstress.firstNightActionId
+                res = RoleProvider.Seamstress.firstNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         secondNightActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Monk,
-                actionResId = RoleProvider.Monk.secondNightActionId
+                res = RoleProvider.Monk.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.ScarletWoman,
-                actionResId = RoleProvider.ScarletWoman.secondNightActionId
+                res = RoleProvider.ScarletWoman.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.secondNightActionId
+                res = RoleProvider.Lunatic.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Exorcist,
-                actionResId = RoleProvider.Exorcist.secondNightActionId
+                res = RoleProvider.Exorcist.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Pukka,
-                actionResId = RoleProvider.Pukka.secondNightActionId
+                res = RoleProvider.Pukka.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.NoDashii,
-                actionResId = RoleProvider.NoDashii.secondNightActionId
+                res = RoleProvider.NoDashii.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Assassin,
-                actionResId = RoleProvider.Assassin.secondNightActionId
+                res = RoleProvider.Assassin.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.secondNightActionId
+                res = RoleProvider.Godfather.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sweetheart,
-                actionResId = RoleProvider.Sweetheart.secondNightActionId
+                res = RoleProvider.Sweetheart.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.secondNightActionId
+                res = RoleProvider.Grandmother.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Empath,
-                actionResId = RoleProvider.Empath.secondNightActionId
+                res = RoleProvider.Empath.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FortuneTeller,
-                actionResId = RoleProvider.FortuneTeller.secondNightActionId
+                res = RoleProvider.FortuneTeller.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Undertaker,
-                actionResId = RoleProvider.Undertaker.secondNightActionId
+                res = RoleProvider.Undertaker.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Flowergirl,
-                actionResId = RoleProvider.Flowergirl.secondNightActionId
+                res = RoleProvider.Flowergirl.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Oracle,
-                actionResId = RoleProvider.Oracle.secondNightActionId
+                res = RoleProvider.Oracle.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Seamstress,
-                actionResId = RoleProvider.Seamstress.secondNightActionId
+                res = RoleProvider.Seamstress.secondNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         dayActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Flowergirl,
-                actionResId = RoleProvider.Flowergirl.dayActionId
+                res = RoleProvider.Flowergirl.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Undertaker,
-                actionResId = RoleProvider.Undertaker.dayActionId
+                res = RoleProvider.Undertaker.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sweetheart,
-                actionResId = RoleProvider.Sweetheart.dayActionId
+                res = RoleProvider.Sweetheart.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.dayActionId
+                res = RoleProvider.Godfather.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
         sceneryTokens = listOf(Good, Evil, MarionetteMarionette),
     )
@@ -476,246 +471,246 @@ object SceneryProvider {
         ),
         prepareActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.prepareActionId
+                res = RoleProvider.Godfather.prepareActionId
             ),
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_prepare_3_demon_bluffs),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.prepareActionId
+                res = RoleProvider.Grandmother.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.prepareActionId
+                res = RoleProvider.Lunatic.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.TeaLady,
-                actionResId = RoleProvider.TeaLady.prepareActionId
+                res = RoleProvider.TeaLady.prepareActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
         ),
         firstNightActions = listOf(
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_demon),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.firstNightActionId
+                res = RoleProvider.Lunatic.firstNightActionId
             ),
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_minions_and_bluffs),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_minions_and_bluffs),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Goon,
-                actionResId = RoleProvider.Goon.firstNightActionId
+                res = RoleProvider.Goon.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sailor,
-                actionResId = RoleProvider.Sailor.firstNightActionId
+                res = RoleProvider.Sailor.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Courtier,
-                actionResId = RoleProvider.Courtier.firstNightActionId
+                res = RoleProvider.Courtier.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.firstNightActionId
+                res = RoleProvider.Godfather.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.DevilsAdvocate,
-                actionResId = RoleProvider.DevilsAdvocate.firstNightActionId
+                res = RoleProvider.DevilsAdvocate.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Pukka,
-                actionResId = RoleProvider.Pukka.firstNightActionId
+                res = RoleProvider.Pukka.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Fool,
-                actionResId = RoleProvider.Fool.firstNightActionId
+                res = RoleProvider.Fool.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.firstNightActionId
+                res = RoleProvider.Grandmother.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Chambermaid,
-                actionResId = RoleProvider.Chambermaid.firstNightActionId
+                res = RoleProvider.Chambermaid.firstNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         secondNightActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Goon,
-                actionResId = RoleProvider.Goon.secondNightActionId
+                res = RoleProvider.Goon.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sailor,
-                actionResId = RoleProvider.Sailor.secondNightActionId
+                res = RoleProvider.Sailor.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Innkeeper,
-                actionResId = RoleProvider.Innkeeper.secondNightActionId
+                res = RoleProvider.Innkeeper.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Courtier,
-                actionResId = RoleProvider.Courtier.secondNightActionId
+                res = RoleProvider.Courtier.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Gambler,
-                actionResId = RoleProvider.Gambler.secondNightActionId
+                res = RoleProvider.Gambler.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.DevilsAdvocate,
-                actionResId = RoleProvider.DevilsAdvocate.secondNightActionId
+                res = RoleProvider.DevilsAdvocate.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Lunatic,
-                actionResId = RoleProvider.Lunatic.secondNightActionId
+                res = RoleProvider.Lunatic.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Exorcist,
-                actionResId = RoleProvider.Exorcist.secondNightActionId
+                res = RoleProvider.Exorcist.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Zombuul,
-                actionResId = RoleProvider.Zombuul.secondNightActionId
+                res = RoleProvider.Zombuul.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Pukka,
-                actionResId = RoleProvider.Pukka.secondNightActionId
+                res = RoleProvider.Pukka.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Shabaloth,
-                actionResId = RoleProvider.Shabaloth.secondNightActionId
+                res = RoleProvider.Shabaloth.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Po,
-                actionResId = RoleProvider.Po.secondNightActionId
+                res = RoleProvider.Po.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Fool,
-                actionResId = RoleProvider.Fool.secondNightActionId
+                res = RoleProvider.Fool.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Assassin,
-                actionResId = RoleProvider.Assassin.secondNightActionId
+                res = RoleProvider.Assassin.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.secondNightActionId
+                res = RoleProvider.Godfather.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Professor,
-                actionResId = RoleProvider.Professor.secondNightActionId
+                res = RoleProvider.Professor.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Gossip,
-                actionResId = RoleProvider.Gossip.secondNightActionId
+                res = RoleProvider.Gossip.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Moonchild,
-                actionResId = RoleProvider.Moonchild.secondNightActionId
+                res = RoleProvider.Moonchild.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Grandmother,
-                actionResId = RoleProvider.Grandmother.secondNightActionId
+                res = RoleProvider.Grandmother.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Chambermaid,
-                actionResId = RoleProvider.Chambermaid.secondNightActionId
+                res = RoleProvider.Chambermaid.secondNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         dayActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Innkeeper,
-                actionResId = RoleProvider.Innkeeper.dayActionId
+                res = RoleProvider.Innkeeper.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Moonchild,
-                actionResId = RoleProvider.Sailor.dayActionId
+                res = RoleProvider.Sailor.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Gossip,
-                actionResId = RoleProvider.Gossip.dayActionId
+                res = RoleProvider.Gossip.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.DevilsAdvocate,
-                actionResId = RoleProvider.DevilsAdvocate.dayActionId
+                res = RoleProvider.DevilsAdvocate.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.TeaLady,
-                actionResId = RoleProvider.TeaLady.dayActionId
+                res = RoleProvider.TeaLady.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Pacifist,
-                actionResId = RoleProvider.Pacifist.dayActionId
+                res = RoleProvider.Pacifist.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Godfather,
-                actionResId = RoleProvider.Godfather.dayActionId
+                res = RoleProvider.Godfather.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Minstrel,
-                actionResId = RoleProvider.Minstrel.dayActionId
+                res = RoleProvider.Minstrel.dayActionId
             ),
-            Action(actionType = ActionType.PLAYER, role = RoleProvider.Fool, actionResId = RoleProvider.Fool.dayActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Fool, res = RoleProvider.Fool.dayActionId),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Mastermind,
-                actionResId = RoleProvider.Mastermind.dayActionId
+                res = RoleProvider.Mastermind.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Zombuul,
-                actionResId = RoleProvider.Zombuul.dayActionId
+                res = RoleProvider.Zombuul.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sailor,
-                actionResId = RoleProvider.Sailor.dayActionId
+                res = RoleProvider.Sailor.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
         sceneryTokens = listOf(Good, Evil),
     )
@@ -752,223 +747,274 @@ object SceneryProvider {
         ),
         prepareActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FangGu,
-                actionResId = RoleProvider.FangGu.prepareActionId
+                res = RoleProvider.FangGu.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Vigormortis,
-                actionResId = RoleProvider.Vigormortis.prepareActionId
+                res = RoleProvider.Vigormortis.prepareActionId
             ),
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_prepare_3_demon_bluffs),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_prepare_3_demon_bluffs),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Vortox,
-                actionResId = RoleProvider.Vortox.prepareActionId
+                res = RoleProvider.Vortox.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.NoDashii,
-                actionResId = RoleProvider.NoDashii.prepareActionId
+                res = RoleProvider.NoDashii.prepareActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.EvilTwin,
-                actionResId = RoleProvider.EvilTwin.prepareActionId
+                res = RoleProvider.EvilTwin.prepareActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_first_night_phase),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
         ),
         firstNightActions = listOf(
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_demon),
-            Action(actionType = ActionType.PLAYERS_7, role = null, actionResId = R.string.action_show_minions_and_bluffs),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_demon),
+            Action(type = ActionType.PLAYERS_7, role = null, res = R.string.action_show_minions_and_bluffs),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Philosopher,
-                actionResId = RoleProvider.Philosopher.firstNightActionId
+                res = RoleProvider.Philosopher.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.SnakeCharmer,
-                actionResId = RoleProvider.SnakeCharmer.firstNightActionId
+                res = RoleProvider.SnakeCharmer.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.EvilTwin,
-                actionResId = RoleProvider.EvilTwin.firstNightActionId
+                res = RoleProvider.EvilTwin.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Witch,
-                actionResId = RoleProvider.Witch.firstNightActionId
+                res = RoleProvider.Witch.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Cerenovus,
-                actionResId = RoleProvider.Cerenovus.firstNightActionId
+                res = RoleProvider.Cerenovus.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Clockmaker,
-                actionResId = RoleProvider.Clockmaker.firstNightActionId
+                res = RoleProvider.Clockmaker.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Dreamer,
-                actionResId = RoleProvider.Dreamer.firstNightActionId
+                res = RoleProvider.Dreamer.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Seamstress,
-                actionResId = RoleProvider.Seamstress.firstNightActionId
+                res = RoleProvider.Seamstress.firstNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Mathematician,
-                actionResId = RoleProvider.Mathematician.firstNightActionId
+                res = RoleProvider.Mathematician.firstNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         secondNightActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Philosopher,
-                actionResId = RoleProvider.Philosopher.secondNightActionId
+                res = RoleProvider.Philosopher.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.SnakeCharmer,
-                actionResId = RoleProvider.SnakeCharmer.secondNightActionId
+                res = RoleProvider.SnakeCharmer.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Witch,
-                actionResId = RoleProvider.Witch.secondNightActionId
+                res = RoleProvider.Witch.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Cerenovus,
-                actionResId = RoleProvider.Cerenovus.secondNightActionId
+                res = RoleProvider.Cerenovus.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.PitHag,
-                actionResId = RoleProvider.PitHag.secondNightActionId
+                res = RoleProvider.PitHag.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.FangGu,
-                actionResId = RoleProvider.FangGu.secondNightActionId
+                res = RoleProvider.FangGu.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Vigormortis,
-                actionResId = RoleProvider.Vigormortis.secondNightActionId
+                res = RoleProvider.Vigormortis.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.NoDashii,
-                actionResId = RoleProvider.NoDashii.secondNightActionId
+                res = RoleProvider.NoDashii.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Vortox,
-                actionResId = RoleProvider.Vortox.secondNightActionId
+                res = RoleProvider.Vortox.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Barber,
-                actionResId = RoleProvider.Barber.secondNightActionId
+                res = RoleProvider.Barber.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sweetheart,
-                actionResId = RoleProvider.Sweetheart.secondNightActionId
+                res = RoleProvider.Sweetheart.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sage,
-                actionResId = RoleProvider.Sage.secondNightActionId
+                res = RoleProvider.Sage.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Dreamer,
-                actionResId = RoleProvider.Dreamer.secondNightActionId
+                res = RoleProvider.Dreamer.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Flowergirl,
-                actionResId = RoleProvider.Flowergirl.secondNightActionId
+                res = RoleProvider.Flowergirl.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.TownCrier,
-                actionResId = RoleProvider.TownCrier.secondNightActionId
+                res = RoleProvider.TownCrier.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Oracle,
-                actionResId = RoleProvider.Oracle.secondNightActionId
+                res = RoleProvider.Oracle.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Seamstress,
-                actionResId = RoleProvider.Seamstress.secondNightActionId
+                res = RoleProvider.Seamstress.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Juggler,
-                actionResId = RoleProvider.Juggler.secondNightActionId
+                res = RoleProvider.Juggler.secondNightActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Mathematician,
-                actionResId = RoleProvider.Mathematician.secondNightActionId
+                res = RoleProvider.Mathematician.secondNightActionId
             ),
-            Action(actionType = ActionType.NIGHT, role = null, actionResId = R.string.action_start_day_phase),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
         ),
         dayActions = listOf(
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Vortox,
-                actionResId = RoleProvider.Vortox.dayActionId
+                res = RoleProvider.Vortox.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Flowergirl,
-                actionResId = RoleProvider.Flowergirl.dayActionId
+                res = RoleProvider.Flowergirl.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_voting),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Juggler,
-                actionResId = RoleProvider.Juggler.dayActionId
+                res = RoleProvider.Juggler.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.TownCrier,
-                actionResId = RoleProvider.TownCrier.dayActionId
+                res = RoleProvider.TownCrier.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Sweetheart,
-                actionResId = RoleProvider.Sweetheart.dayActionId
+                res = RoleProvider.Sweetheart.dayActionId
             ),
             Action(
-                actionType = ActionType.PLAYER,
+                type = ActionType.PLAYER,
                 role = RoleProvider.Barber,
-                actionResId = RoleProvider.Barber.dayActionId
+                res = RoleProvider.Barber.dayActionId
             ),
-            Action(actionType = ActionType.DAY, role = null, actionResId = R.string.action_start_night_phase)
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
         sceneryTokens = listOf(Good, Evil),
+    )
+
+    val ALleechOfDistrust = Scenery(
+        sceneryNameRes = R.string.scenery_name_a_lleech_of_distrust,
+        iconRes = R.drawable.lleech_of_distrust,
+        roles = listOf(
+            RoleProvider.Pixie,
+            RoleProvider.Undertaker,
+            RoleProvider.Exorcist,
+            RoleProvider.Fisherman,
+            RoleProvider.Slayer,
+            RoleProvider.Juggler,
+            RoleProvider.Drunk,
+            RoleProvider.Lunatic,
+            RoleProvider.DevilsAdvocate,
+            RoleProvider.Marionette,
+            RoleProvider.Lleech,
+        ),
+        prepareActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Drunk, res = RoleProvider.Drunk.prepareActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Marionette, res = RoleProvider.Marionette.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lunatic, res = RoleProvider.Lunatic.prepareActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Pixie, res = RoleProvider.Pixie.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
+        ),
+        firstNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lunatic, res = RoleProvider.Lunatic.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lleech, res = RoleProvider.Lleech.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.DevilsAdvocate, res = RoleProvider.DevilsAdvocate.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Pixie, res = RoleProvider.Pixie.firstNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        secondNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.DevilsAdvocate, res = RoleProvider.DevilsAdvocate.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lunatic, res = RoleProvider.Lunatic.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Exorcist, res = RoleProvider.Exorcist.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Lleech, res = RoleProvider.Lleech.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Undertaker, res = RoleProvider.Undertaker.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Juggler, res = RoleProvider.Juggler.secondNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        dayActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Juggler, res = RoleProvider.Juggler.dayActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Undertaker, res = RoleProvider.Undertaker.dayActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.DevilsAdvocate, res = RoleProvider.DevilsAdvocate.dayActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
+        ),
+        sceneryTokens = listOf(Good, Evil, DrunkDrunk, MarionetteMarionette)
     )
 
     val all = listOf(
         TroubleBrewing,
         BadMoonRising,
         SectsNViolets,
-        UncertainDeath
+        UncertainDeath,
+        ALleechOfDistrust
     )
 }

@@ -134,39 +134,39 @@ class GameViewModel @Inject constructor(
             GamePhase.PREPARE ->
                 state.scenery?.prepareActions
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYERS_7 && state.players?.size!! < 7
+                        action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
                     }
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?: emptyList()
 
             GamePhase.FIRST_NIGHT ->
                 state.scenery?.firstNightActions
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYERS_7 && state.players?.size!! < 7
+                        action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
                     }
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?: emptyList()
 
             GamePhase.SECOND_NIGHT ->
                 state.scenery?.secondNightActions
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?.filter { action ->
-                        (aliveRoles?.contains(action.role) == true) || (action.actionType == ActionType.NIGHT)
+                        (aliveRoles?.contains(action.role) == true) || (action.type == ActionType.NIGHT)
                     } ?: emptyList()
 
             GamePhase.DAY ->
                 state.scenery?.dayActions
                     ?.filterNot { action ->
-                        action.actionType == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
+                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
                     }
                     ?.filter { action ->
-                        (aliveRoles?.contains(action.role) == true) || (action.actionType == ActionType.DAY)
+                        (aliveRoles?.contains(action.role) == true) || (action.type == ActionType.DAY)
                     } ?: emptyList()
         }
         return list

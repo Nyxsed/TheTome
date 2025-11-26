@@ -90,6 +90,7 @@
     <string name="scenery_name_bad_moon_rising">Bad Moon Rising</string>
     <string name="scenery_name_sects_and_violets">Sects and Violets</string>
     <string name="scenery_name_uncertain_death">Uncertain Death</string>
+    <string name="scenery_name_a_lleech_of_distrust">A Lleech of Distrust</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
@@ -413,5 +414,17 @@
     <string name="action_second_night_vortox">Wake the Vortox. They point at any player. That player dies - mark them with the DEAD reminder</string>
     <string name="action_day_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information.</string>
 
+    <string name="role_name_pixie">Pixie</string>
+    <string name="role_ability_pixie">You start knowing 1 in-play Townsfolk. If you were mad that you were this character, you gain their ability when they die</string>
+    <string name="action_prepare_pixie">Mark a Townsfolk character token with the Pixie’s MAD reminder</string>
+    <string name="action_first_night_pixie">Wake the Pixie. Show the Pixie this Townsfolk character token with her MAD reminder</string>
+
+    <string name="role_name_fisherman">Fisherman</string>
+    <string name="role_ability_fisherman">Each night, choose a player: you learn their alignment. If you choose a dead player, learn nothing.</string>
+
+    <string name="role_name_lleech">Lleech</string>
+    <string name="role_ability_lleech">Each night, choose a player: if they die tonight, you gain their ability tomorrow. Otherwise, nothing happens.</string>
+    <string name="action_first_night_lleech">Wake the Lleech. They point at any player. That player is poisoned</string>
+    <string name="action_second_night_lleech">Wake the Lleech. They point at any player. That player dies—mark them with the DEAD reminder</string>
 
 </resources>

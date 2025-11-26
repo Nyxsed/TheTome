@@ -12,6 +12,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.DevilsAdvocateSurvivesExecution
 import ru.nyxsed.thetome.core.data.TokenProvider.EvilTwinTwin
 import ru.nyxsed.thetome.core.data.TokenProvider.ExorcistChosen
 import ru.nyxsed.thetome.core.data.TokenProvider.FangGuKill
+import ru.nyxsed.thetome.core.data.TokenProvider.FishermanNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlNotVoted
 import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlVoted
 import ru.nyxsed.thetome.core.data.TokenProvider.FoolNoAbility
@@ -28,6 +29,8 @@ import ru.nyxsed.thetome.core.data.TokenProvider.InvestigatorWrong
 import ru.nyxsed.thetome.core.data.TokenProvider.JugglerCorrect
 import ru.nyxsed.thetome.core.data.TokenProvider.LibrarianOutsider
 import ru.nyxsed.thetome.core.data.TokenProvider.LibrarianWrong
+import ru.nyxsed.thetome.core.data.TokenProvider.LleechKill
+import ru.nyxsed.thetome.core.data.TokenProvider.LleechPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.LunaticChosen
 import ru.nyxsed.thetome.core.data.TokenProvider.MathematicianAbnormal
 import ru.nyxsed.thetome.core.data.TokenProvider.MinstrelEveryoneIsDrunk
@@ -37,6 +40,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.NoDashiiKill
 import ru.nyxsed.thetome.core.data.TokenProvider.NoDashiiPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.PhilosopherDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.PhilosopherIs
+import ru.nyxsed.thetome.core.data.TokenProvider.PixieMad
 import ru.nyxsed.thetome.core.data.TokenProvider.Po3Attacks
 import ru.nyxsed.thetome.core.data.TokenProvider.PoKill
 import ru.nyxsed.thetome.core.data.TokenProvider.PoisonerPoison
@@ -409,7 +413,6 @@ object RoleProvider {
         iconRes = R.drawable.icon_philosopher,
     )
 
-
     val Juggler = Role(
         type = RoleType.TOWNSFOLK,
         tokens = listOf(
@@ -434,6 +437,23 @@ object RoleProvider {
         iconRes = R.drawable.icon_sage
     )
 
+    val Pixie = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_pixie,
+        ability = R.string.role_ability_pixie,
+        tokens = listOf(PixieMad),
+        prepareActionId = R.string.action_prepare_pixie,
+        firstNightActionId = R.string.action_first_night_pixie,
+        iconRes = R.drawable.icon_pixie
+    )
+
+    val Fisherman = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_fisherman,
+        ability = R.string.role_ability_fisherman,
+        tokens = listOf(FishermanNoAbility),
+        iconRes = R.drawable.icon_fisherman
+    )
 
     //Outsiders
     val Butler = Role(
@@ -749,7 +769,6 @@ object RoleProvider {
         iconRes = R.drawable.icon_vigormortis
     )
 
-
     val Vortox = Role(
         type = RoleType.DEMON,
         tokens = listOf(VortoxKill),
@@ -759,5 +778,15 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_vortox,
         dayActionId = R.string.action_day_vortox,
         iconRes = R.drawable.icon_vortox
+    )
+
+    val Lleech = Role(
+        type = RoleType.DEMON,
+        roleName = R.string.role_name_lleech,
+        ability = R.string.role_ability_lleech,
+        tokens = listOf(LleechKill, LleechPoison),
+        firstNightActionId = R.string.action_first_night_lleech,
+        secondNightActionId = R.string.action_second_night_lleech,
+        iconRes = R.drawable.icon_lleech
     )
 }

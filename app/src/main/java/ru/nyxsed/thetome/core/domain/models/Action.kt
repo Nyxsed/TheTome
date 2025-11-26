@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Action(
-    val actionType:ActionType,
+    val type: ActionType,
     val role: Role?,
-    @StringRes val actionResId: Int
+    @StringRes val res: Int
 )
 
 enum class ActionType {

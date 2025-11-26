@@ -39,7 +39,6 @@ object TokenProvider {
     val ExorcistChosen = Token(nameResId = R.string.token_chosen, iconRes = R.drawable.icon_exorcist)
 
     val FlowergirlNotVoted = Token(nameResId = R.string.token_not_voted, iconRes = R.drawable.icon_flowergirl)
-
     val FlowergirlVoted = Token(nameResId = R.string.token_voted, iconRes = R.drawable.icon_flowergirl)
 
     val ArtistNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_artist)
@@ -54,21 +53,17 @@ object TokenProvider {
 
     val AssassinNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_assassin)
 
-    val MarionetteMarionette =
-        Token(nameResId = R.string.token_marionette, iconRes = R.drawable.icon_marionette) // TODO unique token
+    val MarionetteMarionette = Token(nameResId = R.string.token_marionette, iconRes = R.drawable.icon_marionette) // TODO unique token
 
     val NoDashiiPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_nodashii)
-
     val NoDashiiKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_nodashii)
 
     val PukkaPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_pukka)
-
     val PukkaKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_pukka)
 
     val SailorDrunk = Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_sailor)
 
     val InnkeeperDrunk = Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_innkeeper)
-
     val InnkeeperSafe = Token(nameResId = R.string.token_safe, iconRes = R.drawable.icon_innkeeper)
 
     val GamblerKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_gambler)
@@ -76,7 +71,6 @@ object TokenProvider {
     val GossipKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_gossip)
 
     val CourtierDrunk = Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_courtier)
-
     val CourtierNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_gossip)
 
     val ProfessorNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_professor)
@@ -89,15 +83,12 @@ object TokenProvider {
 
     val MoonchildKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_moonchild)
 
-    val DevilsAdvocateSurvivesExecution =
-        Token(nameResId = R.string.token_survives_execution, iconRes = R.drawable.icon_devilsadvocate)
+    val DevilsAdvocateSurvivesExecution = Token(nameResId = R.string.token_survives_execution, iconRes = R.drawable.icon_devilsadvocate)
 
     val ZombuulKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_zombuul)
-
     val ZombuulDiedToday = Token(nameResId = R.string.token_died_today, iconRes = R.drawable.icon_zombuul)
 
     val ShabalothKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_shabaloth)
-
     val ShabalothAlive = Token(nameResId = R.string.token_alive, iconRes = R.drawable.icon_shabaloth)
 
     val PoKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
@@ -111,7 +102,6 @@ object TokenProvider {
     val TowncrierMinionNominated = Token(nameResId = R.string.token_minion_nominated, iconRes = R.drawable.icon_towncrier)
 
     val PhilosopherIs = Token(nameResId = R.string.token_is_the_philosopher, iconRes = R.drawable.icon_philosopher)
-
     val PhilosopherDrunk = Token(nameResId = R.string.token_drunk, iconRes = R.drawable.icon_philosopher)
 
     val JugglerCorrect = Token(nameResId = R.string.token_correct, iconRes = R.drawable.icon_juggler)
@@ -127,11 +117,17 @@ object TokenProvider {
     val FangGuKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_fanggu)
 
     val VigormortisHasAbility = Token(nameResId = R.string.token_has_ability, iconRes = R.drawable.icon_vigormortis)
-
     val VigormortisKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_vigormortis)
-
     val VigormortisPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_vigormortis)
 
     val VortoxKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_vortox)
+
+    val PixieMad = Token(nameResId = R.string.token_mad, iconRes = R.drawable.icon_pixie)
+
+    val FishermanNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_fisherman)
+
+    val LleechKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_lleech)
+    val LleechPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_lleech)
+
 
 }
