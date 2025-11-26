@@ -1010,11 +1010,57 @@ object SceneryProvider {
         sceneryTokens = listOf(Good, Evil, DrunkDrunk, MarionetteMarionette)
     )
 
+    val NoGreaterJoy = Scenery(
+        sceneryNameRes = R.string.scenery_name_no_greater_joy,
+        iconRes = R.drawable.icon_no_greater_joy,
+        roles = listOf(
+            RoleProvider.Investigator,
+            RoleProvider.Clockmaker,
+            RoleProvider.Chambermaid,
+            RoleProvider.Empath,
+            RoleProvider.Artist,
+            RoleProvider.Sage,
+            RoleProvider.Klutz,
+            RoleProvider.Drunk,
+            RoleProvider.ScarletWoman,
+            RoleProvider.Baron,
+            RoleProvider.Imp,
+        ),
+        prepareActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Drunk, res = RoleProvider.Drunk.prepareActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Baron, res = RoleProvider.Baron.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_prepare_bag),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Investigator, res = RoleProvider.Investigator.prepareActionId),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_first_night_phase),
+        ),
+        firstNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.Investigator, res = RoleProvider.Investigator.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Empath, res = RoleProvider.Empath.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Clockmaker, res = RoleProvider.Clockmaker.firstNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Chambermaid, res = RoleProvider.Chambermaid.firstNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        secondNightActions = listOf(
+            Action(type = ActionType.PLAYER, role = RoleProvider.ScarletWoman, res = RoleProvider.ScarletWoman.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Imp, res = RoleProvider.Imp.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Sage, res = RoleProvider.Sage.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Empath, res = RoleProvider.Empath.secondNightActionId),
+            Action(type = ActionType.PLAYER, role = RoleProvider.Chambermaid, res = RoleProvider.Chambermaid.secondNightActionId),
+            Action(type = ActionType.NIGHT, role = null, res = R.string.action_start_day_phase),
+        ),
+        dayActions = listOf(
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
+        ),
+        sceneryTokens = listOf(Good, Evil, DrunkDrunk)
+    )
+
     val all = listOf(
         TroubleBrewing,
         BadMoonRising,
         SectsNViolets,
         UncertainDeath,
-        ALleechOfDistrust
+        NoGreaterJoy,
+        ALleechOfDistrust,
     )
 }

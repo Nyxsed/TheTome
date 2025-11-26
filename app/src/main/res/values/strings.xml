@@ -91,6 +91,7 @@
     <string name="scenery_name_sects_and_violets">Sects and Violets</string>
     <string name="scenery_name_uncertain_death">Uncertain Death</string>
     <string name="scenery_name_a_lleech_of_distrust">A Lleech of Distrust</string>
+    <string name="scenery_name_no_greater_joy">No Greater Joy</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
@@ -370,7 +371,7 @@
     
     <string name="role_name_sage">Sage</string>
     <string name="role_ability_sage">If the Demon kills you, you learn that the Demon is one of two players.</string>
-    <string name="action_second_night_sage">Wake the Sage. Point at two players, one who is the Demon that killed the Sage</string>
+    <string name="action_second_night_sage">If Demon killed Sage, wake the Sage. Point at two players, one who is the Demon that killed the Sage</string>
     
     <string name="role_name_barber">Barber</string>
     <string name="role_ability_barber">If you die today or tonight, the Demon may choose 2 players (not another Demon) to swap characters.</string>
