@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TheTome</string>
 
+    <string name="url_pocket_grimoire">https://www.pocketgrimoire.co.uk/en_GB/sheet?</string>
+
     <string name="text_rename_player">Rename player</string>
     <string name="text_all">All</string>
     <string name="text_ok">OK</string>

@@ -69,6 +69,11 @@ dependencies {
     // Data store
     implementation("androidx.datastore:datastore-preferences:1.1.0")
 
-    //serialization
+    // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    // QR codes
+    implementation("com.google.zxing:core:3.5.2")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }

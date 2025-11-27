@@ -1,5 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.nyxsed.thetome.core.domain.models.*
+import ru.nyxsed.thetome.core.domain.usecase.GenerateQrUseCase
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class GameViewModel @Inject constructor(
     private val loadGameUseCase: LoadGameStateUseCase,
     private val saveGameStateUseCase: SaveGameStateUseCase,
+    private val generateQrUseCase: GenerateQrUseCase,
 ) : ViewModel() {
 
     val _state = MutableStateFlow(GameState(null))
@@ -247,5 +250,9 @@ class GameViewModel @Inject constructor(
             }
         }
         updateCurrentAction()
+    }
+
+    fun generateQr(link: String): Bitmap? {
+        return generateQrUseCase(link)
     }
 }

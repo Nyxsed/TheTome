@@ -1,9 +1,12 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.graphics.Bitmap
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,13 +27,25 @@ fun GameScreen(
     onDoublePressBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
+    var qrBitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     BackHandlerInterceptor(
         onDoublePressed = onDoublePressBack
     )
+    val context = LocalContext.current
+    LaunchedEffect(state.scenery) {
+        state.scenery?.let {
+            val baseUrl = context.getString(R.string.url_pocket_grimoire)
+            val sceneryName = state.scenery?.let { context.getString(it.sceneryNameRes) }
+            val roles = state.scenery?.roles?.joinToString(separator = ",") { role -> context.getString(role.roleName) }
+            val finalLink = "${baseUrl}characters=$roles&name=$sceneryName".replace(" ","")
+            qrBitmap = viewModel.generateQr(finalLink)
+        }
+    }
 
     GameContent(
         state = state,
+        qrBitmap = qrBitmap,
         onEditGame = onEditGameClicked,
         onCard = onCardClicked,
         onEditNotes = {
@@ -69,6 +84,7 @@ fun GameScreen(
 @Composable
 fun GameContent(
     state: GameState,
+    qrBitmap: Bitmap?,
     onEditGame: () -> Unit,
     onEditNotes: (String) -> Unit,
     onCard: (Int, List<Role?>?) -> Unit,
@@ -85,6 +101,7 @@ fun GameContent(
     var isEditDialogRaised by remember { mutableStateOf(false) }
     var isMemoDialogRaised by remember { mutableStateOf(false) }
     var isPickRoleDialogRaised by remember { mutableStateOf(false) }
+    var isShareDialogRaised by remember { mutableStateOf(false) }
     var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
     var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
 
@@ -105,6 +122,9 @@ fun GameContent(
             },
             onMemoClicked = {
                 isMemoDialogRaised = true
+            },
+            onShareClicked = {
+                isShareDialogRaised = true
             },
             menuItems = listOf(
                 CardsMenuItem(stringResource(R.string.menu_demon)) {
@@ -271,6 +291,14 @@ fun GameContent(
                     targetTokenPlayer = null
                 },
                 onDismiss = { targetTokenPlayer = null }
+            )
+        }
+
+        if (isShareDialogRaised) {
+            ShareDialog(
+                titleRes = state.scenery?.sceneryNameRes,
+                qrBitmap = qrBitmap,
+                onDismiss = { isShareDialogRaised = false }
             )
         }
     }

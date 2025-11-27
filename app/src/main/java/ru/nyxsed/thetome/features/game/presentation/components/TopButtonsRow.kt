@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,6 +23,7 @@ fun TopButtonsRow(
     sceneryRoles: List<Role>?,
     onEditClicked: () -> Unit,
     onMemoClicked: () -> Unit,
+    onShareClicked: () -> Unit,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     var isDialogVisible by remember { mutableStateOf(false) }
@@ -87,6 +89,18 @@ fun TopButtonsRow(
                 Icon(
                     contentDescription = "memo",
                     imageVector = Icons.Default.Edit,
+                    tint = Color.White
+                )
+            }
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+        SmallRoundIconButton(
+            onClick = onShareClicked,
+            icon = {
+                Icon(
+                    contentDescription = "share",
+                    imageVector = Icons.Default.Share,
                     tint = Color.White
                 )
             }
