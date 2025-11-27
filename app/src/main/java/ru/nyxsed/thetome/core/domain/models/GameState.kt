@@ -1,10 +1,14 @@
 package ru.nyxsed.thetome.core.domain.models
 
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GameState(
-    val scenery: Scenery?,
+    @SerialName("scenery")
+    @Contextual
+    val scenery: Scenery? = null,
     val players: List<Player>? = emptyList(),
     val chosenRoles: List<Role>? = emptyList(),
     val demonBluffs: List<Role?> = emptyList(),

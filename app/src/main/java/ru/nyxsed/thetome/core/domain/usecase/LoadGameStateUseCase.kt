@@ -10,3 +10,4 @@ class LoadGameStateUseCase @Inject constructor(private val repository: GameState
         return repository.loadGameState()
     }
 }
+

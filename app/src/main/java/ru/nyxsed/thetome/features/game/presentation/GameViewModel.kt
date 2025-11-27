@@ -1,5 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -129,56 +130,33 @@ class GameViewModel @Inject constructor(
     private fun getActionList(state: GameState): List<Action> {
         val chosenRoles = state.chosenRoles
         val aliveRoles = state.players?.filter { it.isAlive }?.map { it.role }
+        val killedRoles = state.players?.filter { !it.isAlive }?.map { it.role }
+        val currentRoles = (chosenRoles.orEmpty() + aliveRoles.orEmpty()).distinctBy { it?.roleName }
 
-        val list = when (state.currentPhase) {
-            GamePhase.PREPARE ->
-                state.scenery?.prepareActions
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
-                    }
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
-                    }
-                    ?: emptyList()
+        val phaseActions = when (state.currentPhase) {
+            GamePhase.PREPARE -> state.scenery?.prepareActions
+            GamePhase.FIRST_NIGHT -> state.scenery?.firstNightActions
+            GamePhase.SECOND_NIGHT -> state.scenery?.secondNightActions
+            GamePhase.DAY -> state.scenery?.dayActions
+        }?.filterNot { action ->
+            action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
+        }?.filter { action ->
+            (action.type != ActionType.PLAYER) || currentRoles.contains(action.role)
+        }?.filterNot { action ->
+            action.type == ActionType.PLAYER && killedRoles?.contains(action.role) == true
+        } ?: emptyList()
 
-            GamePhase.FIRST_NIGHT ->
-                state.scenery?.firstNightActions
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
-                    }
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
-                    }
-                    ?: emptyList()
-
-            GamePhase.SECOND_NIGHT ->
-                state.scenery?.secondNightActions
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
-                    }
-                    ?.filter { action ->
-                        (aliveRoles?.contains(action.role) == true) || (action.type == ActionType.NIGHT)
-                    } ?: emptyList()
-
-            GamePhase.DAY ->
-                state.scenery?.dayActions
-                    ?.filterNot { action ->
-                        action.type == ActionType.PLAYER && chosenRoles?.contains(action.role) != true
-                    }
-                    ?.filter { action ->
-                        (aliveRoles?.contains(action.role) == true) || (action.type == ActionType.DAY)
-                    } ?: emptyList()
-        }
-        return list
+        return phaseActions
     }
 
 
     private fun updateCurrentAction() {
         val state = _state.value
         val actions = getActionList(state)
+        val currentAction = actions.getOrElse(state.actionIndex) { actions[0] }
         _state.update {
             it.copy(
-                currentAction = actions[state.actionIndex]
+                currentAction = currentAction
             )
         }
 
