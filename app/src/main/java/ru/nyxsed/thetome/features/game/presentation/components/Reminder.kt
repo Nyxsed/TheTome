@@ -102,8 +102,6 @@ fun Reminder(
 
                         val log = if (action?.role?.roleName != null)
                             stringResource(action?.role?.roleName!!) else ""
-                        Log.d("reminderAction",log)
-                        Log.d("reminderAction",action.toString())
 
                         val text = stringResource(action.res)
 

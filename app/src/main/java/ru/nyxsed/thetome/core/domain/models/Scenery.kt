@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 data class Scenery(
     val sceneryNameRes: Int,
     @DrawableRes val iconRes: Int = 0,
+    val maxPlayers: Int = 15,
     val roles: List<Role>,
     val prepareActions: List<Action>,
     val firstNightActions: List<Action>,

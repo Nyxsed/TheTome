@@ -66,6 +66,7 @@ fun SettingsContent(
     ) {
         PlayerCountSlider(
             sliderPosition = state.playerCount.toFloat(),
+            maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
             onValueChange = {
                 onPlayerCountChanged(it.toInt())
             }
@@ -99,16 +100,22 @@ fun SettingsContent(
 
 @Composable
 fun PlayerCountSlider(
+    maxPlayers: Int,
     sliderPosition: Float,
     onValueChange: (Float) -> Unit,
 ) {
+    LaunchedEffect(maxPlayers) {
+        if (sliderPosition > maxPlayers) {
+            onValueChange(maxPlayers.toFloat())
+        }
+    }
     Text(stringResource(R.string.text_player_count, sliderPosition.toInt()))
     Slider(
         modifier = Modifier.width(300.dp),
         value = sliderPosition,
         onValueChange = { onValueChange(it) },
         steps = 9,
-        valueRange = 5f..15f,
+        valueRange = 5f..maxPlayers.toFloat(),
         colors = SliderDefaults.colors()
             .copy(thumbColor = DarkPurple, activeTrackColor = DarkPurple, inactiveTrackColor = DarkPurple.copy(alpha = 0.5f))
     )

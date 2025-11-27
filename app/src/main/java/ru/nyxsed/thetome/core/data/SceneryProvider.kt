@@ -963,6 +963,7 @@ object SceneryProvider {
     val ALleechOfDistrust = Scenery(
         sceneryNameRes = R.string.scenery_name_a_lleech_of_distrust,
         iconRes = R.drawable.lleech_of_distrust,
+        maxPlayers = 6,
         roles = listOf(
             RoleProvider.Pixie,
             RoleProvider.Undertaker,
@@ -1013,6 +1014,7 @@ object SceneryProvider {
     val NoGreaterJoy = Scenery(
         sceneryNameRes = R.string.scenery_name_no_greater_joy,
         iconRes = R.drawable.icon_no_greater_joy,
+        maxPlayers = 6,
         roles = listOf(
             RoleProvider.Investigator,
             RoleProvider.Clockmaker,
@@ -1058,6 +1060,7 @@ object SceneryProvider {
     val LaissezUnFaire = Scenery(
         sceneryNameRes = R.string.scenery_name_laissez_un_faire,
         iconRes = R.drawable.icon_laissez_un_faire,
+        maxPlayers = 6,
         roles = listOf(
             RoleProvider.Balloonist,
             RoleProvider.Savant,
