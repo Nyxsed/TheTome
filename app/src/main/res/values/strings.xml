@@ -2,6 +2,7 @@
     <string name="app_name">TheTome</string>
 
     <string name="url_pocket_grimoire">https://www.pocketgrimoire.co.uk/en_GB/sheet?</string>
+    <string name="url_wiki">https://wiki.bloodontheclocktower.com/</string>
 
     <string name="text_rename_player">Rename player</string>
     <string name="text_all">All</string>
@@ -97,20 +98,17 @@
     <string name="token_day_5">day 5</string>
     <string name="token_good_player_executed">good player executed</string>
 
-    <string name="scenery_name_trouble_brewing">Trouble Brewing</string>
-    <string name="scenery_name_bad_moon_rising">Bad Moon Rising</string>
-    <string name="scenery_name_sects_and_violets">Sects and Violets</string>
-    <string name="scenery_name_uncertain_death">Uncertain Death</string>
-    <string name="scenery_name_a_lleech_of_distrust">A Lleech of Distrust</string>
-    <string name="scenery_name_no_greater_joy">No Greater Joy</string>
-    <string name="scenery_name_laissez_un_faire">Laissez un Faire</string>
+    <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
+    <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
+    <string name="scenery_name_sects_and_violets" translatable="false">Sects and Violets</string>
+    <string name="scenery_name_uncertain_death" translatable="false">Uncertain Death</string>
+    <string name="scenery_name_a_lleech_of_distrust" translatable="false">A Lleech of Distrust</string>
+    <string name="scenery_name_no_greater_joy" translatable="false">No Greater Joy</string>
+    <string name="scenery_name_laissez_un_faire" translatable="false">Laissez un Faire</string>
 
     <string name="role_name_imp">Imp</string>
     <string name="role_ability_imp">Each night, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp</string>
-    <string name="action_second_night_imp">
-        Wake the Imp. The Imp points at any player. The chosen player dies — put the Imps Kill reminder by the chosen players character token
-        If the Imp killed themself at night, choose an alive Minion and replace their character token with a Imp token. Wake the new Imp, show them the YOU ARE info token, then show them the Imp token
-    </string>
+    <string name="action_second_night_imp">Wake the Imp. The Imp points at any player. The chosen player dies — put the Imps Kill reminder by the chosen players character token         If the Imp killed themself at night, choose an alive Minion and replace their character token with a Imp token. Wake the new Imp, show them the YOU ARE info token, then show them the Imp token</string>
 
     <string name="role_name_poisoner">Poisoner</string>
     <string name="role_ability_poisoner">Each night, choose a player: they are poisoned tonight and tomorrow day</string>
@@ -401,6 +399,7 @@
     <string name="role_name_witch">Witch</string>
     <string name="role_ability_witch">Each night, choose a player: if they nominate tomorrow, they die (unless only 3 players live).</string>
     <string name="action_second_night_witch">Wake the Witch. They point at any player. Put the Witch to sleep. Mark the chosen player with the CURSED reminder</string>
+    <string name="action_day_witch">If player with CURSED reminder make a nominee, he die immediately</string>
     
     <string name="role_name_cerenovus">Cerenovus</string>
     <string name="role_ability_cerenovus">Each night, choose a player and a good character: that player is “mad” about being that character tomorrow.</string>

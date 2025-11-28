@@ -706,6 +706,7 @@ object RoleProvider {
         ability = R.string.role_ability_witch,
         firstNightActionId = R.string.action_second_night_witch,
         secondNightActionId = R.string.action_second_night_witch,
+        dayActionId = R.string.action_day_witch,
         iconRes = R.drawable.icon_witch
     )
 

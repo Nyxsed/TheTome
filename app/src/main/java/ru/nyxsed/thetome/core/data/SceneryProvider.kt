@@ -934,11 +934,16 @@ object SceneryProvider {
                 role = RoleProvider.Flowergirl,
                 res = RoleProvider.Flowergirl.dayActionId
             ),
-            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(
                 type = ActionType.PLAYER,
                 role = RoleProvider.Juggler,
                 res = RoleProvider.Juggler.dayActionId
+            ),
+            Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
+            Action(
+                type = ActionType.PLAYER,
+                role = RoleProvider.Witch,
+                res = RoleProvider.Witch.dayActionId
             ),
             Action(
                 type = ActionType.PLAYER,

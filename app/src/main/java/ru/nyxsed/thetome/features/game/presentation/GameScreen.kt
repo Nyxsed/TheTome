@@ -1,7 +1,8 @@
 package ru.nyxsed.thetome.features.game.presentation
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -9,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GameState
@@ -38,7 +40,7 @@ fun GameScreen(
             val baseUrl = context.getString(R.string.url_pocket_grimoire)
             val sceneryName = state.scenery?.let { context.getString(it.sceneryNameRes) }
             val roles = state.scenery?.roles?.joinToString(separator = ",") { role -> context.getString(role.roleName) }
-            val finalLink = "${baseUrl}characters=$roles&name=$sceneryName".replace(" ","")
+            val finalLink = "${baseUrl}characters=$roles&name=$sceneryName".replace(" ", "")
             qrBitmap = viewModel.generateQr(finalLink)
         }
     }
@@ -46,6 +48,7 @@ fun GameScreen(
     GameContent(
         state = state,
         qrBitmap = qrBitmap,
+        context = context,
         onEditGame = onEditGameClicked,
         onCard = onCardClicked,
         onEditNotes = {
@@ -85,6 +88,7 @@ fun GameScreen(
 fun GameContent(
     state: GameState,
     qrBitmap: Bitmap?,
+    context: Context,
     onEditGame: () -> Unit,
     onEditNotes: (String) -> Unit,
     onCard: (Int, List<Role?>?) -> Unit,
@@ -298,6 +302,13 @@ fun GameContent(
             ShareDialog(
                 titleRes = state.scenery?.sceneryNameRes,
                 qrBitmap = qrBitmap,
+                onUrlClicked = {
+                    val baseUrl = context.getString(R.string.url_wiki)
+                    val sceneryName = state.scenery?.let { context.getString(state.scenery.sceneryNameRes) }?.replace(" ", "_")
+                    val intent = Intent(Intent.ACTION_VIEW, "${baseUrl}$sceneryName".toUri())
+                    context.startActivity(intent)
+                    isShareDialogRaised = false
+                },
                 onDismiss = { isShareDialogRaised = false }
             )
         }

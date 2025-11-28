@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheTome</string>
+    <string name="url_pocket_grimoire">https://www.pocketgrimoire.co.uk/ru_RU/sheet?</string>
+    <string name="url_wiki">https://botc.1nv.is/wiki/</string>
+
+    <string name="text_rename_player">Переименовать игрока</string>
+    <string name="text_all">Все</string>
+    <string name="text_ok">ОК</string>
+    <string name="text_yes">Да</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_start_game">Начать игру</string>
+    <string name="text_player_count">Количество игроков: %1$d</string>
+    <string name="text_scenery">"Сценарий: "</string>
+    <string name="text_choose_scenery">Выберите сценарий</string>
+    <string name="text_players">Игроки: %1$d / %2$d</string>
+    <string name="text_no_role">Без роли</string>
+    <string name="text_pick_a_role">Выберите роль</string>
+    <string name="text_name">Имя</string>
+    <string name="text_new_game">Новая игра</string>
+    <string name="text_restore_game">Продолжить игру</string>
+    <string name="text_choose_token">Выберите токен</string>
+    <string name="text_townsfolk">Горожане</string>
+    <string name="text_outsider">Изгои</string>
+    <string name="text_minion">Приспешники</string>
+    <string name="text_demon">Демоны</string>
+    <string name="text_edit_game_attention">Состояние игры будет сброшено</string>
+    <string name="text_edit_game">Изменить игру?</string>
+    <string name="text_notes">Заметки</string>
+    <string name="text_press_again">Нажмите ещё раз</string>
+    <string name="text_rename">Переименовать</string>
+    <string name="text_change_role">Сменить роль</string>
+    <string name="text_kill_player">Убить игрока</string>
+    <string name="text_revive_player">Возродить игрока</string>
+    <string name="text_show_card">Показать карточку</string>
+    <string name="text_spend_ghost_vote">Потратить голос призрака</string>
+    <string name="text_return_ghost_vote">Вернуть голос призрака</string>
+
+    <string name="action_prepare_3_demon_bluffs">Подготовить 3 блефа демона</string>
+    <string name="action_prepare_bag">Подготовить мешок ролей и передать игрокам</string>
+    <string name="action_start_first_night_phase">Начать первую ночную фазу</string>
+    <string name="action_start_night_phase">Начать ночную фазу</string>
+    <string name="action_voting">Подождать 3–5 минут и начать голосование</string>
+    <string name="action_start_day_phase">Начать дневную фазу</string>
+    <string name="action_show_demon">Разбудить прислужников, показать «ЭТО ДЕМОН» и указать на демона</string>
+    <string name="action_show_minions_and_bluffs">Разбудить демона, показать «ЭТО ВАШИ ПРИСЛУЖНИКИ», указать на прислужников. Показать «ЭТИ ПЕРСОНАЖИ НЕ В ИГРЕ». Показать подготовленные блефы</string>
+
+    <string name="menu_demon">Это демон</string>
+    <string name="menu_minions">Это ваши прислужники</string>
+    <string name="menu_not_in_play">Эти персонажи не в игре</string>
+    <string name="menu_show_role">Показать роль</string>
+    <string name="menu_use_ability">Используешь способность?</string>
+    <string name="menu_make_choice">Сделайте выбор</string>
+    <string name="menu_nominated_today">Наминировали кого-то сегодня?</string>
+    <string name="menu_voted_today">Голосовал сегодня?</string>
+    <string name="menu_char_selected_you">Этот персонаж выбрал вас</string>
+
+    <string name="token_good">добрый</string>
+    <string name="token_evil">злой</string>
+    <string name="token_townsfolk">горожанин</string>
+    <string name="token_wrong">неверно</string>
+    <string name="token_outsider">изгой</string>
+    <string name="token_kill">убить</string>
+    <string name="token_poison">отравлен</string>
+    <string name="token_minion">Прислужник</string>
+    <string name="token_red_herring">ложный след</string>
+    <string name="token_master">мастер</string>
+    <string name="token_safe">защищён</string>
+    <string name="token_died_today">умер сегодня</string>
+    <string name="token_no_ability">нет способности</string>
+    <string name="token_drunk">Пьяный</string>
+    <string name="token_grandchild">внук</string>
+    <string name="token_chosen">выбран</string>
+    <string name="token_not_voted">не голосовал</string>
+    <string name="token_voted">голосовал</string>
+    <string name="token_marionette">марионетка</string>
+    <string name="token_everyone_is_drunk">все пьяны</string>
+    <string name="token_cannot_die">не может умереть</string>
+    <string name="token_survives_execution">Переживает казнь</string>
+    <string name="token_alive">жив</string>
+    <string name="token_3_attacks">3 атаки</string>
+    <string name="token_abnormal">аномалия</string>
+    <string name="token_minion_nominated">Прислужник номинирован</string>
+    <string name="token_is_the_philosopher">философ</string>
+    <string name="token_correct">верно</string>
+    <string name="token_haircuts">стрижка</string>
+    <string name="token_twin">близнец</string>
+    <string name="token_cursed">Проклят</string>
+    <string name="token_mad">внушает</string>
+    <string name="token_has_ability">имеет способность</string>
+    <string name="token_know">знает</string>
+    <string name="token_lunch">обед</string>
+    <string name="token_claimed">заявил</string>
+    <string name="token_day_1">день 1</string>
+    <string name="token_day_2">день 2</string>
+    <string name="token_day_3">день 3</string>
+    <string name="token_day_4">день 4</string>
+    <string name="token_day_5">день 5</string>
+    <string name="token_good_player_executed">добрый игрок казнён</string>
+
+    <string name="role_name_imp">Черт</string>
+    <string name="role_ability_imp">Каждую ночь*: выберите игрока. Он умирает. Если вы убиваете себя таким образом, один из Приспешников становится Чертом</string>
+    <string name="action_second_night_imp">Пробудите Черта. Он указывает на любого игрока. Усыпите Черта. Выбранный игрок умирает, поставьте пометку «Умирает» рядом с жетоном роли выбранного игрока. Если Черт убил себя ночью, выберите живого Приспешника и замените его жетон роли на запасной жетон Черта. Пробудите нового Черта, покажите ему карточку «Вы теперь», затем покажите ему жетон Черта</string>
+
+    <string name="role_name_poisoner">Отравитель</string>
+    <string name="role_ability_poisoner">Каждую ночь: выберите игрока. Этот игрок отравлен текущей ночью и следующим днем</string>
+    <string name="action_second_night_poisoner">Пробудите Отравителя. Он указывает на любого игрока. Выбранный игрок становится отравленным. Поставьте пометку «Отравлен» рядом с жетоном роли выбранного игрока</string>
+
+    <string name="role_name_spy">Шпион</string>
+    <string name="role_ability_spy">Каждую ночь: загляните в Гримуар. Вы можете определяться добрым и как Горожанин или Изгой, даже будучи мертвым</string>
+    <string name="action_second_spy">Пробудите Шпиона и покажите ему Гримуар на необходимое ему время</string>
+
+    <string name="role_name_washerwoman">Прачка</string>
+    <string name="role_ability_washerwoman">Вступление: вы узнаете, что один из двух игроков является определенным Горожанином</string>
+    <string name="action_prepare_washerwoman">Поставьте пометку «Горожанин» рядом с любым жетоном роли Горожанина, а также пометку «Ложный след» рядом с любым другим жетоном роли</string>
+    <string name="action_first_night_washerwoman">Пробудите Прачку и укажите на игроков с пометками «Горожанин» и «Ложный след». Покажите Прачке жетон роли с пометкой «Горожанин»</string>
+
+    <string name="role_name_librarian">Библиотекарь</string>
+    <string name="role_ability_librarian">Вступление: вы узнаете, что один из двух игроков является определенным Изгоем или что в игре отсутствуют Изгои</string>
+    <string name="action_prepare_librarian">Поставьте пометку «Изгой» рядом с любым жетоном роли Изгоя, а пометку «Ложный след» рядом с жетоном роли любого другого игрока</string>
+    <string name="action_first_night_librarian">Пробудите Библиотекаря и укажите на игроков с пометками «Изгой» и «Ложный след». Покажите жетон роли с пометкой «Изгой» Библиотекарю</string>
+
+    <string name="role_name_investigator">Сыщик</string>
+    <string name="role_ability_investigator">Вступление: вы узнаете, что один из двух игроков является определенным Приспешником</string>
+    <string name="action_prepare_investigator">Поставьте пометку «Приспешник» рядом с любым жетоном роли Приспешника, а пометку «Ложный след» рядом с жетоном роли любого другого игрока</string>
+    <string name="action_first_night_investigator">В первую ночь: пробудите Сыщика и укажите на игроков с пометками «Приспешник» и «Ложный след». Покажите жетон роли с пометкой «Приспешник» Сыщику</string>
+
+    <string name="role_name_chef">Повар</string>
+    <string name="role_ability_chef">Вступление: вы узнаете, сколько пар сидящих рядом злых игроков присутствует в игре</string>
+    <string name="action_first_night_chef">Пробудите Повара. Покажите жестом число (0, 1, 2 и т.д.) пар сидящих рядом злых игроков в игре</string>
+
+    <string name="role_name_empath">Эмпат</string>
+    <string name="role_ability_empath">Каждую ночь: вы узнаете число злых игроков среди двух ваших живых соседей</string>
+    <string name="action_second_night_empath">Пробудите Эмпата. Покажите жестом число (0, 1 или 2) злых игроков среди живых соседей</string>
+
+    <string name="role_name_fortune_teller">Гадалка</string>
+    <string name="role_ability_fortune_teller">Каждую ночь: выберите двух игроков. Вы узнаете, есть ли среди них Демон. Один из добрых игроков определяется вами как Демон</string>
+    <string name="action_prepare_fortune_teller">Поставьте пометку «Ложный След» рядом с любым жетоном доброй роли, отметив этого игрока как Ложный След</string>
+    <string name="action_second_night_fortune_teller">Пробудите Гадалку. Гадалка указывает на любых двух игроков. Если выбранный игрок это Демон или Ложный След, утвердительно кивните «да». В противном случае покачайте головой «нет»</string>
+
+    <string name="role_name_butler">Дворецкий</string>
+    <string name="role_ability_butler">Каждую ночь: выберите игрока (кроме себя). На следующий день вы можете голосовать, только если этот игрок тоже голосует</string>
+    <string name="action_second_night_butler">Каждую ночь: пробудите Дворецкого. Он указывает на любого игрока. Поставьте пометку «Господин» рядом с жетоном роли этого игрока. Усыпите Дворецкого</string>
+    <string name="action_day_butler">Во время номинаций: Дворецкий может поднять руку для голосования, только если Господин поднял руку для голосования или если голос Господина уже подсчитан</string>
+
+    <string name="role_name_monk">Монах</string>
+    <string name="role_ability_monk">Каждую ночь✳: выберите игрока (кроме себя). Этот игрок защищен от Демона текущей ночью</string>
+    <string name="action_second_night_monk">Пробудите Монаха. Монах указывает на любого игрока, кроме себя. (Если Монах указывает на себя, покачайте головой и попросите его указать на другого игрока). Усыпите Монаха. Поставьте пометку «Защищен» рядом с жетоном роли выбранного игрока</string>
+
+    <string name="role_name_scarlet_woman">Блудница</string>
+    <string name="role_ability_scarlet_woman">Если живы хотя бы 5 игроков (Странники не считаются) и Демон умирает, вы становитесь Демоном</string>
+    <string name="action_second_night_scarlet_woman">Если Демон умирает и непосредственно перед смертью Демона было пять или более живых игроков, замените жетон Блудницы на запасной жетон Черта, поменяв роль этого игрока с Блудницы на Черта</string>
+
+    <string name="role_name_ravenkeeper">Смотритель воронов</string>
+    <string name="role_ability_ravenkeeper">Если вы умираете ночью, вы просыпаетесь: выберите игрока. Вы узнаете его роль</string>
+    <string name="action_second_night_ravenkeeper">Если Смотритель Воронов умер сегодня ночью, пробудите его. Он указывает на любого игрока. Покажите ему жетон роли выбранного игрока</string>
+
+    <string name="role_name_undertaker">Гробовщик</string>
+    <string name="role_ability_undertaker">Каждую ночь✳: вы узнаете роль игрока, умершего в результате казни прошедшим днем</string>
+    <string name="action_second_night_undertaker">если какой-либо игрок сегодня умер от казни, пробудите Гробовщика. Покажите ему жетон роли с пометкой «Умер от казни». Усыпите Гробовщика</string>
+    <string name="action_day_undertaker">Если игрок умирает от казни поставьте пометку «Умер от казни» рядом с жетоном роли умершего игрока</string>
+
+    <string name="role_name_soldier">Солдат</string>
+    <string name="role_ability_soldier">Вы защищены от Демона</string>
+
+    <string name="role_name_mayor">Мэр</string>
+    <string name="role_ability_mayor">Если в живых осталось 3 игрока и не происходит казни, ваша команда побеждает. Если вы умираете ночью, вместо вас может умереть другой игрок</string>
+
+    <string name="role_name_slayer">Истребитель</string>
+    <string name="role_ability_slayer">Один раз за игру, днем: публично выберите игрока. Если этот игрок – Демон, он умирает</string>
+
+    <string name="role_name_virgin">Девственница</string>
+    <string name="role_ability_virgin">Первый раз, когда вас номинируют, если номинирующий – Горожанин, его немедленно казнят</string>
+
+    <string name="role_name_saint">Святой</string>
+    <string name="role_ability_saint">Если вы умираете в результате казни, ваша команда проигрывает</string>
+
+    <string name="role_name_recluse">Затворник</string>
+    <string name="role_ability_recluse">Вы можете определяться злым и как Приспешник или Демон, даже будучи мертвым</string>
+    <string name="action_prepare_recluse">Выможете пометить затворника токеном ЗЛОЙ, если вам удобно</string>
+
+    <string name="role_name_baron">Пьяница</string>
+    <string name="role_ability_baron">В игре присутствует большее число Изгоев. [+2 Изгоя]</string>
+    <string name="action_prepare_baron">Уберите любые два жетона ролей Горожан и добавьте любые два жетона ролей Изгоев</string>
+
+    <string name="role_name_drunk">Drunk</string>
+    <string name="role_ability_Drunk">Вы не знаете, что вы – Пьяница. Вы считаете себя определенным Горожанином</string>
+    <string name="action_prepare_Drunk">Вернитесь на экран настроек и уберите жетон Пьяницы. Добавьте другого горажанина. После раздачи ролей пометьте любого горожанина как Пьяница</string>
+
+    <string name="role_name_clockmaker">Часовщик</string>
+    <string name="role_ability_clockmaker">Вступление: вы узнаете число шагов от Демона до ближайшего к нему Приспешника</string>
+    <string name="action_first_night_clockmaker">Пробудите Часовщика. Покажите жестом число (1, 2 и т.д.) шагов от Демона до ближайшего Приспешника</string>
+
+    <string name="role_name_grandmother">Бабушка</string>
+    <string name="role_ability_grandmother">Вступление: вы узнаете доброго игрока и его роль. Если Демон его убивает, вы тоже умираете</string>
+    <string name="action_prepare_grandmother">Поставьте пометку «Внук» рядом с жетоном любой доброй роли</string>
+    <string name="action_first_night_grandmother">Пробудите Бабушку и покажите ей жетон роли с пометкой «Внук», затем укажите на игрока с этой пометкой</string>
+    <string name="action_second_night_grandmother">Если Демон убивает Внука, то Бабушка умирает</string>
+
+    <string name="role_name_exorcist">Экзорцист</string>
+    <string name="role_ability_exorcist">Каждую ночь✳: выберите игрока (не того же, что в прошлую ночь). Если вы выбрали Демона, он узнает, кто вы, и не просыпается текущей ночью</string>
+    <string name="action_second_night_exorcist">Пробудите Экзорциста. Он указывает на любого игрока. Поставьте пометку «Выбран» рядом с жетоном роли выбранного игрока. Усыпите Экзорциста. Если Экзорцист выбрал Демона, то пробудите Демона. Покажите ему карточку «Вы выбраны способностью этой роли» и жетон Экзорциста, затем укажите на игрока Экзорциста. Усыпите Демона. Позже ночью не будите Демона</string>
+
+    <string name="role_name_flowergirl">Цветочница</string>
+    <string name="role_ability_flowergirl">Каждую ночь✳: вы узнаете, голосовал ли Демон прошедшим днем</string>
+    <string name="action_day_flowergirl">Каждый рассвет поставьте пометку «Демон НЕ голосовал» рядом с жетоном Цветочницы и уберите пометку «Демон голосовал», если таковая имеется. Каждый день: если Демон голосует за какую-либо казнь, замените пометку «Демон НЕ голосовал» на пометку «Демон голосовал»</string>
+    <string name="action_second_night_flowergirl">Пробудите Цветочницу. Если у Цветочницы есть пометка «Демон НЕ голосовал», покачайте головой в знак «нет». Если у Цветочницы есть пометка «Демон голосовал», кивните «да»</string>
+
+    <string name="role_name_oracle">Пророк</string>
+    <string name="role_ability_oracle">Каждую ночь✳: вы узнаете число злых игроков среди мертвых</string>
+    <string name="action_second_night_oracle">Пробудите Пророка. Покажите жестом число (0, 1, 2 и т.д.), равное количеству мертвых злых игроков</string>
+
+    <string name="role_name_artist">Художник</string>
+    <string name="role_ability_artist">Один раз за игру, днем: приватно задайте Рассказчику любой вопрос, на который можно ответить «да» или «нет»</string>
+
+    <string name="role_name_seamstress">Seamstress</string>
+    <string name="role_ability_seamstress">Один раз за игру, ночью: выберите двух игроков (кроме себя). Вы узнаете, на одной ли они стороне</string>
+    <string name="action_second_night_seamstress">Каждую ночь: пробудите Швею. Она либо качает головой, либо указывает на двух игроков, кроме себя. Если она качает головой «нет», ничего не происходит. Усыпите Швею. Если она указывает на двух игроков, то либо кивните «да» (чтобы показать, что эти игроки на одной стороне), либо покачайте головой «нет» (чтобы показать, что эти игроки на разных сторонах)</string>
+
+    <string name="role_name_lunatic">Безумец</string>
+    <string name="role_ability_lunatic">Вы считаете себя Демоном. Демон знает, кто вы и кого вы выбираете ночью</string>
+    <string name="action_prepare_lunatic">Положите жетоны Безумца и Демона в мешок. После того как все жетоны будут возвращены, поменяйте местами жетоны Безумца и Демона в Гримуаре</string>
+    <string name="action_first_night_lunatic">Пробудите Безумца и отыгрывайте как если бы он был Демоном. Покажите ему карточку «Это Приспешники» и укажите на количество игроков, равное количеству Приспешников в игре. (Это могут быть любые игроки, независимо от того, являются они Приспешниками или нет). Покажите любые три жетона добрых ролей в качестве блефа. пробудите Демона. Покажите ему карточку «Вы теперь», а затем его жетон Демона. Это даст ему понять, что он является настоящим Демоном. Покажите ему карточку «Этот игрок», затем жетон Безумца, а затем укажите на игрока Безумца</string>
+    <string name="action_second_night_lunatic">Перед тем как Демон должен проснуться для атаки, пробудите Безумца, чтобы он действовал так, как будто он и есть настоящий Демон. Поставьте пометку «Выбран» рядом с жетоном роли каждого игрока, которого он выбрал, затем усыпите его. Пробудите настоящего Демона, укажите на Безумца, покажите жетон Безумца настоящему Демону и укажите на игроков, которых выбрал Безумец. Затем Демон действует как обычно</string>
+
+    <string name="role_name_mutant">Уродец</string>
+    <string name="role_ability_mutant">Если вы внушаете, что являетесь Изгоем, вы можете быть казнены</string>
+
+    <string name="role_name_sweetheart">Душечка</string>
+    <string name="role_ability_sweetheart">Когда вы умираете, один из игроков впредь становится пьяным</string>
+    <string name="action_day_sweethearth">Если Душечка умирает, вы выбираете одного игрока, который станет пьяным. Поставьте его жетону роли пометку «Пьян». После смерти Душечка не теряет эту способность</string>
+
+    <string name="role_name_godfather">Крестный отец</string>
+    <string name="role_ability_godfather">Вступление: вы узнаете, какие Изгои присутствуют в игре. Если днем умер Изгой, ночью выберите игрока. Он умирает. [-1 или +1 Изгой]</string>
+    <string name="action_prepare_godfather">Перед тем как положить жетоны ролей в мешок, либо уберите одного Горожанина и добавьте одного Изгоя, либо уберите одного Изгоя и добавьте одного Горожанина</string>
+    <string name="action_first_night_godfather">Пробудите Крестного отца. Покажите ему жетоны ролей всех Изгоев, находящихся в игре</string>
+    <string name="action_day_godfather">Если Изгой умирает в течение дня, поставьте его жетону роли пометку «Умер днем»</string>
+    <string name="action_second_night_godfather">Если Изгой умирает в течение дня, Этой ночью пробудите Крестного отца. Он указывает на любого игрока. Усыпите Крестного отца. Выбранный игрок умирает, поставьте его жетону роли пометку «Умирает»</string>
+
+    <string name="role_name_assassin">Убийца</string>
+    <string name="role_ability_assassin">Один раз за игру, ночью✳: выберите игрока. Он умирает, даже если по какой-либо причине не может умереть</string>
+    <string name="action_second_night_assassin">робудите Убийцу. Он либо качает головой, либо указывает на любого игрока. Усыпите Убийцу. Если Убийца выбрал игрока, тот умирает. Поставьте его жетону роли пометку «Умирает». Этому нельзя помешать никаким образом (за исключением случаев, когда у Убийцы нет способности, например, если он пьян или отравлен)</string>
+
+    <string name="role_name_marionette">Марионетка</string>
+    <string name="role_ability_marionette">Вы считаете, что у вас добрая роль. Демон знает, кто вы. [Вы сидите рядом с Демоном]</string>
+    <string name="action_prepare_marionette">Вернитесь на экран настроек и уберите роль марионетки. Добавьте роль горожанина. Если в игре три Приспешника, уберите еще один жетон Приспешника и добавьте еще один жетон Горожанина. Поссле распределения пометьте доброго соседа демона марионеткой. Пробудите Демона. Укажите на игрока c пометкой «Марионетка», и покажите жетон Марионетки. Усыпите Демона</string>
+
+    <string name="role_name_nodashii">Но Даши</string>
+    <string name="role_ability_nodashii">Каждую ночь✳: выберите игрока. Он умирает. Два ваших соседних Горожанина отравлены</string>
+    <string name="action_prepare_nodashii">ри подготовке первой ночи: два Горожанина, соседствующие с Но Даши, становятся отравленными. Поставьте их жетонам ролей пометку «Отравлен»</string>
+    <string name="action_second_night_nodashii">Пробудите Но Даши. Он указывает на любого игрока. Этот игрок умирает, поставьте рядом с его жетоном роли пометку «Умирает»</string>
+
+    <string name="role_name_pukka">Пукка</string>
+    <string name="role_ability_pukka">Каждую ночь: выберите игрока. Он отравлен. Предыдущий отравленный игрок умирает, а затем становится здоровым</string>
+    <string name="action_first_night_pukka">Пробудите Пукку. Он указывает на любого игрока. Усыпите Пукку. Выбранный игрок отравлен, поставьте его жетону роли пометку «Отравлен». Каждую ночь, кроме первой, другой игрок с пометкой «Отравлен» умирает, поставьте его жетону роли пометку «Умирает», затем уберите его пометку «Отравлен»</string>
+
+
+    <string name="role_name_sailor">Моряк</string>
+    <string name="role_ability_sailor">Каждую ночь: выберите живого игрока. Один среди вас и этого игрока становится пьяным до заката. Вы не можете умереть</string>
+    <string name="action_second_night_sailor">Пробудите Моряка. Он указывает на любого игрока. Усыпите Моряка. Либо Моряк, либо выбранный игрок становится пьяным, поставьте рядом с его жетоном роли пометку «Пьян»</string>
+    <string name="action_day_sailor">Если трезвый Моряк должен умереть, Моряк остается в живых. Если трезвого Моряка казнят, объявите, что этот игрок казнен, но остался жив</string>
+
+    <string name="role_name_chambermaid">Горничная</string>
+    <string name="role_ability_chambermaid">Каждую ночь: выберите двух живых игроков (кроме себя). Вы узнаете, сколько из них проснулось текущей ночью из-за своей способности</string>
+    <string name="action_second_night_chambermaid">Пробудите Горничную. Она указывает на любых двух живых игроков, кроме себя. Покажите Горничной жестом число (0, 1 или 2) проснувшихся сегодня ночью ролей. Не будите Горничную, если в живых нет двух игроков, которых можно выбрать (из-за Кукловода, Зомбула и т.д.)</string>
+
+    <string name="role_name_innkeeper">Трактирщик</string>
+    <string name="role_ability_innkeeper">Каждую ночь✳: выберите двух игроков. Они не могут умереть текущей ночью, но один из них становится пьяным до заката</string>
+    <string name="action_second_night_innkeeper">робудите Трактирщика. Он указывает на любых двух игроков. Усыпите Трактирщика. Поставьте пометки «Защищен» рядом с жетонами ролей выбранных игроков. Один из выбранных игроков становится пьяным, поставьте его жетону роли пометку «Пьян». Игроки, с пометкой «Защищен», не могут умереть этой ночью</string>
+    <string name="action_day_innkeeper">На рассвете уберите пометки «Защищен». На закате уберите пометку «Пьян»</string>
+
+    <string name="role_name_gambler">Азартный игрок</string>
+    <string name="role_ability_gambler">Каждую ночь✳: выберите игрока и попытайтесь угадать его роль. Если вы не угадали, вы умираете</string>
+    <string name="action_second_night_gambler">Пробудите Азартного игрока. Он указывает на любого игрока, затем указывает на любую роль в своем листе ролей. Усыпите Азартного игрока. Если роль выбранного игрока отличается от выбранной роли, Азартный игрок умирает, поставьте пометку «Умирает» рядом с его жетоном роли</string>
+
+    <string name="role_name_gossip">Сплетница</string>
+    <string name="role_ability_gossip">Каждый день: вы можете сделать публичное заявление. Ночью, если оно было верным, один из игроков умирает</string>
+    <string name="action_second_night_gossip">если Сплетница сделала сегодня конкретное и верное публичное заявление, вы выбираете любого игрока. Выбранный игрок умирает. Поставьте пометку «Умирает» рядом с его жетоном роли</string>
+    <string name="action_day_gossip">если Сплетница сделала конкретное и верное публичное заявление, поставьте пометку «Умирает» в центр левой стороны Гримуара как напоминание себе, что вы должны использовать его сегодня</string>
+
+    <string name="role_name_courtier">Придворный</string>
+    <string name="role_ability_courtier">Один раз за игру, ночью: выберите роль. Игрок с этой ролью становится пьяным на 3 ночи и 3 дня</string>
+    <string name="action_second_night_courtier">Пробудите Придворного. Он либо качает головой «нет», либо указывает на любую роль в своем листе ролей. сли Придворный выбрал роль и эта роль находится в игре, играющий за эту роль игрок становится пьяным на три ночи и три дня</string>
+
+    <string name="role_name_professor">Профессор</string>
+    <string name="role_ability_professor">Один раз за игру, ночью✳: выберите мертвого игрока. Если этот игрок – Горожанин, он оживает</string>
+    <string name="action_second_night_professor">Пробудите Профессора. Профессор либо качает головой в знак отказа, либо указывает на мертвого игрока. Если Профессор выбрал мертвого Горожанина, то выбранный игрок снова становится живым. Поставьте его жетону роли пометку Профессора «Оживает» и снимите с него саван </string>
+
+    <string name="role_name_minstrel">Менестрель</string>
+    <string name="role_ability_minstrel">Когда Приспешник умирает в результате казни, все игроки (кроме вас и Странников) становятся пьяными до заката следующего дня</string>
+    <string name="action_day_minstrel">если Приспешник умирает от казни, все остальные игроки, кроме Странников, становятся пьяными. Поставьте пометку Менестреля «Все пьяны» в центр левой части Гримуара. Завтра на закате все игроки, которых Менестрель сделал пьяными, трезвеют</string>
+
+    <string name="role_name_tea_lady">Травница</string>
+    <string name="role_ability_tea_lady">Если оба ваших живых соседа являются добрыми, они не могут умереть</string>
+    <string name="action_prepare_tea_lady">Если оба живых соседа Травницы добрые, поставьте жетонам ролей этих игроков пометку Травницы «Защищен»</string>
+    <string name="action_day_tea_lady">Если оба живых соседа Травницы добрые, поставьте жетонам ролей этих игроков пометку Травницы «Защищен»</string>
+
+    <string name="role_name_pacifist">Пацифист</string>
+    <string name="role_ability_pacifist">Казненные добрые игроки могут не умереть</string>
+    <string name="action_day_pacifist">Если добрый игрок казнен, объявите, что он либо умер, либо остался жив</string>
+
+    <string name="role_name_fool">Шут</string>
+    <string name="role_ability_fool">Первый раз, когда вы умираете, вы не умираете</string>
+    <string name="action_first_night_fool">Если Шут должен был умереть, он остается в живых. Поставьте пометку «Нет способности» рядом с его жетоном роли</string>
+    <string name="action_second_night_fool">Если Шут должен был умереть, он остается в живых. Поставьте пометку «Нет способности» рядом с его жетоном роли</string>
+    <string name="action_day_fool">Если Шут должен был умереть, он остается в живых. Поставьте пометку «Нет способности» рядом с его жетоном роли</string>
+
+    <string name="role_name_goon">Наемник</string>
+    <string name="role_ability_goon">Каждую ночь: первый игрок, выбравший вас целью своей способности, становится пьяным до заката. Вы переходите на сторону этого игрока</string>
+    <string name="action_second_night_goon">Ночью, если игрок решил использовать свою способность на Наемнике, и ни у кого нет пометки Наемника «Пьян», этот игрок немедленно становится пьяным. Поставьте пометку «Пьян» рядом с его жетоном роли. Закончите отыгрыш способности этого игрока и усыпите его. Если сторона этого игрока отличается от стороны Наемника, отметьте новую сторону Наемника в Гримуаре, затем пробудите Наемника, покажите ему жест «Добрый» или жест «Злой»</string>
+
+    <string name="role_name_tinker">Механик</string>
+    <string name="role_ability_tinker">Вы можете умереть в любой момент</string>
+
+    <string name="role_name_moonchild">Дитя луны</string>
+    <string name="role_ability_moonchild">Когда вы узнаете, что умерли, публично выберите живого игрока. Ночью, если этот игрок был добрым, он умирает</string>
+    <string name="action_second_night_moonchild">Ночью добрый игрок умирет, если у него есть пометка Дитя луны</string>
+    <string name="action_day_moonchild">Когда вы объявляете, что Дитя луны умер, Дитя луны выбирает любого живого игрока. Если выбранный игрок добрый, то поставьте его жетону роли пометку «Умирает»</string>
+
+    <string name="role_name_devils_advocate">Адвокат дьявола</string>
+    <string name="role_ability_devils_advocate">Каждую ночь: выберите живого игрока (не того же, что в прошлую ночь). Если на следующий день его казнят, он не умирает</string>
+    <string name="action_second_night_devils_advocate">Пробудите Адвоката дьявола. Он указывают на любого игрока. Усыпите Адвоката Дьявола. Поставьте пометку «Переживает казнь» рядом с жетоном роли выбранного игрока</string>
+    <string name="action_day_devils_advocate">Если игрок с пометкой «Переживает казнь» казнен, объявите, что он был казнен, но остался жив</string>
+
+    <string name="role_name_mastermind">Кукловод</string>
+    <string name="role_ability_mastermind">Если Демон умирает в результате казни и игра должна завершиться, сыграйте еще один день. Если в этот день казнят игрока, его команда проигрывает</string>
+    <string name="action_day_mastermind">Если Демон казнен и умер, и игра должна была закончиться, продолжайте игру. (Наложите саван, как обычно. Не говорите, что Демон умер). На следующий день, если казнят доброго игрока, объявите, что игра закончилась и зло победило, но если казнят злого игрока или никого не казнят, объявите, что игра закончилась и добро победило</string>
+
+    <string name="role_name_zombuul">Зомбул</string>
+    <string name="role_ability_zombuul">Каждую ночь✳: если прошедшим днем никто не умер, выберите игрока. Он умирает. Первый раз, когда вы умираете, вы остаетесь в живых, но определяетесь мертвым</string>
+    <string name="action_second_night_zombuul">если у Зомбула есть пометка «Умер днем», то не пробуждайте Зомбула. </string>
+    <string name="action_day_zombuul">сли игрок умирает, поставьте жетону Зомбула пометку «Умер днем»</string>
+
+    <string name="role_name_shabaloth">Шабалот</string>
+    <string name="role_ability_shabaloth">Каждую ночь✳: выберите двух игроков. Они умирают. Один из мертвых игроков, выбранных вами в прошлую ночь, может ожить</string>
+    <string name="action_second_night_shabaloth">непосредственно перед пробуждением Шабалота, вы можете выбрать одну роль, с пометкой «Умирает» Шабалота, и выбранный игрок снова становится живым, замените пометку «Умирает» на пометку «Оживает» Шабалота. пробудите Шабалота. Он указывает на любых двух игроков по очереди. Усыпите Шабалота. В указанном порядке каждый выбранный игрок умирает, поставьте пометку «Умирает» рядом с их жетонами роле</string>
+
+    <string name="role_name_po">По</string>
+    <string name="role_ability_po">Каждую ночь✳: вы можете выбрать игрока. Он умирает. Если в прошлый раз вы не сделали выбор, выберите трех игроков</string>
+    <string name="action_second_night_po">Пробудите По. Он либо качает головой, либо указывает на любого игрока. Усыпите По. Если он покачал головой «нет», поставьте По пометку «Атака x3». Если он выбрал игрока, тот умирает, поставьте его жетону роли пометку «Умирает»</string>
+
+    <string name="role_name_dreamer">Сновидец</string>
+    <string name="role_ability_dreamer">Каждую ночь: выберите игрока (кроме себя и Странников). Вы узнаете добрую и злую роли, одной из которых обладает этот игрок</string>
+    <string name="action_second_night_dreamer">Пробудите Сновидца. Он указывает на любого игрока. Если выбранный игрок это Горожанин или Изгой, то покажите Сновидцу его жетон роли и жетон роли любого Приспешника или Демона. Если выбранный игрок это Приспешник или Демон, то покажите Сновидцу его жетон роли и жетон роли любого Горожанина или Изгоя</string>
+
+    <string name="role_name_snake_charmer">Заклинатель змей</string>
+    <string name="role_ability_snake_charmer">Каждую ночь: выберите живого игрока. Если этот игрок – Демон, он меняется с вами ролями и сторонами, а затем становится отравленным</string>
+    <string name="action_second_night_snake_charmer">Пробудите Заклинателя змей. Он указывает на любого игрока. Если этот игрок не Демон, то ничего не происходит. Усыпите Заклинателя змей. Если этот игрок – Демон, то старый Заклинатель змей превращается в нового (злого) Демона, а старый Демон в нового (доброго) Заклинателя змей. Поменяйте местами жетоны ролей Заклинателя змей и Демона. Новый Заклинатель змей отравлен, поставьте его жетону роли пометку «Отравлен». Пробудите нового Демона и покажите ему карточку «Вы теперь», жест «Злой» и жетон роли Демона. (Это покажет, что он теперь злой и Демон). Усыпите нового Демона. Пробудите нового Заклинателя змей и покажите ему карточку «Вы теперь», жест «Добрый» и жетон Заклинателя змей. (Это покажет, что теперь он добрый и Заклинатель змей). Усыпите нового Заклинателя змей</string>
+
+    <string name="role_name_mathematician">Математик</string>
+    <string name="role_ability_mathematician">Каждую ночь: вы узнаете, у скольких игроков с прошлого рассвета некорректно сработала способность из-за способности другой роли</string>
+    <string name="action_second_night_mathematician">Пробудите Математика. Покажите ему жестом число (0, 1, 2 и т.д.) равное количеству ролей с пометкой «Аномалия». Усыпите Математика. Уберите все пометки «Аномалия»</string>
+
+    <string name="role_name_town_crier">Глашатай</string>
+    <string name="role_ability_town_crier">Каждую ночь✳: вы узнаете, номинировал ли Приспешник прошедшим днем</string>
+    <string name="action_second_night_town_crier">Пробудите Глашатая. Если у Глашатая есть пометка «Приспешник НЕ номинировал», покачайте головой в знак «нет». Если у Глашатая есть пометка «Приспешник номинировал», кивните «да»</string>
+    <string name="action_day_town_crier">сли какой-либо Приспешник номинирует, замените пометку «Приспешник НЕ номинировал» на пометку «Приспешник номинировал»</string>
+
+    <string name="role_name_savant">Савант</string>
+    <string name="role_ability_savant">Каждый день: вы можете приватно навестить Рассказчика, чтобы узнать два факта. Один из них – правда, а другой – ложь</string>
+
+    <string name="role_name_philosopher">Философ</string>
+    <string name="role_ability_philosopher">Один раз за игру, ночью: выберите добрую роль. Вы получаете способность этой роли. Если она присутствует в игре, игрок с ней становится пьяным</string>
+    <string name="action_second_night_philosopher">Пробудите Философа. Он либо покачает головой, либо укажет на любого Горожанина или Изгоя на своем листе ролей. Усыпите Философа. Если он указал на роль, которой нет в игре, поменяйте жетон Философа на жетон выбранной роли и поставьте пометку «Философ». Если он указал на роль, находящуюся в игре, игрок выбранной роли становится пьяным, поставьте его жетону роли пометку «Пьян». (Теперь вы можете использовать пометки дублированной роли для Философа). Если Философ умирает, игрок, которого Философ сделал пьяным, становится трезвым, уберите пометку «Пьян»</string>
+
+    <string name="role_name_juggler">Жонглер</string>
+    <string name="role_ability_juggler">В ваш первый день: публично сделайте до 5 догадок «игрок-роль». Ночью вы узнаете число верных догадок</string>
+    <string name="action_second_night_juggler">робудите Жонглера. Покажите жестом число (0, 1, 2 и т.д.), равное количеству пометок «Верно»</string>
+    <string name="action_day_juggler">Жонглер может сделать до пяти догадок, каждая из которых относится к одному игроку и одной роли. За каждую правильную догадку поставьте жетону Жонглера пометку «Верно»</string>
+
+    <string name="role_name_sage">Мудрец</string>
+    <string name="role_ability_sage">Если Демон убивает вас, вы узнаете, что им является один из двух игроков</string>
+    <string name="action_second_night_sage">Если Мудрец был убит Демоном, пробудите Мудреца. Укажите на двух игроков, один из которых - Демон, убивший Мудреца</string>
+
+    <string name="role_name_barber">Парикмахер</string>
+    <string name="role_ability_barber">сли вы умерли прошедшим днем или текущей ночью, Демон может выбрать двух игроков (не другого Демона). Эти игроки меняются ролями</string>
+    <string name="action_second_night_barber">Если Парикмахер умирает, поставьте его жетону роли пометку «Стрижка». пробудите Демона. Покажите ему карточку «Вы выбраны способностью этой роли», затем жетон Парикмахера. Демон либо качает головой, либо укажет на двух игроков. Усыпите Демона. Уберите пометку «Стрижка». Если Демон указал на двух игроков, поменяйте жетоны ролей выбранных игроков местами. По очереди пробудите каждого игрока, покажите ему карточку «Вы теперь» и его новый жетон роли, а затем усыпите его</string>
+    <string name="action_day_barber">Если Парикмахер умирает, поставьте его жетону роли пометку «Стрижка»</string>
+
+    <string name="role_name_klutz">Растяпа</string>
+    <string name="role_ability_klutz">Когда вы узнаете, что умерли, публично выберите живого игрока. Если этот игрок злой, ваша команда проигрывает</string>
+
+    <string name="role_name_evil_twin">Злой близнец</string>
+    <string name="role_ability_evil_twin">Вы и игрок противоположной стороны знаете друг друга и ваши роли. Если доброго игрока из вашей пары казнят, зло побеждает. Добро не может победить, пока вы оба живы</string>
+    <string name="action_prepare_evil_twin">выберите Доброго близнеца, поставьте рядом с любой доброй роль пометку «Близнец»</string>
+    <string name="action_first_night_evil_twin">Пробудите обоих Близнецов. Пусть они посмотрят друг другу в глаза. Укажите на Злого близнеца, затем покажите жетон Злого близнеца Доброму близнецу. Укажите на Доброго близнеца, затем покажите жетон роли Доброго близнеца Злому близнецу</string>
+
+    <string name="role_name_witch">Witch</string>
+    <string name="role_ability_witch">Каждую ночь: выберите игрока. Если на следующий день этот игрок номинирует, он умирает. Если в живых осталось только 3 игрока, вы теряете эту способность</string>
+    <string name="action_second_night_witch">Пробудите Ведьму. Она указывает на любого игрока. Усыпите Ведьму. Поставьте пометку «Проклят» рядом с жетоном роли выбранного игрока</string>
+    <string name="action_day_witch">Если игрок с пометкой «Проклят» делает номинацию, немедленно объявите, что он умер</string>
+
+    <string name="role_name_cerenovus">Цереновус</string>
+    <string name="role_ability_cerenovus">Каждую ночь: выберите игрока и добрую роль. На следующий день этот игрок должен внушать, что обладает указанной ролью, иначе он может быть казнен</string>
+    <string name="action_second_night_cerenovus">Пробудите Цереновуса. Он указывает на любого игрока и на любую роль Горожанина или Изгоя на листе ролей. Усыпите Цереновуса. Поставьте рядом с жетоном роли выбранного игрока пометку «Внушает». Пробудите этого игрока, покажите ему карточку «Вы выбраны способностью этой роли» и жетон Цереновуса, а затем – жетон роли, обладание которой он должен внушать</string>
+
+    <string name="role_name_pit_hag">Яга</string>
+    <string name="role_ability_pit_hag">Каждую ночь✳: выберите игрока и роль. Этот игрок получает указанную роль, если она отсутствует в игре. Если появляется Демон, смерти текущей ночью произвольны</string>
+    <string name="action_second_night_pit_hag">робудите Ягу. Она указывает на любого игрока и на любую роль в листе ролей. Усыпите Ягу. Если выбранная роль находится в игре, то ничего не происходит. Если выбранная роль не в игре, то пробудите выбранного игрока. Покажите ему карточку «Вы теперь», затем жетон новой роли, после чего усыпите его. Замените старый жетон роли на новый. (Возможно, вам потребуется перевернуть жетоны ролей, чтобы напомнить, что сторона игрока противоположна цвету жетона. Возможно, вам придется напомнить игроку, что его сторона не изменилась, показав жест «Добрый» или жест «Злой»)</string>
+
+    <string name="role_name_fang_gu">Фан Гу</string>
+    <string name="role_ability_fang_gu">Каждую ночь✳: выберите игрока. Он умирает. Первый за игру Изгой, который должен от этого умереть, становится злым Фан Гу, а вы умираете вместо него. [+1 Изгой]</string>
+    <string name="action_prepare_fang_gu">Вернитесь на экран настроек и добавьте роль изгоя, уберите роль горожанина. перед тем как положить жетоны ролей в мешок, добавьте один дополнительный жетон роли Изгоя и уберите один жетон роли Горожанина</string>
+    <string name="action_second_night_fang_gu">Пробудите Фан Гу. Он указывает на любого игрока. Усыпите Фан Гу. Если выбранный игрок не является Изгоем, то он умирает. Поставьте его жетону роли пометку «Умирает». Если выбранный игрок - Изгой и пометка «Переродился» находится в центре Гримуара, то игрок умирает. Поставьте его жетону роли пометку «Умирает». Если выбранный игрок - Изгой, а пометка «Переродился» не находится в центре Гримуара, то Фан Гу умирает. Поставьте его жетону роли пометку «Умирает». Пробудите выбранного Изгоя. Покажите ему карточку «Вы теперь», затем жетон Фан Гу и жест «Злой». Измените его роль на Фан Гу, поменяйте его жетон роли на запасной жетон Фан Гу. Он становится злыми. Усыпите нового Фан Гу. Поставьте пометку «Переродился» в центр Гримуара. (В отличие от способностей «один раз за игру», эта пометка остается там до конца игры. Не удаляйте ее, даже если Фан Гу умрет или сменит роль)</string>
+
+    <string name="role_name_vigormortis">Вигормортис</string>
+    <string name="role_ability_vigormortis">Каждую ночь✳: выберите игрока. Он умирает. Убитые вами Приспешники сохраняют свои способности и отравляют одного соседнего Горожанина. [-1 Изгой]</string>
+    <string name="action_prepare_vigormortis">Вернитесь на экран настроек и уберите один жетон Изгоя и добавьте один жетон Горожанина</string>
+    <string name="action_second_night_vigormortis">Пробудите Вигормортиса. Он указывает на любого игрока. Усыпите Вигормортиса. Если выбранный игрок не является Приспешником, то он умирает, и поставьте его жетону роли пометку «Умирает». Если выбранный игрок - Приспешник, он умирает, поставьте его жетону роли пометку «Умирает» и пометку «Способность доступна»</string>
+
+    <string name="role_name_vortox">Вортокс</string>
+    <string name="role_ability_vortox">Каждую ночь✳: выберите игрока. Он умирает. Способности Горожан дают ложную информацию. Каждый день: если никого не казнят, зло побеждает</string>
+    <string name="action_prepare_vortox">Пока Вортокс жив, вы должны давать ложную информацию всякий раз, когда способность Горожанина говорит вам дать информацию</string>
+    <string name="action_second_night_vortox">Пробудите Вортокса. Он указывает на любого игрока. Этот игрок умирает, поставьте его жетону роли пометку «Умирает»</string>
+    <string name="action_day_vortox">Пока Вортокс жив, вы должны давать ложную информацию всякий раз, когда способность Горожанина говорит вам дать информацию</string>
+
+    <string name="role_name_pixie">Пикси</string>
+    <string name="role_ability_pixie">Вступление: вы узнаете роль присутствующего в игре Горожанина. Если вы внушали, что обладаете этой ролью, вы получаете ее способность, когда игрок с ней умирает</string>
+    <string name="action_prepare_pixie">Поставьте пометку «Внушает» рядом с жетоном роли Горожанина</string>
+    <string name="action_first_night_pixie">Пробудите Пикси. Покажите Пикси этот жетон роли Горожанина</string>
+
+    <string name="role_name_fisherman">Рыбак</string>
+    <string name="role_ability_fisherman">Один раз за игру, днем: приватно навестите Рассказчика, чтобы получить совет, который поможет победить вашей команде</string>
+
+    <string name="role_name_lleech">Пиявица</string>
+    <string name="role_ability_lleech">Вступление: выберите игрока. Он отравлен, а вы умираете тогда и только тогда, когда он мертв. Каждую ночь✳: выберите игрока. Он умирает</string>
+    <string name="action_first_night_lleech">Пробудите Пиявица. Она указывает на любого игрока. Этот игрок отравлен, поставьте рядом с его жетоном роли пометку «Отравлен»</string>
+    <string name="action_second_night_lleech">Пробудите Пиявицу. Она указывает на любого игрока. Этот игрок умирает, поставьте рядом с его жетоном роли пометку «Умирает»</string>
+
+    <string name="role_name_balloonist">Аэронавт</string>
+    <string name="role_ability_balloonist">Каждую ночь: вы узнаете игрока, обладающего типом роли, отличным от предыдущего. [+0 или +1 Изгой]</string>
+    <string name="action_prepare_balloonist">Можете вернуться на экран настроек и добавить дополнительную роль Изгоя</string>
+    <string name="action_second_night_balloonist">Поставьте рядом с жетонов роли любого игрока пометку «Известен». Каждую последующую ночь: поставьте рядом с жетонов роли обладающего типом роли, отличным от предыдущего, пометку «Известен»</string>
+
+    <string name="role_name_amnesiac">Амнезиак</string>
+    <string name="role_ability_amnesiac">Вы не знаете, что у вас за способность. Каждый день: приватно попробуйте ее угадать. Вы узнаете, насколько точной была догадка</string>
+    <string name="action_prepare_amnesiac">При подготовке игры решите, какой способностью обладает Амнезиак. Можете сделать запись об этом</string>
+    <string name="action_second_night_amnesiac">Пробудите Амнезиака если необходимо</string>
+
+    <string name="role_name_cannibal">Каннибал</string>
+    <string name="role_ability_cannibal">Вы обладаете способностью последнего умершего в результате казни игрока. Если он злой, вы отравлены, пока добрый игрок не умрет в результате казни</string>
+    <string name="action_day_cannibal">Если добрый игрок умирает в результате казни, поставьте ему пометку «Умер сегодня» и при необходимости уберите пометку «Отравлен» у Каннибала. Каннибал теперь обладает способностью роли этого доброго игрока (не говорите, какой) и будет просыпаться ночью, когда обычно просыпается его роль. Если злой игрок умирает в результате казни, поставьте ему пометку «Умер сегодня» и поставьте рядом с ролью Каннибала пометку «Отравлен». Каннибал отравлен. Вы можете пробудить его, когда роль казненного игрока обычно просыпается, и сделать вид, что у него появилась новая способность</string>
+    <string name="action_second_night_cannibal">Пробудите Каннибала если необходимо</string>
+
+    <string name="role_name_widow">Вдова</string>
+    <string name="role_ability_widow">Вступление: загляните в Гримуар и выберите игрока. Он отравлен. Один из добрых игроков знает, что Вдова присутствует в игре</string>
+    <string name="action_prepare_widow">Отметьте доброго игрока пометкой ЗНАЕТ</string>
+    <string name="action_first_night_widow">В первую ночь: пробудите Вдову и показывайте ей Гримуар столько, сколько нужно. Вдова указывает на жетон роли в Гримуаре или на игрока. Поставьте рядом с жетоном роли выбранного игрока пометку «Отравлен». Усыпите Вдову. Пробудите любого доброго игрока. Покажите ему жетон Вдовы. Усыпите этого доброго игрока</string>
+
+    <string name="role_name_goblin">Goblin</string>
+    <string name="role_ability_goblin">Если вы публично называетесь Гоблином, когда вас номинировали, а затем вас казнят в этот же день, ваша команда побеждает</string>
+    <string name="action_day_goblin">После того как любого игрока номинировали, этот игрок может объявить себя Гоблином до начала голосования. Если игрок делает это, то перед началом голосования объявите группе, что этот игрок объявил себя Гоблином. Если настоящий Гоблин сделает это и будет казнен в тот же день, его сторона победит</string>
+
+    <string name="role_name_leviathan">Левиафан</string>
+    <string name="role_ability_leviathan">Если казнено более одного доброго игрока, зло побеждает. Всем игрокам известно, что ваша роль присутствует в игре. После 5 дня зло побеждает</string>
+    <string name="action_day_leviathan">Поставьте рядом с жетоном Левиафана пометку «День X» где X это номер дня</string>
+
+
+</resources>
