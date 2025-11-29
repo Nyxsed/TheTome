@@ -27,6 +27,7 @@
     <string name="text_edit_game_attention">Состояние игры будет сброшено</string>
     <string name="text_edit_game">Изменить игру?</string>
     <string name="text_notes">Заметки</string>
+    <string name="text_delete_player">Удалить игрока</string>
     <string name="text_press_again">Нажмите ещё раз</string>
     <string name="text_rename">Переименовать</string>
     <string name="text_change_role">Сменить роль</string>
@@ -454,6 +455,8 @@
     <string name="role_name_leviathan">Левиафан</string>
     <string name="role_ability_leviathan">Если казнено более одного доброго игрока, зло побеждает. Всем игрокам известно, что ваша роль присутствует в игре. После 5 дня зло побеждает</string>
     <string name="action_day_leviathan">Поставьте рядом с жетоном Левиафана пометку «День X» где X это номер дня</string>
+    <string name="text_add_new_player">Добавить нового игрока?</string>
+    <string name="text_delete_player_qm">Удалить игрока?</string>
 
 
 </resources>
