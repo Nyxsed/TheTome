@@ -86,6 +86,9 @@ fun GameScreen(
         },
         onDeletePlayer = {
             viewModel.deletePlayer(it)
+        },
+        onReorderPlayers = {
+            viewModel.updatePlayers(it)
         }
     )
 }
@@ -109,6 +112,7 @@ fun GameContent(
     onDeleteToken: (Player, Int) -> Unit,
     onAddPlayer: () -> Unit,
     onDeletePlayer: (Player) -> Unit,
+    onReorderPlayers: (List<Player>) -> Unit,
 ) {
     var isEditDialogRaised by remember { mutableStateOf(false) }
     var isMemoDialogRaised by remember { mutableStateOf(false) }
@@ -183,11 +187,14 @@ fun GameContent(
                     targetEditPlayer = player
                 },
                 onLongClick = {
-                    targetTokenPlayer = it
+//                    targetTokenPlayer = it
                 },
                 onTokenLongClick = { player, tokenIndex ->
                     onDeleteToken(player, tokenIndex)
-                }
+                },
+                onOrderChanged =  {
+                    onReorderPlayers(it)
+                },
             )
         }
 

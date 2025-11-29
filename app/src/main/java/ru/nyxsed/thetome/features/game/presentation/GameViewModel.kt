@@ -1,6 +1,7 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -287,6 +288,12 @@ class GameViewModel @Inject constructor(
             state.copy(players = updated)
         }
 
+        saveGameState()
+    }
+
+    fun updatePlayers(players: List<Player>) {
+        _state.update { it.copy(players = players) }
+        Log.d("updatePlayers", players.toString())
         saveGameState()
     }
 }
