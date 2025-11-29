@@ -2,6 +2,7 @@ package ru.nyxsed.thetome.features.game.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Settings
@@ -24,6 +25,7 @@ fun TopButtonsRow(
     onEditClicked: () -> Unit,
     onMemoClicked: () -> Unit,
     onShareClicked: () -> Unit,
+    onAddPlayerClicked: () -> Unit,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     var isDialogVisible by remember { mutableStateOf(false) }
@@ -72,6 +74,18 @@ fun TopButtonsRow(
 
         Spacer(modifier = Modifier.width(12.dp))
         SmallRoundIconButton(
+            onClick = onMemoClicked,
+            icon = {
+                Icon(
+                    contentDescription = "memo",
+                    imageVector = Icons.Default.Edit,
+                    tint = Color.White
+                )
+            }
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+        SmallRoundIconButton(
             onClick = onEditClicked,
             icon = {
                 Icon(
@@ -84,11 +98,11 @@ fun TopButtonsRow(
 
         Spacer(modifier = Modifier.width(12.dp))
         SmallRoundIconButton(
-            onClick = onMemoClicked,
+            onClick = onAddPlayerClicked,
             icon = {
                 Icon(
-                    contentDescription = "memo",
-                    imageVector = Icons.Default.Edit,
+                    contentDescription = "add player",
+                    imageVector = Icons.Default.Add,
                     tint = Color.White
                 )
             }

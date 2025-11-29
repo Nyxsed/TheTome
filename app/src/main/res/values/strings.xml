@@ -27,6 +27,9 @@
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
     <string name="text_notes">Notes</string>
+    <string name="text_add_new_player">Add new player?</string>
+    <string name="text_delete_player_qm">Delete player?</string>
+    <string name="text_delete_player">Delete player</string>
     <string name="text_press_again">Press again</string>
     <string name="text_rename">Rename</string>
     <string name="text_change_role">Change role</string>

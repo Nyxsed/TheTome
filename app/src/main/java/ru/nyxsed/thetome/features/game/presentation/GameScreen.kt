@@ -80,6 +80,12 @@ fun GameScreen(
         },
         onDeleteToken = { player, tokenIndex ->
             viewModel.deleteToken(player, tokenIndex)
+        },
+        onAddPlayer = {
+            viewModel.addPlayer()
+        },
+        onDeletePlayer = {
+            viewModel.deletePlayer(it)
         }
     )
 }
@@ -101,11 +107,16 @@ fun GameContent(
     onMoveToNextAction: () -> Unit,
     onAddToken: (Player, Token) -> Unit,
     onDeleteToken: (Player, Int) -> Unit,
+    onAddPlayer: () -> Unit,
+    onDeletePlayer: (Player) -> Unit,
 ) {
     var isEditDialogRaised by remember { mutableStateOf(false) }
     var isMemoDialogRaised by remember { mutableStateOf(false) }
     var isPickRoleDialogRaised by remember { mutableStateOf(false) }
     var isShareDialogRaised by remember { mutableStateOf(false) }
+    var isAddPlayerDialogRaised by remember { mutableStateOf(false) }
+
+    var targetDeletePlayer by remember { mutableStateOf<Player?>(null) }
     var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
     var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
 
@@ -129,6 +140,9 @@ fun GameContent(
             },
             onShareClicked = {
                 isShareDialogRaised = true
+            },
+            onAddPlayerClicked = {
+                isAddPlayerDialogRaised = true
             },
             menuItems = listOf(
                 CardsMenuItem(stringResource(R.string.menu_demon)) {
@@ -211,6 +225,7 @@ fun GameContent(
         if (targetEditPlayer != null && !isPickRoleDialogRaised) {
             EditPlayerDialog(
                 player = targetEditPlayer!!,
+                playerCount = state.players?.size ?: 0,
                 onDismissRequest = {
                     targetEditPlayer = null
                 },
@@ -235,6 +250,9 @@ fun GameContent(
                 onChooseTokenClicked = {
                     targetTokenPlayer = it
                     targetEditPlayer = null
+                },
+                onDeletePlayerClicked = {
+                    targetDeletePlayer = it
                 }
             )
         }
@@ -279,6 +297,32 @@ fun GameContent(
                 },
                 notes = state.notes,
                 onNotesChange = { onEditNotes(it) }
+            )
+        }
+
+        if (isAddPlayerDialogRaised) {
+            AddPlayerDialog(
+                onYesClicked = {
+                    onAddPlayer()
+                    isAddPlayerDialogRaised = false
+                },
+                onDismiss = {
+                    isAddPlayerDialogRaised = false
+                },
+            )
+        }
+
+        if (targetDeletePlayer != null) {
+            DeletePlayerDialog(
+                player = targetDeletePlayer,
+                onYesClicked = {
+                    onDeletePlayer(it)
+                    targetDeletePlayer = null
+                    targetEditPlayer = null
+                },
+                onDismiss = {
+                    targetDeletePlayer = null
+                },
             )
         }
 

@@ -22,6 +22,7 @@ import ru.nyxsed.thetome.core.presentation.components.CircleItem
 @Composable
 fun EditPlayerDialog(
     player: Player,
+    playerCount: Int,
     onDismissRequest: () -> Unit,
     onChangeName: (Player, String) -> Unit,
     onChangeAliveStatus: (Player) -> Unit,
@@ -29,6 +30,7 @@ fun EditPlayerDialog(
     onShowRolePicker: (Player) -> Unit,
     onShowCardClicked: (Role) -> Unit,
     onChooseTokenClicked: (Player) -> Unit,
+    onDeletePlayerClicked: (Player) -> Unit,
 ) {
     var newName by remember { mutableStateOf(player.name ?: "") }
 
@@ -125,6 +127,17 @@ fun EditPlayerDialog(
                         onClick = { onChooseTokenClicked(player) }
                     ) {
                         Text(stringResource(R.string.text_choose_token))
+                    }
+
+                }
+                if (playerCount > 5) {
+                    Spacer(Modifier.height(8.dp))
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = { onDeletePlayerClicked(player) }
+                    ) {
+                        Text(stringResource(R.string.text_delete_player))
                     }
                 }
             }

@@ -255,4 +255,38 @@ class GameViewModel @Inject constructor(
     fun generateQr(link: String): Bitmap? {
         return generateQrUseCase(link)
     }
+
+    fun addPlayer() {
+        _state.update { state ->
+            val current = state.players
+            val newId = current?.size ?: 0
+
+            val newPlayer = Player(
+                id = newId,
+                name = null,
+                role = null
+            )
+
+            state.copy(players = current?.plus(newPlayer))
+        }
+        saveGameState()
+    }
+
+    fun deletePlayer(player: Player) {
+        _state.update { state ->
+            val current = state.players
+
+            if (state.players?.contains(player) != true ) return@update state
+
+            val updated = current
+                .filter { it != player }
+                .mapIndexed { newIndex, player ->
+                    player.copy(id = newIndex)
+                }
+
+            state.copy(players = updated)
+        }
+
+        saveGameState()
+    }
 }
