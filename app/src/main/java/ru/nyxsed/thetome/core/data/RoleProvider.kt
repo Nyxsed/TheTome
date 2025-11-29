@@ -12,6 +12,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.CerenovusMad
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.DevilsAdvocateSurvivesExecution
+import ru.nyxsed.thetome.core.data.TokenProvider.DrunkDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.EvilTwinTwin
 import ru.nyxsed.thetome.core.data.TokenProvider.ExorcistChosen
 import ru.nyxsed.thetome.core.data.TokenProvider.FangGuKill
@@ -42,6 +43,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.LibrarianWrong
 import ru.nyxsed.thetome.core.data.TokenProvider.LleechKill
 import ru.nyxsed.thetome.core.data.TokenProvider.LleechPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.LunaticChosen
+import ru.nyxsed.thetome.core.data.TokenProvider.MarionetteMarionette
 import ru.nyxsed.thetome.core.data.TokenProvider.MathematicianAbnormal
 import ru.nyxsed.thetome.core.data.TokenProvider.MinstrelEveryoneIsDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.MonkSafe
@@ -532,6 +534,7 @@ object RoleProvider {
         ability = R.string.role_ability_Drunk,
         prepareActionId = R.string.action_prepare_Drunk,
         iconRes = R.drawable.icon_drunk,
+        tokens = listOf(DrunkDrunk)
     )
 
     val Lunatic = Role(
@@ -668,6 +671,7 @@ object RoleProvider {
         ability = R.string.role_ability_marionette,
         prepareActionId = R.string.action_prepare_marionette,
         iconRes = R.drawable.icon_marionette,
+        tokens = listOf(MarionetteMarionette)
     )
 
     val DevilsAdvocate = Role(

@@ -193,7 +193,7 @@
 
     <string name="role_name_drunk">Drunk</string>
     <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
-    <string name="action_prepare_Drunk">Return to Settings screen and remove Drunk role. Add some Townsfolk role. After setting up mark some Townsfolk as Drunk</string>
+    <string name="action_prepare_Drunk">Add some Townsfolk role and do not place Drunk to a bag. After setting up mark some Townsfolk as Drunk</string>
 
     <string name="role_name_clockmaker">Clockmaker</string>
     <string name="role_ability_clockmaker">You start knowing how many steps from the Demon to its nearest Minion</string>
@@ -253,7 +253,7 @@
 
     <string name="role_name_marionette">Marionette</string>
     <string name="role_ability_marionette">You think you are a good character, but you are not. The Demon knows who you are. [You neighbor the Demon]</string>
-    <string name="action_prepare_marionette">Return to Settings screen and remove Marionette role. Add some Townsfolk role. After setting up mark Demon neighbor good player as Marionette.
+    <string name="action_prepare_marionette">Add some Townsfolk role and do not place Marionette to a bag. After setting up mark Demon neighbor good player as Marionette.
     During the first night, Wake the Demon. Point to the player marked IS THE MARIONETTE and show the Marionette character token</string>
 
     <string name="role_name_nodashii">No Dashii</string>

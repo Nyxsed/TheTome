@@ -185,7 +185,7 @@
 
     <string name="role_name_drunk">Drunk</string>
     <string name="role_ability_Drunk">Вы не знаете, что вы – Пьяница. Вы считаете себя определенным Горожанином</string>
-    <string name="action_prepare_Drunk">Вернитесь на экран настроек и уберите жетон Пьяницы. Добавьте другого горажанина. После раздачи ролей пометьте любого горожанина как Пьяница</string>
+    <string name="action_prepare_Drunk">Добавьте другого горажанина в мешок, не добавляйте туда роль пьяницы. После раздачи ролей пометьте любого горожанина как Пьяница</string>
 
     <string name="role_name_clockmaker">Часовщик</string>
     <string name="role_ability_clockmaker">Вступление: вы узнаете число шагов от Демона до ближайшего к нему Приспешника</string>

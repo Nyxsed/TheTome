@@ -1,10 +1,8 @@
 package ru.nyxsed.thetome.core.data
 
 import ru.nyxsed.thetome.R
-import ru.nyxsed.thetome.core.data.TokenProvider.DrunkDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.Evil
 import ru.nyxsed.thetome.core.data.TokenProvider.Good
-import ru.nyxsed.thetome.core.data.TokenProvider.MarionetteMarionette
 import ru.nyxsed.thetome.core.domain.models.Action
 import ru.nyxsed.thetome.core.domain.models.ActionType
 import ru.nyxsed.thetome.core.domain.models.Scenery
@@ -199,7 +197,7 @@ object SceneryProvider {
             ),
             Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
-        sceneryTokens = listOf(Good, Evil, DrunkDrunk)
+        sceneryTokens = listOf(Good, Evil)
     )
 
     val UncertainDeath = Scenery(
@@ -436,7 +434,7 @@ object SceneryProvider {
             ),
             Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
-        sceneryTokens = listOf(Good, Evil, MarionetteMarionette),
+        sceneryTokens = listOf(Good, Evil),
     )
 
     val BadMoonRising = Scenery(
@@ -1013,7 +1011,7 @@ object SceneryProvider {
             Action(type = ActionType.PLAYER, role = RoleProvider.DevilsAdvocate, res = RoleProvider.DevilsAdvocate.dayActionId),
             Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
-        sceneryTokens = listOf(Good, Evil, DrunkDrunk, MarionetteMarionette)
+        sceneryTokens = listOf(Good, Evil)
     )
 
     val NoGreaterJoy = Scenery(
@@ -1059,7 +1057,7 @@ object SceneryProvider {
             Action(type = ActionType.DAY, role = null, res = R.string.action_voting),
             Action(type = ActionType.DAY, role = null, res = R.string.action_start_night_phase)
         ),
-        sceneryTokens = listOf(Good, Evil, DrunkDrunk)
+        sceneryTokens = listOf(Good, Evil)
     )
 
     val LaissezUnFaire = Scenery(

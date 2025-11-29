@@ -53,7 +53,7 @@ object TokenProvider {
 
     val AssassinNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_assassin)
 
-    val MarionetteMarionette = Token(nameResId = R.string.token_marionette, iconRes = R.drawable.icon_marionette) // TODO unique token
+    val MarionetteMarionette = Token(nameResId = R.string.token_marionette, iconRes = R.drawable.icon_marionette)
 
     val NoDashiiPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_nodashii)
     val NoDashiiKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_nodashii)
