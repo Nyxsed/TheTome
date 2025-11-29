@@ -4,6 +4,7 @@
     <string name="url_pocket_grimoire">https://www.pocketgrimoire.co.uk/en_GB/sheet?</string>
     <string name="url_wiki">https://wiki.bloodontheclocktower.com/</string>
 
+    <string name="text_app_name" translatable="false">The Tome</string>
     <string name="text_rename_player">Rename player</string>
     <string name="text_all">All</string>
     <string name="text_ok">OK</string>

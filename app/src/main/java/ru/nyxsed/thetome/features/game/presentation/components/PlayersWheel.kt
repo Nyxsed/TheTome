@@ -1,7 +1,5 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import android.R.attr.scaleX
-import android.R.attr.scaleY
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateOffsetAsState
@@ -40,7 +38,6 @@ fun PlayersWheel(
     minTokenSize: Dp = 20.dp,
     maxTokenSize: Dp = 40.dp,
     onClick: (Player) -> Unit,
-    onLongClick: (Player) -> Unit,
     onTokenLongClick: (Player, Int) -> Unit,
     onOrderChanged: (List<Player>) -> Unit = {}
 ) {
@@ -58,8 +55,6 @@ fun PlayersWheel(
 
     var draggingId by remember { mutableStateOf<Int?>(null) }
     var dragOffset by remember { mutableStateOf(Offset.Zero) }
-    var dragStartCenter by remember { mutableStateOf(Offset.Zero) } // центр кружка при начале drag
-    var dragTouchOffset by remember { mutableStateOf(Offset.Zero) } // смещение касания внутри кружка
 
     Box(
         modifier = modifier
@@ -105,7 +100,6 @@ fun PlayersWheel(
             )
         }
 
-        // placeholderIndex вычисляем динамически
         val placeholderIndex =
             if (draggingId == null) -1
             else nearestIndexForOffset(dragOffset, slotCenters)
@@ -163,12 +157,10 @@ fun PlayersWheel(
                         .zIndex(if (isDragging) 50f else 0f)
                         .pointerInput(player.id) {
                             detectDragGesturesAfterLongPress(
-                                onDragStart = { offset ->
+                                onDragStart = {
                                     draggingId = player.id
                                     val center = slotCenters[items.indexOfFirst { it.id == player.id }]
-                                    dragStartCenter = center
-                                    dragTouchOffset = offset - center
-                                    dragOffset = center // стартовая позиция кружка = центр слота
+                                    dragOffset = center
                                 },
                                 onDrag = { change, drag ->
                                     change.consume()
@@ -188,14 +180,10 @@ fun PlayersWheel(
 
                                     draggingId = null
                                     dragOffset = Offset.Zero
-                                    dragTouchOffset = Offset.Zero
-                                    dragStartCenter = Offset.Zero
                                 },
                                 onDragCancel = {
                                     draggingId = null
                                     dragOffset = Offset.Zero
-                                    dragTouchOffset = Offset.Zero
-                                    dragStartCenter = Offset.Zero
                                 }
                             )
                         }

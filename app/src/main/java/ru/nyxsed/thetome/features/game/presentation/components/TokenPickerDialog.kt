@@ -29,17 +29,15 @@ fun TokenPickerDialog(
     if (target == null) return
 
     val availableTokens = remember(chosenRoles, players) {
-        // 1. Собираем все токены из выбранных ролей (с повторениями)
+
         val chosenRolesTokens = chosenRoles?.flatMap { it.tokens } ?: emptyList()
 
-        // 2. Считаем, сколько уже назначено игрокам каждого токена
         val assignedCounts: Map<Token, Int> = players
             ?.flatMap { it.tokens }
             ?.groupingBy { it }
             ?.eachCount()
             ?: emptyMap()
 
-        // 3. Для каждого токена из ролей вычитаем назначенные
         val remainingRoleTokens: List<Token> =
             chosenRolesTokens
                 .groupingBy { it }
@@ -50,7 +48,6 @@ fun TokenPickerDialog(
                     if (remaining > 0) List(remaining) { token } else emptyList()
                 }
 
-        // 4. Добавляем sceneryTokens
         (sceneryTokens + remainingRoleTokens).distinct()
     }
 
@@ -60,10 +57,10 @@ fun TokenPickerDialog(
         text = {
             Box(
                 modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center // центрируем FlowRow
+                contentAlignment = Alignment.Center
             ) {
                 FlowRow(
-                    modifier = Modifier.wrapContentWidth(), // FlowRow по ширине содержимого
+                    modifier = Modifier.wrapContentWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {

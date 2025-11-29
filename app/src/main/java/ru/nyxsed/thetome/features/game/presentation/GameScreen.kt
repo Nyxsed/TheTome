@@ -186,13 +186,10 @@ fun GameContent(
                 onClick = { player ->
                     targetEditPlayer = player
                 },
-                onLongClick = {
-//                    targetTokenPlayer = it
-                },
                 onTokenLongClick = { player, tokenIndex ->
                     onDeleteToken(player, tokenIndex)
                 },
-                onOrderChanged =  {
+                onOrderChanged = {
                     onReorderPlayers(it)
                 },
             )
@@ -340,7 +337,7 @@ fun GameContent(
                 players = state.players,
                 sceneryTokens = state.scenery?.sceneryTokens!!,
                 onPickToken = { token ->
-                    targetTokenPlayer?.let { player ->
+                    targetTokenPlayer?.let {
                         onAddToken(targetTokenPlayer!!, token)
                     }
                     targetTokenPlayer = null

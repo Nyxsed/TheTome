@@ -1,7 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -277,7 +276,7 @@ class GameViewModel @Inject constructor(
         _state.update { state ->
             val current = state.players
 
-            if (state.players?.contains(player) != true ) return@update state
+            if (state.players?.contains(player) != true) return@update state
 
             val updated = current
                 .filter { it != player }
@@ -293,7 +292,6 @@ class GameViewModel @Inject constructor(
 
     fun updatePlayers(players: List<Player>) {
         _state.update { it.copy(players = players) }
-        Log.d("updatePlayers", players.toString())
         saveGameState()
     }
 }

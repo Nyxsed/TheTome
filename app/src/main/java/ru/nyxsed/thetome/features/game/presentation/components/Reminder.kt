@@ -1,6 +1,5 @@
 package ru.nyxsed.thetome.features.game.presentation.components
 
-import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
@@ -29,7 +28,7 @@ fun Reminder(
     onBeforeClicked: () -> Unit,
     onAfterClicked: () -> Unit,
 ) {
-    // направление листания
+
     var direction by remember { mutableStateOf(SlideDirection.RIGHT) }
 
     Row(
@@ -78,7 +77,7 @@ fun Reminder(
                         .using(
                             SizeTransform(
                                 clip = false,
-                                sizeAnimationSpec = { _, _ -> tween(0) } // ключевая строка
+                                sizeAnimationSpec = { _, _ -> tween(0) }
                             )
                         )
                 },
@@ -99,9 +98,6 @@ fun Reminder(
                     }
 
                     animatedAction?.let { action ->
-
-                        val log = if (action?.role?.roleName != null)
-                            stringResource(action?.role?.roleName!!) else ""
 
                         val text = stringResource(action.res)
 

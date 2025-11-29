@@ -26,7 +26,7 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
 
     val animatedAlpha by animateFloatAsState(
         targetValue = targetAlpha,
-        animationSpec = tween(durationMillis = 1000) // 1 секунда, можно менять
+        animationSpec = tween(durationMillis = 1000)
     )
 
     val infiniteTransition = rememberInfiniteTransition(label = "clouds")
@@ -34,7 +34,7 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(60000, easing = LinearEasing), // 25 секунд, регулируется
+            animation = tween(60000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "cloudOffset"
@@ -116,7 +116,6 @@ private fun CloudsLayer(
 
         clouds.forEach { cloud ->
 
-            // progress: 0→1 даёт движение от -1×width→+1×width
             val globalShiftX = (progress * 2f - 1f) * widthPx
 
             val initialShiftX = cloud.offsetXFraction * widthPx
@@ -139,8 +138,8 @@ private fun CloudsLayer(
 }
 
 data class CloudItem(
-    val offsetXFraction: Float,   // начальная позиция (-1..1)
-    val offsetYFraction: Float,   // вертикаль (0..1)
+    val offsetXFraction: Float,
+    val offsetYFraction: Float,
     val scale: Float,
     val alpha: Float,
 )

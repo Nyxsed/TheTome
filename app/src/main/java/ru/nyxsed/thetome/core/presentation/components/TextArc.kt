@@ -2,7 +2,6 @@ package ru.nyxsed.thetome.core.presentation.components
 
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -63,7 +62,6 @@ fun TextArc(
 
         paint.textSize = fontSizePx
 
-        // Увеличиваем общий угол для регулировки расстояния между буквами
         val totalAngleRadAdjusted = (textWidthPx / canvasRadius) * letterSpacing
         val charAngleRad = if (text.length > 1) totalAngleRadAdjusted / (text.length - 1) else 0.0
 
