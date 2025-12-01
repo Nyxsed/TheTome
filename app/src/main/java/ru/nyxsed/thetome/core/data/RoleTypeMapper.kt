@@ -10,5 +10,6 @@ object RoleTypeMapper {
         RoleType.OUTSIDER -> R.string.text_outsider
         RoleType.MINION -> R.string.text_minion
         RoleType.DEMON -> R.string.text_demon
+        RoleType.TRAVELLER -> R.string.text_demon
     }
 }

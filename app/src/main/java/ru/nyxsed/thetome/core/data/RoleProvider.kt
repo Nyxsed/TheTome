@@ -866,4 +866,17 @@ object RoleProvider {
         dayActionId = R.string.action_day_leviathan,
         iconRes = R.drawable.icon_leviathan
     )
+
+    // Travellers
+    val Scapegoat = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_scapegoat,
+        ability = R.string.role_ability_scapegoat,
+        iconRes = R.drawable.icon_scapegoat
+    )
+
+
+    val allTravelers = listOf(
+        Scapegoat
+    )
 }

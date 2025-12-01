@@ -7,6 +7,7 @@
     <string name="text_app_name" translatable="false">The Tome</string>
     <string name="text_rename_player">Rename player</string>
     <string name="text_all">All</string>
+    <string name="text_travellers">Travellers</string>
     <string name="text_ok">OK</string>
     <string name="text_yes">Yes</string>
     <string name="text_cancel">Cancel</string>
@@ -25,6 +26,7 @@
     <string name="text_outsider">Outsider</string>
     <string name="text_minion">Minion</string>
     <string name="text_demon">Demon</string>
+    <string name="text_traveller">Traveller</string>
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
     <string name="text_notes">Notes</string>
@@ -470,5 +472,8 @@
     <string name="role_name_leviathan">Leviathan</string>
     <string name="role_ability_leviathan">If more than 1 good player is executed, evil wins. All players know you are in play. After day 5, evil wins</string>
     <string name="action_day_leviathan">Mark the Leviathan with the DAY X reminder, there X is day counter</string>
+
+    <string name="role_name_scapegoat">Scapegoat</string>
+    <string name="role_ability_scapegoat">If a player of your alignment is executed, you might be executed instead</string>
 
 </resources>

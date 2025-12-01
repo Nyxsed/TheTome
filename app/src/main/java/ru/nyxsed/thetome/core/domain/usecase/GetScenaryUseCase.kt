@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetListSceneryUseCase @Inject constructor() {
     operator fun invoke(): List<Scenery> {
-        return SceneryProvider.all
+        return SceneryProvider.allScenery
     }
 }

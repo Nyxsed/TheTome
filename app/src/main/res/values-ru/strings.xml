@@ -24,6 +24,7 @@
     <string name="text_outsider">Изгои</string>
     <string name="text_minion">Приспешники</string>
     <string name="text_demon">Демоны</string>
+    <string name="text_traveller">Странник</string>
     <string name="text_edit_game_attention">Состояние игры будет сброшено</string>
     <string name="text_edit_game">Изменить игру?</string>
     <string name="text_notes">Заметки</string>

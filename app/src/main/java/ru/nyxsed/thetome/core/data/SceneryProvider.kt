@@ -1107,7 +1107,7 @@ object SceneryProvider {
         sceneryTokens = listOf(Good, Evil)
     )
 
-    val all = listOf(
+    val allScenery = listOf(
         TroubleBrewing,
         BadMoonRising,
         SectsNViolets,
