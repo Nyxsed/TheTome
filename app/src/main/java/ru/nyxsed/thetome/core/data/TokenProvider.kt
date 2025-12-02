@@ -146,5 +146,24 @@ object TokenProvider {
     val LeviathanDay5 = Token(nameResId = R.string.token_day_5, iconRes = R.drawable.icon_leviathan)
     val LeviathanGoodPlayerExecuted = Token(nameResId = R.string.token_good_player_executed, iconRes = R.drawable.icon_leviathan)
 
+    val Bureaucrat3Votes = Token(nameResId = R.string.token_3_votes, iconRes = R.drawable.icon_bureaucrat)
+
+    val ThiefNegativeVote = Token(nameResId = R.string.token_negative_vote, iconRes = R.drawable.icon_thief)
+
+    val BoneCollectorHasAbility = Token(nameResId = R.string.token_has_ability, iconRes = R.drawable.icon_bonecollector)
+    val BoneCollectorNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_bonecollector)
+
+    val BaristaSober = Token(nameResId = R.string.token_sober, iconRes = R.drawable.icon_barista)
+    val BaristaActsTwice = Token(nameResId = R.string.token_acts_twice, iconRes = R.drawable.icon_barista)
+
+    val JudgeNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_judge)
+
+    val BishopNominateEvil = Token(nameResId = R.string.token_nominate_evil, iconRes = R.drawable.icon_bishop)
+    val BishopNominateGood = Token(nameResId = R.string.token_nominate_good, iconRes = R.drawable.icon_bishop)
+
+    val CacklejackNotMe = Token(nameResId = R.string.token_not_me, iconRes = R.drawable.icon_cacklejack)
+
+    val GnomeAmigo = Token(nameResId = R.string.token_amigo, iconRes = R.drawable.icon_gnome)
+
 
 }

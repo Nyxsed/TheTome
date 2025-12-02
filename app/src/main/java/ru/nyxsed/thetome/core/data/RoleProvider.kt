@@ -5,7 +5,15 @@ import ru.nyxsed.thetome.core.data.TokenProvider.ArtistNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.AssassinNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.BalloonistKnow
 import ru.nyxsed.thetome.core.data.TokenProvider.BarberHaircut
+import ru.nyxsed.thetome.core.data.TokenProvider.BaristaActsTwice
+import ru.nyxsed.thetome.core.data.TokenProvider.BaristaSober
+import ru.nyxsed.thetome.core.data.TokenProvider.BishopNominateEvil
+import ru.nyxsed.thetome.core.data.TokenProvider.BishopNominateGood
+import ru.nyxsed.thetome.core.data.TokenProvider.BoneCollectorHasAbility
+import ru.nyxsed.thetome.core.data.TokenProvider.BoneCollectorNoAbility
+import ru.nyxsed.thetome.core.data.TokenProvider.Bureaucrat3Votes
 import ru.nyxsed.thetome.core.data.TokenProvider.ButlerMaster
+import ru.nyxsed.thetome.core.data.TokenProvider.CacklejackNotMe
 import ru.nyxsed.thetome.core.data.TokenProvider.CannibalLunch
 import ru.nyxsed.thetome.core.data.TokenProvider.CannibalPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.CerenovusMad
@@ -22,6 +30,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlVoted
 import ru.nyxsed.thetome.core.data.TokenProvider.FoolNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.FortuneTellerRedHerring
 import ru.nyxsed.thetome.core.data.TokenProvider.GamblerKill
+import ru.nyxsed.thetome.core.data.TokenProvider.GnomeAmigo
 import ru.nyxsed.thetome.core.data.TokenProvider.GoblinClaimed
 import ru.nyxsed.thetome.core.data.TokenProvider.GodfatherDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.GossipKill
@@ -31,6 +40,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.InnkeeperDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.InnkeeperSafe
 import ru.nyxsed.thetome.core.data.TokenProvider.InvestigatorMinion
 import ru.nyxsed.thetome.core.data.TokenProvider.InvestigatorWrong
+import ru.nyxsed.thetome.core.data.TokenProvider.JudgeNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.JugglerCorrect
 import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay1
 import ru.nyxsed.thetome.core.data.TokenProvider.LeviathanDay2
@@ -67,6 +77,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.SlayerNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.SnakeCharmerPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.SweetheartDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.TeaLadyCannotDie
+import ru.nyxsed.thetome.core.data.TokenProvider.ThiefNegativeVote
 import ru.nyxsed.thetome.core.data.TokenProvider.TowncrierMinionNominated
 import ru.nyxsed.thetome.core.data.TokenProvider.UndertakerDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.VigormortisHasAbility
@@ -872,11 +883,169 @@ object RoleProvider {
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_scapegoat,
         ability = R.string.role_ability_scapegoat,
+        dayActionId = R.string.action_day_scapegoat,
         iconRes = R.drawable.icon_scapegoat
+    )
+
+    val Gunslinger = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_gunslinger,
+        ability = R.string.role_ability_gunslinger,
+        dayActionId = R.string.action_day_gunslinger,
+        iconRes = R.drawable.icon_gunslinger
+    )
+
+    val Beggar = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_beggar,
+        ability = R.string.role_ability_beggar,
+        iconRes = R.drawable.icon_beggar
+    )
+
+    val Bureaucrat = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_bureaucrat,
+        ability = R.string.role_ability_bureaucrat,
+        secondNightActionId = R.string.action_second_night_bureaucrat,
+        dayActionId = R.string.action_day_bureaucrat,
+        iconRes = R.drawable.icon_bureaucrat,
+        tokens = listOf(Bureaucrat3Votes)
+    )
+
+    val Thief = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_thief,
+        ability = R.string.role_ability_thief,
+        secondNightActionId = R.string.action_second_night_thief,
+        dayActionId = R.string.action_day_thief,
+        iconRes = R.drawable.icon_thief,
+        tokens = listOf(ThiefNegativeVote)
+    )
+
+    val Butcher = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_butcher,
+        ability = R.string.role_ability_butcher,
+        dayActionId = R.string.action_day_butcher,
+        iconRes = R.drawable.icon_butcher
+    )
+
+    val BoneCollector = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_bone_collector,
+        ability = R.string.role_ability_bone_collector,
+        secondNightActionId = R.string.action_second_night_bone_collector,
+        iconRes = R.drawable.icon_bonecollector,
+        tokens = listOf(BoneCollectorHasAbility, BoneCollectorNoAbility)
+    )
+
+    val Harlot = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_harlot,
+        ability = R.string.role_ability_harlot,
+        firstNightActionId = R.string.action_second_night_harlot,
+        secondNightActionId = R.string.action_second_night_harlot,
+        iconRes = R.drawable.icon_harlot
+    )
+
+    val Barista = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_barista,
+        ability = R.string.role_ability_barista,
+        secondNightActionId = R.string.action_second_night_barista,
+        iconRes = R.drawable.icon_barista,
+        tokens = listOf(BaristaSober, BaristaActsTwice)
+    )
+
+    val Deviant = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_deviant,
+        ability = R.string.role_ability_deviant,
+        iconRes = R.drawable.icon_deviant
+    )
+
+    val Apprentice = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_apprentice,
+        ability = R.string.role_ability_apprentice,
+        iconRes = R.drawable.icon_apprentice
+    )
+
+    val Matron = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_matron,
+        ability = R.string.role_ability_matron,
+        iconRes = R.drawable.icon_matron
+    )
+
+    val Voudon = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_voudon,
+        ability = R.string.role_ability_voudon,
+        dayActionId = R.string.action_day_voudon,
+        iconRes = R.drawable.icon_voudon
+    )
+
+    val Judge = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_judge,
+        ability = R.string.role_ability_judge,
+        iconRes = R.drawable.icon_judge,
+        tokens = listOf(JudgeNoAbility)
+    )
+
+    val Bishop = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_bishop,
+        ability = R.string.role_ability_bishop,
+        iconRes = R.drawable.icon_bishop,
+        tokens = listOf(BishopNominateEvil, BishopNominateGood)
+    )
+
+    val Cacklejack = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_cacklejack,
+        ability = R.string.role_ability_cacklejack,
+        secondNightActionId = R.string.action_second_night_cacklejack,
+        dayActionId = R.string.action_day_caclejack,
+        iconRes = R.drawable.icon_cacklejack,
+        tokens = listOf(CacklejackNotMe)
+    )
+
+    val Gangster = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_gangster,
+        ability = R.string.role_ability_gangster,
+        iconRes = R.drawable.icon_gangster
+    )
+
+    val Gnome = Role(
+        type = RoleType.TRAVELLER,
+        roleName = R.string.role_name_gnome,
+        ability = R.string.role_ability_gnome,
+        iconRes = R.drawable.icon_gnome,
+        tokens = listOf(GnomeAmigo)
     )
 
 
     val allTravelers = listOf(
-        Scapegoat
+        Scapegoat,
+        Gunslinger,
+        Beggar,
+        Bureaucrat,
+        Thief,
+        Butcher,
+        BoneCollector,
+        Harlot,
+        Barista,
+        Deviant,
+        Apprentice,
+        Matron,
+        Voudon,
+        Judge,
+        Bishop,
+        Cacklejack,
+        Gangster,
+        Gnome,
     )
 }

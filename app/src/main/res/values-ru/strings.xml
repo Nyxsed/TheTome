@@ -6,6 +6,7 @@
 
     <string name="text_rename_player">Переименовать игрока</string>
     <string name="text_all">Все</string>
+    <string name="text_travellers">Странники</string>
     <string name="text_ok">ОК</string>
     <string name="text_yes">Да</string>
     <string name="text_cancel">Отмена</string>
@@ -99,6 +100,14 @@
     <string name="token_day_4">день 4</string>
     <string name="token_day_5">день 5</string>
     <string name="token_good_player_executed">добрый игрок казнён</string>
+    <string name="token_3_votes">3 голоса</string>
+    <string name="token_negative_vote">отрицательный голос</string>
+    <string name="token_sober">Трезв</string>
+    <string name="token_acts_twice">действует дважды</string>
+    <string name="token_nominate_evil">номинирован злой</string>
+    <string name="token_nominate_good">номинирован добрый</string>
+    <string name="token_not_me">не я</string>
+    <string name="token_amigo">амиго</string>
 
     <string name="role_name_imp">Черт</string>
     <string name="role_ability_imp">Каждую ночь*: выберите игрока. Он умирает. Если вы убиваете себя таким образом, один из Приспешников становится Чертом</string>
@@ -459,5 +468,71 @@
     <string name="text_add_new_player">Добавить нового игрока?</string>
     <string name="text_delete_player_qm">Удалить игрока?</string>
 
+    <string name="role_name_scapegoat">Козел отпущения</string>
+    <string name="role_ability_scapegoat">Если вашего союзника казнят, вы можете быть казнены вместо него</string>
+    <string name="action_day_scapegoat">Ты можешь казнить козла отпущения вмето его союзника</string>
+
+    <string name="role_name_gunslinger">Стрелок</string>
+    <string name="role_ability_gunslinger">Каждый день, после первого подсчета голосов: вы можете выбрать проголосовавшего игрока. Он умирает</string>
+    <string name="action_day_gunslinger">Напомни Стрелку что он может использовать свою способность</string>
+
+    <string name="role_name_beggar">Нищий</string>
+    <string name="role_ability_beggar">Для голосования вы обязаны использовать жетон. Если мертвый игрок отдает вам свой жетон, вы узнаете его сторону. Вы трезвы и здоровы.</string>
+
+    <string name="role_name_bureaucrat">Чиновник</string>
+    <string name="role_ability_bureaucrat">Каждую ночь: выберите игрока (кроме себя). На следующий день его голос считается за 3</string>
+    <string name="action_second_night_bureaucrat">Пробудите Бюрократа. Он указывает на любого игрока. Поставьте рядом с жетоном роли выбранного игрока пометку «3 голоса»</string>
+    <string name="action_day_bureaucrat">Каждый раз, когда вы засчитываете голос игрока с пометкой «3 голоса», считайте его как три голоса вместо одного. (Считайте вслух, как обычно.)</string>
+
+    <string name="role_name_thief">Вор</string>
+    <string name="role_ability_thief">Каждую ночь: выберите игрока (кроме себя). На следующий день его голос вычитается из числа голосов</string>
+    <string name="action_second_night_thief">пробудите Вора. Он указывает на любого игрока. Поставьте пометку «Отрицательный голос» рядом с его жетоном роли</string>
+    <string name="action_day_thief">Каждый раз, когда вы подсчитываете голос игрока с пометкой «Отрицательный голос», считайте его как вычтенный голос, а не как добавленный голос. (Считайте вслух, как обычно)</string>
+
+    <string name="role_name_butcher">Мясник</string>
+    <string name="role_ability_butcher">Каждый день, после первой казни: вы можете номинировать еще раз</string>
+    <string name="action_day_butcher">Напомни Мяснику: Мясник может номинировать игрока на казнь дополнительно</string>
+
+    <string name="role_name_bone_collector">Собиратель костей</string>
+    <string name="role_ability_bone_collector">Один раз за игру, ночью✳: выберите мертвого игрока. Этот игрок возвращает свою способность до заката</string>
+    <string name="action_second_night_bone_collector">Пробудите Собирателя Костей. Он либо покачает головой, либо укажет на любого мертвого игрока. Если он указал на мертвого игрока, то выбранный игрок возвращает свою способность. Поставьте рядом с его жетоном роли пометку «Имеет способность». (Возможно, его придется разбудить этой ночью, чтобы он смог воспользоваться своей способностью)</string>
+
+    <string name="role_name_harlot">Распутница</string>
+    <string name="role_ability_harlot">Каждую ночь✳: выберите живого игрока. Если этот игрок соглашается, вы узнаете его роль, но вы оба можете умереть.</string>
+    <string name="action_second_night_harlot">пробудите Распутницу. Она указывает на любого игрока. Усыпите Распутницу. Пробудите выбранного игрока, покажите ему карточку «Вы выбраны способностью этой роли», затем жетон Распутницы. Игрок либо кивает головой «да», либо качает головой «нет». Если он кивнул «да», пробудите Распутницу и покажите ей жетон роли выбранного игрока. Усыпите Распутницу. Вы можете решить, что оба игрока умерли, поставьте их жетонам ролей пометки «Умирает»</string>
+
+    <string name="role_name_barista">Бариста</string>
+    <string name="role_ability_barista">Каждую ночь: один из игроков получает свойство до заката и узнает какое: (1) этот игрок трезв, здоров и получает верную информацию; (2) способность этого игрока срабатывает дважды.</string>
+    <string name="action_second_night_barista">уберите предыдущие пометки, затем поставьте пометку Баристы «Трезв и здоров» или «Действует дважды» рядом с любым жетоном роли. Пробудите этого игрока и покажите ему карточку «Вы выбраны способностью этой роли», жетон роли Баристы, затем один палец (чтобы показать, что он трезв и здоров) или два пальца (чтобы показать, что он действует дважды)</string>
+
+    <string name="role_name_deviant">Девиант</string>
+    <string name="role_ability_deviant">Если вы были смешны текущим днем, вы не можете умереть в результате изгнания.</string>
+
+    <string name="role_name_apprentice">Ученик</string>
+    <string name="role_ability_apprentice">Вступление: вы получаете способность Горожанина (если вы на стороне добра) или Приспешника (если вы на стороне зла).</string>
+
+    <string name="role_name_matron">Надзирательница</string>
+    <string name="role_ability_matron">Каждый день: вы можете выбрать до 3 пар игроков. Они меняются местами. Игроки не имеют права покидать свои места для приватных разговоров.</string>
+
+    <string name="role_name_voudon">Шаман вуду</string>
+    <string name="role_ability_voudon">Только вам и мертвым игрокам доступно право голосовать. Мертвым не требуется жетон для голосования. Для успешного голосования не требуется 50% большинство.</string>
+    <string name="action_day_voudon">Напомни игрокам о способности шамана</string>
+
+    <string name="role_name_judge">Судья</string>
+    <string name="role_ability_judge">Один раз за игру, когда другой игрок номинировал: вы можете утвердить, состоится или нет данная казнь.</string>
+
+    <string name="role_name_bishop">Епископ</string>
+    <string name="role_ability_bishop">Только Рассказчику доступно право номинировать. Каждый день должен быть номинирован хотя бы один игрок противоположной вам стороны.</string>
+
+    <string name="role_name_cacklejack">Ломастер</string>
+    <string name="role_ability_cacklejack">Каждый день: выберите игрока. Ночью другой игрок меняет роль.</string>
+    <string name="action_second_night_cacklejack">Каждую ночь (кроме первой) замените жетон роли любого игрока на другой. Пробудите этого игрока, покажите карточку «Вы теперь» и жетон новой роли, затем усыпите игрока</string>
+    <string name="action_day_caclejack">Каждый день Ломастер выбирает игрока. Поставьте рядом с его жетоном роли пометку «Не я»</string>
+
+    <string name="role_name_gangster">Гангстер</string>
+    <string name="role_ability_gangster">Один раз за день: вы можете убить своего живого соседа, если ваш второй живой сосед соглашается</string>
+
+    <string name="role_name_gnome">Гном</string>
+    <string name="role_ability_gnome">Вступление: все игроки узнают союзного вам игрока. Вы можете убить любого, кто его номинирует.</string>
 
 </resources>

@@ -103,6 +103,14 @@
     <string name="token_day_4">day 4</string>
     <string name="token_day_5">day 5</string>
     <string name="token_good_player_executed">good player executed</string>
+    <string name="token_3_votes">3 votes</string>
+    <string name="token_negative_vote">negative vote</string>
+    <string name="token_sober">sober</string>
+    <string name="token_acts_twice">acts twice</string>
+    <string name="token_nominate_evil">nominate evil</string>
+    <string name="token_nominate_good">nominate good</string>
+    <string name="token_not_me">not me</string>
+    <string name="token_amigo">amigo</string>
 
     <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
@@ -475,5 +483,69 @@
 
     <string name="role_name_scapegoat">Scapegoat</string>
     <string name="role_ability_scapegoat">If a player of your alignment is executed, you might be executed instead</string>
+    <string name="action_day_scapegoat">You can execute Scapegoat instead of current executee of same team</string>
+
+    <string name="role_name_gunslinger">Gunslinger</string>
+    <string name="role_ability_gunslinger">Each day, after the 1st vote has been tallied, you may choose a player that voted: they die</string>
+    <string name="action_day_gunslinger">Remind Gunslinger that he can use his ability</string>
+
+    <string name="role_name_beggar">Beggar</string>
+    <string name="role_ability_beggar">You must use a vote token to vote. If a dead player gives you theirs, you learn their alignment. You are sober and healthy</string>
+
+    <string name="role_name_bureaucrat">Bureaucrat</string>
+    <string name="role_ability_bureaucrat">Each night, choose a player (not yourself): their vote counts as 3 votes tomorrow</string>
+    <string name="action_second_night_bureaucrat">Wake the Bureaucrat. They point at any player. Mark the chosen player with the Bureaucrat’s 3 VOTES reminder</string>
+    <string name="action_day_bureaucrat">Each time you tally the vote of a player marked 3 VOTES, count it as three votes instead of one</string>
+
+    <string name="role_name_thief">Thief</string>
+    <string name="role_ability_thief">Each night, choose a player (not yourself): their vote counts negatively tomorrow</string>
+    <string name="action_second_night_thief">Wake the Thief. They point at any player. Mark the chosen player with the Thief’s NEGATIVE VOTE reminder</string>
+    <string name="action_day_thief">Each time you tally the vote of a player marked NEGATIVE VOTE, count it as subtracting one vote instead of adding one vote</string>
+
+    <string name="role_name_butcher">Butcher</string>
+    <string name="role_ability_butcher">Each day, after the 1st execution, you may nominate again</string>
+    <string name="action_day_butcher">Remind the Butcher: immediately after a player is executed, the Butcher may nominate a player for execution</string>
+
+    <string name="role_name_bone_collector">Bone Collector</string>
+    <string name="role_ability_bone_collector">Once per game, at night*: choose a dead player — they regain their ability until dusk</string>
+    <string name="action_second_night_bone_collector">Wake the Bone Collector. They either shake their head no or point at any dead player. Put the Bone Collector to sleep. f they pointed at a dead player, the chosen player regains their ability—mark their character token with the Bone Collector’s HAS ABILITY reminder. (They may need to be woken tonight to use their ability.) The Bone Collector loses their ability—mark them with their NO ABILITY reminder. The next dusk, the chosen player loses their ability—remove the HAS ABILITY reminder</string>
+
+    <string name="role_name_harlot">Harlot</string>
+    <string name="role_ability_harlot">Each night*, choose a living player: if they agree, you learn their character, but you both might die</string>
+    <string name="action_second_night_harlot">wake the Harlot. The Harlot points at any player. Put the Harlot to sleep. Wake the chosen player, show them the THIS CHARACTER SELECTED YOU info token, then the Harlot token. That player either nods their head yes or shakes their head no. If they nodded their head yes, wake the Harlot and show them the chosen player’s character token. Put the Harlot to sleep. You may decide that both players die</string>
+
+    <string name="role_name_barista">Barista</string>
+    <string name="role_ability_barista">Each night, until dusk, 1) a player becomes sober, healthy gets true info, or 2) their ability works twice. They learn which</string>
+    <string name="action_second_night_barista">Remove previous reminders then put the Barista’s SOBER AND HEALTHY reminder or their ACTS TWICE reminder by any character token. Wake that character’s player and show them the THIS CHARACTER SELECTED YOU info token, the Barista token, then one finger (to show they are sober and healthy) or two fingers (to show they act twice)</string>
+
+    <string name="role_name_deviant">Deviant</string>
+    <string name="role_ability_deviant">If you were funny today, you cannot die by exile</string>
+
+    <string name="role_name_apprentice">Apprentice</string>
+    <string name="role_ability_apprentice">On your 1st night, you gain a Townsfolk ability (if good) or a Minion ability</string>
+
+    <string name="role_name_matron">Matron</string>
+    <string name="role_ability_matron">Each day, you may choose up to 3 sets of 2 players to swap seats. Players may not leave their seats to talk in private</string>
+
+    <string name="role_name_voudon">Voudon</string>
+    <string name="role_ability_voudon">Only you and the dead can vote. They dont need a vote token to do so. A 50% majority isnt required</string>
+    <string name="action_day_voudon">Remind players about Voudon ability</string>
+
+    <string name="role_name_judge">Judge</string>
+    <string name="role_ability_judge">Once per game, if another player nominated, you may choose to force the current execution to pass or fail</string>
+
+    <string name="role_name_bishop">Bishop</string>
+    <string name="role_ability_bishop">Only the Storyteller can nominate. At least 1 opposing player must be nominated each day</string>
+
+    <string name="role_name_cacklejack">Cacklejack</string>
+    <string name="role_ability_cacklejack">Each day, choose a player: a different player changes character tonight</string>
+    <string name="action_second_night_cacklejack">replace any player’s character token with a different character token without NOT ME reminder. Wake that player. Show the YOU ARE info token, and their new character token</string>
+    <string name="action_day_caclejack">Еvery day Cacklejack pick a player. put NOT ME reminder to this player</string>
+
+    <string name="role_name_gangster">Gangster</string>
+    <string name="role_ability_gangster">Once per day, you may choose to kill an alive neighbor, if your other alive neighbor agrees</string>
+
+    <string name="role_name_gnome">Gnome</string>
+    <string name="role_ability_gnome">All players start knowing a player of your alignment. You may choose to kill anyone who nominates them</string>
 
 </resources>
