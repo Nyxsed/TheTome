@@ -122,6 +122,7 @@ fun GameContent(
 
     var targetDeletePlayer by remember { mutableStateOf<Player?>(null) }
     var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
+    var targetFabledPlayer by remember { mutableStateOf<Player?>(null) }
     var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
 
     GameScreenBackground(state.currentPhase)
@@ -183,8 +184,12 @@ fun GameContent(
         if (!state.players.isNullOrEmpty()) {
             PlayersWheel(
                 players = state.players,
+                fabled = state.fabled,
                 onClick = { player ->
                     targetEditPlayer = player
+                },
+                onFabledClick = { fabled ->
+                    targetFabledPlayer = fabled
                 },
                 onTokenLongClick = { player, tokenIndex ->
                     onDeleteToken(player, tokenIndex)
@@ -261,6 +266,21 @@ fun GameContent(
             )
         }
 
+        if (targetFabledPlayer != null) {
+            EditFabledDialog(
+                player = targetFabledPlayer!!,
+                onDismissRequest = {
+                    targetFabledPlayer = null
+                },
+                onShowRolePicker = {
+                    isPickRoleDialogRaised = true
+                },
+                onShowCardClicked = { role ->
+                    onCard(role.ability, listOf(role))
+                },
+            )
+        }
+
         val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
         val availableRoles = state.chosenRoles?.filter { role ->
             role !in takenRoles || targetEditPlayer?.role == role
@@ -277,6 +297,21 @@ fun GameContent(
                 },
                 onDismiss = {
                     targetEditPlayer = null
+                    isPickRoleDialogRaised = false
+                }
+            )
+        }
+
+        if (targetFabledPlayer != null && isPickRoleDialogRaised) {
+            RolePickerDialog(
+                changeFabled = true,
+                onSelectRole = { role ->
+                    onChangeRole(targetFabledPlayer!!, role)
+                    targetFabledPlayer = null
+                    isPickRoleDialogRaised = false
+                },
+                onDismiss = {
+                    targetFabledPlayer = null
                     isPickRoleDialogRaised = false
                 }
             )

@@ -19,6 +19,15 @@ class RoleDistributionUseCase @Inject constructor() {
     )
 
     operator fun invoke(playerCount: Int): Map<RoleType, Int> {
+        if (playerCount > 15) {
+            return mapOf(
+                RoleType.TOWNSFOLK to 9,
+                RoleType.OUTSIDER to 2,
+                RoleType.MINION to 3,
+                RoleType.DEMON to 1
+            )
+        }
+
         return distribution[playerCount] ?: throw IllegalArgumentException("Have no distribution for $playerCount players")
     }
 }

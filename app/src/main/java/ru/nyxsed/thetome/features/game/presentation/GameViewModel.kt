@@ -1,6 +1,7 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import ru.nyxsed.thetome.core.domain.usecase.GenerateQrUseCase
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -31,7 +33,10 @@ class GameViewModel @Inject constructor(
                     _state.value = game
                     val actions = getActionList(game)
                     val current = actions.getOrNull(game.actionIndex)
-                    _state.value = _state.value.copy(currentAction = current)
+                    _state.update { it.copy(currentAction = current) }
+
+                    val fabled = if (_state.value.fabled == null) Player(id = 0, name = null, role = null) else _state.value.fabled
+                    _state.update { it.copy(fabled = fabled) }
                 }
             }
         }
@@ -108,7 +113,14 @@ class GameViewModel @Inject constructor(
             val updatedPlayers = currentState.players?.map { currentPlayer ->
                 if (currentPlayer == player) currentPlayer.copy(role = role) else currentPlayer
             }
-            currentState.copy(players = updatedPlayers)
+
+            val updatedFabled =
+                if (player == currentState.fabled)
+                    currentState.fabled.copy(role = role)
+                else
+                    currentState.fabled
+
+            currentState.copy(players = updatedPlayers, fabled = updatedFabled)
         }
         saveGameState()
     }

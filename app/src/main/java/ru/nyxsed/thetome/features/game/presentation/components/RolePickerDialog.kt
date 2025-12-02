@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.data.RoleProvider.allFables
 import ru.nyxsed.thetome.core.data.RoleProvider.allTravelers
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -19,13 +20,12 @@ import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
 
 @Composable
 fun RolePickerDialog(
-    availableRoles: List<Role>?,
+    availableRoles: List<Role>? = emptyList(),
     sceneryRoles: List<Role>? = emptyList(),
+    changeFabled: Boolean = false,
     onSelectRole: (Role?) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    if (availableRoles.isNullOrEmpty()) return
-
     var isAllChecked by remember { mutableStateOf(false) }
     var isTravellersChecked by remember { mutableStateOf(false) }
 
@@ -50,28 +50,30 @@ fun RolePickerDialog(
             ) {
                 if (!sceneryRoles.isNullOrEmpty()) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(stringResource(R.string.text_all))
+                        if(!changeFabled) {
+                            Text(stringResource(R.string.text_all))
 
-                        Spacer(Modifier.width(8.dp))
-                        Switch(
-                            checked = isAllChecked,
-                            onCheckedChange = {
-                                if (it) isTravellersChecked = false
-                                isAllChecked = it
-                            }
-                        )
+                            Spacer(Modifier.width(8.dp))
+                            Switch(
+                                checked = isAllChecked,
+                                onCheckedChange = {
+                                    if (it) isTravellersChecked = false
+                                    isAllChecked = it
+                                }
+                            )
 
-                        Spacer(Modifier.width(8.dp))
-                        Text(stringResource(R.string.text_travellers))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.text_travellers))
 
-                        Spacer(Modifier.width(8.dp))
-                        Switch(
-                            checked = isTravellersChecked,
-                            onCheckedChange = {
-                                if (it) isAllChecked = false
-                                isTravellersChecked = it
-                            }
-                        )
+                            Spacer(Modifier.width(8.dp))
+                            Switch(
+                                checked = isTravellersChecked,
+                                onCheckedChange = {
+                                    if (it) isAllChecked = false
+                                    isTravellersChecked = it
+                                }
+                            )
+                        }
                     }
                 }
 
@@ -87,7 +89,13 @@ fun RolePickerDialog(
                         onClick = { onSelectRole(null) }
                     )
 
-                    val showRoles = if (isAllChecked) sceneryRoles else if (isTravellersChecked) allTravelers else availableRoles
+                    val showRoles = when {
+                        changeFabled      -> allFables
+                        isAllChecked      -> sceneryRoles
+                        isTravellersChecked -> allTravelers
+                        else              -> availableRoles
+                    }
+
                     showRoles?.forEach { role ->
                         CircleItem(
                             itemType = ItemType.PLAYER_CIRCLE,

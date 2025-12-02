@@ -202,7 +202,7 @@ fun RoleSelector(
         )
     }
 
-    RoleType.entries.forEach { roleType ->
+    RoleType.entries.filterNot { it == RoleType.TRAVELLER || it == RoleType.FABLED }.forEach { roleType ->
         val selectedRolesCountByType = selectedRoles.filter { it.type == roleType }.size
         Text(
             text = "${stringResource(roleType.getDisplayNameId())}: $selectedRolesCountByType / ${roleDistribution[roleType]}",

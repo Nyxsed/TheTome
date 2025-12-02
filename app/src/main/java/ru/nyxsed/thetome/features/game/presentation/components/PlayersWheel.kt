@@ -32,12 +32,14 @@ import kotlin.math.sin
 @Composable
 fun PlayersWheel(
     players: List<Player>,
+    fabled: Player?,
     modifier: Modifier = Modifier,
     minCircleSize: Dp = 60.dp,
     maxCircleSize: Dp = 100.dp,
     minTokenSize: Dp = 20.dp,
     maxTokenSize: Dp = 40.dp,
     onClick: (Player) -> Unit,
+    onFabledClick: (Player?) -> Unit,
     onTokenLongClick: (Player, Int) -> Unit,
     onOrderChanged: (List<Player>) -> Unit = {}
 ) {
@@ -225,6 +227,25 @@ fun PlayersWheel(
                             }
                         }
                     }
+                }
+
+                // fabled
+                Box(
+                    modifier = Modifier
+                        .offset {
+                            IntOffset(
+                                (cx - circlePx / 2f).roundToInt(),
+                                (cy - circlePx / 2f).roundToInt()
+                            )
+                        }
+                ) {
+                    CircleItem(
+                        size = circleDp,
+                        itemType = ItemType.PLAYER_CIRCLE,
+                        bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
+                        centerIcon = fabled?.role?.iconRes,
+                        onClick = { onFabledClick(fabled) },
+                    )
                 }
             }
         }

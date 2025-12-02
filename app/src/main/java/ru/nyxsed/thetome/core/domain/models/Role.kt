@@ -23,5 +23,6 @@ enum class RoleType {
     OUTSIDER,
     MINION,
     DEMON,
-    TRAVELLER
+    TRAVELLER,
+    FABLED,
 }

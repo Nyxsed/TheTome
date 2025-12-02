@@ -1,6 +1,8 @@
 package ru.nyxsed.thetome.core.data
 
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.data.TokenProvider.AngelProtected
+import ru.nyxsed.thetome.core.data.TokenProvider.AngelSomethingBad
 import ru.nyxsed.thetome.core.data.TokenProvider.ArtistNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.AssassinNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.BalloonistKnow
@@ -1027,6 +1029,16 @@ object RoleProvider {
         tokens = listOf(GnomeAmigo)
     )
 
+    // Fabled
+    val Angel = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_angel,
+        ability = R.string.role_ability_angel,
+        iconRes = R.drawable.icon_angel,
+        prepareActionId = R.string.action_prepare_angel,
+        tokens = listOf(AngelProtected, AngelSomethingBad)
+    )
+
 
     val allTravelers = listOf(
         Scapegoat,
@@ -1047,5 +1059,9 @@ object RoleProvider {
         Cacklejack,
         Gangster,
         Gnome,
+    )
+
+    val allFables = listOf(
+        Angel,
     )
 }

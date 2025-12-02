@@ -13,6 +13,7 @@ data class GameState(
     val chosenRoles: List<Role>? = emptyList(),
     val demonBluffs: List<Role?> = emptyList(),
     val roleDistribution: Map<RoleType, Int>? = emptyMap(),
+    val fabled: Player? = null,
     val currentPhase: GamePhase = GamePhase.PREPARE,
     val actionIndex: Int = 0,
     val currentAction: Action? = null,

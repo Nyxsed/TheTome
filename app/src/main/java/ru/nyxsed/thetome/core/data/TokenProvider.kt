@@ -165,5 +165,7 @@ object TokenProvider {
 
     val GnomeAmigo = Token(nameResId = R.string.token_amigo, iconRes = R.drawable.icon_gnome)
 
+    val AngelProtected = Token(nameResId = R.string.token_protected, iconRes = R.drawable.icon_angel)
+    val AngelSomethingBad = Token(nameResId = R.string.token_something_bad, iconRes = R.drawable.icon_angel)
 
 }

@@ -27,6 +27,7 @@
     <string name="text_minion">Minion</string>
     <string name="text_demon">Demon</string>
     <string name="text_traveller">Traveller</string>
+    <string name="text_fabled">Fabled</string>
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
     <string name="text_notes">Notes</string>
@@ -111,6 +112,8 @@
     <string name="token_nominate_good">nominate good</string>
     <string name="token_not_me">not me</string>
     <string name="token_amigo">amigo</string>
+    <string name="token_protected">protected</string>
+    <string name="token_something_bad">something bad</string>
 
     <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
@@ -547,5 +550,9 @@
 
     <string name="role_name_gnome">Gnome</string>
     <string name="role_ability_gnome">All players start knowing a player of your alignment. You may choose to kill anyone who nominates them</string>
+
+    <string name="role_name_angel">Angel</string>
+    <string name="role_ability_angel">Something bad might happen to whoever is most responsible for the death of a new player</string>
+    <string name="action_prepare_angel">declare that the Angel is in play. Declare which player or players it is protecting, with their consent. Add the Angel token and their reminders to the Grimoire, and mark each protected player with a PROTECTED reminder. If a player marked PROTECTED dies, something bad happens to the player responsible for the death. You may need to mark their character token with the SOMETHING BAD reminder</string>
 
 </resources>
