@@ -31,9 +31,10 @@ import kotlin.math.sin
 
 @Composable
 fun PlayersWheel(
-    players: List<Player>,
-    fabled: Player?,
     modifier: Modifier = Modifier,
+    players: List<Player>,
+    fabledEnabled: Boolean,
+    fabled: Player?,
     minCircleSize: Dp = 60.dp,
     maxCircleSize: Dp = 100.dp,
     minTokenSize: Dp = 20.dp,
@@ -230,22 +231,52 @@ fun PlayersWheel(
                 }
 
                 // fabled
-                Box(
-                    modifier = Modifier
-                        .offset {
-                            IntOffset(
-                                (cx - circlePx / 2f).roundToInt(),
-                                (cy - circlePx / 2f).roundToInt()
-                            )
+                if (fabledEnabled) {
+                    Box(
+                        modifier = Modifier
+                            .offset {
+                                IntOffset(
+                                    (cx - circlePx / 2f).roundToInt(),
+                                    (cy - circlePx / 2f).roundToInt()
+                                )
+                            }
+                    ) {
+                        CircleItem(
+                            size = circleDp,
+                            itemType = ItemType.PLAYER_CIRCLE,
+                            bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
+                            centerIcon = fabled?.role?.iconRes,
+                            onClick = { onFabledClick(fabled) },
+                        )
+
+                        val tokens = fabled?.tokens
+                        if (tokens?.isNotEmpty() == true) {
+                            val inset = tokenPx * 0.3f
+                            val tokenRadius = (circlePx + tokenPx) / 2f - inset
+                            tokens.forEachIndexed { ti, token ->
+                                val a = 2 * Math.PI / tokens.size * ti
+                                val tx = circlePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
+                                val ty = circlePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
+
+                                Box(
+                                    modifier = Modifier.offset { IntOffset(tx.roundToInt(), ty.roundToInt()) }
+                                ) {
+                                    CircleItem(
+                                        size = tokenDp,
+                                        itemType = ItemType.TOKEN_CIRCLE,
+                                        bottomText = stringResource(token.nameResId),
+                                        centerIcon = token.iconRes,
+                                        onClick = null,
+                                        onLongClick = {
+                                            onTokenLongClick(fabled, ti)
+                                        },
+                                        isEnabled = true,
+                                        haveGhostVote = false
+                                    )
+                                }
+                            }
                         }
-                ) {
-                    CircleItem(
-                        size = circleDp,
-                        itemType = ItemType.PLAYER_CIRCLE,
-                        bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
-                        centerIcon = fabled?.role?.iconRes,
-                        onClick = { onFabledClick(fabled) },
-                    )
+                    }
                 }
             }
         }

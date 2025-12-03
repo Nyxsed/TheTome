@@ -2,6 +2,7 @@ package ru.nyxsed.thetome.features.game.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
@@ -22,6 +23,8 @@ fun TopButtonsRow(
     modifier: Modifier = Modifier,
     menuItems: List<CardsMenuItem> = emptyList(),
     sceneryRoles: List<Role>?,
+    fabledEnabled: Boolean,
+    onFabledClicked: () -> Unit,
     onEditClicked: () -> Unit,
     onMemoClicked: () -> Unit,
     onShareClicked: () -> Unit,
@@ -38,6 +41,22 @@ fun TopButtonsRow(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        SmallRoundIconButton(
+            onClick = {
+                onFabledClicked()
+            },
+            isChecked = fabledEnabled,
+            icon = {
+                Icon(
+                    contentDescription = "Fabled",
+                    imageVector = Icons.Default.AccountCircle,
+                    tint = Color.White
+                )
+            }
+        )
+
+
+        Spacer(modifier = Modifier.width(12.dp))
         SmallRoundIconButton(
             onClick = {
                 isMenuExpanded = true

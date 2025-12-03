@@ -168,4 +168,16 @@ object TokenProvider {
     val AngelProtected = Token(nameResId = R.string.token_protected, iconRes = R.drawable.icon_angel)
     val AngelSomethingBad = Token(nameResId = R.string.token_something_bad, iconRes = R.drawable.icon_angel)
 
+    val HellsLibrarianSomethingBad = Token(nameResId = R.string.token_something_bad, iconRes = R.drawable.icon_hellslibrarian)
+
+    val ToymakerNoAttack = Token(nameResId = R.string.token_no_attack, iconRes = R.drawable.icon_toymaker)
+
+    val DuchessVisitor = Token(nameResId = R.string.token_visitor, iconRes = R.drawable.icon_duchess)
+    val DuchessFalseInfo = Token(nameResId = R.string.token_false_info, iconRes = R.drawable.icon_duchess)
+
+    val FibbinNoAbility = Token(nameResId = R.string.token_no_ability, iconRes = R.drawable.icon_fibbin)
+
+    val SpiritOfIvoryNoMoreEvil = Token(nameResId = R.string.token_no_more_evil, iconRes = R.drawable.icon_spiritofivory)
+
+    val DeusExFiascoWhoopsie = Token(nameResId = R.string.token_whoopsie, iconRes = R.drawable.icon_deusexfiasco)
 }

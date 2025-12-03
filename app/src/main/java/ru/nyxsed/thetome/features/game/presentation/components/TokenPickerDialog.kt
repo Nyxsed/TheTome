@@ -17,29 +17,33 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.Token
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun TokenPickerDialog(
     target: Player?,
     chosenRoles: List<Role>?,
     players: List<Player>?,
+    fabled: Player?,
     sceneryTokens: List<Token>,
     onPickToken: (Token) -> Unit,
     onDismiss: () -> Unit,
 ) {
     if (target == null) return
 
-    val availableTokens = remember(chosenRoles, players) {
+    val availableTokens = remember(chosenRoles, players, fabled) {
 
         val chosenRolesTokens = chosenRoles?.flatMap { it.tokens } ?: emptyList()
+        val fabledTokens = fabled?.role?.tokens ?: emptyList()
 
-        val assignedCounts: Map<Token, Int> = players
-            ?.flatMap { it.tokens }
-            ?.groupingBy { it }
-            ?.eachCount()
-            ?: emptyMap()
+
+        val assignedCounts: Map<Token, Int> =
+            (players.orEmpty() + listOfNotNull(fabled))
+            .flatMap { it.tokens }
+            .groupingBy { it }
+            .eachCount()
 
         val remainingRoleTokens: List<Token> =
-            chosenRolesTokens
+            (chosenRolesTokens + fabledTokens)
                 .groupingBy { it }
                 .eachCount()
                 .flatMap { (token, totalCount) ->

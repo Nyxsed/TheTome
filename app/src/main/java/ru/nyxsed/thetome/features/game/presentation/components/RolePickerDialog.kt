@@ -18,6 +18,7 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RolePickerDialog(
     availableRoles: List<Role>? = emptyList(),

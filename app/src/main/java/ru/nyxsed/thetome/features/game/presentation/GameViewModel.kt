@@ -1,7 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +13,6 @@ import ru.nyxsed.thetome.core.domain.usecase.GenerateQrUseCase
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -35,7 +33,7 @@ class GameViewModel @Inject constructor(
                     val current = actions.getOrNull(game.actionIndex)
                     _state.update { it.copy(currentAction = current) }
 
-                    val fabled = if (_state.value.fabled == null) Player(id = 0, name = null, role = null) else _state.value.fabled
+                    val fabled = if (_state.value.fabled == null) Player(id = 666, name = null, role = null) else _state.value.fabled
                     _state.update { it.copy(fabled = fabled) }
                 }
             }
@@ -50,26 +48,62 @@ class GameViewModel @Inject constructor(
     }
 
 
-    fun deleteToken(player: Player, tokeIndex: Int) {
-        val newTokens = player.tokens.toMutableList().also { it.removeAt(tokeIndex) }
+    fun deleteToken(player: Player, tokenIndex: Int) {
+        val newTokens = player.tokens.toMutableList().also { it.removeAt(tokenIndex) }
+
         _state.update { currentState ->
+
+            // обновляем игроков
             val updatedPlayers = currentState.players?.map { currentPlayer ->
-                if (currentPlayer == player) currentPlayer.copy(tokens = newTokens) else currentPlayer
+                if (currentPlayer == player)
+                    currentPlayer.copy(tokens = newTokens)
+                else
+                    currentPlayer
             }
-            currentState.copy(players = updatedPlayers)
+
+            // обновляем fabled, если это тот же игрок
+            val updatedFabled =
+                if (player == currentState.fabled)
+                    currentState.fabled.copy(tokens = newTokens)
+                else
+                    currentState.fabled
+
+            currentState.copy(
+                players = updatedPlayers,
+                fabled = updatedFabled
+            )
         }
+
         saveGameState()
     }
 
 
     fun addToken(player: Player, token: Token) {
         val newTokens = player.tokens.toMutableList().also { it.add(token) }
+
         _state.update { currentState ->
+
+            // обновляем игроков
             val updatedPlayers = currentState.players?.map { currentPlayer ->
-                if (currentPlayer == player) currentPlayer.copy(tokens = newTokens) else currentPlayer
+                if (currentPlayer == player)
+                    currentPlayer.copy(tokens = newTokens)
+                else
+                    currentPlayer
             }
-            currentState.copy(players = updatedPlayers)
+
+            // обновляем fabled, если это тот же player
+            val updatedFabled =
+                if (player == currentState.fabled)
+                    currentState.fabled.copy(tokens = newTokens)
+                else
+                    currentState.fabled
+
+            currentState.copy(
+                players = updatedPlayers,
+                fabled = updatedFabled
+            )
         }
+
         saveGameState()
     }
 

@@ -35,11 +35,17 @@ fun GameScreen(
         onDoublePressed = onDoublePressBack
     )
     val context = LocalContext.current
-    LaunchedEffect(state.scenery) {
+    LaunchedEffect(state.scenery, state.fabled) {
         state.scenery?.let {
             val baseUrl = context.getString(R.string.url_pocket_grimoire)
             val sceneryName = state.scenery?.let { context.getString(it.sceneryNameRes) }
-            val roles = state.scenery?.roles?.joinToString(separator = ",") { role -> context.getString(role.roleName) }
+
+            val allRoles = buildList {
+                state.scenery?.roles?.let { addAll(it) }
+                state.fabled?.role?.let { add(it) }
+            }
+
+            val roles = allRoles.joinToString(separator = ",") { role -> context.getString(role.roleName) }
             val finalLink = "${baseUrl}characters=$roles&name=$sceneryName".replace(" ", "")
             qrBitmap = viewModel.generateQr(finalLink)
         }
@@ -120,6 +126,8 @@ fun GameContent(
     var isShareDialogRaised by remember { mutableStateOf(false) }
     var isAddPlayerDialogRaised by remember { mutableStateOf(false) }
 
+    var isFabledEnabled by remember { mutableStateOf(false) }
+
     var targetDeletePlayer by remember { mutableStateOf<Player?>(null) }
     var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
     var targetFabledPlayer by remember { mutableStateOf<Player?>(null) }
@@ -137,6 +145,10 @@ fun GameContent(
     ) {
         TopButtonsRow(
             sceneryRoles = state.scenery?.roles,
+            fabledEnabled = isFabledEnabled,
+            onFabledClicked = {
+                isFabledEnabled = !isFabledEnabled
+            },
             onEditClicked = {
                 isEditDialogRaised = true
             },
@@ -184,6 +196,7 @@ fun GameContent(
         if (!state.players.isNullOrEmpty()) {
             PlayersWheel(
                 players = state.players,
+                fabledEnabled = isFabledEnabled,
                 fabled = state.fabled,
                 onClick = { player ->
                     targetEditPlayer = player
@@ -278,6 +291,10 @@ fun GameContent(
                 onShowCardClicked = { role ->
                     onCard(role.ability, listOf(role))
                 },
+                onChooseTokenClicked = {
+                    targetTokenPlayer = it
+                    targetFabledPlayer = null
+                }
             )
         }
 
@@ -370,6 +387,7 @@ fun GameContent(
                 target = targetTokenPlayer,
                 chosenRoles = state.chosenRoles,
                 players = state.players,
+                fabled = state.fabled,
                 sceneryTokens = state.scenery?.sceneryTokens!!,
                 onPickToken = { token ->
                     targetTokenPlayer?.let {

@@ -30,6 +30,7 @@ fun EditFabledDialog(
     onDismissRequest: () -> Unit,
     onShowRolePicker: (Player) -> Unit,
     onShowCardClicked: (Role) -> Unit,
+    onChooseTokenClicked: (Player) -> Unit,
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
         Box(
@@ -61,6 +62,15 @@ fun EditFabledDialog(
                     onClick = { onShowRolePicker(player) }
                 ) {
                     Text(stringResource(R.string.text_change_role))
+                }
+
+                Spacer(Modifier.height(8.dp))
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = { onChooseTokenClicked(player) }
+                ) {
+                    Text(stringResource(R.string.text_choose_token))
                 }
 
                 if (role != null) {

@@ -13,7 +13,7 @@
     <string name="text_cancel">Cancel</string>
     <string name="text_start_game">Start Game</string>
     <string name="text_player_count">Player count: %1$d</string>
-    <string name="text_scenery">"Scenery: "</string>
+    <string name="text_scenery">Scenery: </string>
     <string name="text_choose_scenery">Choose Scenery</string>
     <string name="text_players">Players: %1$d / %2$d</string>
     <string name="text_no_role">No Role</string>
@@ -50,7 +50,7 @@
     <string name="action_voting">Wait 3–5 minutes and start voting process</string>
     <string name="action_start_day_phase">Start the Day Phase</string>
     <string name="action_show_demon">Wake all minions, show THIS IS THE DEMON card point to the Demon</string>
-    <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. show prepared bluffs</string>
+    <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. Show prepared bluffs</string>
 
     <string name="menu_demon">This is the Demon</string>
     <string name="menu_minions">These are your Minions</string>
@@ -114,6 +114,11 @@
     <string name="token_amigo">amigo</string>
     <string name="token_protected">protected</string>
     <string name="token_something_bad">something bad</string>
+    <string name="token_no_attack">no attack</string>
+    <string name="token_visitor">visitor</string>
+    <string name="token_false_info">false info</string>
+    <string name="token_no_more_evil">no more evil</string>
+    <string name="token_whoopsie">whoopsie</string>
 
     <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
@@ -133,7 +138,7 @@
 
     <string name="role_name_spy">Spy</string>
     <string name="role_ability_spy">Each night, you see the Grimoire. You might register as good - as a Townsfolk or Outsider, even if dead</string>
-    <string name="action_second_spy">Wake the Spy and show them the Grimoire for as long as they need</string>
+    <string name="action_second_night_spy">Wake the Spy and show them the Grimoire for as long as they need</string>
 
     <string name="role_name_washerwoman">Washerwoman</string>
     <string name="role_ability_washerwoman">You start knowing that 1 of 2 players is a particular Townsfolk</string>
@@ -174,7 +179,7 @@
 
     <string name="role_name_scarlet_woman">Scarlet Woman</string>
     <string name="role_ability_scarlet_woman">If there are 5 or more players alive and the Demon dies, you become the Demon</string>
-    <string name="action_second_night_scarlet_woman">If the Demon dies and there were five or more alive players immediately before the Demon died, replace the Scarlet Woman token with a spare Demon token. show them the YOU ARE info token</string>
+    <string name="action_second_night_scarlet_woman">If the Demon dies and there were five or more alive players immediately before the Demon died, replace the Scarlet Woman token with a spare Demon token. Show them the YOU ARE info token</string>
 
     <string name="role_name_ravenkeeper">Ravenkeeper</string>
     <string name="role_ability_ravenkeeper">If you die at night, you are woken to choose a player: you learn their character</string>
@@ -202,7 +207,7 @@
 
     <string name="role_name_recluse">Recluse</string>
     <string name="role_ability_recluse">You might register as evil and as a Minion or Demon, even if dead</string>
-    <string name="action_prepare_recluse">You can mark Recluse with Evil token for remind you its looks like evil</string>
+    <string name="action_prepare_recluse">You can mark the Recluse with an EVIL token to remind you they look evil</string>
 
     <string name="role_name_baron">Baron</string>
     <string name="role_ability_baron">There are extra Outsiders in play(+2)</string>
@@ -210,7 +215,7 @@
 
     <string name="role_name_drunk">Drunk</string>
     <string name="role_ability_Drunk">You do not know you are the Drunk. You think you are a Townsfolk character, but you are not</string>
-    <string name="action_prepare_Drunk">Add some Townsfolk role and do not place Drunk to a bag. After setting up mark some Townsfolk as Drunk</string>
+    <string name="action_prepare_Drunk">Add a Townsfolk role and do not place the Drunk into the bag</string>
 
     <string name="role_name_clockmaker">Clockmaker</string>
     <string name="role_ability_clockmaker">You start knowing how many steps from the Demon to its nearest Minion</string>
@@ -240,7 +245,7 @@
 
     <string name="role_name_seamstress">Seamstress</string>
     <string name="role_ability_seamstress">Once per game, at night, choose 2 players (not yourself): you learn if they are the same alignment</string>
-    <string name="action_second_night_seamstress">Wake the Seamstress. They either shake their head no or point at any two players except themself. f they point at two players, either nod your head yes (to indicate these players have the same alignment) or shake your head no (to indicate these players do not have the same alignment). mark seamstress with the NO ABILITY</string>
+    <string name="action_second_night_seamstress">Wake the Seamstress. They either shake their head no or point at any two players except themself. If they point at two players, either nod your head yes (to indicate these players have the same alignment) or shake your head no (to indicate these players do not have the same alignment). mark seamstress with the NO ABILITY</string>
 
     <string name="role_name_lunatic">Lunatic</string>
     <string name="role_ability_lunatic">You think you are a Demon, but you are not. The Demon knows who you are and who you choose at night</string>
@@ -255,7 +260,7 @@
 
     <string name="role_name_sweetheart">Sweetheart</string>
     <string name="role_ability_sweetheart">When you die, 1 player is drunk from now on</string>
-    <string name="action_day_sweethearth">If the Sweetheart dies, you choose any one player to become drunk - mark this player with the DRUNK reminder. The Sweetheart does not lose this ability when dead</string>
+    <string name="action_day_sweetheart">If the Sweetheart dies, you choose any one player to become drunk - mark this player with the DRUNK reminder. The Sweetheart does not lose this ability when dead</string>
 
     <string name="role_name_godfather">Godfather</string>
     <string name="role_ability_godfather">You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [-1 or +1 Outsider]</string>
@@ -266,7 +271,7 @@
 
     <string name="role_name_assassin">Assassin</string>
     <string name="role_ability_assassin">Once per game, at night*, choose a player: they die, even if for some reason they could not</string>
-    <string name="action_second_night_assassin">Wake the Godfather. Show them the character tokens of all Outsiders in play</string>
+    <string name="action_second_night_assassin">wake the Assassin. They either shake their head no or point at any player</string>
 
     <string name="role_name_marionette">Marionette</string>
     <string name="role_ability_marionette">You think you are a good character, but you are not. The Demon knows who you are. [You neighbor the Demon]</string>
@@ -372,15 +377,15 @@
     <string name="action_second_night_dreamer">Wake the Dreamer. They point at any player. Show their character token and any other team affiliation token</string>
     
     <string name="role_name_snake_charmer">Snake Charmer</string>
-    <string name="role_ability_snake_charmer">Each night, choose an alive player: if its the Demon, you swap characters and alignments and they become poisoned.</string>
+    <string name="role_ability_snake_charmer">Each night, choose an alive player: if its the Demon, you swap characters and alignments and they become poisoned</string>
     <string name="action_second_night_snake_charmer">Wake the Snake Charmer. They point at any player. If that player is not the Demon, nothing happens. If that player is the Demon, swap their roles and POISON old demon player. Show YOU ARE cards for both players accordingly</string>
     
     <string name="role_name_mathematician">Mathematician</string>
-    <string name="role_ability_mathematician">Each night, you learn how many abilities worked abnormally since dawn due to another ability.</string>
-    <string name="action_second_night_mathematician">Wake the Mathematician. Show fingers (0, 1, 2, etc.) equaling the number of characters with ABNORMAL reminders.</string>
+    <string name="role_ability_mathematician">Each night, you learn how many abilities worked abnormally since dawn due to another ability</string>
+    <string name="action_second_night_mathematician">Wake the Mathematician. Show fingers (0, 1, 2, etc.) equaling the number of characters with ABNORMAL reminders</string>
     
     <string name="role_name_town_crier">Town Crier</string>
-    <string name="role_ability_town_crier">Each night* you learn if a Minion nominated today.</string>
+    <string name="role_ability_town_crier">Each night* you learn if a Minion nominated today</string>
     <string name="action_second_night_town_crier">Wake the Town Crier. If the Town Crier is marked MINION NOMINATED, nod your head Yes. Else - no</string>
     <string name="action_day_town_crier">if any Minion makes a nomination, put MINION NOMINATED reminder</string>
     
@@ -388,48 +393,48 @@
     <string name="role_ability_savant">Each day, you privately learn two statements: one true and one false</string>
     
     <string name="role_name_philosopher">Philosopher</string>
-    <string name="role_ability_philosopher">Once per game at night, choose a good character: you gain their ability. If they are in play, they become drunk.</string>
+    <string name="role_ability_philosopher">Once per game at night, choose a good character: you gain their ability. If they are in play, they become drunk</string>
     <string name="action_second_night_philosopher">Wake the Philosopher. They either shake their head no or point at any Townsfolk icon or any Outsider icon on their character sheet</string>
     
     <string name="role_name_juggler">Juggler</string>
-    <string name="role_ability_juggler">On your first day, publicly guess up to 5 players characters; that night you learn how many were correct.</string>
+    <string name="role_ability_juggler">On your first day, publicly guess up to 5 players characters; that night you learn how many were correct</string>
     <string name="action_second_night_juggler">Wake the Juggler. Show them fingers (0, 1, 2, etc.) equaling the number of CORRECT reminders</string>
     <string name="action_day_juggler">If the Juggler declares that they are using their ability, up to 5 guesses, put CORRECT reminder for each correct guess</string>
     
     <string name="role_name_sage">Sage</string>
-    <string name="role_ability_sage">If the Demon kills you, you learn that the Demon is one of two players.</string>
-    <string name="action_second_night_sage">If Demon killed Sage, wake the Sage. Point at two players, one who is the Demon that killed the Sage</string>
+    <string name="role_ability_sage">If the Demon kills you, you learn that the Demon is one of two players</string>
+    <string name="action_second_night_sage">If Demon killed Sage, wake the Sage. Point at two players, one of whom is the Demon that killed the Sage</string>
     
     <string name="role_name_barber">Barber</string>
-    <string name="role_ability_barber">If you die today or tonight, the Demon may choose 2 players (not another Demon) to swap characters.</string>
+    <string name="role_ability_barber">If you die today or tonight, the Demon may choose 2 players (not another Demon) to swap characters</string>
     <string name="action_second_night_barber">If the Barber dies, mark them with the HAIRCUTS reminder. During that night, wake the Demon. Show them the THIS CHARACTER SELECTED YOU info token, then the Barber token. The Demon either shakes their head no or points to two players. If the Demon pointed to two players, swap the character tokens of the chosen players. One at a time, wake each swapped player, show them the YOU ARE info token</string>
     <string name="action_day_barber">If the Barber dies, mark them with the HAIRCUTS TONIGHT reminder</string>
     
     <string name="role_name_klutz">Klutz</string>
-    <string name="role_ability_klutz">When you learn that you died, publicly choose an alive player: if they are evil, good loses.</string>
+    <string name="role_ability_klutz">When you learn that you died, publicly choose an alive player: if they are evil, good loses</string>
 
     <string name="role_name_evil_twin">Evil Twin</string>
-    <string name="role_ability_evil_twin">You and an opposing player know each other. If the good twin dies, evil wins; good cannot win while both live.</string>
+    <string name="role_ability_evil_twin">You and an opposing player know each other. If the good twin dies, evil wins; good cannot win while both live</string>
     <string name="action_prepare_evil_twin">Choose a Good Twin by marking any good character with the TWIN reminder</string>
     <string name="action_first_night_evil_twin">Wake both Twins. Let them make eye contact. Point at the Evil Twin, then show the Evil Twin token to the Good Twin. Point at the Good Twin, then show the Good Twin’s character token to the Evil Twin</string>
     
     <string name="role_name_witch">Witch</string>
-    <string name="role_ability_witch">Each night, choose a player: if they nominate tomorrow, they die (unless only 3 players live).</string>
+    <string name="role_ability_witch">Each night, choose a player: if they nominate tomorrow, they die (unless only 3 players live)</string>
     <string name="action_second_night_witch">Wake the Witch. They point at any player. Put the Witch to sleep. Mark the chosen player with the CURSED reminder</string>
-    <string name="action_day_witch">If player with CURSED reminder make a nominee, he die immediately</string>
+    <string name="action_day_witch">If player with CURSED reminder makes a nominee, he die immediately</string>
     
     <string name="role_name_cerenovus">Cerenovus</string>
-    <string name="role_ability_cerenovus">Each night, choose a player and a good character: that player is “mad” about being that character tomorrow.</string>
+    <string name="role_ability_cerenovus">Each night, choose a player and a good character: that player is “mad” about being that character tomorrow</string>
     <string name="action_second_night_cerenovus">Wake the Cerenovus. They point at any player and at any Townsfolk or Outsider icon on their character sheet.  Mark the chosen player with the MAD reminder. Wake this player, show them the THIS CHARACTER SELECTED YOU info token, then the Cerenovus token and chosen role</string>
     
     <string name="role_name_pit_hag">Pit Hag</string>
-    <string name="role_ability_pit_hag">Each night*, choose a player and a character: they become that character. If you create a Demon, deaths tonight are arbitrary.</string>
-    <string name="action_second_night_pit_hag">wake the Pit-Hag. They point at any player and any character icon on their character sheet. Put the Pit-Hag to sleep. If the chosen character is in play, nothing happens. If the chosen character is not in play, wake the chosen player. Show them the YOU ARE info token, then their new character token</string>
+    <string name="role_ability_pit_hag">Each night*, choose a player and a character: they become that character. If you create a Demon, deaths tonight are arbitrary</string>
+    <string name="action_second_night_pit_hag">wake the Pit Hag. They point at any player and any character icon on their character sheet. Put the Pit-Hag to sleep. If the chosen character is in play, nothing happens. If the chosen character is not in play, wake the chosen player. Show them the YOU ARE info token, then their new character token</string>
     
     <string name="role_name_fang_gu">Fang Gu</string>
     <string name="role_ability_fang_gu">Each night*, choose a player: they die. The first Outsider this kills becomes Fang Gu and you die instead. (+1 Outsider)</string>
     <string name="action_prepare_fang_gu">Return to Settings screen and add one extra Outsider character token and remove one Townsfolk character token</string>
-    <string name="action_second_night_fang_gu">wake the Fang Gu. They point at any player. If the chosen player is not an Outsider, that player dies—mark them with the DEAD reminder. If the chosen player is an Outsider and this is not the first time in game, that player dies—mark them with the DEAD reminder, else kill Fang Gu and replace outsider with Fang Gu</string>
+    <string name="action_second_night_fang_gu">Wake the Fang Gu. They point at any player. If the chosen player is not an Outsider, that player dies—mark them with the DEAD reminder. If the chosen player is an Outsider and this is not the first time in game, that player dies—mark them with the DEAD reminder, otherwise, kill the Fang Gu and replace the Outsider with the Fang Gu</string>
 
     
     <string name="role_name_vigormortis">Vigormortis</string>
@@ -438,10 +443,10 @@
     <string name="action_second_night_vigormortis">Wake the Vigormortis. They point at any player. If the chosen player isn’t a Minion, that player dies - mark them with a DEAD reminder. If the chosen player is a Minion, that player dies - mark them with a DEAD reminder and a HAS ABILITY reminder. The closest clockwise or closest counterclockwise Townsfolk to the Minion becomes poisoned</string>
     
     <string name="role_name_vortox">Vortox</string>
-    <string name="role_ability_vortox">Each night*, choose a player: they die. All Townsfolk info is false. If no execution occurs, evil wins.</string>
-    <string name="action_prepare_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information.</string>
+    <string name="role_ability_vortox">Each night*, choose a player: they die. All Townsfolk info is false. If no execution occurs, evil wins</string>
+    <string name="action_prepare_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information</string>
     <string name="action_second_night_vortox">Wake the Vortox. They point at any player. That player dies - mark them with the DEAD reminder</string>
-    <string name="action_day_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information.</string>
+    <string name="action_day_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information</string>
 
     <string name="role_name_pixie">Pixie</string>
     <string name="role_ability_pixie">You start knowing 1 in-play Townsfolk. If you were mad that you were this character, you gain their ability when they die</string>
@@ -463,7 +468,7 @@
 
     <string name="role_name_amnesiac">Amnesiac</string>
     <string name="role_ability_amnesiac">You do not know what your ability is. Each day, privately guess what it is: you learn how accurate you are</string>
-    <string name="action_prepare_amnesiac">Decide what ability the Amnesiac player has. Make Note</string>
+    <string name="action_prepare_amnesiac">Decide what ability the Amnesiac player has. Make a note</string>
     <string name="action_second_night_amnesiac">Wake Amnesiac if needed</string>
 
     <string name="role_name_cannibal">Cannibal</string>
@@ -474,7 +479,7 @@
     <string name="role_name_widow">Widow</string>
     <string name="role_ability_widow">On your 1st night, look at the Grimoire and choose a player: they are poisoned. 1 good player knows a Widow is in play</string>
     <string name="action_prepare_widow">Mark a good player with the KNOW reminder</string>
-    <string name="action_first_night_widow">Wake the Widow and show them the Grimoire for as long as they need. The Widow points to a character token in the Grimoire. Mark them with a POISONED reminder. Wake the player marked KNOW. Show them the Widow character token</string>
+    <string name="action_first_night_widow">Wake the Widow and show them the Grimoire as long as needed. The Widow points to a character token in the Grimoire. Mark them with a POISONED reminder. Wake the player marked KNOW. Show them the Widow character token</string>
 
     <string name="role_name_goblin">Goblin</string>
     <string name="role_ability_goblin">If you publicly claim to be the Goblin when nominated and are executed that day, your team wins</string>
@@ -482,7 +487,7 @@
 
     <string name="role_name_leviathan">Leviathan</string>
     <string name="role_ability_leviathan">If more than 1 good player is executed, evil wins. All players know you are in play. After day 5, evil wins</string>
-    <string name="action_day_leviathan">Mark the Leviathan with the DAY X reminder, there X is day counter</string>
+    <string name="action_day_leviathan">Mark the Leviathan with the DAY X reminder, where X is day counter</string>
 
     <string name="role_name_scapegoat">Scapegoat</string>
     <string name="role_ability_scapegoat">If a player of your alignment is executed, you might be executed instead</string>
@@ -511,11 +516,11 @@
 
     <string name="role_name_bone_collector">Bone Collector</string>
     <string name="role_ability_bone_collector">Once per game, at night*: choose a dead player — they regain their ability until dusk</string>
-    <string name="action_second_night_bone_collector">Wake the Bone Collector. They either shake their head no or point at any dead player. Put the Bone Collector to sleep. f they pointed at a dead player, the chosen player regains their ability—mark their character token with the Bone Collector’s HAS ABILITY reminder. (They may need to be woken tonight to use their ability.) The Bone Collector loses their ability—mark them with their NO ABILITY reminder. The next dusk, the chosen player loses their ability—remove the HAS ABILITY reminder</string>
+    <string name="action_second_night_bone_collector">Wake the Bone Collector. They either shake their head no or point at any dead player. Put the Bone Collector to sleep. If they pointed at a dead player, the chosen player regains their ability—mark their character token with the Bone Collector’s HAS ABILITY reminder. (They may need to be woken tonight to use their ability.) The Bone Collector loses their ability—mark them with their NO ABILITY reminder. The next dusk, the chosen player loses their ability—remove the HAS ABILITY reminder</string>
 
     <string name="role_name_harlot">Harlot</string>
     <string name="role_ability_harlot">Each night*, choose a living player: if they agree, you learn their character, but you both might die</string>
-    <string name="action_second_night_harlot">wake the Harlot. The Harlot points at any player. Put the Harlot to sleep. Wake the chosen player, show them the THIS CHARACTER SELECTED YOU info token, then the Harlot token. That player either nods their head yes or shakes their head no. If they nodded their head yes, wake the Harlot and show them the chosen player’s character token. Put the Harlot to sleep. You may decide that both players die</string>
+    <string name="action_second_night_harlot">Wake the Harlot. The Harlot points at any player. Put the Harlot to sleep. Wake the chosen player, show them the THIS CHARACTER SELECTED YOU info token, then the Harlot token. That player either nods their head yes or shakes their head no. If they nodded their head yes, wake the Harlot and show them the chosen player’s character token. Put the Harlot to sleep. You may decide that both players die</string>
 
     <string name="role_name_barista">Barista</string>
     <string name="role_ability_barista">Each night, until dusk, 1) a player becomes sober, healthy gets true info, or 2) their ability works twice. They learn which</string>
@@ -543,7 +548,7 @@
     <string name="role_name_cacklejack">Cacklejack</string>
     <string name="role_ability_cacklejack">Each day, choose a player: a different player changes character tonight</string>
     <string name="action_second_night_cacklejack">replace any player’s character token with a different character token without NOT ME reminder. Wake that player. Show the YOU ARE info token, and their new character token</string>
-    <string name="action_day_caclejack">Еvery day Cacklejack pick a player. put NOT ME reminder to this player</string>
+    <string name="action_day_cacklejack">Every day Cacklejack pick a player. put the NOT ME reminder to this player</string>
 
     <string name="role_name_gangster">Gangster</string>
     <string name="role_ability_gangster">Once per day, you may choose to kill an alive neighbor, if your other alive neighbor agrees</string>
@@ -553,6 +558,57 @@
 
     <string name="role_name_angel">Angel</string>
     <string name="role_ability_angel">Something bad might happen to whoever is most responsible for the death of a new player</string>
-    <string name="action_prepare_angel">declare that the Angel is in play. Declare which player or players it is protecting, with their consent. Add the Angel token and their reminders to the Grimoire, and mark each protected player with a PROTECTED reminder. If a player marked PROTECTED dies, something bad happens to the player responsible for the death. You may need to mark their character token with the SOMETHING BAD reminder</string>
+    <string name="action_prepare_angel">Declare that the Angel is in play. Declare which player or players it is protecting, with their consent. Add the Angel token and their reminders to the Grimoire, and mark each protected player with a PROTECTED reminder. If a player marked PROTECTED dies, something bad happens to the player responsible for the death. You may need to mark their character token with the SOMETHING BAD reminder</string>
 
+    <string name="role_name_buddhist">Buddhist</string>
+    <string name="role_ability_buddhist">For the first 2 minutes of each day, veteran players may not talk</string>
+    <string name="action_prepare_buddhist">Declare that the Buddhist is in play</string>
+
+    <string name="role_name_doomsayer">Doomsayer</string>
+    <string name="role_ability_doomsayer">If 4 or more players live, each living player may publicly choose (once per game) that a player of their own alignment dies</string>
+    <string name="action_prepare_doomsayer">Declare that the Doomsayer is in play</string>
+
+    <string name="role_name_hells_librarian">Hells Librarian</string>
+    <string name="role_ability_hells_librarian">Something bad might happen to whoever talks when the Storyteller has asked for silence</string>
+    <string name="action_prepare_hells_librarian">Declare that the Hells Librarian is in play</string>
+
+    <string name="role_name_fiddler">Fiddler</string>
+    <string name="role_ability_fiddler">Once per game, the Demon secretly chooses an opposing player: all players choose which of these 2 players win</string>
+    <string name="action_prepare_fiddler">Declare that the Fiddler is in play</string>
+
+    <string name="role_name_revolutionary">Revolutionary</string>
+    <string name="role_ability_revolutionary">2 neighboring players are known to be the same alignment. Once per game, 1 of them registers falsely/nomination rules to produce a sudden-change win condition or to rebalance a scripted game</string>
+    <string name="action_prepare_revolutionary">Declare that the Revolutionary is in play</string>
+
+    <string name="role_name_toymaker">Toymaker</string>
+    <string name="role_ability_toymaker">The Demon may choose not to attack and must do this at least once per game. Evil players get normal starting info</string>
+    <string name="action_prepare_toymaker">Declare that the Toymaker is in play</string>
+
+    <string name="role_name_djinn">Djinn</string>
+    <string name="role_ability_djinn">Use the Djinns special rule. All players know what it is</string>
+    <string name="action_prepare_djinn">Declare that the Djinn is in play</string>
+
+    <string name="role_name_duchess">Duchess</string>
+    <string name="role_ability_duchess">Each day, 3 players may choose to visit you. At night*, each visitor learns how many visitors are evil, but 1 gets false info</string>
+    <string name="action_prepare_duchess">Declare that the Duchess is in play</string>
+    <string name="action_second_night_duchess">If exactly three players have VISITOR reminder, wake them and give appropriate information</string>
+
+    <string name="role_name_fibbin">Fibbin</string>
+    <string name="role_ability_fibbin">Once per game — 1 good player may receive incorrect info instead of correct</string>
+    <string name="action_prepare_fibbin">Declare that the Fibbin is in play</string>
+
+    <string name="role_name_sentinel">Sentinel</string>
+    <string name="role_ability_sentinel">There might be 1 extra or 1 fewer Outsider in play</string>
+    <string name="action_prepare_sentinel">Declare that the Sentinel is in play. Add or remove outsider as you wish</string>
+
+    <string name="role_name_spirit_of_ivory">Spirit of Ivory</string>
+    <string name="role_ability_spirit_of_ivory">There cant be more than 1 extra evil player</string>
+    <string name="action_prepare_spirit_of_ivory">Declare that the Spirit of Ivory is in play</string>
+
+    <string name="role_name_deus_ex_fiasco">Deus ex Fiasco</string>
+    <string name="role_ability_deus_ex_fiasco">At least once per game, the Storyteller will make a mistake, correct it, and publicly admit to it</string>
+    <string name="action_prepare_deus_ex_fiasco">Declare that the Deus ex Fiasco is in play</string>
+
+    <string name="role_name_ferryman">Ferryman</string>
+    <string name="role_ability_ferryman">On the final day, all dead players regain their vote token</string>
 </resources>

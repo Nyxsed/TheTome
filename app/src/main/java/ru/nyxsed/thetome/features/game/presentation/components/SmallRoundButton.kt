@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -14,12 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import ru.nyxsed.thetome.ui.theme.BrightPurple
 import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 
 @Composable
 fun SmallRoundIconButton(
     modifier: Modifier = Modifier,
+    isChecked: Boolean = false,
     onClick: () -> Unit,
     icon: @Composable () -> Unit,
 ) {
@@ -32,7 +33,7 @@ fun SmallRoundIconButton(
                 interactionSource = remember { MutableInteractionSource() }
             ) { onClick() },
         shape = CircleShape,
-        color = DarkPurple,
+        color = if (isChecked) BrightPurple else DarkPurple,
         tonalElevation = 2.dp,
     ) {
         Box(

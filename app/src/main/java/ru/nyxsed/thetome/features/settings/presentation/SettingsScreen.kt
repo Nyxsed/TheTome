@@ -182,6 +182,7 @@ fun SceneryDropdown(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RoleSelector(
     availableRoles: List<Role>?,

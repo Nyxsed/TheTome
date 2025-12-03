@@ -21,11 +21,15 @@ import ru.nyxsed.thetome.core.data.TokenProvider.CannibalPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.CerenovusMad
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.CourtierNoAbility
+import ru.nyxsed.thetome.core.data.TokenProvider.DeusExFiascoWhoopsie
 import ru.nyxsed.thetome.core.data.TokenProvider.DevilsAdvocateSurvivesExecution
 import ru.nyxsed.thetome.core.data.TokenProvider.DrunkDrunk
+import ru.nyxsed.thetome.core.data.TokenProvider.DuchessFalseInfo
+import ru.nyxsed.thetome.core.data.TokenProvider.DuchessVisitor
 import ru.nyxsed.thetome.core.data.TokenProvider.EvilTwinTwin
 import ru.nyxsed.thetome.core.data.TokenProvider.ExorcistChosen
 import ru.nyxsed.thetome.core.data.TokenProvider.FangGuKill
+import ru.nyxsed.thetome.core.data.TokenProvider.FibbinNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.FishermanNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlNotVoted
 import ru.nyxsed.thetome.core.data.TokenProvider.FlowergirlVoted
@@ -37,6 +41,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.GoblinClaimed
 import ru.nyxsed.thetome.core.data.TokenProvider.GodfatherDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.GossipKill
 import ru.nyxsed.thetome.core.data.TokenProvider.GrandmotherGrandchild
+import ru.nyxsed.thetome.core.data.TokenProvider.HellsLibrarianSomethingBad
 import ru.nyxsed.thetome.core.data.TokenProvider.ImpKill
 import ru.nyxsed.thetome.core.data.TokenProvider.InnkeeperDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.InnkeeperSafe
@@ -77,10 +82,12 @@ import ru.nyxsed.thetome.core.data.TokenProvider.ShabalothAlive
 import ru.nyxsed.thetome.core.data.TokenProvider.ShabalothKill
 import ru.nyxsed.thetome.core.data.TokenProvider.SlayerNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.SnakeCharmerPoison
+import ru.nyxsed.thetome.core.data.TokenProvider.SpiritOfIvoryNoMoreEvil
 import ru.nyxsed.thetome.core.data.TokenProvider.SweetheartDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.TeaLadyCannotDie
 import ru.nyxsed.thetome.core.data.TokenProvider.ThiefNegativeVote
 import ru.nyxsed.thetome.core.data.TokenProvider.TowncrierMinionNominated
+import ru.nyxsed.thetome.core.data.TokenProvider.ToymakerNoAttack
 import ru.nyxsed.thetome.core.data.TokenProvider.UndertakerDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.VigormortisHasAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.VigormortisKill
@@ -573,8 +580,8 @@ object RoleProvider {
         roleName = R.string.role_name_sweetheart,
         ability = R.string.role_ability_sweetheart,
         iconRes = R.drawable.icon_sweetheart,
-        dayActionId = R.string.action_day_sweethearth,
-        secondNightActionId = R.string.action_day_sweethearth,
+        dayActionId = R.string.action_day_sweetheart,
+        secondNightActionId = R.string.action_day_sweetheart,
         tokens = listOf(SweetheartDrunk),
     )
 
@@ -636,8 +643,8 @@ object RoleProvider {
         type = RoleType.MINION,
         roleName = R.string.role_name_spy,
         ability = R.string.role_ability_spy,
-        firstNightActionId = R.string.action_second_spy,
-        secondNightActionId = R.string.action_second_spy,
+        firstNightActionId = R.string.action_second_night_spy,
+        secondNightActionId = R.string.action_second_night_spy,
         iconRes = R.drawable.icon_spy,
     )
 
@@ -1009,7 +1016,7 @@ object RoleProvider {
         roleName = R.string.role_name_cacklejack,
         ability = R.string.role_ability_cacklejack,
         secondNightActionId = R.string.action_second_night_cacklejack,
-        dayActionId = R.string.action_day_caclejack,
+        dayActionId = R.string.action_day_cacklejack,
         iconRes = R.drawable.icon_cacklejack,
         tokens = listOf(CacklejackNotMe)
     )
@@ -1039,6 +1046,116 @@ object RoleProvider {
         tokens = listOf(AngelProtected, AngelSomethingBad)
     )
 
+    val Buddhist = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_buddhist,
+        ability = R.string.role_ability_buddhist,
+        prepareActionId = R.string.action_prepare_buddhist,
+        iconRes = R.drawable.icon_buddhist
+    )
+
+    val Doomsayer = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_doomsayer,
+        ability = R.string.role_ability_doomsayer,
+        prepareActionId = R.string.action_prepare_doomsayer,
+        iconRes = R.drawable.icon_doomsayer
+    )
+
+    val HellsLibrarian = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_hells_librarian,
+        ability = R.string.role_ability_hells_librarian,
+        prepareActionId = R.string.action_prepare_hells_librarian,
+        iconRes = R.drawable.icon_hellslibrarian,
+        tokens = listOf(HellsLibrarianSomethingBad, HellsLibrarianSomethingBad, HellsLibrarianSomethingBad)
+    )
+
+    val Fiddler = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_fiddler,
+        ability = R.string.role_ability_fiddler,
+        prepareActionId = R.string.action_prepare_fiddler,
+        iconRes = R.drawable.icon_fiddler
+    )
+
+    val Revolutionary = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_revolutionary,
+        ability = R.string.role_ability_revolutionary,
+        prepareActionId = R.string.action_prepare_revolutionary,
+        iconRes = R.drawable.icon_revolutionary
+    )
+
+    val Toymaker = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_toymaker,
+        ability = R.string.role_ability_toymaker,
+        prepareActionId = R.string.action_prepare_toymaker,
+        iconRes = R.drawable.icon_toymaker,
+        tokens = listOf(ToymakerNoAttack)
+    )
+
+    val Djinn = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_djinn,
+        ability = R.string.role_ability_djinn,
+        prepareActionId = R.string.action_prepare_djinn,
+        iconRes = R.drawable.icon_djinn
+    )
+
+    val Duchess = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_duchess,
+        ability = R.string.role_ability_duchess,
+        prepareActionId = R.string.action_prepare_duchess,
+        secondNightActionId = R.string.action_second_night_duchess,
+        iconRes = R.drawable.icon_duchess,
+        tokens = listOf(DuchessVisitor, DuchessVisitor, DuchessVisitor, DuchessFalseInfo)
+    )
+
+    val Fibbin = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_fibbin,
+        ability = R.string.role_ability_fibbin,
+        prepareActionId = R.string.action_prepare_fibbin,
+        iconRes = R.drawable.icon_fibbin,
+        tokens = listOf(FibbinNoAbility)
+    )
+
+    val Sentinel = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_sentinel,
+        ability = R.string.role_ability_sentinel,
+        prepareActionId = R.string.action_prepare_sentinel,
+        iconRes = R.drawable.icon_sentinel
+    )
+
+    val SpiritOfIvory = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_spirit_of_ivory,
+        ability = R.string.role_ability_spirit_of_ivory,
+        prepareActionId = R.string.action_prepare_spirit_of_ivory,
+        iconRes = R.drawable.icon_spiritofivory,
+        tokens = listOf(SpiritOfIvoryNoMoreEvil)
+    )
+
+    val DeusExFiasco = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_deus_ex_fiasco,
+        ability = R.string.role_ability_deus_ex_fiasco,
+        prepareActionId = R.string.action_prepare_deus_ex_fiasco,
+        iconRes = R.drawable.icon_deusexfiasco,
+        tokens = listOf(DeusExFiascoWhoopsie)
+    )
+
+    val Ferryman = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_ferryman,
+        ability = R.string.role_ability_ferryman,
+        iconRes = R.drawable.icon_ferryman
+    )
+
 
     val allTravelers = listOf(
         Scapegoat,
@@ -1063,5 +1180,18 @@ object RoleProvider {
 
     val allFables = listOf(
         Angel,
+        Buddhist,
+        Doomsayer,
+        HellsLibrarian,
+        Fiddler,
+        Revolutionary,
+        Toymaker,
+        Djinn,
+        Duchess,
+        Fibbin,
+        Sentinel,
+        SpiritOfIvory,
+        DeusExFiasco,
+        Ferryman,
     )
 }
