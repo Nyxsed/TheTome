@@ -3,6 +3,8 @@ package ru.nyxsed.thetome.features.game.presentation.components
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -113,13 +115,22 @@ fun Reminder(
                             else -> 28.sp
                         }
 
-                        Text(
-                            modifier = Modifier.padding(8.dp),
-                            text = text,
-                            textAlign = TextAlign.Center,
-                            fontSize = fontSize,
-                            lineHeight = lineHeight
-                        )
+                        val scrollState = rememberScrollState()
+
+                        Column(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .verticalScroll(scrollState),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = text,
+                                textAlign = TextAlign.Center,
+                                fontSize = fontSize,
+                                lineHeight = lineHeight
+                            )
+                        }
                     }
                 }
             }
