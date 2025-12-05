@@ -6,13 +6,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.R
 import ru.nyxsed.thetome.core.domain.models.GamePhase
 
@@ -40,8 +45,9 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
         label = "cloudOffset"
     )
 
+    val density = LocalDensity.current
+
     Box(modifier = Modifier.fillMaxSize()) {
-        // Основной фон
         Image(
             painter = backgroundPainter,
             contentDescription = null,
@@ -50,20 +56,21 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
         )
 
         if (isNight) {
-            Image(
-                painter = moon,
-                contentDescription = null,
-                modifier = Modifier.graphicsLayer {
-                    translationX = 300f
-                    translationY = -200f
-                    scaleX = 0.3f
-                    scaleY = 0.3f
-                },
-                alpha = 0.7f,
-                contentScale = ContentScale.FillWidth
-            )
+            BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = moon,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .offset(x = (-16).dp, y = 16.dp)
+                        .size(120.dp)
+                        .graphicsLayer {
+                            alpha = 0.7f
+                        },
+                    contentScale = ContentScale.Fit
+                )
+            }
 
-            // Слой 1 — высокие мелкие облака
             CloudsLayer(
                 progress = cloudOffset,
                 clouds = listOf(
@@ -75,7 +82,6 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
                 )
             )
 
-            // Слой 2 — средние облака
             CloudsLayer(
                 progress = cloudOffset,
                 clouds = listOf(
@@ -84,8 +90,7 @@ fun GameScreenBackground(currentPhase: GamePhase?) {
                     CloudItem(0.7f, 0.48f, 1.2f, 0.3f)
                 )
             )
-
-            // Слой 3 — крупные низкие облака
+            
             CloudsLayer(
                 progress = cloudOffset,
                 clouds = listOf(

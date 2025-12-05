@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -31,9 +32,8 @@ fun GameScreen(
     val state by viewModel.state.collectAsState()
     var qrBitmap by remember { mutableStateOf<Bitmap?>(null) }
 
-    BackHandlerInterceptor(
-        onDoublePressed = onDoublePressBack
-    )
+    BackHandlerInterceptor(onDoublePressed = onDoublePressBack)
+
     val context = LocalContext.current
     LaunchedEffect(state.scenery, state.fabled) {
         state.scenery?.let {
@@ -54,48 +54,21 @@ fun GameScreen(
     GameContent(
         state = state,
         qrBitmap = qrBitmap,
-        context = context,
         onEditGame = onEditGameClicked,
         onCard = onCardClicked,
-        onEditNotes = {
-            viewModel.editNotes(it)
-        },
-        onChangeAliveStatus = {
-            viewModel.changeAliveStatus(it)
-        },
-        onChangeGhostVoteStatus = {
-            viewModel.onChangeGhostVoteStatus(it)
-        },
-        onRenamePlayer = { player, name ->
-            viewModel.renamePlayer(player, name)
-        },
-        onChangeRole = { player, role ->
-            viewModel.changeRole(player, role)
-        },
-        onChangeBluffs = {
-            viewModel.changeDemonBluffs(it)
-        },
-        onMoveToPreviousAction = {
-            viewModel.moveToPreviousAction()
-        },
-        onMoveToNextAction = {
-            viewModel.moveToNextAction()
-        },
-        onAddToken = { player, token ->
-            viewModel.addToken(player, token)
-        },
-        onDeleteToken = { player, tokenIndex ->
-            viewModel.deleteToken(player, tokenIndex)
-        },
-        onAddPlayer = {
-            viewModel.addPlayer()
-        },
-        onDeletePlayer = {
-            viewModel.deletePlayer(it)
-        },
-        onReorderPlayers = {
-            viewModel.updatePlayers(it)
-        }
+        onEditNotes = { viewModel.editNotes(it) },
+        onChangeAliveStatus = { viewModel.changeAliveStatus(it) },
+        onChangeGhostVoteStatus = { viewModel.onChangeGhostVoteStatus(it) },
+        onRenamePlayer = { player, name -> viewModel.renamePlayer(player, name) },
+        onChangeRole = { player, role -> viewModel.changeRole(player, role) },
+        onChangeBluffs = { viewModel.changeDemonBluffs(it) },
+        onMoveToPreviousAction = { viewModel.moveToPreviousAction() },
+        onMoveToNextAction = { viewModel.moveToNextAction() },
+        onAddToken = { player, token -> viewModel.addToken(player, token) },
+        onDeleteToken = { player, tokenIndex -> viewModel.deleteToken(player, tokenIndex) },
+        onAddPlayer = { viewModel.addPlayer() },
+        onDeletePlayer = { viewModel.deletePlayer(it) },
+        onReorderPlayers = { viewModel.updatePlayers(it) }
     )
 }
 
@@ -103,7 +76,6 @@ fun GameScreen(
 fun GameContent(
     state: GameState,
     qrBitmap: Bitmap?,
-    context: Context,
     onEditGame: () -> Unit,
     onEditNotes: (String) -> Unit,
     onCard: (Int, List<Role?>?) -> Unit,
@@ -120,20 +92,122 @@ fun GameContent(
     onDeletePlayer: (Player) -> Unit,
     onReorderPlayers: (List<Player>) -> Unit,
 ) {
-    var isEditDialogRaised by remember { mutableStateOf(false) }
-    var isMemoDialogRaised by remember { mutableStateOf(false) }
-    var isPickRoleDialogRaised by remember { mutableStateOf(false) }
-    var isShareDialogRaised by remember { mutableStateOf(false) }
-    var isAddPlayerDialogRaised by remember { mutableStateOf(false) }
+    val dialogState = rememberDialogState()
 
-    var isFabledEnabled by remember { mutableStateOf(false) }
-
-    var targetDeletePlayer by remember { mutableStateOf<Player?>(null) }
-    var targetEditPlayer by remember { mutableStateOf<Player?>(null) }
-    var targetFabledPlayer by remember { mutableStateOf<Player?>(null) }
-    var targetTokenPlayer by remember { mutableStateOf<Player?>(null) }
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
 
     GameScreenBackground(state.currentPhase)
+
+    if (isLandscape) {
+        LandscapeLayout(
+            state = state,
+            dialogState = dialogState,
+            onCard = onCard,
+            onChangeBluffs = onChangeBluffs,
+            onMoveToPreviousAction = onMoveToPreviousAction,
+            onMoveToNextAction = onMoveToNextAction,
+            onReorderPlayers = onReorderPlayers,
+            onDeleteToken = onDeleteToken
+        )
+    } else {
+        PortraitLayout(
+            state = state,
+            dialogState = dialogState,
+            onCard = onCard,
+            onChangeBluffs = onChangeBluffs,
+            onMoveToPreviousAction = onMoveToPreviousAction,
+            onMoveToNextAction = onMoveToNextAction,
+            onReorderPlayers = onReorderPlayers,
+            onDeleteToken = onDeleteToken
+        )
+    }
+
+    DialogsHandler(
+        state = state,
+        qrBitmap = qrBitmap,
+        dialogState = dialogState,
+        onEditGame = onEditGame,
+        onEditNotes = onEditNotes,
+        onCard = onCard,
+        onChangeAliveStatus = onChangeAliveStatus,
+        onChangeGhostVoteStatus = onChangeGhostVoteStatus,
+        onRenamePlayer = onRenamePlayer,
+        onChangeRole = onChangeRole,
+        onAddToken = onAddToken,
+        onDeletePlayer = onDeletePlayer,
+        onAddPlayer = onAddPlayer
+    )
+}
+
+@Stable
+class DialogState {
+    var isEditDialogRaised by mutableStateOf(false)
+    var isMemoDialogRaised by mutableStateOf(false)
+    var isPickRoleDialogRaised by mutableStateOf(false)
+    var isShareDialogRaised by mutableStateOf(false)
+    var isAddPlayerDialogRaised by mutableStateOf(false)
+    var isFabledEnabled by mutableStateOf(false)
+    var targetDeletePlayer by mutableStateOf<Player?>(null)
+    var targetEditPlayer by mutableStateOf<Player?>(null)
+    var targetFabledPlayer by mutableStateOf<Player?>(null)
+    var targetTokenPlayer by mutableStateOf<Player?>(null)
+}
+
+@Composable
+fun rememberDialogState(): DialogState {
+    return remember { DialogState() }
+}
+
+
+@Composable
+private fun LandscapeLayout(
+    state: GameState,
+    dialogState: DialogState,
+    onCard: (Int, List<Role?>?) -> Unit,
+    onChangeBluffs: (List<Role?>) -> Unit,
+    onMoveToPreviousAction: () -> Unit,
+    onMoveToNextAction: () -> Unit,
+    onReorderPlayers: (List<Player>) -> Unit,
+    onDeleteToken: (Player, Int) -> Unit,
+) {
+    Row(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .padding(8.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken)
+        }
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .padding(8.dp)
+        ) {
+            TopButtonsSection(state, dialogState, onCard)
+            Spacer(Modifier.height(16.dp))
+            MiddleSection(state, onChangeBluffs, isLandscape = true)
+            Spacer(Modifier.height(16.dp))
+            ReminderSection(modifier = Modifier.weight(1f), state, onMoveToPreviousAction, onMoveToNextAction)
+        }
+    }
+}
+
+@Composable
+private fun PortraitLayout(
+    state: GameState,
+    dialogState: DialogState,
+    onCard: (Int, List<Role?>?) -> Unit,
+    onChangeBluffs: (List<Role?>) -> Unit,
+    onMoveToPreviousAction: () -> Unit,
+    onMoveToNextAction: () -> Unit,
+    onReorderPlayers: (List<Player>) -> Unit,
+    onDeleteToken: (Player, Int) -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -143,275 +217,301 @@ fun GameContent(
                     .asPaddingValues()
             )
     ) {
-        TopButtonsRow(
-            sceneryRoles = state.scenery?.roles,
-            fabledEnabled = isFabledEnabled,
-            onFabledClicked = {
-                isFabledEnabled = !isFabledEnabled
-            },
-            onEditClicked = {
-                isEditDialogRaised = true
-            },
-            onMemoClicked = {
-                isMemoDialogRaised = true
-            },
-            onShareClicked = {
-                isShareDialogRaised = true
-            },
-            onAddPlayerClicked = {
-                isAddPlayerDialogRaised = true
-            },
-            menuItems = listOf(
-                CardsMenuItem(stringResource(R.string.menu_demon)) {
-                    onCard(R.string.menu_demon, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_minions)) {
-                    onCard(R.string.menu_minions, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_not_in_play)) {
-                    onCard(R.string.menu_not_in_play, state.demonBluffs)
-                },
-                CardsMenuItem(stringResource(R.string.menu_use_ability)) {
-                    onCard(R.string.menu_use_ability, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_make_choice)) {
-                    onCard(R.string.menu_make_choice, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_nominated_today)) {
-                    onCard(R.string.menu_nominated_today, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_voted_today)) {
-                    onCard(R.string.menu_voted_today, emptyList())
-                },
-                CardsMenuItem(stringResource(R.string.menu_char_selected_you), showPickerDialog = true) { role ->
-                    onCard(R.string.menu_char_selected_you, listOf(role))
-                },
-                CardsMenuItem(stringResource(R.string.menu_show_role), showPickerDialog = true) { role ->
-                    onCard(role?.ability!!, listOf(role))
-                },
-            )
-        )
-
+        TopButtonsSection(state, dialogState, onCard)
         Spacer(Modifier.height(20.dp))
-        if (!state.players.isNullOrEmpty()) {
-            PlayersWheel(
-                players = state.players,
-                fabledEnabled = isFabledEnabled,
-                fabled = state.fabled,
-                onClick = { player ->
-                    targetEditPlayer = player
-                },
-                onFabledClick = { fabled ->
-                    targetFabledPlayer = fabled
-                },
-                onTokenLongClick = { player, tokenIndex ->
-                    onDeleteToken(player, tokenIndex)
-                },
-                onOrderChanged = {
-                    onReorderPlayers(it)
-                },
-            )
-        }
-
+        PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken)
         Spacer(Modifier.height(20.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            if (state.players?.size!! > 6) {
-                DemonBluff(
-                    demonBluffRoles = state.demonBluffs,
-                    availableRoles = state.availableBluffRoles,
-                    onChangeBluffs = {
-                        onChangeBluffs(it)
-                    },
-                )
-            }
-            KillParticipation(
-                roleDistribution = state.roleDistribution,
-                players = state.players,
-                dayNumber = state.currentDay,
-            )
-        }
-
+        MiddleSection(state, onChangeBluffs, isLandscape = false)
         Spacer(Modifier.height(8.dp))
-        Reminder(
-            modifier = Modifier.weight(1f),
-            action = state.currentAction,
-            onBeforeClicked = { onMoveToPreviousAction() },
-            onAfterClicked = { onMoveToNextAction() },
+        ReminderSection(modifier = Modifier.weight(1f), state, onMoveToPreviousAction, onMoveToNextAction)
+    }
+}
+
+@Composable
+private fun TopButtonsSection(
+    state: GameState,
+    dialogState: DialogState,
+    onCard: (Int, List<Role?>?) -> Unit,
+) {
+    val menuItems = rememberMenuItems(state, onCard)
+
+    TopButtonsRow(
+        sceneryRoles = state.scenery?.roles,
+        fabledEnabled = dialogState.isFabledEnabled,
+        onFabledClicked = { dialogState.isFabledEnabled = !dialogState.isFabledEnabled },
+        onEditClicked = { dialogState.isEditDialogRaised = true },
+        onMemoClicked = { dialogState.isMemoDialogRaised = true },
+        onShareClicked = { dialogState.isShareDialogRaised = true },
+        onAddPlayerClicked = { dialogState.isAddPlayerDialogRaised = true },
+        menuItems = menuItems
+    )
+}
+
+@Composable
+private fun rememberMenuItems(
+    state: GameState,
+    onCard: (Int, List<Role?>?) -> Unit,
+): List<CardsMenuItem> {
+    return remember(state.demonBluffs) {
+        listOf(
+            CardsMenuItem(R.string.menu_demon) {
+                onCard(R.string.menu_demon, emptyList())
+            },
+            CardsMenuItem(R.string.menu_minions) {
+                onCard(R.string.menu_minions, emptyList())
+            },
+            CardsMenuItem(R.string.menu_not_in_play) {
+                onCard(R.string.menu_not_in_play, state.demonBluffs)
+            },
+            CardsMenuItem(R.string.menu_use_ability) {
+                onCard(R.string.menu_use_ability, emptyList())
+            },
+            CardsMenuItem(R.string.menu_make_choice) {
+                onCard(R.string.menu_make_choice, emptyList())
+            },
+            CardsMenuItem(R.string.menu_nominated_today) {
+                onCard(R.string.menu_nominated_today, emptyList())
+            },
+            CardsMenuItem(R.string.menu_voted_today) {
+                onCard(R.string.menu_voted_today, emptyList())
+            },
+            CardsMenuItem(R.string.menu_char_selected_you, showPickerDialog = true) { role ->
+                onCard(R.string.menu_char_selected_you, listOf(role))
+            },
+            CardsMenuItem(R.string.menu_show_role, showPickerDialog = true) { role ->
+                onCard(role?.ability!!, listOf(role))
+            },
         )
+    }
+}
 
-        if (targetEditPlayer != null && !isPickRoleDialogRaised) {
-            EditPlayerDialog(
-                player = targetEditPlayer!!,
-                playerCount = state.players?.size ?: 0,
-                onDismissRequest = {
-                    targetEditPlayer = null
-                },
-                onChangeName = { player, name ->
-                    onRenamePlayer(player, name)
-                    targetEditPlayer = null
-                },
-                onChangeAliveStatus = {
-                    onChangeAliveStatus(it)
-                    targetEditPlayer = null
-                },
-                onChangeGhostVote = {
-                    onChangeGhostVoteStatus(it)
-                    targetEditPlayer = null
-                },
-                onShowRolePicker = {
-                    isPickRoleDialogRaised = true
-                },
-                onShowCardClicked = { role ->
-                    onCard(role.ability, listOf(role))
-                },
-                onChooseTokenClicked = {
-                    targetTokenPlayer = it
-                    targetEditPlayer = null
-                },
-                onDeletePlayerClicked = {
-                    targetDeletePlayer = it
+@Composable
+private fun PlayersWheelSection(
+    state: GameState,
+    dialogState: DialogState,
+    onReorderPlayers: (List<Player>) -> Unit,
+    onDeleteToken: (Player, Int) -> Unit,
+) {
+    if (!state.players.isNullOrEmpty()) {
+        PlayersWheel(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f),
+            players = state.players,
+            fabledEnabled = dialogState.isFabledEnabled,
+            fabled = state.fabled,
+            onClick = { dialogState.targetEditPlayer = it },
+            onFabledClick = { dialogState.targetFabledPlayer = it },
+            onTokenLongClick = onDeleteToken,
+            onOrderChanged = onReorderPlayers,
+        )
+    }
+}
+
+@Composable
+private fun MiddleSection(
+    state: GameState,
+    onChangeBluffs: (List<Role?>) -> Unit,
+    isLandscape: Boolean,
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        if (state.players?.size!! > 6) {
+            DemonBluff(
+                demonBluffRoles = state.demonBluffs,
+                availableRoles = state.availableBluffRoles,
+                onChangeBluffs = onChangeBluffs,
+            )
+            if (isLandscape) Spacer(Modifier.width(8.dp))
+        }
+        KillParticipation(
+            roleDistribution = state.roleDistribution,
+            players = state.players,
+            dayNumber = state.currentDay,
+            currentPhase = state.currentPhase,
+        )
+    }
+}
+
+@Composable
+private fun ReminderSection(
+    modifier: Modifier,
+    state: GameState,
+    onMoveToPreviousAction: () -> Unit,
+    onMoveToNextAction: () -> Unit,
+) {
+    Reminder(
+        modifier = modifier,
+        action = state.currentAction,
+        currentPhase = state.currentPhase,
+        onBeforeClicked = onMoveToPreviousAction,
+        onAfterClicked = onMoveToNextAction,
+    )
+}
+
+@Composable
+private fun DialogsHandler(
+    state: GameState,
+    qrBitmap: Bitmap?,
+    dialogState: DialogState,
+    onEditGame: () -> Unit,
+    onEditNotes: (String) -> Unit,
+    onCard: (Int, List<Role?>?) -> Unit,
+    onChangeAliveStatus: (Player) -> Unit,
+    onChangeGhostVoteStatus: (Player) -> Unit,
+    onRenamePlayer: (Player, String) -> Unit,
+    onChangeRole: (Player, Role?) -> Unit,
+    onAddToken: (Player, Token) -> Unit,
+    onDeletePlayer: (Player) -> Unit,
+    onAddPlayer: () -> Unit,
+) {
+    val context = LocalContext.current
+    val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
+    val availableRoles = state.chosenRoles?.filter { role ->
+        role !in takenRoles || dialogState.targetEditPlayer?.role == role
+    } ?: emptyList()
+
+    if (dialogState.targetEditPlayer != null && !dialogState.isPickRoleDialogRaised) {
+        EditPlayerDialog(
+            player = dialogState.targetEditPlayer!!,
+            playerCount = state.players?.size ?: 0,
+            onDismissRequest = { dialogState.targetEditPlayer = null },
+            onChangeName = { player, name ->
+                onRenamePlayer(player, name)
+                dialogState.targetEditPlayer = null
+            },
+            onChangeAliveStatus = {
+                onChangeAliveStatus(it)
+                dialogState.targetEditPlayer = null
+            },
+            onChangeGhostVote = {
+                onChangeGhostVoteStatus(it)
+                dialogState.targetEditPlayer = null
+            },
+            onShowRolePicker = { dialogState.isPickRoleDialogRaised = true },
+            onShowCardClicked = { role -> onCard(role.ability, listOf(role)) },
+            onChooseTokenClicked = {
+                dialogState.targetTokenPlayer = it
+                dialogState.targetEditPlayer = null
+            },
+            onDeletePlayerClicked = { dialogState.targetDeletePlayer = it }
+        )
+    }
+
+    if (dialogState.targetFabledPlayer != null) {
+        EditFabledDialog(
+            player = dialogState.targetFabledPlayer!!,
+            onDismissRequest = { dialogState.targetFabledPlayer = null },
+            onShowRolePicker = { dialogState.isPickRoleDialogRaised = true },
+            onShowCardClicked = { role -> onCard(role.ability, listOf(role)) },
+            onChooseTokenClicked = {
+                dialogState.targetTokenPlayer = it
+                dialogState.targetFabledPlayer = null
+            }
+        )
+    }
+
+    if (dialogState.targetEditPlayer != null && dialogState.isPickRoleDialogRaised) {
+        RolePickerDialog(
+            availableRoles = availableRoles,
+            sceneryRoles = state.scenery?.roles,
+            onSelectRole = { role ->
+                onChangeRole(dialogState.targetEditPlayer!!, role)
+                dialogState.targetEditPlayer = null
+                dialogState.isPickRoleDialogRaised = false
+            },
+            onDismiss = {
+                dialogState.targetEditPlayer = null
+                dialogState.isPickRoleDialogRaised = false
+            }
+        )
+    }
+
+    if (dialogState.targetFabledPlayer != null && dialogState.isPickRoleDialogRaised) {
+        RolePickerDialog(
+            changeFabled = true,
+            onSelectRole = { role ->
+                onChangeRole(dialogState.targetFabledPlayer!!, role)
+                dialogState.targetFabledPlayer = null
+                dialogState.isPickRoleDialogRaised = false
+            },
+            onDismiss = {
+                dialogState.targetFabledPlayer = null
+                dialogState.isPickRoleDialogRaised = false
+            }
+        )
+    }
+
+    if (dialogState.isEditDialogRaised) {
+        EditGameDialog(
+            onConfirm = onEditGame,
+            onDismiss = { dialogState.isEditDialogRaised = false }
+        )
+    }
+
+    if (dialogState.isMemoDialogRaised) {
+        EditNotesDialog(
+            onDismiss = { dialogState.isMemoDialogRaised = false },
+            notes = state.notes,
+            onNotesChange = onEditNotes
+        )
+    }
+
+    if (dialogState.isAddPlayerDialogRaised) {
+        AddPlayerDialog(
+            onYesClicked = {
+                onAddPlayer()
+                dialogState.isAddPlayerDialogRaised = false
+            },
+            onDismiss = { dialogState.isAddPlayerDialogRaised = false }
+        )
+    }
+
+    if (dialogState.targetDeletePlayer != null) {
+        DeletePlayerDialog(
+            player = dialogState.targetDeletePlayer,
+            onYesClicked = {
+                onDeletePlayer(it)
+                dialogState.targetDeletePlayer = null
+                dialogState.targetEditPlayer = null
+            },
+            onDismiss = { dialogState.targetDeletePlayer = null }
+        )
+    }
+
+    if (dialogState.targetTokenPlayer != null) {
+        TokenPickerDialog(
+            target = dialogState.targetTokenPlayer,
+            chosenRoles = state.chosenRoles,
+            players = state.players,
+            fabled = state.fabled,
+            sceneryTokens = state.scenery?.sceneryTokens!!,
+            onPickToken = { token ->
+                dialogState.targetTokenPlayer?.let {
+                    onAddToken(dialogState.targetTokenPlayer!!, token)
                 }
-            )
-        }
+                dialogState.targetTokenPlayer = null
+            },
+            onDismiss = { dialogState.targetTokenPlayer = null }
+        )
+    }
 
-        if (targetFabledPlayer != null) {
-            EditFabledDialog(
-                player = targetFabledPlayer!!,
-                onDismissRequest = {
-                    targetFabledPlayer = null
-                },
-                onShowRolePicker = {
-                    isPickRoleDialogRaised = true
-                },
-                onShowCardClicked = { role ->
-                    onCard(role.ability, listOf(role))
-                },
-                onChooseTokenClicked = {
-                    targetTokenPlayer = it
-                    targetFabledPlayer = null
-                }
-            )
-        }
-
-        val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
-        val availableRoles = state.chosenRoles?.filter { role ->
-            role !in takenRoles || targetEditPlayer?.role == role
-        } ?: emptyList()
-
-        if (targetEditPlayer != null && isPickRoleDialogRaised) {
-            RolePickerDialog(
-                availableRoles = availableRoles,
-                sceneryRoles = state.scenery?.roles,
-                onSelectRole = { role ->
-                    onChangeRole(targetEditPlayer!!, role)
-                    targetEditPlayer = null
-                    isPickRoleDialogRaised = false
-                },
-                onDismiss = {
-                    targetEditPlayer = null
-                    isPickRoleDialogRaised = false
-                }
-            )
-        }
-
-        if (targetFabledPlayer != null && isPickRoleDialogRaised) {
-            RolePickerDialog(
-                changeFabled = true,
-                onSelectRole = { role ->
-                    onChangeRole(targetFabledPlayer!!, role)
-                    targetFabledPlayer = null
-                    isPickRoleDialogRaised = false
-                },
-                onDismiss = {
-                    targetFabledPlayer = null
-                    isPickRoleDialogRaised = false
-                }
-            )
-        }
-
-
-        if (isEditDialogRaised) {
-            EditGameDialog(
-                onConfirm = {
-                    onEditGame()
-                },
-                onDismiss = {
-                    isEditDialogRaised = false
-                }
-            )
-        }
-
-        if (isMemoDialogRaised) {
-            EditNotesDialog(
-                onDismiss = {
-                    isMemoDialogRaised = false
-                },
-                notes = state.notes,
-                onNotesChange = { onEditNotes(it) }
-            )
-        }
-
-        if (isAddPlayerDialogRaised) {
-            AddPlayerDialog(
-                onYesClicked = {
-                    onAddPlayer()
-                    isAddPlayerDialogRaised = false
-                },
-                onDismiss = {
-                    isAddPlayerDialogRaised = false
-                },
-            )
-        }
-
-        if (targetDeletePlayer != null) {
-            DeletePlayerDialog(
-                player = targetDeletePlayer,
-                onYesClicked = {
-                    onDeletePlayer(it)
-                    targetDeletePlayer = null
-                    targetEditPlayer = null
-                },
-                onDismiss = {
-                    targetDeletePlayer = null
-                },
-            )
-        }
-
-        if (targetTokenPlayer != null) {
-            TokenPickerDialog(
-                target = targetTokenPlayer,
-                chosenRoles = state.chosenRoles,
-                players = state.players,
-                fabled = state.fabled,
-                sceneryTokens = state.scenery?.sceneryTokens!!,
-                onPickToken = { token ->
-                    targetTokenPlayer?.let {
-                        onAddToken(targetTokenPlayer!!, token)
-                    }
-                    targetTokenPlayer = null
-                },
-                onDismiss = { targetTokenPlayer = null }
-            )
-        }
-
-        if (isShareDialogRaised) {
-            ShareDialog(
-                titleRes = state.scenery?.sceneryNameRes,
-                qrBitmap = qrBitmap,
-                onUrlClicked = {
-                    val baseUrl = context.getString(R.string.url_wiki)
-                    val sceneryName = state.scenery?.let { context.getString(state.scenery.sceneryNameRes) }?.replace(" ", "_")
-                    val intent = Intent(Intent.ACTION_VIEW, "${baseUrl}$sceneryName".toUri())
-                    context.startActivity(intent)
-                    isShareDialogRaised = false
-                },
-                onDismiss = { isShareDialogRaised = false }
-            )
-        }
+    if (dialogState.isShareDialogRaised) {
+        ShareDialog(
+            titleRes = state.scenery?.sceneryNameRes,
+            qrBitmap = qrBitmap,
+            onUrlClicked = {
+                val baseUrl = context.getString(R.string.url_wiki)
+                val sceneryName = state.scenery?.let { context.getString(state.scenery.sceneryNameRes) }
+                    ?.replace(" ", "_")
+                val intent = Intent(Intent.ACTION_VIEW, "${baseUrl}$sceneryName".toUri())
+                context.startActivity(intent)
+                dialogState.isShareDialogRaised = false
+            },
+            onDismiss = { dialogState.isShareDialogRaised = false }
+        )
     }
 }

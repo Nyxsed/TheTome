@@ -15,15 +15,16 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
+import ru.nyxsed.thetome.ui.theme.TheTomeTheme
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -35,10 +36,6 @@ fun PlayersWheel(
     players: List<Player>,
     fabledEnabled: Boolean,
     fabled: Player?,
-    minCircleSize: Dp = 60.dp,
-    maxCircleSize: Dp = 100.dp,
-    minTokenSize: Dp = 20.dp,
-    maxTokenSize: Dp = 40.dp,
     onClick: (Player) -> Unit,
     onFabledClick: (Player?) -> Unit,
     onTokenLongClick: (Player, Int) -> Unit,
@@ -59,6 +56,14 @@ fun PlayersWheel(
     var draggingId by remember { mutableStateOf<Int?>(null) }
     var dragOffset by remember { mutableStateOf(Offset.Zero) }
 
+    // Определяем ориентацию экрана
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
+
+    // Определяем тип устройства
+    val isTablet = configuration.smallestScreenWidthDp >= 600
+    val isLargeTablet = configuration.smallestScreenWidthDp >= 720
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -73,27 +78,47 @@ fun PlayersWheel(
         val cx = boxWidth / 2f
         val cy = boxHeight / 2f
 
-        val maxCirclePx = with(density) { maxCircleSize.toPx() }
-        val maxTokenPx = with(density) { maxTokenSize.toPx() }
+        // Определяем размер круга на основе доступного пространства
+        val availableSize = min(boxWidth, boxHeight)
 
-        val rawCirclePx =
-            (2 * Math.PI * ((min(boxWidth, boxHeight) - (maxCirclePx + maxTokenPx)) / 2f)
-                    / items.size * 0.8).toFloat()
+        val circleSizeFactor = when (items.size) {
+            5 -> 0.25f
+            6 -> 0.22f
+            7 -> 0.2f
+            8 -> 0.19f
+            9 -> 0.18f
+            10 -> 0.17f
+            11 -> 0.16f
+            12 -> 0.155f
+            13 -> 0.15f
+            14 -> 0.145f
+            15 -> 0.14f
+            16 -> 0.135f
+            17 -> 0.13f
+            18 -> 0.125f
+            19 -> 0.12f
+            20 -> 0.115f
+            else -> 0.11f
+        }
 
-        val circlePx = rawCirclePx.coerceIn(
-            with(density) { minCircleSize.toPx() },
-            maxCirclePx
-        )
+        val deviceCorrection = when {
+            isLargeTablet -> 0.9f
+            isTablet -> 0.9f
+            isLandscape -> 0.9f
+            else -> 1.0f
+        }
+
+        val circlePx = availableSize * circleSizeFactor * deviceCorrection
         val circleDp = with(density) { circlePx.toDp() }
 
-        val rawTokenPx = circlePx * 0.4f
-        val tokenPx = rawTokenPx.coerceIn(
-            with(density) { minTokenSize.toPx() },
-            maxTokenPx
-        )
+        // Размер токена как процент от размера круга
+        val tokenPx = circlePx * 0.4f
         val tokenDp = with(density) { tokenPx.toDp() }
 
-        val radiusPx = (min(boxWidth, boxHeight) - (circlePx + tokenPx)) / 2f
+        val maxItemSize = circlePx + tokenPx
+        val maxPossibleRadius = (availableSize - maxItemSize) / 2f
+
+        val radiusPx = maxPossibleRadius * 0.95f
 
         val slotCenters = List(items.size) { idx ->
             val ang = Math.toRadians((-90 + 360f / items.size * idx).toDouble())
@@ -232,17 +257,23 @@ fun PlayersWheel(
 
                 // fabled
                 if (fabledEnabled) {
+                    val fabledCirclePx = circlePx * when {
+                        isLandscape -> 0.75f
+                        else -> 0.9f
+                    }
+                    val fabledCircleDp = with(density) { fabledCirclePx.toDp() }
+
                     Box(
                         modifier = Modifier
                             .offset {
                                 IntOffset(
-                                    (cx - circlePx / 2f).roundToInt(),
-                                    (cy - circlePx / 2f).roundToInt()
+                                    (cx - fabledCirclePx / 2f).roundToInt(),
+                                    (cy - fabledCirclePx / 2f).roundToInt()
                                 )
                             }
                     ) {
                         CircleItem(
-                            size = circleDp,
+                            size = fabledCircleDp,
                             itemType = ItemType.PLAYER_CIRCLE,
                             bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
                             centerIcon = fabled?.role?.iconRes,
@@ -252,11 +283,11 @@ fun PlayersWheel(
                         val tokens = fabled?.tokens
                         if (tokens?.isNotEmpty() == true) {
                             val inset = tokenPx * 0.3f
-                            val tokenRadius = (circlePx + tokenPx) / 2f - inset
+                            val tokenRadius = (fabledCirclePx + tokenPx) / 2f - inset
                             tokens.forEachIndexed { ti, token ->
                                 val a = 2 * Math.PI / tokens.size * ti
-                                val tx = circlePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
-                                val ty = circlePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
+                                val tx = fabledCirclePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
+                                val ty = fabledCirclePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
 
                                 Box(
                                     modifier = Modifier.offset { IntOffset(tx.roundToInt(), ty.roundToInt()) }
@@ -296,4 +327,76 @@ private fun nearestIndexForOffset(cur: Offset, centers: List<Offset>): Int {
         }
     }
     return best
+}
+
+@Preview(
+    name = "Phone Portrait 4 players",
+    widthDp = 360,
+    heightDp = 360,
+    showBackground = true
+)
+@Preview(
+    name = "Phone Portrait 8 players",
+    widthDp = 360,
+    heightDp = 360,
+    showBackground = true
+)
+@Preview(
+    name = "Phone Portrait 12 players",
+    widthDp = 360,
+    heightDp = 360,
+    showBackground = true
+)
+@Preview(
+    name = "Phone Landscape 8 players",
+    widthDp = 640,
+    heightDp = 320,
+    showBackground = true
+)
+@Composable
+fun PlayersWheelPreview() {
+    val testPlayers4 = (1..4).map {
+        Player(
+            id = it,
+            name = "Player $it",
+            isAlive = true,
+            role = null,
+            tokens = emptyList(),
+            haveGhostVote = false
+        )
+    }
+
+    val testPlayers8 = (1..8).map {
+        Player(
+            id = it,
+            name = "Player $it",
+            isAlive = true,
+            role = null,
+            tokens = emptyList(),
+            haveGhostVote = false
+        )
+    }
+
+    val testPlayers12 = (1..12).map {
+        Player(
+            id = it,
+            name = "Player $it",
+            isAlive = true,
+            role = null,
+            tokens = emptyList(),
+            haveGhostVote = false
+        )
+    }
+
+    TheTomeTheme {
+        PlayersWheel(
+            players = testPlayers12,
+            fabledEnabled = true,
+            fabled = null,
+            onClick = {},
+            onFabledClick = {},
+            onTokenLongClick = { _, _ -> },
+            onOrderChanged = {}
+        )
+    }
 }

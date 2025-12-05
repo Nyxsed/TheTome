@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.core.domain.models.Role
 
@@ -76,7 +77,7 @@ fun TopButtonsRow(
         ) {
             menuItems.forEach { item ->
                 DropdownMenuItem(
-                    text = { Text(item.title) },
+                    text = { Text(stringResource(item.titleId)) },
                     onClick = {
                         isMenuExpanded = false
 
@@ -157,7 +158,7 @@ fun TopButtonsRow(
 }
 
 data class CardsMenuItem(
-    val title: String,
+    val titleId: Int,
     val showPickerDialog: Boolean = false,
     val onClick: (Role?) -> Unit,
 )

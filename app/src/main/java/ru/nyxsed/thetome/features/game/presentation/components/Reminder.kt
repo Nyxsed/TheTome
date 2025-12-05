@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.nyxsed.thetome.core.domain.models.Action
+import ru.nyxsed.thetome.core.domain.models.GamePhase
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 
@@ -27,6 +28,7 @@ import ru.nyxsed.thetome.core.presentation.components.CircleItem
 fun Reminder(
     modifier: Modifier = Modifier,
     action: Action?,
+    currentPhase: GamePhase?,
     onBeforeClicked: () -> Unit,
     onAfterClicked: () -> Unit,
 ) {
@@ -126,6 +128,11 @@ fun Reminder(
                         ) {
                             Text(
                                 text = text,
+                                color = if (currentPhase in listOf(
+                                        GamePhase.FIRST_NIGHT,
+                                        GamePhase.SECOND_NIGHT
+                                    )
+                                ) Color.White else Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontSize = fontSize,
                                 lineHeight = lineHeight

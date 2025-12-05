@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import ru.nyxsed.thetome.core.domain.models.*
 import ru.nyxsed.thetome.core.domain.usecase.GenerateQrUseCase
 import ru.nyxsed.thetome.core.domain.usecase.LoadGameStateUseCase
+import ru.nyxsed.thetome.core.domain.usecase.RoleDistributionUseCase
 import ru.nyxsed.thetome.core.domain.usecase.SaveGameStateUseCase
 import javax.inject.Inject
 
@@ -19,6 +20,7 @@ class GameViewModel @Inject constructor(
     private val loadGameUseCase: LoadGameStateUseCase,
     private val saveGameStateUseCase: SaveGameStateUseCase,
     private val generateQrUseCase: GenerateQrUseCase,
+    private val roleDistributionUseCase: RoleDistributionUseCase
 ) : ViewModel() {
 
     val _state = MutableStateFlow(GameState(null))
@@ -313,7 +315,9 @@ class GameViewModel @Inject constructor(
                 role = null
             )
 
-            state.copy(players = current?.plus(newPlayer))
+            val distribution = roleDistributionUseCase(state.players?.size?.plus(1) ?: 0)
+
+            state.copy(players = current?.plus(newPlayer), roleDistribution = distribution)
         }
         saveGameState()
     }
@@ -329,6 +333,8 @@ class GameViewModel @Inject constructor(
                 .mapIndexed { newIndex, player ->
                     player.copy(id = newIndex)
                 }
+
+            val distribution = roleDistributionUseCase(state.players.size.minus(1) )
 
             state.copy(players = updated)
         }
