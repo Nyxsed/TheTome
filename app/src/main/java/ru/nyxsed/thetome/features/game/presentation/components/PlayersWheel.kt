@@ -254,58 +254,51 @@ fun PlayersWheel(
                         }
                     }
                 }
-
-                // fabled
-                if (fabledEnabled) {
-                    val fabledCirclePx = circlePx * when {
-                        isLandscape -> 0.75f
-                        else -> 0.9f
-                    }
-                    val fabledCircleDp = with(density) { fabledCirclePx.toDp() }
-
-                    Box(
-                        modifier = Modifier
-                            .offset {
-                                IntOffset(
-                                    (cx - fabledCirclePx / 2f).roundToInt(),
-                                    (cy - fabledCirclePx / 2f).roundToInt()
-                                )
-                            }
-                    ) {
-                        CircleItem(
-                            size = fabledCircleDp,
-                            itemType = ItemType.PLAYER_CIRCLE,
-                            bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
-                            centerIcon = fabled?.role?.iconRes,
-                            onClick = { onFabledClick(fabled) },
+            }
+        }
+        // fabled
+        if (fabledEnabled) {
+            Box(
+                modifier = Modifier
+                    .offset {
+                        IntOffset(
+                            (cx - circlePx / 2f).roundToInt(),
+                            (cy - circlePx / 2f).roundToInt()
                         )
+                    }
+            ) {
+                CircleItem(
+                    size = circleDp,
+                    itemType = ItemType.PLAYER_CIRCLE,
+                    bottomText = fabled?.role?.roleName?.let { stringResource(it) }.orEmpty(),
+                    centerIcon = fabled?.role?.iconRes,
+                    onClick = { onFabledClick(fabled) },
+                )
 
-                        val tokens = fabled?.tokens
-                        if (tokens?.isNotEmpty() == true) {
-                            val inset = tokenPx * 0.3f
-                            val tokenRadius = (fabledCirclePx + tokenPx) / 2f - inset
-                            tokens.forEachIndexed { ti, token ->
-                                val a = 2 * Math.PI / tokens.size * ti
-                                val tx = fabledCirclePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
-                                val ty = fabledCirclePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
+                val tokens = fabled?.tokens
+                if (tokens?.isNotEmpty() == true) {
+                    val inset = tokenPx * 0.3f
+                    val tokenRadius = (circlePx + tokenPx) / 2f - inset
+                    tokens.forEachIndexed { ti, token ->
+                        val a = 2 * Math.PI / tokens.size * ti
+                        val tx = circlePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
+                        val ty = circlePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
 
-                                Box(
-                                    modifier = Modifier.offset { IntOffset(tx.roundToInt(), ty.roundToInt()) }
-                                ) {
-                                    CircleItem(
-                                        size = tokenDp,
-                                        itemType = ItemType.TOKEN_CIRCLE,
-                                        bottomText = stringResource(token.nameResId),
-                                        centerIcon = token.iconRes,
-                                        onClick = null,
-                                        onLongClick = {
-                                            onTokenLongClick(fabled, ti)
-                                        },
-                                        isEnabled = true,
-                                        haveGhostVote = false
-                                    )
-                                }
-                            }
+                        Box(
+                            modifier = Modifier.offset { IntOffset(tx.roundToInt(), ty.roundToInt()) }
+                        ) {
+                            CircleItem(
+                                size = tokenDp,
+                                itemType = ItemType.TOKEN_CIRCLE,
+                                bottomText = stringResource(token.nameResId),
+                                centerIcon = token.iconRes,
+                                onClick = null,
+                                onLongClick = {
+                                    onTokenLongClick(fabled, ti)
+                                },
+                                isEnabled = true,
+                                haveGhostVote = false
+                            )
                         }
                     }
                 }
