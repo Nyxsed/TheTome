@@ -18,13 +18,11 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.zIndex
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
-import ru.nyxsed.thetome.ui.theme.TheTomeTheme
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -39,14 +37,34 @@ fun PlayersWheel(
     onClick: (Player) -> Unit,
     onFabledClick: (Player?) -> Unit,
     onTokenLongClick: (Player, Int) -> Unit,
-    onOrderChanged: (List<Player>) -> Unit = {}
+    onOrderChanged: (List<Player>) -> Unit,
+    freePositionMode: Boolean = false,
+    onPositionChanged: (Player, Float, Float) -> Unit,
 ) {
     if (players.isEmpty()) return
 
+    // Локальное состояние для порядка игроков (для кругового режима)
     var items by remember { mutableStateOf(players.toList()) }
 
-    LaunchedEffect(players) {
-        if (players != items) items = players.toList()
+    // Локальное состояние для позиций игроков (для свободного режима)
+    var localPositions by remember { mutableStateOf<Map<Int, Offset>>(emptyMap()) }
+
+    // Синхронизация при изменении внешних данных
+    LaunchedEffect(players, freePositionMode) {
+        items = players.toList()
+
+        // Инициализируем локальные позиции для свободного режима
+        if (freePositionMode) {
+            val newPositions = mutableMapOf<Int, Offset>()
+            players.forEach { player ->
+                if (player.x != null && player.y != null) {
+                    newPositions[player.id] = Offset(player.x, player.y)
+                }
+            }
+            if (newPositions != localPositions) {
+                localPositions = newPositions
+            }
+        }
     }
 
     val density = LocalDensity.current
@@ -77,29 +95,13 @@ fun PlayersWheel(
 
         val cx = boxWidth / 2f
         val cy = boxHeight / 2f
-
-        // Определяем размер круга на основе доступного пространства
         val availableSize = min(boxWidth, boxHeight)
 
+        // Определяем размер элементов
         val circleSizeFactor = when (items.size) {
-            5 -> 0.25f
-            6 -> 0.22f
-            7 -> 0.2f
-            8 -> 0.19f
-            9 -> 0.18f
-            10 -> 0.17f
-            11 -> 0.16f
-            12 -> 0.155f
-            13 -> 0.15f
-            14 -> 0.145f
-            15 -> 0.14f
-            16 -> 0.135f
-            17 -> 0.13f
-            18 -> 0.125f
-            19 -> 0.12f
-            20 -> 0.115f
+            in 5..20 -> 0.25f - (items.size - 5) * 0.01f
             else -> 0.11f
-        }
+        }.coerceAtLeast(0.11f)
 
         val deviceCorrection = when {
             isLargeTablet -> 0.9f
@@ -111,13 +113,12 @@ fun PlayersWheel(
         val circlePx = availableSize * circleSizeFactor * deviceCorrection
         val circleDp = with(density) { circlePx.toDp() }
 
-        // Размер токена как процент от размера круга
         val tokenPx = circlePx * 0.4f
         val tokenDp = with(density) { tokenPx.toDp() }
 
+        // Рассчитываем круговые позиции для кругового режима
         val maxItemSize = circlePx + tokenPx
         val maxPossibleRadius = (availableSize - maxItemSize) / 2f
-
         val radiusPx = maxPossibleRadius * 0.95f
 
         val slotCenters = List(items.size) { idx ->
@@ -128,29 +129,29 @@ fun PlayersWheel(
             )
         }
 
-        val placeholderIndex =
-            if (draggingId == null) -1
-            else nearestIndexForOffset(dragOffset, slotCenters)
+        // Логика для кругового режима: определяем порядок при перетаскивании
+        val placeholderIndex = if (draggingId == null) -1
+        else nearestIndexForOffset(dragOffset, slotCenters)
 
-        val arrangement = run {
-            val drId = draggingId
-            val list = MutableList<Int?>(items.size) { null }
-            if (drId == null) {
-                items.forEachIndexed { i, p -> list[i] = p.id }
-                return@run list
+        val arrangement = if (!freePositionMode && draggingId != null) {
+            run {
+                val drId = draggingId
+                val list = MutableList<Int?>(items.size) { null }
+                val ph = placeholderIndex.coerceIn(0, items.lastIndex)
+                list[ph] = drId
+                val others = items.filter { it.id != drId }
+                var slot = 0
+                others.forEach { p ->
+                    while (slot < list.size && list[slot] != null) slot++
+                    if (slot < list.size) list[slot] = p.id
+                }
+                list
             }
-            val ph = placeholderIndex.coerceIn(0, items.lastIndex)
-            list[ph] = drId
-            val others = items.filter { it.id != drId }
-            var slot = 0
-            others.forEach { p ->
-                while (slot < list.size && list[slot] != null) slot++
-                if (slot < list.size) list[slot] = p.id
-            }
-            list
+        } else {
+            null
         }
 
-        val playerSlot = arrangement.mapIndexedNotNull { idx, id -> id?.let { it to idx } }.toMap()
+        val playerSlot = arrangement?.mapIndexedNotNull { idx, id -> id?.let { it to idx } }?.toMap()
 
         items.forEach { player ->
             key(player.id) {
@@ -158,11 +159,37 @@ fun PlayersWheel(
 
                 val scale by animateFloatAsState(if (isDragging) 1.2f else 1f)
 
-                val targetCenter = if (isDragging)
-                    dragOffset
-                else {
-                    val si = playerSlot[player.id] ?: 0
-                    slotCenters[si]
+                // Определяем целевую позицию в зависимости от режима
+                val targetCenter = when {
+                    isDragging -> dragOffset
+                    freePositionMode -> {
+                        // СВОБОДНЫЙ РЕЖИМ: используем сохраненные координаты
+                        localPositions[player.id]?.let { savedPos ->
+                            // Преобразуем нормализованные координаты в пиксели
+                            val centerX = savedPos.x * boxWidth
+                            val centerY = savedPos.y * boxHeight
+
+                            // Ограничиваем, чтобы круг не выходил за границы
+                            val clampedX = centerX.coerceIn(circlePx / 2f, boxWidth - circlePx / 2f)
+                            val clampedY = centerY.coerceIn(circlePx / 2f, boxHeight - circlePx / 2f)
+
+                            Offset(clampedX, clampedY)
+                        } ?: run {
+                            // Если позиция не сохранена, используем круговую позицию
+                            val index = items.indexOfFirst { it.id == player.id }
+                            if (index != -1 && index < slotCenters.size) {
+                                slotCenters[index]
+                            } else {
+                                Offset(cx - circlePx / 2f, cy - circlePx / 2f)
+                            }
+                        }
+                    }
+
+                    else -> {
+                        // КРУГОВОЙ РЕЖИМ: используем позицию из слота
+                        val si = playerSlot?.get(player.id) ?: items.indexOfFirst { it.id == player.id }
+                        slotCenters[si.coerceIn(0, slotCenters.lastIndex)]
+                    }
                 }
 
                 val animatedCenter by animateOffsetAsState(
@@ -173,7 +200,10 @@ fun PlayersWheel(
                     )
                 )
 
-                val topLeft = Offset(animatedCenter.x - circlePx / 2f, animatedCenter.y - circlePx / 2f)
+                val topLeft = Offset(
+                    animatedCenter.x - circlePx / 2f,
+                    animatedCenter.y - circlePx / 2f
+                )
 
                 Box(
                     modifier = Modifier
@@ -183,27 +213,68 @@ fun PlayersWheel(
                             scaleY = scale
                         }
                         .zIndex(if (isDragging) 50f else 0f)
-                        .pointerInput(player.id) {
+                        .pointerInput(player.id, freePositionMode, boxWidth, boxHeight, circlePx, localPositions) {
                             detectDragGesturesAfterLongPress(
                                 onDragStart = {
                                     draggingId = player.id
-                                    val center = slotCenters[items.indexOfFirst { it.id == player.id }]
-                                    dragOffset = center
+                                    val currentPos = if (freePositionMode) {
+                                        // СВОБОДНЫЙ РЕЖИМ: начинаем с сохраненной позиции
+                                        localPositions[player.id]?.let { savedPos ->
+                                            val centerX = savedPos.x * boxWidth
+                                            val centerY = savedPos.y * boxHeight
+                                            Offset(
+                                                centerX.coerceIn(circlePx / 2f, boxWidth - circlePx / 2f),
+                                                centerY.coerceIn(circlePx / 2f, boxHeight - circlePx / 2f)
+                                            )
+                                        } ?: run {
+                                            // Если нет сохраненной позиции, используем круговую
+                                            val index = items.indexOfFirst { it.id == player.id }
+                                            if (index != -1 && index < slotCenters.size) {
+                                                slotCenters[index]
+                                            } else {
+                                                Offset(cx, cy)
+                                            }
+                                        }
+                                    } else {
+                                        // КРУГОВОЙ РЕЖИМ: начинаем с текущей круговой позиции
+                                        val index = items.indexOfFirst { it.id == player.id }
+                                        slotCenters.getOrElse(index) { Offset(cx, cy) }
+                                    }
+                                    dragOffset = currentPos
                                 },
                                 onDrag = { change, drag ->
                                     change.consume()
                                     dragOffset += Offset(drag.x, drag.y)
                                 },
                                 onDragEnd = {
-                                    val from = items.indexOfFirst { it.id == player.id }
-                                    val to = nearestIndexForOffset(dragOffset, slotCenters)
+                                    if (freePositionMode) {
+                                        // СВОБОДНЫЙ РЕЖИМ: сохраняем новую позицию
+                                        val centerX = dragOffset.x.coerceIn(circlePx / 2f, boxWidth - circlePx / 2f)
+                                        val centerY = dragOffset.y.coerceIn(circlePx / 2f, boxHeight - circlePx / 2f)
 
-                                    if (from != -1 && from != to) {
-                                        val newList = items.toMutableList()
-                                        val p = newList.removeAt(from)
-                                        newList.add(to, p)
-                                        items = newList
-                                        onOrderChanged(newList)
+                                        // Нормализуем координаты
+                                        val normalizedX = centerX / boxWidth
+                                        val normalizedY = centerY / boxHeight
+
+                                        // Обновляем локальные позиции
+                                        localPositions = localPositions.toMutableMap().apply {
+                                            put(player.id, Offset(normalizedX, normalizedY))
+                                        }
+
+                                        // Вызываем коллбек для сохранения позиции
+                                        onPositionChanged(player, normalizedX, normalizedY)
+                                    } else {
+                                        // КРУГОВОЙ РЕЖИМ: меняем порядок
+                                        val from = items.indexOfFirst { it.id == player.id }
+                                        val to = nearestIndexForOffset(dragOffset, slotCenters)
+
+                                        if (from != -1 && from != to) {
+                                            val newList = items.toMutableList()
+                                            val p = newList.removeAt(from)
+                                            newList.add(to, p)
+                                            items = newList
+                                            onOrderChanged(newList)
+                                        }
                                     }
 
                                     draggingId = null
@@ -228,6 +299,7 @@ fun PlayersWheel(
                         onLongClick = null
                     )
 
+                    // Отображение токенов
                     val tokens = player.tokens
                     if (tokens.isNotEmpty()) {
                         val inset = tokenPx * 0.3f
@@ -256,7 +328,8 @@ fun PlayersWheel(
                 }
             }
         }
-        // fabled
+
+        // Отображение сказочника
         if (fabledEnabled) {
             Box(
                 modifier = Modifier
@@ -320,76 +393,4 @@ private fun nearestIndexForOffset(cur: Offset, centers: List<Offset>): Int {
         }
     }
     return best
-}
-
-@Preview(
-    name = "Phone Portrait 4 players",
-    widthDp = 360,
-    heightDp = 360,
-    showBackground = true
-)
-@Preview(
-    name = "Phone Portrait 8 players",
-    widthDp = 360,
-    heightDp = 360,
-    showBackground = true
-)
-@Preview(
-    name = "Phone Portrait 12 players",
-    widthDp = 360,
-    heightDp = 360,
-    showBackground = true
-)
-@Preview(
-    name = "Phone Landscape 8 players",
-    widthDp = 640,
-    heightDp = 320,
-    showBackground = true
-)
-@Composable
-fun PlayersWheelPreview() {
-    val testPlayers4 = (1..4).map {
-        Player(
-            id = it,
-            name = "Player $it",
-            isAlive = true,
-            role = null,
-            tokens = emptyList(),
-            haveGhostVote = false
-        )
-    }
-
-    val testPlayers8 = (1..8).map {
-        Player(
-            id = it,
-            name = "Player $it",
-            isAlive = true,
-            role = null,
-            tokens = emptyList(),
-            haveGhostVote = false
-        )
-    }
-
-    val testPlayers12 = (1..12).map {
-        Player(
-            id = it,
-            name = "Player $it",
-            isAlive = true,
-            role = null,
-            tokens = emptyList(),
-            haveGhostVote = false
-        )
-    }
-
-    TheTomeTheme {
-        PlayersWheel(
-            players = testPlayers12,
-            fabledEnabled = true,
-            fabled = null,
-            onClick = {},
-            onFabledClick = {},
-            onTokenLongClick = { _, _ -> },
-            onOrderChanged = {}
-        )
-    }
 }

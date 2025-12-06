@@ -66,7 +66,9 @@ fun GameScreen(
         onDeleteToken = { player, tokenIndex -> viewModel.deleteToken(player, tokenIndex) },
         onAddPlayer = { viewModel.addPlayer() },
         onDeletePlayer = { viewModel.deletePlayer(it) },
-        onReorderPlayers = { viewModel.updatePlayers(it) }
+        onReorderPlayers = { viewModel.updatePlayers(it) },
+        onPositionChanged = { player, x, y -> viewModel.playerPositionChange(player, x, y) },
+        onPositionModeChanged = { viewModel.changePositionMode()}
     )
 }
 
@@ -89,6 +91,8 @@ fun GameContent(
     onAddPlayer: () -> Unit,
     onDeletePlayer: (Player) -> Unit,
     onReorderPlayers: (List<Player>) -> Unit,
+    onPositionChanged: (Player, Float, Float) -> Unit,
+    onPositionModeChanged: () -> Unit,
 ) {
     val dialogState = rememberDialogState()
 
@@ -106,7 +110,9 @@ fun GameContent(
             onMoveToPreviousAction = onMoveToPreviousAction,
             onMoveToNextAction = onMoveToNextAction,
             onReorderPlayers = onReorderPlayers,
-            onDeleteToken = onDeleteToken
+            onDeleteToken = onDeleteToken,
+            onPositionChanged = onPositionChanged,
+            onPositionModeChanged = onPositionModeChanged,
         )
     } else {
         PortraitLayout(
@@ -117,7 +123,9 @@ fun GameContent(
             onMoveToPreviousAction = onMoveToPreviousAction,
             onMoveToNextAction = onMoveToNextAction,
             onReorderPlayers = onReorderPlayers,
-            onDeleteToken = onDeleteToken
+            onDeleteToken = onDeleteToken,
+            onPositionChanged = onPositionChanged,
+            onPositionModeChanged = onPositionModeChanged
         )
     }
 
@@ -168,6 +176,8 @@ private fun LandscapeLayout(
     onMoveToNextAction: () -> Unit,
     onReorderPlayers: (List<Player>) -> Unit,
     onDeleteToken: (Player, Int) -> Unit,
+    onPositionChanged: (Player, Float, Float) -> Unit,
+    onPositionModeChanged: () -> Unit,
 ) {
     Row(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -177,7 +187,7 @@ private fun LandscapeLayout(
                 .padding(8.dp),
             contentAlignment = Alignment.Center,
         ) {
-            PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken)
+            PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken, onPositionChanged)
         }
 
         Column(
@@ -186,7 +196,7 @@ private fun LandscapeLayout(
                 .fillMaxHeight()
                 .padding(8.dp)
         ) {
-            TopButtonsSection(state, dialogState, onCard)
+            TopButtonsSection(state, dialogState, onCard, onPositionModeChanged)
             Spacer(Modifier.height(16.dp))
             MiddleSection(state, onChangeBluffs, isLandscape = true)
             Spacer(Modifier.height(16.dp))
@@ -205,6 +215,8 @@ private fun PortraitLayout(
     onMoveToNextAction: () -> Unit,
     onReorderPlayers: (List<Player>) -> Unit,
     onDeleteToken: (Player, Int) -> Unit,
+    onPositionChanged: (Player, Float, Float) -> Unit,
+    onPositionModeChanged: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -215,9 +227,9 @@ private fun PortraitLayout(
                     .asPaddingValues()
             )
     ) {
-        TopButtonsSection(state, dialogState, onCard)
+        TopButtonsSection(state, dialogState, onCard, onPositionModeChanged)
         Spacer(Modifier.height(20.dp))
-        PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken)
+        PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken, onPositionChanged)
         Spacer(Modifier.height(20.dp))
         MiddleSection(state, onChangeBluffs, isLandscape = false)
         Spacer(Modifier.height(8.dp))
@@ -230,18 +242,21 @@ private fun TopButtonsSection(
     state: GameState,
     dialogState: DialogState,
     onCard: (Int, List<Role?>?) -> Unit,
+    onPositionModeChanged: () -> Unit,
 ) {
     val menuItems = rememberMenuItems(state, onCard)
 
     TopButtonsRow(
         sceneryRoles = state.scenery?.roles,
         fabledEnabled = dialogState.isFabledEnabled,
+        positionMode = state.freePosition,
         onFabledClicked = { dialogState.isFabledEnabled = !dialogState.isFabledEnabled },
         onEditClicked = { dialogState.isEditDialogRaised = true },
         onMemoClicked = { dialogState.isMemoDialogRaised = true },
         onShareClicked = { dialogState.isShareDialogRaised = true },
         onAddPlayerClicked = { dialogState.isAddPlayerDialogRaised = true },
-        menuItems = menuItems
+        onLockClicked = onPositionModeChanged,
+        menuItems = menuItems,
     )
 }
 
@@ -289,6 +304,7 @@ private fun PlayersWheelSection(
     dialogState: DialogState,
     onReorderPlayers: (List<Player>) -> Unit,
     onDeleteToken: (Player, Int) -> Unit,
+    onPositionChanged: (Player, Float, Float) -> Unit,
 ) {
     if (!state.players.isNullOrEmpty()) {
         PlayersWheel(
@@ -298,10 +314,12 @@ private fun PlayersWheelSection(
             players = state.players,
             fabledEnabled = dialogState.isFabledEnabled,
             fabled = state.fabled,
+            freePositionMode = state.freePosition,
             onClick = { dialogState.targetEditPlayer = it },
             onFabledClick = { dialogState.targetFabledPlayer = it },
             onTokenLongClick = onDeleteToken,
             onOrderChanged = onReorderPlayers,
+            onPositionChanged = onPositionChanged,
         )
     }
 }

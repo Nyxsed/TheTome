@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
@@ -25,11 +26,13 @@ fun TopButtonsRow(
     menuItems: List<CardsMenuItem> = emptyList(),
     sceneryRoles: List<Role>?,
     fabledEnabled: Boolean,
+    positionMode: Boolean,
     onFabledClicked: () -> Unit,
     onEditClicked: () -> Unit,
     onMemoClicked: () -> Unit,
     onShareClicked: () -> Unit,
     onAddPlayerClicked: () -> Unit,
+    onLockClicked: () -> Unit,
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
     var isDialogVisible by remember { mutableStateOf(false) }
@@ -56,6 +59,20 @@ fun TopButtonsRow(
             }
         )
 
+        Spacer(modifier = Modifier.width(12.dp))
+        SmallRoundIconButton(
+            onClick = {
+                onLockClicked()
+            },
+            isChecked = positionMode,
+            icon = {
+                Icon(
+                    contentDescription = "Lock",
+                    imageVector = Icons.Default.Lock,
+                    tint = Color.White
+                )
+            }
+        )
 
         Spacer(modifier = Modifier.width(12.dp))
         SmallRoundIconButton(

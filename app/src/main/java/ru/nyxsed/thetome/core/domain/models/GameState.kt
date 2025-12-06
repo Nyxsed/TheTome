@@ -20,6 +20,7 @@ data class GameState(
     val currentAction: Action? = null,
     val currentDay: Int = 0,
     val notes: String = "",
+    val freePosition: Boolean = false,
 ) {
     private val allScenarioRoles = scenery?.roles?.filter { role ->
         role.type !in listOf(RoleType.DEMON, RoleType.MINION)

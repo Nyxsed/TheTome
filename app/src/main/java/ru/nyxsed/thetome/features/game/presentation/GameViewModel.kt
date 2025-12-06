@@ -1,6 +1,7 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +31,7 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch {
             loadGameUseCase().collect { loadedGame ->
                 loadedGame?.let { game ->
+                    Log.d("loadedGame", game.freePosition.toString())
                     _state.value = game
                     val actions = getActionList(game)
                     val current = actions.getOrNull(game.actionIndex)
@@ -169,6 +171,7 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+
     fun editNotes(notes: String) {
         _state.update {
             it.copy(notes = notes)
@@ -301,9 +304,11 @@ class GameViewModel @Inject constructor(
         updateCurrentAction()
     }
 
+
     fun generateQr(link: String): Bitmap? {
         return generateQrUseCase(link)
     }
+
 
     fun addPlayer() {
         _state.update { state ->
@@ -343,8 +348,29 @@ class GameViewModel @Inject constructor(
         saveGameState()
     }
 
+
     fun updatePlayers(players: List<Player>) {
         _state.update { it.copy(players = players) }
+        saveGameState()
+    }
+
+
+    fun playerPositionChange(player: Player, x: Float, y: Float) {
+        _state.update { currentState ->
+            val updatedPlayers = currentState.players?.map { currentPlayer ->
+                if (currentPlayer.id == player.id) {
+                    currentPlayer.copy(x = x, y = y)
+                } else {
+                    currentPlayer
+                }
+            }
+            currentState.copy(players = updatedPlayers)
+        }
+        saveGameState()
+    }
+
+    fun changePositionMode() {
+        _state.update { it.copy(freePosition = !it.freePosition) }
         saveGameState()
     }
 }

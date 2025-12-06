@@ -11,4 +11,6 @@ data class Player(
     val isAlive : Boolean = true,
     val isDrunk : Boolean = false,
     val haveGhostVote: Boolean = true,
+    val x: Float? = null,
+    val y: Float? = null,
 )
