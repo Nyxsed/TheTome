@@ -15,6 +15,7 @@ data class GameState(
     val roleDistribution: Map<RoleType, Int>? = emptyMap(),
     val fabled: Player? = null,
     val currentPhase: GamePhase = GamePhase.PREPARE,
+    val actions: List<Action> = emptyList(),
     val actionIndex: Int = 0,
     val currentAction: Action? = null,
     val currentDay: Int = 0,

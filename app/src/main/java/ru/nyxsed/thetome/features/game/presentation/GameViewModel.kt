@@ -33,7 +33,7 @@ class GameViewModel @Inject constructor(
                     _state.value = game
                     val actions = getActionList(game)
                     val current = actions.getOrNull(game.actionIndex)
-                    _state.update { it.copy(currentAction = current) }
+                    _state.update { it.copy(currentAction = current, actions = actions) }
 
                     val fabled = if (_state.value.fabled == null) Player(id = 666, name = null, role = null) else _state.value.fabled
                     _state.update { it.copy(fabled = fabled) }
@@ -206,7 +206,8 @@ class GameViewModel @Inject constructor(
         val currentAction = actions.getOrElse(state.actionIndex) { actions[0] }
         _state.update {
             it.copy(
-                currentAction = currentAction
+                currentAction = currentAction,
+                actions = actions,
             )
         }
 
@@ -336,7 +337,7 @@ class GameViewModel @Inject constructor(
 
             val distribution = roleDistributionUseCase(state.players.size.minus(1) )
 
-            state.copy(players = updated)
+            state.copy(players = updated, roleDistribution = distribution)
         }
 
         saveGameState()

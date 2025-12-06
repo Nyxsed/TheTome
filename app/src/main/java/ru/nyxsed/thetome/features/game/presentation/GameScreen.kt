@@ -1,6 +1,5 @@
 package ru.nyxsed.thetome.features.game.presentation
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.compose.foundation.layout.*
@@ -9,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -346,6 +344,7 @@ private fun ReminderSection(
     Reminder(
         modifier = modifier,
         action = state.currentAction,
+        actions = state.actions,
         currentPhase = state.currentPhase,
         onBeforeClicked = onMoveToPreviousAction,
         onAfterClicked = onMoveToNextAction,
