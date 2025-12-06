@@ -113,7 +113,6 @@ fun SettingsContent(
                         text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
                         fontSize = 24.sp,
                         color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
-                        modifier = Modifier.padding(bottom = 8.dp)
                     )
 
                     PlayerCountSlider(
@@ -168,7 +167,6 @@ fun SettingsContent(
                 text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
                 fontSize = 20.sp,
                 color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
-                modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -196,7 +194,7 @@ fun SettingsContent(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                    .padding(horizontal = 8.dp, vertical = 8.dp),
                 enabled = state.chosenRoles.size == state.playerCount,
                 onClick = { onStartGameClicked() },
                 colors = ButtonDefaults.buttonColors()
@@ -255,7 +253,7 @@ fun SceneryDropdown(
     ) {
         Text(
             text = stringResource(R.string.text_scenery),
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(bottom = 6.dp),
             fontSize = if (isLandscape) 22.sp else 20.sp
         )
 

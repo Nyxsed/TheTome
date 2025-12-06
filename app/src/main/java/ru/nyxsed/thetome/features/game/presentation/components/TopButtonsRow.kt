@@ -41,7 +41,7 @@ fun TopButtonsRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 12.dp, start = 12.dp, end = 12.dp),
+            .padding(top = 12.dp, start = 8.dp, end = 8.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -59,7 +59,7 @@ fun TopButtonsRow(
             }
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = {
                 onLockClicked()
@@ -74,7 +74,7 @@ fun TopButtonsRow(
             }
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = {
                 isMenuExpanded = true
@@ -109,7 +109,7 @@ fun TopButtonsRow(
             }
         }
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = onMemoClicked,
             icon = {
@@ -121,7 +121,7 @@ fun TopButtonsRow(
             }
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = onEditClicked,
             icon = {
@@ -133,7 +133,7 @@ fun TopButtonsRow(
             }
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = onAddPlayerClicked,
             icon = {
@@ -145,7 +145,7 @@ fun TopButtonsRow(
             }
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         SmallRoundIconButton(
             onClick = onShareClicked,
             icon = {
