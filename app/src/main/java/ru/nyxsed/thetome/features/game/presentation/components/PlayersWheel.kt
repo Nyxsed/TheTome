@@ -23,10 +23,7 @@ import androidx.compose.ui.zIndex
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
-import kotlin.math.cos
-import kotlin.math.min
-import kotlin.math.roundToInt
-import kotlin.math.sin
+import kotlin.math.*
 
 @Composable
 fun PlayersWheel(
@@ -302,12 +299,29 @@ fun PlayersWheel(
                     // Отображение токенов
                     val tokens = player.tokens
                     if (tokens.isNotEmpty()) {
-                        val inset = tokenPx * 0.3f
+                        val inset = tokenPx * 0.5f
                         val tokenRadius = (circlePx + tokenPx) / 2f - inset
+
+                        // Находим направление от центра игрока к центру общего круга
+                        val dx = cx - animatedCenter.x
+                        val dy = cy - animatedCenter.y
+                        val distanceToCenter = sqrt(dx * dx + dy * dy)
+
+                        // Вычисляем угол в радианах (явно указываем Double)
+                        val startAngle: Double = if (distanceToCenter > 0.1f) {
+                            atan2(dy.toDouble(), dx.toDouble())
+                        } else {
+                            PI / 2.0
+                        }
+
+                        // Вычисляем шаг угла
+                        val angleStep: Double = 2.0 * PI / tokens.size
+
                         tokens.forEachIndexed { ti, token ->
-                            val a = 2 * Math.PI / tokens.size * ti
-                            val tx = circlePx / 2f + tokenRadius * cos(a) - tokenPx / 2f
-                            val ty = circlePx / 2f + tokenRadius * sin(a) - tokenPx / 2f
+                            // Используем Double для вычислений
+                            val angleRadians = startAngle + angleStep * ti
+                            val tx = circlePx / 2f + tokenRadius * cos(angleRadians).toFloat() - tokenPx / 2f
+                            val ty = circlePx / 2f + tokenRadius * sin(angleRadians).toFloat() - tokenPx / 2f
 
                             Box(
                                 modifier = Modifier.offset { IntOffset(tx.roundToInt(), ty.roundToInt()) }
@@ -350,7 +364,7 @@ fun PlayersWheel(
 
                 val tokens = fabled?.tokens
                 if (tokens?.isNotEmpty() == true) {
-                    val inset = tokenPx * 0.3f
+                    val inset = tokenPx * 0.5f
                     val tokenRadius = (circlePx + tokenPx) / 2f - inset
                     tokens.forEachIndexed { ti, token ->
                         val a = 2 * Math.PI / tokens.size * ti

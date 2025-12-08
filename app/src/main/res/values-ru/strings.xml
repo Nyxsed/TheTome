@@ -46,11 +46,11 @@
     <string name="action_start_night_phase">Начать ночную фазу</string>
     <string name="action_voting">Подождать 3–5 минут и начать голосование</string>
     <string name="action_start_day_phase">Начать дневную фазу</string>
-    <string name="action_show_demon">Разбудить прислужников, показать «ЭТО ДЕМОН» и указать на демона</string>
-    <string name="action_show_minions_and_bluffs">Разбудить демона, показать «ЭТО ВАШИ ПРИСЛУЖНИКИ», указать на прислужников. Показать «ЭТИ ПЕРСОНАЖИ НЕ В ИГРЕ». Показать подготовленные блефы</string>
+    <string name="action_show_demon">Разбудить приспешников, показать «ЭТО ДЕМОН» и указать на демона</string>
+    <string name="action_show_minions_and_bluffs">Разбудить демона, показать «ЭТО ВАШИ ПРИСПЕШНИКИ», указать на приспешников. Показать «ЭТИ ПЕРСОНАЖИ НЕ В ИГРЕ». Показать подготовленные блефы</string>
 
     <string name="menu_demon">Это демон</string>
-    <string name="menu_minions">Это ваши прислужники</string>
+    <string name="menu_minions">Это ваши приспешники</string>
     <string name="menu_not_in_play">Эти персонажи не в игре</string>
     <string name="menu_show_role">Показать роль</string>
     <string name="menu_use_ability">Используешь способность?</string>
@@ -66,7 +66,7 @@
     <string name="token_outsider">изгой</string>
     <string name="token_kill">убить</string>
     <string name="token_poison">отравлен</string>
-    <string name="token_minion">прислужник</string>
+    <string name="token_minion">приспешник</string>
     <string name="token_red_herring">ложный след</string>
     <string name="token_master">мастер</string>
     <string name="token_safe">защищён</string>
@@ -84,7 +84,7 @@
     <string name="token_alive">жив</string>
     <string name="token_3_attacks">3 атаки</string>
     <string name="token_abnormal">аномалия</string>
-    <string name="token_minion_nominated">прислужник номинирован</string>
+    <string name="token_minion_nominated">приспешник номинирован</string>
     <string name="token_is_the_philosopher">философ</string>
     <string name="token_correct">верно</string>
     <string name="token_haircuts">стрижка</string>

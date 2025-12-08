@@ -274,7 +274,7 @@ class GameViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             currentPhase = GamePhase.PREPARE,
-                            actionIndex = prevActions.lastIndex
+                            actionIndex = prevActions.lastIndex,
                         )
                     }
                 }
@@ -284,7 +284,8 @@ class GameViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             currentPhase = GamePhase.SECOND_NIGHT,
-                            actionIndex = prevActions.lastIndex
+                            actionIndex = prevActions.lastIndex,
+                            currentDay = it.currentDay - 1,
                         )
                     }
                 }
@@ -295,7 +296,6 @@ class GameViewModel @Inject constructor(
                         it.copy(
                             currentPhase = GamePhase.DAY,
                             actionIndex = prevActions.lastIndex,
-                            currentDay = it.currentDay - 1,
                         )
                     }
                 }
