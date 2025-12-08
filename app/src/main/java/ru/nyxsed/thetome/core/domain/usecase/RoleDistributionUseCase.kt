@@ -28,6 +28,15 @@ class RoleDistributionUseCase @Inject constructor() {
             )
         }
 
+        if (playerCount < 5) {
+            return mapOf(
+                RoleType.TOWNSFOLK to 3,
+                RoleType.OUTSIDER to 0,
+                RoleType.MINION to 1,
+                RoleType.DEMON to 1
+            )
+        }
+
         return distribution[playerCount] ?: throw IllegalArgumentException("Have no distribution for $playerCount players")
     }
 }

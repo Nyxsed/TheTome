@@ -1,7 +1,6 @@
 package ru.nyxsed.thetome.features.game.presentation
 
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +30,6 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch {
             loadGameUseCase().collect { loadedGame ->
                 loadedGame?.let { game ->
-                    Log.d("loadedGame", game.freePosition.toString())
                     _state.value = game
                     val actions = getActionList(game)
                     val current = actions.getOrNull(game.actionIndex)
@@ -158,7 +156,11 @@ class GameViewModel @Inject constructor(
                 else
                     currentState.fabled
 
-            currentState.copy(players = updatedPlayers, fabled = updatedFabled)
+            val distribution = roleDistributionUseCase(
+                updatedPlayers?.filter { player -> player.role?.type != RoleType.TRAVELLER }?.size ?: 0
+            )
+
+            currentState.copy(players = updatedPlayers, fabled = updatedFabled, roleDistribution = distribution)
         }
         saveGameState()
     }
@@ -321,9 +323,13 @@ class GameViewModel @Inject constructor(
                 role = null
             )
 
-            val distribution = roleDistributionUseCase(state.players?.size?.plus(1) ?: 0)
+            val newPlayers = current?.plus(newPlayer)
 
-            state.copy(players = current?.plus(newPlayer), roleDistribution = distribution)
+            val distribution = roleDistributionUseCase(
+                newPlayers?.filter { player -> player.role?.type != RoleType.TRAVELLER }?.size ?: 0
+            )
+
+            state.copy(players = newPlayers, roleDistribution = distribution)
         }
         saveGameState()
     }
@@ -340,7 +346,9 @@ class GameViewModel @Inject constructor(
                     player.copy(id = newIndex)
                 }
 
-            val distribution = roleDistributionUseCase(state.players.size.minus(1) )
+            val distribution = roleDistributionUseCase(
+                updated.filterNot { player -> player.role?.type == RoleType.TRAVELLER }.size
+            )
 
             state.copy(players = updated, roleDistribution = distribution)
         }
