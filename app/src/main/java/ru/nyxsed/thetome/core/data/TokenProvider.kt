@@ -180,4 +180,9 @@ object TokenProvider {
     val SpiritOfIvoryNoMoreEvil = Token(nameResId = R.string.token_no_more_evil, iconRes = R.drawable.icon_spiritofivory)
 
     val DeusExFiascoWhoopsie = Token(nameResId = R.string.token_whoopsie, iconRes = R.drawable.icon_deusexfiasco)
+
+    val ZenomancerGoal = Token(nameResId = R.string.token_goal, iconRes = R.drawable.icon_zenomancer)
+
+    val StormCatcherSafe = Token(nameResId = R.string.token_safe, iconRes = R.drawable.icon_stormcatcher)
+
 }

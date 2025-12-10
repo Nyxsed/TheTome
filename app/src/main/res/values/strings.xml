@@ -119,6 +119,7 @@
     <string name="token_false_info">false info</string>
     <string name="token_no_more_evil">no more evil</string>
     <string name="token_whoopsie">whoopsie</string>
+    <string name="token_goal">goal</string>
 
     <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
@@ -611,4 +612,31 @@
 
     <string name="role_name_ferryman">Ferryman</string>
     <string name="role_ability_ferryman">On the final day, all dead players regain their vote token</string>
+
+    <string name="role_name_zenomancer">Zenomancer</string>
+    <string name="role_ability_zenomancer">One or more players each have a goal. When achieved, that player learns a piece of true info</string>
+    <string name="action_prepare_zenomancer">Declare that the Zenomancer is in play</string>
+    <string name="action_first_night_zenomancer">During first night wake players and give them goals. mark these players</string>
+
+    <string name="role_name_bootlegger">Bootlegger</string>
+    <string name="role_ability_bootlegger">This script has homebrew characters or rules</string>
+    <string name="action_prepare_bootlegger">Declare that the Bootlegger is in play</string>
+
+    <string name="role_name_tor">Tor</string>
+    <string name="role_ability_tor">Players dont know their character or alignment. They learn them when they die</string>
+    <string name="action_prepare_tor">Declare that the Tor is in play</string>
+
+    <string name="role_name_storm_catcher">Storm Catcher</string>
+    <string name="role_ability_storm_catcher">Name a good character. If in play, they can only die by execution, but evil players learn which player it is</string>
+    <string name="action_prepare_storm_catcher">Declare that the Storm Catcher is in play. Declare which good character is favoured by the Storm Catcher. If the favoured character is in play, mark them with the Storm Catchers SAFE reminder</string>
+    <string name="action_first_night_storm_catcher">wake each evil player in turn. If a good character is marked with the Storm Catcher’s SAFE reminder, show the evil player the THIS PLAYER IS info token, the good character token, point to the good player. If no one is marked with the Storm Catcher’s SAFE reminder, show the evil player the THESE CHARACTERS ARE NOT IN PLAY info token and the good character token</string>
+
+    <string name="role_name_gardener">Gardener</string>
+    <string name="role_ability_gardener">The Storyteller assigns 1 or more players characters</string>
+    <string name="action_prepare_gardener">Declare that the Gardener is in play. Manually assign roles to players</string>
+
+    <string name="role_name_big_wig">Big Wig</string>
+    <string name="role_ability_big_wig">Each nominee chooses a player: until voting, only they may speak and they are mad the nominee is good or they might die</string>
+    <string name="action_prepare_big_wig">Declare that the Big Wig is in play</string>
+
 </resources>

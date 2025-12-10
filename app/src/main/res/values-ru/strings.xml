@@ -598,4 +598,29 @@
     <string name="role_name_ferryman">Паромщик</string>
     <string name="role_ability_ferryman">В последний день все мертвые игроки восстанавливают свои жетоны голоса</string>
 
+    <string name="role_name_zenomancer">Дзеномант</string>
+    <string name="role_ability_zenomancer">У одного или нескольких игроков есть задание. При его выполнении игрок узнает правдивую информацию</string>
+    <string name="action_prepare_zenomancer">Объявите что  в игре</string>
+    <string name="action_first_night_zenomancer">В любой момент сообщите игроку, что у него есть задание</string>
+
+    <string name="role_name_bootlegger">Бутлегер</string>
+    <string name="role_ability_bootlegger">В сценарии присутствуют особые роли или правила</string>
+    <string name="action_prepare_bootlegger">Объявите что Бутлегер в игре</string>
+
+    <string name="role_name_tor">Тор</string>
+    <string name="role_ability_tor">Игроки не знают ни свою роль, ни сторону. Они узнают их, когда умирают</string>
+    <string name="action_prepare_tor">Объявите что Тор в игре</string>
+
+    <string name="role_name_storm_catcher">Ловец бури</string>
+    <string name="role_ability_storm_catcher">Все игроки узнают добрую роль. Если она присутствует в игре, игрок с ней может умереть только в результате казни, но злые игроки узнают, кто он</string>
+    <string name="action_prepare_storm_catcher">Объявите что Ловец бури в игре. Добавьте жетон Ловца бури в Гримуар. Объявите, какой доброй роли благословит Ловец бури. Если эта роль находится в игре, поставьте пометку «Защищен» рядом с ее жетоном роли</string>
+    <string name="action_first_night_storm_catcher">по очереди пробудите каждого злого игрока. Если у доброй роли есть пометка «Защищен» Ловца бурь, покажите злому игроку карточку «Этот игрок», жетон доброй роли, укажите на доброго игрока, а затем усыпите злого игрока. Если ни у кого нет пометки Ловца бури «Защищен», то покажите злому игроку карточку «Эти роли отсутствуют в игре» и жетон доброй роли, затем усыпите злого игрока</string>
+
+    <string name="role_name_gardener">Садовник</string>
+    <string name="role_ability_gardener">Рассказчик назначает роли одному или нескольким игрокам</string>
+    <string name="action_prepare_gardener">Объявите что Садовник в игре. В ручную распределите роли среди игроков</string>
+
+    <string name="role_name_big_wig">Большая шишка</string>
+    <string name="role_ability_big_wig">Каждый номинированный выбирает игрока: до голосования только он может говорить, и он должен внушать, что номинированный - добрый, иначе может умереть</string>
+    <string name="action_prepare_big_wig">Объявите что Большая шишка в игре</string>
 </resources>

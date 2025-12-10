@@ -83,6 +83,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.ShabalothKill
 import ru.nyxsed.thetome.core.data.TokenProvider.SlayerNoAbility
 import ru.nyxsed.thetome.core.data.TokenProvider.SnakeCharmerPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.SpiritOfIvoryNoMoreEvil
+import ru.nyxsed.thetome.core.data.TokenProvider.StormCatcherSafe
 import ru.nyxsed.thetome.core.data.TokenProvider.SweetheartDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.TeaLadyCannotDie
 import ru.nyxsed.thetome.core.data.TokenProvider.ThiefNegativeVote
@@ -99,6 +100,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.WasherwomanWrong
 import ru.nyxsed.thetome.core.data.TokenProvider.WidowKnow
 import ru.nyxsed.thetome.core.data.TokenProvider.WidowPoison
 import ru.nyxsed.thetome.core.data.TokenProvider.WitchCursed
+import ru.nyxsed.thetome.core.data.TokenProvider.ZenomancerGoal
 import ru.nyxsed.thetome.core.data.TokenProvider.ZombuulDiedToday
 import ru.nyxsed.thetome.core.data.TokenProvider.ZombuulKill
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -1156,6 +1158,58 @@ object RoleProvider {
         iconRes = R.drawable.icon_ferryman
     )
 
+    val Zenomancer = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_zenomancer,
+        ability = R.string.role_ability_zenomancer,
+        prepareActionId = R.string.action_prepare_zenomancer,
+        firstNightActionId = R.string.action_first_night_zenomancer,
+        iconRes = R.drawable.icon_zenomancer,
+        tokens = listOf(ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal)
+    )
+
+    val Bootlegger = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_bootlegger,
+        ability = R.string.role_ability_bootlegger,
+        prepareActionId = R.string.action_prepare_bootlegger,
+        iconRes = R.drawable.icon_bootlegger
+    )
+
+    val Tor = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_tor,
+        ability = R.string.role_ability_tor,
+        prepareActionId = R.string.action_prepare_tor,
+        iconRes = R.drawable.icon_tor
+    )
+
+    val StormCatcher = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_storm_catcher,
+        ability = R.string.role_ability_storm_catcher,
+        prepareActionId = R.string.action_prepare_storm_catcher,
+        firstNightActionId = R.string.action_first_night_storm_catcher,
+        iconRes = R.drawable.icon_stormcatcher,
+        tokens = listOf(StormCatcherSafe)
+    )
+
+    val Gardener = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_gardener,
+        ability = R.string.role_ability_gardener,
+        prepareActionId = R.string.action_prepare_gardener,
+        iconRes = R.drawable.icon_gardener
+    )
+
+    val BigWig = Role(
+        type = RoleType.FABLED,
+        roleName = R.string.role_name_big_wig,
+        ability = R.string.role_ability_big_wig,
+        prepareActionId = R.string.action_prepare_big_wig,
+        iconRes = R.drawable.icon_big_wig
+    )
+
 
     val allTravelers = listOf(
         Scapegoat,
@@ -1193,5 +1247,11 @@ object RoleProvider {
         SpiritOfIvory,
         DeusExFiasco,
         Ferryman,
+        Zenomancer,
+        Bootlegger,
+        Tor,
+        StormCatcher,
+        Gardener,
+        BigWig,
     )
 }
