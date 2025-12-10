@@ -23,6 +23,7 @@ import ru.nyxsed.thetome.core.domain.models.Scenery
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
+import ru.nyxsed.thetome.features.game.presentation.components.SmallRoundIconButton
 import ru.nyxsed.thetome.ui.theme.DarkPurple
 
 @Composable
@@ -41,7 +42,8 @@ fun SettingsScreen(
         onStartGameClicked = {
             viewModel.saveGameState()
             onStartGameClicked()
-        }
+        },
+        onRandomClicked = { viewModel.randomRoleSelection() }
     )
 }
 
@@ -53,6 +55,7 @@ fun SettingsContent(
     onSceneryChanged: (Scenery) -> Unit,
     onRoleSelected: (Role) -> Unit,
     onStartGameClicked: () -> Unit,
+    onRandomClicked: () -> Unit,
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
@@ -118,8 +121,9 @@ fun SettingsContent(
                     PlayerCountSlider(
                         sliderPosition = state.playerCount.toFloat(),
                         maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
+                        isLandscape = isLandscape,
                         onValueChange = { onPlayerCountChanged(it.toInt()) },
-                        isLandscape = isLandscape
+                        onRandomClicked = onRandomClicked
                     )
                 }
 
@@ -171,12 +175,18 @@ fun SettingsContent(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            PlayerCountSlider(
-                sliderPosition = state.playerCount.toFloat(),
-                maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
-                onValueChange = { onPlayerCountChanged(it.toInt()) },
-                isLandscape = isLandscape
-            )
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                PlayerCountSlider(
+                    sliderPosition = state.playerCount.toFloat(),
+                    maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
+                    isLandscape = isLandscape,
+                    onValueChange = { onPlayerCountChanged(it.toInt()) },
+                    onRandomClicked = onRandomClicked
+                )
+            }
+
 
             Spacer(modifier = Modifier.height(6.dp))
 
@@ -214,8 +224,9 @@ fun SettingsContent(
 fun PlayerCountSlider(
     maxPlayers: Int,
     sliderPosition: Float,
+    isLandscape: Boolean,
     onValueChange: (Float) -> Unit,
-    isLandscape: Boolean
+    onRandomClicked: () -> Unit
 ) {
     LaunchedEffect(maxPlayers) {
         if (sliderPosition > maxPlayers) {
@@ -226,15 +237,31 @@ fun PlayerCountSlider(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ) {
-        Slider(
-            modifier = Modifier.width(if (isLandscape) 280.dp else 300.dp),
-            value = sliderPosition,
-            onValueChange = { onValueChange(it) },
-            steps = 9,
-            valueRange = 5f..maxPlayers.toFloat(),
-            colors = SliderDefaults.colors()
-                .copy(thumbColor = DarkPurple, activeTrackColor = DarkPurple, inactiveTrackColor = DarkPurple.copy(alpha = 0.5f))
-        )
+        Row {
+            Slider(
+                modifier = Modifier.width(if (isLandscape) 230.dp else 260.dp),
+                value = sliderPosition,
+                onValueChange = { onValueChange(it) },
+                steps = 9,
+                valueRange = 5f..maxPlayers.toFloat(),
+                colors = SliderDefaults.colors()
+                    .copy(thumbColor = DarkPurple, activeTrackColor = DarkPurple, inactiveTrackColor = DarkPurple.copy(alpha = 0.5f))
+            )
+
+            Spacer(modifier = Modifier.width(6.dp))
+
+            SmallRoundIconButton(
+                onClick = onRandomClicked,
+                icon = {
+                    Icon(
+                        modifier = Modifier.size(24.dp),
+                        contentDescription = "Random",
+                        painter = painterResource(R.drawable.ic_dice),
+                        tint = Color.White
+                    )
+                }
+            )
+        }
     }
 }
 

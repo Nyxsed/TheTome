@@ -3,11 +3,7 @@ package ru.nyxsed.thetome.features.settings.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.nyxsed.thetome.core.domain.models.GameState
 import ru.nyxsed.thetome.core.domain.models.Player
@@ -39,17 +35,17 @@ class SettingsViewModel @Inject constructor(
                 }
                 .filterNotNull()
                 .collect { loadedState ->
-                _state.update {
-                    val playerCount = loadedState.players?.size ?: 5
-                    it.copy(
-                        selectedScenery = loadedState.scenery,
-                        playerCount = playerCount,
-                        players = loadedState.players,
-                        roleDistribution = roleDistributionUseCase(playerCount),
-                        chosenRoles = loadedState.chosenRoles!!
-                    )
+                    _state.update {
+                        val playerCount = loadedState.players?.size ?: 5
+                        it.copy(
+                            selectedScenery = loadedState.scenery,
+                            playerCount = playerCount,
+                            players = loadedState.players,
+                            roleDistribution = roleDistributionUseCase(playerCount),
+                            chosenRoles = loadedState.chosenRoles!!
+                        )
+                    }
                 }
-            }
         }
     }
 
@@ -100,5 +96,26 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             saveGameStateUseCase(gameState)
         }
+    }
+
+    fun randomRoleSelection() {
+
+        if (_state.value.selectedScenery == null) return
+
+        val distribution = _state.value.roleDistribution
+        val sceneryRoles = _state.value.selectedScenery
+
+        val result = mutableListOf<Role>()
+
+        distribution.forEach { (roleType, count) ->
+            if (count > 0) {
+                val rolesOfType = sceneryRoles!!.roles
+                    .filter { it.type == roleType }
+                    .shuffled()
+                    .take(count)
+                result.addAll(rolesOfType)
+            }
+        }
+        _state.update { it.copy(chosenRoles = result) }
     }
 }
