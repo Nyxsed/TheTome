@@ -11,7 +11,6 @@
     <string name="text_yes">Да</string>
     <string name="text_cancel">Отмена</string>
     <string name="text_start_game">Начать игру</string>
-    <string name="text_player_count">Количество игроков: %1$d</string>
     <string name="text_scenery">Сценарий: </string>
     <string name="text_choose_scenery">Выберите сценарий</string>
     <string name="text_players">Игроки: %1$d / %2$d</string>
@@ -25,7 +24,6 @@
     <string name="text_outsider">Изгои</string>
     <string name="text_minion">Приспешники</string>
     <string name="text_demon">Демоны</string>
-    <string name="text_traveller">Странник</string>
     <string name="text_fabled">Сказочник</string>
     <string name="text_edit_game_attention">Состояние игры будет сброшено</string>
     <string name="text_edit_game">Изменить игру?</string>
@@ -44,7 +42,6 @@
     <string name="action_prepare_bag">Подготовить мешок ролей и передать игрокам</string>
     <string name="action_start_first_night_phase">Начать первую ночную фазу</string>
     <string name="action_start_night_phase">Начать ночную фазу</string>
-    <string name="action_voting">Подождать 3–5 минут и начать голосование</string>
     <string name="action_start_day_phase">Начать дневную фазу</string>
     <string name="action_show_demon">Разбудить приспешников, показать «ЭТО ДЕМОН» и указать на демона</string>
     <string name="action_show_minions_and_bluffs">Разбудить демона, показать «ЭТО ВАШИ ПРИСПЕШНИКИ», указать на приспешников. Показать «ЭТИ ПЕРСОНАЖИ НЕ В ИГРЕ». Показать подготовленные блефы</string>
@@ -116,6 +113,7 @@
     <string name="token_protected">защищён</string>
     <string name="token_something_bad">что-то плохое</string>
     <string name="token_no_attack">не атакует</string>
+    <string name="token_goal">задание</string>
 
     <string name="role_name_imp">Черт</string>
     <string name="role_ability_imp">Каждую ночь*: выберите игрока. Он умирает. Если вы убиваете себя таким образом, один из Приспешников становится Чертом</string>
@@ -623,4 +621,5 @@
     <string name="role_name_big_wig">Большая шишка</string>
     <string name="role_ability_big_wig">Каждый номинированный выбирает игрока: до голосования только он может говорить, и он должен внушать, что номинированный - добрый, иначе может умереть</string>
     <string name="action_prepare_big_wig">Объявите что Большая шишка в игре</string>
+
 </resources>

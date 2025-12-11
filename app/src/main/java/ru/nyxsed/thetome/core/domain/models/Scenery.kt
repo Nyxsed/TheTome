@@ -8,10 +8,5 @@ data class Scenery(
     val sceneryNameRes: Int,
     @DrawableRes val iconRes: Int = 0,
     val maxPlayers: Int = 15,
-    val roles: List<Role>,
-    val prepareActions: List<Action>,
-    val firstNightActions: List<Action>,
-    val secondNightActions: List<Action>,
-    val dayActions: List<Action>,
-    val sceneryTokens: List<Token>,
+    val roles: List<Role>
 )

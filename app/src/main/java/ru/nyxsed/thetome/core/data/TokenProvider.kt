@@ -92,8 +92,7 @@ object TokenProvider {
     val ShabalothAlive = Token(nameResId = R.string.token_alive, iconRes = R.drawable.icon_shabaloth)
 
     val PoKill = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
-
-    val Po3Attacks = Token(nameResId = R.string.token_kill, iconRes = R.drawable.icon_po)
+    val Po3Attacks = Token(nameResId = R.string.token_3_attacks, iconRes = R.drawable.icon_po)
 
     val SnakeCharmerPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_snakecharmer)
 

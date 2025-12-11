@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.nyxsed.thetome.R
+import ru.nyxsed.thetome.core.data.TokenProvider.Evil
+import ru.nyxsed.thetome.core.data.TokenProvider.Good
 import ru.nyxsed.thetome.core.domain.models.ItemType
 import ru.nyxsed.thetome.core.domain.models.Player
 import ru.nyxsed.thetome.core.domain.models.Role
@@ -24,7 +26,6 @@ fun TokenPickerDialog(
     chosenRoles: List<Role>?,
     players: List<Player>?,
     fabled: Player?,
-    sceneryTokens: List<Token>,
     onPickToken: (Token) -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -52,7 +53,9 @@ fun TokenPickerDialog(
                     if (remaining > 0) List(remaining) { token } else emptyList()
                 }
 
-        (sceneryTokens + remainingRoleTokens).distinct()
+        val alwaysAvailableTokens = listOf(Good, Evil)
+
+        (alwaysAvailableTokens + remainingRoleTokens).distinct()
     }
 
     AlertDialog(

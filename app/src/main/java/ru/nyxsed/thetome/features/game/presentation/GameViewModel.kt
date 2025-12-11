@@ -182,26 +182,86 @@ class GameViewModel @Inject constructor(
     }
 
 
+    private fun getRoleActionsForPhase(role: Role, phase: GamePhase): Action? {
+        val actionId = when (phase) {
+            GamePhase.PREPARE -> role.prepareActionId
+            GamePhase.FIRST_NIGHT -> role.firstNightActionId
+            GamePhase.SECOND_NIGHT -> role.secondNightActionId
+            GamePhase.DAY -> role.dayActionId
+        }
+
+        return if (actionId != 0) {
+            Action(
+                role = role,
+                res = actionId
+            )
+        } else {
+            null
+        }
+    }
+
     private fun getActionList(state: GameState): List<Action> {
         val chosenRoles = state.chosenRoles
-        val aliveRoles = state.players?.filter { it.isAlive }?.map { it.role }
-        val killedRoles = state.players?.filter { !it.isAlive }?.map { it.role }
-        val currentRoles = (chosenRoles.orEmpty() + aliveRoles.orEmpty()).distinctBy { it?.roleName }
+        val alivePlayers = state.players?.filter { it.isAlive } ?: emptyList()
+        val aliveRoles = alivePlayers.map { it.role }
+        val killedRoles = state.players?.filter { !it.isAlive }?.map { it.role } ?: emptyList()
 
-        val phaseActions = when (state.currentPhase) {
-            GamePhase.PREPARE -> state.scenery?.prepareActions
-            GamePhase.FIRST_NIGHT -> state.scenery?.firstNightActions
-            GamePhase.SECOND_NIGHT -> state.scenery?.secondNightActions
-            GamePhase.DAY -> state.scenery?.dayActions
-        }?.filterNot { action ->
-            action.type == ActionType.PLAYERS_7 && state.players?.size!! < 7
-        }?.filter { action ->
-            (action.type != ActionType.PLAYER) || currentRoles.contains(action.role)
-        }?.filterNot { action ->
-            action.type == ActionType.PLAYER && killedRoles?.contains(action.role) == true
-        } ?: emptyList()
+        val fabledRole = state.fabled?.role
 
-        return phaseActions
+        // Получаем все уникальные роли, которые есть в игре (выбранные + живые)
+        val currentRoles = (chosenRoles.orEmpty() + aliveRoles.orEmpty() + fabledRole)
+            .distinctBy { it?.roleName }
+            .filterNotNull()
+
+        // Разделяем на группы для сортировки
+        val players7ActionPrepare = mutableListOf<Action>()
+        val playersActionPrepare = mutableListOf<Action>()
+        val players7ActionFirstNight = mutableListOf<Action>()
+        val roleActions = mutableListOf<Action>()
+        val endAction = mutableListOf<Action>()
+
+
+        if (state.currentPhase == GamePhase.PREPARE) {
+            playersActionPrepare.add(Action(null, Action.prepareBagId))
+        }
+        // 1. PLAYERS_7 - отдельная группа (всегда первое)
+        if (state.currentPhase == GamePhase.PREPARE && (state.players?.size ?: 0) >= 7) {
+            players7ActionPrepare.add(Action(null, Action.prepareBluffsId))
+        }
+
+        if (state.currentPhase == GamePhase.FIRST_NIGHT && (state.players?.size ?: 0) >= 7) {
+            players7ActionFirstNight.add(Action(null, Action.showMinionsId))
+            players7ActionFirstNight.add(Action(null, Action.showDemonId))
+        }
+
+        // 2. Собираем ролевые действия
+        currentRoles.forEach { role ->
+            if (!killedRoles.contains(role)) {
+                getRoleActionsForPhase(role, state.currentPhase)?.let { action ->
+                    roleActions.add(action)
+                }
+            }
+        }
+
+        // 3. End action - отдельная группа (всегда последнее)
+        when (state.currentPhase) {
+            GamePhase.FIRST_NIGHT, GamePhase.SECOND_NIGHT -> {
+                endAction.add(Action(null, Action.startDayId))
+            }
+
+            GamePhase.DAY -> {
+                endAction.add(Action(null, Action.startNightId))
+            }
+
+            GamePhase.PREPARE -> {
+                endAction.add(Action(null, Action.startFirstNightId))
+            }
+        }
+
+        val sortedRoleActions = roleActions.sortedBy { it.role?.nightPriority ?: Int.MAX_VALUE }
+
+        // Объединяем все группы в правильном порядке
+        return playersActionPrepare + players7ActionPrepare + players7ActionFirstNight + sortedRoleActions + endAction
     }
 
 

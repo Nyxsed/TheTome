@@ -116,6 +116,7 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_washerwoman,
         firstNightActionId = R.string.action_first_night_washerwoman,
         iconRes = R.drawable.icon_washerwoman,
+        nightPriority = 95,
     )
 
     val Librarian = Role(
@@ -126,6 +127,7 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_librarian,
         firstNightActionId = R.string.action_first_night_librarian,
         iconRes = R.drawable.icon_librarian,
+        nightPriority = 96,
     )
 
     val Investigator = Role(
@@ -136,6 +138,7 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_investigator,
         firstNightActionId = R.string.action_first_night_investigator,
         iconRes = R.drawable.icon_investigator,
+        nightPriority = 97,
     )
 
     val Chef = Role(
@@ -144,6 +147,7 @@ object RoleProvider {
         ability = R.string.role_ability_chef,
         firstNightActionId = R.string.action_first_night_chef,
         iconRes = R.drawable.icon_chef,
+        nightPriority = 98,
     )
 
     val FortuneTeller = Role(
@@ -155,6 +159,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_fortune_teller,
         secondNightActionId = R.string.action_second_night_fortune_teller,
         iconRes = R.drawable.icon_fortuneteller,
+        nightPriority = 88,
     )
 
     val Empath = Role(
@@ -164,6 +169,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_empath,
         secondNightActionId = R.string.action_second_night_empath,
         iconRes = R.drawable.icon_empath,
+        nightPriority = 87,
     )
 
     val Undertaker = Role(
@@ -174,6 +180,7 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_undertaker,
         dayActionId = R.string.action_day_undertaker,
         iconRes = R.drawable.icon_undertaker,
+        nightPriority = 89,
     )
 
     val Monk = Role(
@@ -183,6 +190,7 @@ object RoleProvider {
         ability = R.string.role_ability_monk,
         secondNightActionId = R.string.action_second_night_monk,
         iconRes = R.drawable.icon_monk,
+        nightPriority = 34,
     )
 
     val Ravenkeeper = Role(
@@ -191,6 +199,7 @@ object RoleProvider {
         ability = R.string.role_ability_ravenkeeper,
         secondNightActionId = R.string.action_second_night_ravenkeeper,
         iconRes = R.drawable.icon_ravenkeeper,
+        nightPriority = 86,
     )
 
     val Virgin = Role(
@@ -199,6 +208,7 @@ object RoleProvider {
         roleName = R.string.role_name_virgin,
         ability = R.string.role_ability_virgin,
         iconRes = R.drawable.icon_virgin,
+        nightPriority = 999,
     )
 
     val Slayer = Role(
@@ -207,6 +217,7 @@ object RoleProvider {
         roleName = R.string.role_name_slayer,
         ability = R.string.role_ability_slayer,
         iconRes = R.drawable.icon_slayer,
+        nightPriority = 999,
     )
 
     val Soldier = Role(
@@ -214,6 +225,7 @@ object RoleProvider {
         roleName = R.string.role_name_soldier,
         ability = R.string.role_ability_soldier,
         iconRes = R.drawable.icon_soldier,
+        nightPriority = 999,
     )
 
     val Mayor = Role(
@@ -221,6 +233,7 @@ object RoleProvider {
         roleName = R.string.role_name_mayor,
         ability = R.string.role_ability_mayor,
         iconRes = R.drawable.icon_mayor,
+        nightPriority = 999,
     )
 
     val Clockmaker = Role(
@@ -229,6 +242,7 @@ object RoleProvider {
         ability = R.string.role_ability_clockmaker,
         firstNightActionId = R.string.action_first_night_clockmaker,
         iconRes = R.drawable.icon_clockmaker,
+        nightPriority = 61,
     )
 
     val Grandmother = Role(
@@ -239,7 +253,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_grandmother,
         firstNightActionId = R.string.action_first_night_grandmother,
         secondNightActionId = R.string.action_second_night_grandmother,
-        tokens = listOf(GrandmotherGrandchild)
+        tokens = listOf(GrandmotherGrandchild),
+        nightPriority = 84,
     )
 
     val Exorcist = Role(
@@ -248,7 +263,8 @@ object RoleProvider {
         ability = R.string.role_ability_exorcist,
         iconRes = R.drawable.icon_exorcist,
         secondNightActionId = R.string.action_second_night_exorcist,
-        tokens = listOf(ExorcistChosen)
+        tokens = listOf(ExorcistChosen),
+        nightPriority = 47,
     )
 
     val Flowergirl = Role(
@@ -258,7 +274,8 @@ object RoleProvider {
         iconRes = R.drawable.icon_flowergirl,
         dayActionId = R.string.action_day_flowergirl,
         secondNightActionId = R.string.action_second_night_flowergirl,
-        tokens = listOf(FlowergirlNotVoted, FlowergirlVoted)
+        tokens = listOf(FlowergirlNotVoted, FlowergirlVoted),
+        nightPriority = 91,
     )
 
     val Oracle = Role(
@@ -266,7 +283,8 @@ object RoleProvider {
         roleName = R.string.role_name_oracle,
         ability = R.string.role_ability_oracle,
         iconRes = R.drawable.icon_oracle,
-        secondNightActionId = R.string.action_second_night_oracle
+        secondNightActionId = R.string.action_second_night_oracle,
+        nightPriority = 93,
     )
 
     val Artist = Role(
@@ -274,7 +292,8 @@ object RoleProvider {
         roleName = R.string.role_name_artist,
         ability = R.string.role_ability_artist,
         iconRes = R.drawable.icon_artist,
-        tokens = listOf(ArtistNoAbility)
+        tokens = listOf(ArtistNoAbility),
+        nightPriority = 999,
     )
 
     val Seamstress = Role(
@@ -284,7 +303,8 @@ object RoleProvider {
         iconRes = R.drawable.icon_seamstress,
         firstNightActionId = R.string.action_second_night_seamstress,
         secondNightActionId = R.string.action_second_night_seamstress,
-        tokens = listOf(SeamstressNoAbility)
+        tokens = listOf(SeamstressNoAbility),
+        nightPriority = 94,
     )
 
     val Sailor = Role(
@@ -295,7 +315,8 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_sailor,
         secondNightActionId = R.string.action_second_night_sailor,
         dayActionId = R.string.action_day_sailor,
-        iconRes = R.drawable.icon_sailor
+        iconRes = R.drawable.icon_sailor,
+        nightPriority = 22,
     )
 
     val Chambermaid = Role(
@@ -304,7 +325,8 @@ object RoleProvider {
         ability = R.string.role_ability_chambermaid,
         firstNightActionId = R.string.action_second_night_chambermaid,
         secondNightActionId = R.string.action_second_night_chambermaid,
-        iconRes = R.drawable.icon_chambermaid
+        iconRes = R.drawable.icon_chambermaid,
+        nightPriority = 115,
     )
 
     val Innkeeper = Role(
@@ -314,7 +336,8 @@ object RoleProvider {
         ability = R.string.role_ability_innkeeper,
         secondNightActionId = R.string.action_second_night_innkeeper,
         dayActionId = R.string.action_day_innkeeper,
-        iconRes = R.drawable.icon_innkeeper
+        iconRes = R.drawable.icon_innkeeper,
+        nightPriority = 29,
     )
 
     val Gambler = Role(
@@ -323,7 +346,8 @@ object RoleProvider {
         roleName = R.string.role_name_gambler,
         ability = R.string.role_ability_gambler,
         secondNightActionId = R.string.action_second_night_gambler,
-        iconRes = R.drawable.icon_gambler
+        iconRes = R.drawable.icon_gambler,
+        nightPriority = 31,
     )
 
     val Gossip = Role(
@@ -333,7 +357,8 @@ object RoleProvider {
         ability = R.string.role_ability_gossip,
         secondNightActionId = R.string.action_second_night_gossip,
         dayActionId = R.string.action_day_gossip,
-        iconRes = R.drawable.icon_gossip
+        iconRes = R.drawable.icon_gossip,
+        nightPriority = 69,
     )
 
     val Courtier = Role(
@@ -343,7 +368,8 @@ object RoleProvider {
         ability = R.string.role_ability_courtier,
         firstNightActionId = R.string.action_second_night_courtier,
         secondNightActionId = R.string.action_second_night_courtier,
-        iconRes = R.drawable.icon_courtier
+        iconRes = R.drawable.icon_courtier,
+        nightPriority = 28,
     )
 
     val Professor = Role(
@@ -352,7 +378,8 @@ object RoleProvider {
         roleName = R.string.role_name_professor,
         ability = R.string.role_ability_professor,
         secondNightActionId = R.string.action_second_night_professor,
-        iconRes = R.drawable.icon_professor
+        iconRes = R.drawable.icon_professor,
+        nightPriority = 76,
     )
 
     val Minstrel = Role(
@@ -361,7 +388,8 @@ object RoleProvider {
         roleName = R.string.role_name_minstrel,
         ability = R.string.role_ability_minstrel,
         dayActionId = R.string.action_day_minstrel,
-        iconRes = R.drawable.icon_minstrel
+        iconRes = R.drawable.icon_minstrel,
+        nightPriority = 10,
     )
 
     val TeaLady = Role(
@@ -371,7 +399,8 @@ object RoleProvider {
         ability = R.string.role_ability_tea_lady,
         prepareActionId = R.string.action_prepare_tea_lady,
         dayActionId = R.string.action_day_tea_lady,
-        iconRes = R.drawable.icon_tealady
+        iconRes = R.drawable.icon_tealady,
+        nightPriority = 999,
     )
 
     val Pacifist = Role(
@@ -379,7 +408,8 @@ object RoleProvider {
         roleName = R.string.role_name_pacifist,
         ability = R.string.role_ability_pacifist,
         dayActionId = R.string.action_day_pacifist,
-        iconRes = R.drawable.icon_pacifist
+        iconRes = R.drawable.icon_pacifist,
+        nightPriority = 999,
     )
 
     val Fool = Role(
@@ -390,7 +420,8 @@ object RoleProvider {
         firstNightActionId = R.string.action_first_night_fool,
         secondNightActionId = R.string.action_second_night_fool,
         dayActionId = R.string.action_day_fool,
-        iconRes = R.drawable.icon_fool
+        iconRes = R.drawable.icon_fool,
+        nightPriority = 999,
     )
 
     val Dreamer = Role(
@@ -399,7 +430,8 @@ object RoleProvider {
         ability = R.string.role_ability_dreamer,
         firstNightActionId = R.string.action_second_night_dreamer,
         secondNightActionId = R.string.action_second_night_dreamer,
-        iconRes = R.drawable.icon_dreamer
+        iconRes = R.drawable.icon_dreamer,
+        nightPriority = 90,
     )
 
     val SnakeCharmer = Role(
@@ -409,7 +441,8 @@ object RoleProvider {
         ability = R.string.role_ability_snake_charmer,
         firstNightActionId = R.string.action_second_night_snake_charmer,
         secondNightActionId = R.string.action_second_night_snake_charmer,
-        iconRes = R.drawable.icon_snakecharmer
+        iconRes = R.drawable.icon_snakecharmer,
+        nightPriority = 33,
     )
 
     val Mathematician = Role(
@@ -419,7 +452,8 @@ object RoleProvider {
         ability = R.string.role_ability_mathematician,
         firstNightActionId = R.string.action_second_night_mathematician,
         secondNightActionId = R.string.action_second_night_mathematician,
-        iconRes = R.drawable.icon_mathematician
+        iconRes = R.drawable.icon_mathematician,
+        nightPriority = 116,
     )
 
     val TownCrier = Role(
@@ -429,14 +463,16 @@ object RoleProvider {
         ability = R.string.role_ability_town_crier,
         secondNightActionId = R.string.action_second_night_town_crier,
         dayActionId = R.string.action_day_town_crier,
-        iconRes = R.drawable.icon_towncrier
+        iconRes = R.drawable.icon_towncrier,
+        nightPriority = 92,
     )
 
     val Savant = Role(
         type = RoleType.TOWNSFOLK,
         roleName = R.string.role_name_savant,
         ability = R.string.role_ability_savant,
-        iconRes = R.drawable.icon_savant
+        iconRes = R.drawable.icon_savant,
+        nightPriority = 999,
     )
 
     val Philosopher = Role(
@@ -447,6 +483,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_philosopher,
         secondNightActionId = R.string.action_second_night_philosopher,
         iconRes = R.drawable.icon_philosopher,
+        nightPriority = 17,
     )
 
     val Juggler = Role(
@@ -462,7 +499,8 @@ object RoleProvider {
         ability = R.string.role_ability_juggler,
         secondNightActionId = R.string.action_second_night_juggler,
         dayActionId = R.string.action_day_juggler,
-        iconRes = R.drawable.icon_juggler
+        iconRes = R.drawable.icon_juggler,
+        nightPriority = 103,
     )
 
     val Sage = Role(
@@ -470,7 +508,8 @@ object RoleProvider {
         roleName = R.string.role_name_sage,
         ability = R.string.role_ability_sage,
         secondNightActionId = R.string.action_second_night_sage,
-        iconRes = R.drawable.icon_sage
+        iconRes = R.drawable.icon_sage,
+        nightPriority = 74,
     )
 
     val Pixie = Role(
@@ -480,7 +519,8 @@ object RoleProvider {
         tokens = listOf(PixieMad),
         prepareActionId = R.string.action_prepare_pixie,
         firstNightActionId = R.string.action_first_night_pixie,
-        iconRes = R.drawable.icon_pixie
+        iconRes = R.drawable.icon_pixie,
+        nightPriority = 68,
     )
 
     val Fisherman = Role(
@@ -488,7 +528,8 @@ object RoleProvider {
         roleName = R.string.role_name_fisherman,
         ability = R.string.role_ability_fisherman,
         tokens = listOf(FishermanNoAbility),
-        iconRes = R.drawable.icon_fisherman
+        iconRes = R.drawable.icon_fisherman,
+        nightPriority = 999,
     )
 
     val Balloonist = Role(
@@ -499,7 +540,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_balloonist,
         firstNightActionId = R.string.action_second_night_balloonist,
         secondNightActionId = R.string.action_second_night_balloonist,
-        iconRes = R.drawable.icon_balloonist
+        iconRes = R.drawable.icon_balloonist,
+        nightPriority = 104,
     )
 
     val Amnesiac = Role(
@@ -509,7 +551,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_amnesiac,
         firstNightActionId = R.string.action_second_night_amnesiac,
         secondNightActionId = R.string.action_second_night_amnesiac,
-        iconRes = R.drawable.icon_amnesiac
+        iconRes = R.drawable.icon_amnesiac,
+        nightPriority = 80,
     )
 
     val Cannibal = Role(
@@ -519,7 +562,8 @@ object RoleProvider {
         tokens = listOf(CannibalLunch, CannibalPoison),
         secondNightActionId = R.string.action_second_night_cannibal,
         dayActionId = R.string.action_day_cannibal,
-        iconRes = R.drawable.icon_cannibal
+        iconRes = R.drawable.icon_cannibal,
+        nightPriority = 999,
     )
 
 
@@ -533,6 +577,7 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_butler,
         dayActionId = R.string.action_day_butler,
         iconRes = R.drawable.icon_butler,
+        nightPriority = 110,
     )
 
     val Saint = Role(
@@ -540,6 +585,7 @@ object RoleProvider {
         roleName = R.string.role_name_saint,
         ability = R.string.role_ability_saint,
         iconRes = R.drawable.icon_saint,
+        nightPriority = 999,
     )
 
     val Recluse = Role(
@@ -548,6 +594,7 @@ object RoleProvider {
         ability = R.string.role_ability_recluse,
         prepareActionId = R.string.action_prepare_recluse,
         iconRes = R.drawable.icon_recluse,
+        nightPriority = 999,
     )
 
     val Drunk = Role(
@@ -556,7 +603,8 @@ object RoleProvider {
         ability = R.string.role_ability_Drunk,
         prepareActionId = R.string.action_prepare_Drunk,
         iconRes = R.drawable.icon_drunk,
-        tokens = listOf(DrunkDrunk)
+        tokens = listOf(DrunkDrunk),
+        nightPriority = 1,
     )
 
     val Lunatic = Role(
@@ -567,7 +615,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_lunatic,
         firstNightActionId = R.string.action_first_night_lunatic,
         secondNightActionId = R.string.action_second_night_lunatic,
-        tokens = listOf(LunaticChosen, LunaticChosen, LunaticChosen, LunaticChosen)
+        tokens = listOf(LunaticChosen, LunaticChosen, LunaticChosen, LunaticChosen),
+        nightPriority = 46,
     )
 
     val Mutant = Role(
@@ -575,6 +624,7 @@ object RoleProvider {
         roleName = R.string.role_name_mutant,
         ability = R.string.role_ability_mutant,
         iconRes = R.drawable.icon_mutant,
+        nightPriority = 999,
     )
 
     val Sweetheart = Role(
@@ -585,6 +635,7 @@ object RoleProvider {
         dayActionId = R.string.action_day_sweetheart,
         secondNightActionId = R.string.action_day_sweetheart,
         tokens = listOf(SweetheartDrunk),
+        nightPriority = 72,
     )
 
     val Goon = Role(
@@ -593,14 +644,16 @@ object RoleProvider {
         ability = R.string.role_ability_goon,
         firstNightActionId = R.string.action_second_night_goon,
         secondNightActionId = R.string.action_second_night_goon,
-        iconRes = R.drawable.icon_goon
+        iconRes = R.drawable.icon_goon,
+        nightPriority = 10,
     )
 
     val Tinker = Role(
         type = RoleType.OUTSIDER,
         roleName = R.string.role_name_tinker,
         ability = R.string.role_ability_tinker,
-        iconRes = R.drawable.icon_tinker
+        iconRes = R.drawable.icon_tinker,
+        nightPriority = 999,
     )
 
     val Moonchild = Role(
@@ -610,7 +663,8 @@ object RoleProvider {
         ability = R.string.role_ability_moonchild,
         secondNightActionId = R.string.action_second_night_moonchild,
         dayActionId = R.string.action_day_moonchild,
-        iconRes = R.drawable.icon_moonchild
+        iconRes = R.drawable.icon_moonchild,
+        nightPriority = 83,
     )
 
     val Barber = Role(
@@ -620,14 +674,16 @@ object RoleProvider {
         ability = R.string.role_ability_barber,
         secondNightActionId = R.string.action_second_night_barber,
         dayActionId = R.string.action_day_barber,
-        iconRes = R.drawable.icon_barber
+        iconRes = R.drawable.icon_barber,
+        nightPriority = 71,
     )
 
     val Klutz = Role(
         type = RoleType.OUTSIDER,
         roleName = R.string.role_name_klutz,
         ability = R.string.role_ability_klutz,
-        iconRes = R.drawable.icon_klutz
+        iconRes = R.drawable.icon_klutz,
+        nightPriority = 999,
     )
 
     //Minions
@@ -639,6 +695,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_poisoner,
         secondNightActionId = R.string.action_second_night_poisoner,
         iconRes = R.drawable.icon_poisoner,
+        nightPriority = 26,
     )
 
     val Spy = Role(
@@ -648,6 +705,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_spy,
         secondNightActionId = R.string.action_second_night_spy,
         iconRes = R.drawable.icon_spy,
+        nightPriority = 111,
     )
 
     val Baron = Role(
@@ -656,6 +714,7 @@ object RoleProvider {
         ability = R.string.role_ability_baron,
         prepareActionId = R.string.action_prepare_baron,
         iconRes = R.drawable.icon_baron,
+        nightPriority = 1,
     )
 
     val ScarletWoman = Role(
@@ -664,6 +723,7 @@ object RoleProvider {
         ability = R.string.role_ability_scarlet_woman,
         secondNightActionId = R.string.action_second_night_scarlet_woman,
         iconRes = R.drawable.icon_scarletwoman,
+        nightPriority = 44,
     )
 
     val Godfather = Role(
@@ -675,7 +735,8 @@ object RoleProvider {
         firstNightActionId = R.string.action_first_night_godfather,
         secondNightActionId = R.string.action_second_night_godfather,
         dayActionId = R.string.action_day_godfather,
-        tokens = listOf(GodfatherDiedToday)
+        tokens = listOf(GodfatherDiedToday),
+        nightPriority = 67,
     )
 
     val Assassin = Role(
@@ -684,7 +745,8 @@ object RoleProvider {
         ability = R.string.role_ability_assassin,
         iconRes = R.drawable.icon_assassin,
         secondNightActionId = R.string.action_second_night_assassin,
-        tokens = listOf(AssassinNoAbility)
+        tokens = listOf(AssassinNoAbility),
+        nightPriority = 66,
     )
 
     val Marionette = Role(
@@ -693,7 +755,8 @@ object RoleProvider {
         ability = R.string.role_ability_marionette,
         prepareActionId = R.string.action_prepare_marionette,
         iconRes = R.drawable.icon_marionette,
-        tokens = listOf(MarionetteMarionette)
+        tokens = listOf(MarionetteMarionette),
+        nightPriority = 1,
     )
 
     val DevilsAdvocate = Role(
@@ -704,7 +767,8 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_devils_advocate,
         secondNightActionId = R.string.action_second_night_devils_advocate,
         dayActionId = R.string.action_day_devils_advocate,
-        iconRes = R.drawable.icon_devilsadvocate
+        iconRes = R.drawable.icon_devilsadvocate,
+        nightPriority = 36,
     )
 
     val Mastermind = Role(
@@ -712,7 +776,8 @@ object RoleProvider {
         roleName = R.string.role_name_mastermind,
         ability = R.string.role_ability_mastermind,
         dayActionId = R.string.action_day_mastermind,
-        iconRes = R.drawable.icon_mastermind
+        iconRes = R.drawable.icon_mastermind,
+        nightPriority = 999,
     )
 
     val EvilTwin = Role(
@@ -722,7 +787,8 @@ object RoleProvider {
         ability = R.string.role_ability_evil_twin,
         prepareActionId = R.string.action_prepare_evil_twin,
         firstNightActionId = R.string.action_first_night_evil_twin,
-        iconRes = R.drawable.icon_eviltwin
+        iconRes = R.drawable.icon_eviltwin,
+        nightPriority = 37,
     )
 
     val Witch = Role(
@@ -733,7 +799,8 @@ object RoleProvider {
         firstNightActionId = R.string.action_second_night_witch,
         secondNightActionId = R.string.action_second_night_witch,
         dayActionId = R.string.action_day_witch,
-        iconRes = R.drawable.icon_witch
+        iconRes = R.drawable.icon_witch,
+        nightPriority = 38,
     )
 
     val Cerenovus = Role(
@@ -743,7 +810,8 @@ object RoleProvider {
         ability = R.string.role_ability_cerenovus,
         firstNightActionId = R.string.action_second_night_cerenovus,
         secondNightActionId = R.string.action_second_night_cerenovus,
-        iconRes = R.drawable.icon_cerenovus
+        iconRes = R.drawable.icon_cerenovus,
+        nightPriority = 39,
     )
 
     val PitHag = Role(
@@ -751,7 +819,8 @@ object RoleProvider {
         roleName = R.string.role_name_pit_hag,
         ability = R.string.role_ability_pit_hag,
         secondNightActionId = R.string.action_second_night_pit_hag,
-        iconRes = R.drawable.icon_pithag
+        iconRes = R.drawable.icon_pithag,
+        nightPriority = 40,
     )
 
     val Widow = Role(
@@ -761,7 +830,8 @@ object RoleProvider {
         tokens = listOf(WidowPoison, WidowKnow),
         prepareActionId = R.string.action_prepare_widow,
         firstNightActionId = R.string.action_first_night_widow,
-        iconRes = R.drawable.icon_widow
+        iconRes = R.drawable.icon_widow,
+        nightPriority = 27,
     )
 
     val Goblin = Role(
@@ -770,7 +840,8 @@ object RoleProvider {
         ability = R.string.role_ability_goblin,
         tokens = listOf(GoblinClaimed),
         dayActionId = R.string.action_day_goblin,
-        iconRes = R.drawable.icon_goblin
+        iconRes = R.drawable.icon_goblin,
+        nightPriority = 999,
     )
 
     //Demons
@@ -781,6 +852,7 @@ object RoleProvider {
         ability = R.string.role_ability_imp,
         secondNightActionId = R.string.action_second_night_imp,
         iconRes = R.drawable.icon_imp,
+        nightPriority = 50,
     )
 
     val NoDashii = Role(
@@ -791,6 +863,7 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_nodashii,
         secondNightActionId = R.string.action_second_night_nodashii,
         iconRes = R.drawable.icon_nodashii,
+        nightPriority = 56,
     )
 
     val Pukka = Role(
@@ -801,6 +874,7 @@ object RoleProvider {
         firstNightActionId = R.string.action_first_night_pukka,
         secondNightActionId = R.string.action_first_night_pukka,
         iconRes = R.drawable.icon_pukka,
+        nightPriority = 52,
     )
 
     val Zombuul = Role(
@@ -810,7 +884,8 @@ object RoleProvider {
         ability = R.string.role_ability_zombuul,
         secondNightActionId = R.string.action_second_night_zombuul,
         dayActionId = R.string.action_day_zombuul,
-        iconRes = R.drawable.icon_zombuul
+        iconRes = R.drawable.icon_zombuul,
+        nightPriority = 51,
     )
 
     val Shabaloth = Role(
@@ -819,7 +894,8 @@ object RoleProvider {
         roleName = R.string.role_name_shabaloth,
         ability = R.string.role_ability_shabaloth,
         secondNightActionId = R.string.action_second_night_shabaloth,
-        iconRes = R.drawable.icon_shabaloth
+        iconRes = R.drawable.icon_shabaloth,
+        nightPriority = 53,
     )
 
     val Po = Role(
@@ -828,7 +904,8 @@ object RoleProvider {
         roleName = R.string.role_name_po,
         ability = R.string.role_ability_po,
         secondNightActionId = R.string.action_second_night_po,
-        iconRes = R.drawable.icon_po
+        iconRes = R.drawable.icon_po,
+        nightPriority = 54,
     )
 
     val FangGu = Role(
@@ -838,7 +915,8 @@ object RoleProvider {
         ability = R.string.role_ability_fang_gu,
         prepareActionId = R.string.action_prepare_fang_gu,
         secondNightActionId = R.string.action_second_night_fang_gu,
-        iconRes = R.drawable.icon_fanggu
+        iconRes = R.drawable.icon_fanggu,
+        nightPriority = 55,
     )
 
     val Vigormortis = Role(
@@ -856,7 +934,8 @@ object RoleProvider {
         ability = R.string.role_ability_vigormortis,
         prepareActionId = R.string.action_prepare_vigormortis,
         secondNightActionId = R.string.action_second_night_vigormortis,
-        iconRes = R.drawable.icon_vigormortis
+        iconRes = R.drawable.icon_vigormortis,
+        nightPriority = 59,
     )
 
     val Vortox = Role(
@@ -867,7 +946,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_vortox,
         secondNightActionId = R.string.action_second_night_vortox,
         dayActionId = R.string.action_day_vortox,
-        iconRes = R.drawable.icon_vortox
+        iconRes = R.drawable.icon_vortox,
+        nightPriority = 57,
     )
 
     val Lleech = Role(
@@ -877,7 +957,8 @@ object RoleProvider {
         tokens = listOf(LleechKill, LleechPoison),
         firstNightActionId = R.string.action_first_night_lleech,
         secondNightActionId = R.string.action_second_night_lleech,
-        iconRes = R.drawable.icon_lleech
+        iconRes = R.drawable.icon_lleech,
+        nightPriority = 62,
     )
 
     val Leviathan = Role(
@@ -886,7 +967,8 @@ object RoleProvider {
         ability = R.string.role_ability_leviathan,
         tokens = listOf(LeviathanDay1, LeviathanDay2, LeviathanDay3, LeviathanDay4, LeviathanDay5, LeviathanGoodPlayerExecuted),
         dayActionId = R.string.action_day_leviathan,
-        iconRes = R.drawable.icon_leviathan
+        iconRes = R.drawable.icon_leviathan,
+        nightPriority = 118,
     )
 
     // Travellers
@@ -895,7 +977,8 @@ object RoleProvider {
         roleName = R.string.role_name_scapegoat,
         ability = R.string.role_ability_scapegoat,
         dayActionId = R.string.action_day_scapegoat,
-        iconRes = R.drawable.icon_scapegoat
+        iconRes = R.drawable.icon_scapegoat,
+        nightPriority = 999,
     )
 
     val Gunslinger = Role(
@@ -903,14 +986,16 @@ object RoleProvider {
         roleName = R.string.role_name_gunslinger,
         ability = R.string.role_ability_gunslinger,
         dayActionId = R.string.action_day_gunslinger,
-        iconRes = R.drawable.icon_gunslinger
+        iconRes = R.drawable.icon_gunslinger,
+        nightPriority = 999,
     )
 
     val Beggar = Role(
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_beggar,
         ability = R.string.role_ability_beggar,
-        iconRes = R.drawable.icon_beggar
+        iconRes = R.drawable.icon_beggar,
+        nightPriority = 999,
     )
 
     val Bureaucrat = Role(
@@ -920,7 +1005,8 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_bureaucrat,
         dayActionId = R.string.action_day_bureaucrat,
         iconRes = R.drawable.icon_bureaucrat,
-        tokens = listOf(Bureaucrat3Votes)
+        tokens = listOf(Bureaucrat3Votes),
+        nightPriority = 13,
     )
 
     val Thief = Role(
@@ -930,7 +1016,8 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_thief,
         dayActionId = R.string.action_day_thief,
         iconRes = R.drawable.icon_thief,
-        tokens = listOf(ThiefNegativeVote)
+        tokens = listOf(ThiefNegativeVote),
+        nightPriority = 15,
     )
 
     val Butcher = Role(
@@ -938,7 +1025,8 @@ object RoleProvider {
         roleName = R.string.role_name_butcher,
         ability = R.string.role_ability_butcher,
         dayActionId = R.string.action_day_butcher,
-        iconRes = R.drawable.icon_butcher
+        iconRes = R.drawable.icon_butcher,
+        nightPriority = 999,
     )
 
     val BoneCollector = Role(
@@ -947,7 +1035,8 @@ object RoleProvider {
         ability = R.string.role_ability_bone_collector,
         secondNightActionId = R.string.action_second_night_bone_collector,
         iconRes = R.drawable.icon_bonecollector,
-        tokens = listOf(BoneCollectorHasAbility, BoneCollectorNoAbility)
+        tokens = listOf(BoneCollectorHasAbility, BoneCollectorNoAbility),
+        nightPriority = 12,
     )
 
     val Harlot = Role(
@@ -956,7 +1045,8 @@ object RoleProvider {
         ability = R.string.role_ability_harlot,
         firstNightActionId = R.string.action_second_night_harlot,
         secondNightActionId = R.string.action_second_night_harlot,
-        iconRes = R.drawable.icon_harlot
+        iconRes = R.drawable.icon_harlot,
+        nightPriority = 14,
     )
 
     val Barista = Role(
@@ -965,28 +1055,32 @@ object RoleProvider {
         ability = R.string.role_ability_barista,
         secondNightActionId = R.string.action_second_night_barista,
         iconRes = R.drawable.icon_barista,
-        tokens = listOf(BaristaSober, BaristaActsTwice)
+        tokens = listOf(BaristaSober, BaristaActsTwice),
+        nightPriority = 11,
     )
 
     val Deviant = Role(
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_deviant,
         ability = R.string.role_ability_deviant,
-        iconRes = R.drawable.icon_deviant
+        iconRes = R.drawable.icon_deviant,
+        nightPriority = 999,
     )
 
     val Apprentice = Role(
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_apprentice,
         ability = R.string.role_ability_apprentice,
-        iconRes = R.drawable.icon_apprentice
+        iconRes = R.drawable.icon_apprentice,
+        nightPriority = 10,
     )
 
     val Matron = Role(
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_matron,
         ability = R.string.role_ability_matron,
-        iconRes = R.drawable.icon_matron
+        iconRes = R.drawable.icon_matron,
+        nightPriority = 999,
     )
 
     val Voudon = Role(
@@ -994,7 +1088,8 @@ object RoleProvider {
         roleName = R.string.role_name_voudon,
         ability = R.string.role_ability_voudon,
         dayActionId = R.string.action_day_voudon,
-        iconRes = R.drawable.icon_voudon
+        iconRes = R.drawable.icon_voudon,
+        nightPriority = 999,
     )
 
     val Judge = Role(
@@ -1002,7 +1097,8 @@ object RoleProvider {
         roleName = R.string.role_name_judge,
         ability = R.string.role_ability_judge,
         iconRes = R.drawable.icon_judge,
-        tokens = listOf(JudgeNoAbility)
+        tokens = listOf(JudgeNoAbility),
+        nightPriority = 999,
     )
 
     val Bishop = Role(
@@ -1010,7 +1106,8 @@ object RoleProvider {
         roleName = R.string.role_name_bishop,
         ability = R.string.role_ability_bishop,
         iconRes = R.drawable.icon_bishop,
-        tokens = listOf(BishopNominateEvil, BishopNominateGood)
+        tokens = listOf(BishopNominateEvil, BishopNominateGood),
+        nightPriority = 999,
     )
 
     val Cacklejack = Role(
@@ -1020,14 +1117,16 @@ object RoleProvider {
         secondNightActionId = R.string.action_second_night_cacklejack,
         dayActionId = R.string.action_day_cacklejack,
         iconRes = R.drawable.icon_cacklejack,
-        tokens = listOf(CacklejackNotMe)
+        tokens = listOf(CacklejackNotMe),
+        nightPriority = 999,
     )
 
     val Gangster = Role(
         type = RoleType.TRAVELLER,
         roleName = R.string.role_name_gangster,
         ability = R.string.role_ability_gangster,
-        iconRes = R.drawable.icon_gangster
+        iconRes = R.drawable.icon_gangster,
+        nightPriority = 999,
     )
 
     val Gnome = Role(
@@ -1035,7 +1134,8 @@ object RoleProvider {
         roleName = R.string.role_name_gnome,
         ability = R.string.role_ability_gnome,
         iconRes = R.drawable.icon_gnome,
-        tokens = listOf(GnomeAmigo)
+        tokens = listOf(GnomeAmigo),
+        nightPriority = 999,
     )
 
     // Fabled
@@ -1045,7 +1145,8 @@ object RoleProvider {
         ability = R.string.role_ability_angel,
         iconRes = R.drawable.icon_angel,
         prepareActionId = R.string.action_prepare_angel,
-        tokens = listOf(AngelProtected, AngelSomethingBad)
+        tokens = listOf(AngelProtected, AngelSomethingBad),
+        nightPriority = 4,
     )
 
     val Buddhist = Role(
@@ -1053,7 +1154,8 @@ object RoleProvider {
         roleName = R.string.role_name_buddhist,
         ability = R.string.role_ability_buddhist,
         prepareActionId = R.string.action_prepare_buddhist,
-        iconRes = R.drawable.icon_buddhist
+        iconRes = R.drawable.icon_buddhist,
+        nightPriority = 6,
     )
 
     val Doomsayer = Role(
@@ -1061,7 +1163,8 @@ object RoleProvider {
         roleName = R.string.role_name_doomsayer,
         ability = R.string.role_ability_doomsayer,
         prepareActionId = R.string.action_prepare_doomsayer,
-        iconRes = R.drawable.icon_doomsayer
+        iconRes = R.drawable.icon_doomsayer,
+        nightPriority = 999,
     )
 
     val HellsLibrarian = Role(
@@ -1070,7 +1173,8 @@ object RoleProvider {
         ability = R.string.role_ability_hells_librarian,
         prepareActionId = R.string.action_prepare_hells_librarian,
         iconRes = R.drawable.icon_hellslibrarian,
-        tokens = listOf(HellsLibrarianSomethingBad, HellsLibrarianSomethingBad, HellsLibrarianSomethingBad)
+        tokens = listOf(HellsLibrarianSomethingBad, HellsLibrarianSomethingBad, HellsLibrarianSomethingBad),
+        nightPriority = 999,
     )
 
     val Fiddler = Role(
@@ -1078,7 +1182,8 @@ object RoleProvider {
         roleName = R.string.role_name_fiddler,
         ability = R.string.role_ability_fiddler,
         prepareActionId = R.string.action_prepare_fiddler,
-        iconRes = R.drawable.icon_fiddler
+        iconRes = R.drawable.icon_fiddler,
+        nightPriority = 999,
     )
 
     val Revolutionary = Role(
@@ -1086,7 +1191,8 @@ object RoleProvider {
         roleName = R.string.role_name_revolutionary,
         ability = R.string.role_ability_revolutionary,
         prepareActionId = R.string.action_prepare_revolutionary,
-        iconRes = R.drawable.icon_revolutionary
+        iconRes = R.drawable.icon_revolutionary,
+        nightPriority = 999,
     )
 
     val Toymaker = Role(
@@ -1095,7 +1201,8 @@ object RoleProvider {
         ability = R.string.role_ability_toymaker,
         prepareActionId = R.string.action_prepare_toymaker,
         iconRes = R.drawable.icon_toymaker,
-        tokens = listOf(ToymakerNoAttack)
+        tokens = listOf(ToymakerNoAttack),
+        nightPriority = 7,
     )
 
     val Djinn = Role(
@@ -1103,7 +1210,8 @@ object RoleProvider {
         roleName = R.string.role_name_djinn,
         ability = R.string.role_ability_djinn,
         prepareActionId = R.string.action_prepare_djinn,
-        iconRes = R.drawable.icon_djinn
+        iconRes = R.drawable.icon_djinn,
+        nightPriority = 999,
     )
 
     val Duchess = Role(
@@ -1113,7 +1221,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_duchess,
         secondNightActionId = R.string.action_second_night_duchess,
         iconRes = R.drawable.icon_duchess,
-        tokens = listOf(DuchessVisitor, DuchessVisitor, DuchessVisitor, DuchessFalseInfo)
+        tokens = listOf(DuchessVisitor, DuchessVisitor, DuchessVisitor, DuchessFalseInfo),
+        nightPriority = 5,
     )
 
     val Fibbin = Role(
@@ -1122,7 +1231,8 @@ object RoleProvider {
         ability = R.string.role_ability_fibbin,
         prepareActionId = R.string.action_prepare_fibbin,
         iconRes = R.drawable.icon_fibbin,
-        tokens = listOf(FibbinNoAbility)
+        tokens = listOf(FibbinNoAbility),
+        nightPriority = 999,
     )
 
     val Sentinel = Role(
@@ -1130,7 +1240,8 @@ object RoleProvider {
         roleName = R.string.role_name_sentinel,
         ability = R.string.role_ability_sentinel,
         prepareActionId = R.string.action_prepare_sentinel,
-        iconRes = R.drawable.icon_sentinel
+        iconRes = R.drawable.icon_sentinel,
+        nightPriority = 999,
     )
 
     val SpiritOfIvory = Role(
@@ -1139,7 +1250,8 @@ object RoleProvider {
         ability = R.string.role_ability_spirit_of_ivory,
         prepareActionId = R.string.action_prepare_spirit_of_ivory,
         iconRes = R.drawable.icon_spiritofivory,
-        tokens = listOf(SpiritOfIvoryNoMoreEvil)
+        tokens = listOf(SpiritOfIvoryNoMoreEvil),
+        nightPriority = 999,
     )
 
     val DeusExFiasco = Role(
@@ -1148,14 +1260,16 @@ object RoleProvider {
         ability = R.string.role_ability_deus_ex_fiasco,
         prepareActionId = R.string.action_prepare_deus_ex_fiasco,
         iconRes = R.drawable.icon_deusexfiasco,
-        tokens = listOf(DeusExFiascoWhoopsie)
+        tokens = listOf(DeusExFiascoWhoopsie),
+        nightPriority = 999,
     )
 
     val Ferryman = Role(
         type = RoleType.FABLED,
         roleName = R.string.role_name_ferryman,
         ability = R.string.role_ability_ferryman,
-        iconRes = R.drawable.icon_ferryman
+        iconRes = R.drawable.icon_ferryman,
+        nightPriority = 999,
     )
 
     val Zenomancer = Role(
@@ -1165,7 +1279,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_zenomancer,
         firstNightActionId = R.string.action_first_night_zenomancer,
         iconRes = R.drawable.icon_zenomancer,
-        tokens = listOf(ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal)
+        tokens = listOf(ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal, ZenomancerGoal),
+        nightPriority = 999,
     )
 
     val Bootlegger = Role(
@@ -1173,7 +1288,8 @@ object RoleProvider {
         roleName = R.string.role_name_bootlegger,
         ability = R.string.role_ability_bootlegger,
         prepareActionId = R.string.action_prepare_bootlegger,
-        iconRes = R.drawable.icon_bootlegger
+        iconRes = R.drawable.icon_bootlegger,
+        nightPriority = 999,
     )
 
     val Tor = Role(
@@ -1181,7 +1297,8 @@ object RoleProvider {
         roleName = R.string.role_name_tor,
         ability = R.string.role_ability_tor,
         prepareActionId = R.string.action_prepare_tor,
-        iconRes = R.drawable.icon_tor
+        iconRes = R.drawable.icon_tor,
+        nightPriority = 999,
     )
 
     val StormCatcher = Role(
@@ -1191,7 +1308,8 @@ object RoleProvider {
         prepareActionId = R.string.action_prepare_storm_catcher,
         firstNightActionId = R.string.action_first_night_storm_catcher,
         iconRes = R.drawable.icon_stormcatcher,
-        tokens = listOf(StormCatcherSafe)
+        tokens = listOf(StormCatcherSafe),
+        nightPriority = 8,
     )
 
     val Gardener = Role(
@@ -1199,7 +1317,8 @@ object RoleProvider {
         roleName = R.string.role_name_gardener,
         ability = R.string.role_ability_gardener,
         prepareActionId = R.string.action_prepare_gardener,
-        iconRes = R.drawable.icon_gardener
+        iconRes = R.drawable.icon_gardener,
+        nightPriority = 999,
     )
 
     val BigWig = Role(
@@ -1207,7 +1326,8 @@ object RoleProvider {
         roleName = R.string.role_name_big_wig,
         ability = R.string.role_ability_big_wig,
         prepareActionId = R.string.action_prepare_big_wig,
-        iconRes = R.drawable.icon_big_wig
+        iconRes = R.drawable.icon_big_wig,
+        nightPriority = 999,
     )
 
 

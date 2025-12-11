@@ -12,7 +12,6 @@
     <string name="text_yes">Yes</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_start_game">Start Game</string>
-    <string name="text_player_count">Player count: %1$d</string>
     <string name="text_scenery">Scenery: </string>
     <string name="text_choose_scenery">Choose Scenery</string>
     <string name="text_players">Players: %1$d / %2$d</string>
@@ -26,7 +25,6 @@
     <string name="text_outsider">Outsider</string>
     <string name="text_minion">Minion</string>
     <string name="text_demon">Demon</string>
-    <string name="text_traveller">Traveller</string>
     <string name="text_fabled">Fabled</string>
     <string name="text_edit_game_attention">State of the game would be renewed</string>
     <string name="text_edit_game">Edit game?</string>
@@ -47,7 +45,6 @@
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
     <string name="action_start_first_night_phase">Start the First Night Phase</string>
     <string name="action_start_night_phase">Start the Night Phase</string>
-    <string name="action_voting">Wait 3–5 minutes and start voting process</string>
     <string name="action_start_day_phase">Start the Day Phase</string>
     <string name="action_show_demon">Wake all minions, show THIS IS THE DEMON card point to the Demon</string>
     <string name="action_show_minions_and_bluffs">Wake Demon, show THESE ARE YOUR MINIONS card point to the minions. Show THESE CHARACTERS ARE NOT IN PLAY card. Show prepared bluffs</string>
@@ -548,7 +545,7 @@
 
     <string name="role_name_cacklejack">Cacklejack</string>
     <string name="role_ability_cacklejack">Each day, choose a player: a different player changes character tonight</string>
-    <string name="action_second_night_cacklejack">replace any player’s character token with a different character token without NOT ME reminder. Wake that player. Show the YOU ARE info token, and their new character token</string>
+    <string name="action_second_night_cacklejack">Replace any players character token with a different character token without NOT ME reminder. Wake that player. Show the YOU ARE info token, and their new character token</string>
     <string name="action_day_cacklejack">Every day Cacklejack pick a player. put the NOT ME reminder to this player</string>
 
     <string name="role_name_gangster">Gangster</string>

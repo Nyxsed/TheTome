@@ -16,6 +16,7 @@ data class Role(
     @StringRes val secondNightActionId: Int = 0,
     @StringRes val dayActionId: Int = 0,
     @DrawableRes val iconRes: Int,
+    val nightPriority: Int,
 )
 
 enum class RoleType {

@@ -505,7 +505,6 @@ private fun DialogsHandler(
             chosenRoles = state.chosenRoles,
             players = state.players,
             fabled = state.fabled,
-            sceneryTokens = state.scenery?.sceneryTokens!!,
             onPickToken = { token ->
                 dialogState.targetTokenPlayer?.let {
                     onAddToken(dialogState.targetTokenPlayer!!, token)
