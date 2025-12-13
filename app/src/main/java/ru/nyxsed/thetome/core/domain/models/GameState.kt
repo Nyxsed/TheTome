@@ -3,6 +3,7 @@ package ru.nyxsed.thetome.core.domain.models
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import ru.nyxsed.thetome.core.data.repository.JinxProvider.allJinxes
 
 @Serializable
 data class GameState(
@@ -27,5 +28,9 @@ data class GameState(
     } ?: emptyList()
     val availableBluffRoles = allScenarioRoles.filter { role ->
         chosenRoles?.contains(role) != true && role !in demonBluffs
+    }
+    val jinxes = allJinxes.filter { jinx ->
+        val sceneryRoleSet = scenery?.roles?.toSet() ?: emptySet()
+        jinx.roles.all { role -> sceneryRoleSet.contains(role) }
     }
 }

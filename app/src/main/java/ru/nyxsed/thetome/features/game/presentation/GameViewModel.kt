@@ -224,7 +224,7 @@ class GameViewModel @Inject constructor(
         if (state.currentPhase == GamePhase.PREPARE) {
             playersActionPrepare.add(Action(null, Action.prepareBagId))
         }
-        // 1. PLAYERS_7 - отдельная группа (всегда первое)
+        // отдельная группа (всегда первое)
         if (state.currentPhase == GamePhase.PREPARE && (state.players?.size ?: 0) >= 7) {
             players7ActionPrepare.add(Action(null, Action.prepareBluffsId))
         }
@@ -234,7 +234,7 @@ class GameViewModel @Inject constructor(
             players7ActionFirstNight.add(Action(null, Action.showDemonId))
         }
 
-        // 2. Собираем ролевые действия
+        // Собираем действия
         currentRoles.forEach { role ->
             if (!killedRoles.contains(role)) {
                 getRoleActionsForPhase(role, state.currentPhase)?.let { action ->
@@ -243,7 +243,7 @@ class GameViewModel @Inject constructor(
             }
         }
 
-        // 3. End action - отдельная группа (всегда последнее)
+        // отдельная группа (всегда последнее)
         when (state.currentPhase) {
             GamePhase.FIRST_NIGHT, GamePhase.SECOND_NIGHT -> {
                 endAction.add(Action(null, Action.startDayId))
@@ -260,7 +260,6 @@ class GameViewModel @Inject constructor(
 
         val sortedRoleActions = roleActions.sortedBy { it.role?.nightPriority ?: Int.MAX_VALUE }
 
-        // Объединяем все группы в правильном порядке
         return playersActionPrepare + players7ActionPrepare + players7ActionFirstNight + sortedRoleActions + endAction
     }
 

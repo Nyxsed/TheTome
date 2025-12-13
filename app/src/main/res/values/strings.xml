@@ -40,6 +40,7 @@
     <string name="text_show_card">Show card</string>
     <string name="text_spend_ghost_vote">Spend Ghost Vote</string>
     <string name="text_return_ghost_vote">Return Ghost Vote</string>
+    <string name="text_jinxes">Jinxes</string>
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>
@@ -172,7 +173,7 @@
     <string name="action_day_butler">During a nomination, the Butler may only have their hand raised to vote if the Master has their hand raised to vote or if the Masters vote has already been counted</string>
 
     <string name="role_name_monk">Monk</string>
-    <string name="role_ability_monk">Each night*, choose a player (not yourself): they are safe from the Demon tonight. The Monks protection also prevents all other harmful effects of the Demons ability, such as poisoning or turning the protected player evil</string>
+    <string name="role_ability_monk">Each night✳, choose a player (not yourself): they are safe from the Demon tonight. The Monks protection also prevents all other harmful effects of the Demons ability, such as poisoning or turning the protected player evil</string>
     <string name="action_second_night_monk">Wake the Monk. The Monk points at any player except themself. If the Demon attacks the player marked SAFE, the player remains alive</string>
 
     <string name="role_name_scarlet_woman">Scarlet Woman</string>
@@ -184,7 +185,7 @@
     <string name="action_second_night_ravenkeeper">If the Ravenkeeper died tonight, wake them. They point at any player. Show the chosen players character token to the Ravenkeeper</string>
 
     <string name="role_name_undertaker">Undertaker</string>
-    <string name="role_ability_undertaker">Each night*, you learn which character died by execution today</string>
+    <string name="role_ability_undertaker">Each night✳, you learn which character died by execution today</string>
     <string name="action_second_night_undertaker">if any player died by execution today, wake the Undertaker. Show the character token marked DIED TODAY to the Undertaker</string>
     <string name="action_day_undertaker">If a player dies by execution, put the Undertakers DIED TODAY reminder token by the dead players character token</string>
 
@@ -226,16 +227,16 @@
     <string name="action_second_night_grandmother">If the Demon kills the Grandchild, the Grandmother dies</string>
 
     <string name="role_name_exorcist">Exorcist</string>
-    <string name="role_ability_exorcist">Each night*, choose a player (different to last night): the Demon, if chosen, learns who you are then doesnt wake tonight</string>
+    <string name="role_ability_exorcist">Each night✳, choose a player (different to last night): the Demon, if chosen, learns who you are then doesnt wake tonight</string>
     <string name="action_second_night_exorcist">Wake the Exorcist. They point at any player. Mark the chosen player’s character token with the CHOSEN reminder. Put the Exorcist to sleep</string>
 
     <string name="role_name_flowergirl">Flowergirl</string>
-    <string name="role_ability_flowergirl">Each night*, you learn if a Demon voted today</string>
+    <string name="role_ability_flowergirl">Each night✳, you learn if a Demon voted today</string>
     <string name="action_day_flowergirl">Each dawn, mark the Flowergirl with the DEMON NOT VOTED reminder. if the Demon votes for any execution, replace the DEMON NOT VOTED reminder with the DEMON VOTED reminder</string>
     <string name="action_second_night_flowergirl">Wake the Flowergirl. If the Flowergirl is marked DEMON NOT VOTED, shake your head no. If the Flowergirl is marked DEMON VOTED, nod your head yes</string>
 
     <string name="role_name_oracle">Oracle</string>
-    <string name="role_ability_oracle">Each night*, you learn how many dead players are evil</string>
+    <string name="role_ability_oracle">Each night✳, you learn how many dead players are evil</string>
     <string name="action_second_night_oracle">Wake the Oracle. Show fingers (0, 1, 2, etc.) equaling the number of dead evil players</string>
 
     <string name="role_name_artist">Artist</string>
@@ -268,7 +269,7 @@
     <string name="action_second_night_godfather">If an Outsider dies during the day, That night, wake the Godfather. They point at any player, they dead</string>
 
     <string name="role_name_assassin">Assassin</string>
-    <string name="role_ability_assassin">Once per game, at night*, choose a player: they die, even if for some reason they could not</string>
+    <string name="role_ability_assassin">Once per game, at night✳, choose a player: they die, even if for some reason they could not</string>
     <string name="action_second_night_assassin">wake the Assassin. They either shake their head no or point at any player</string>
 
     <string name="role_name_marionette">Marionette</string>
@@ -277,7 +278,7 @@
     During the first night, Wake the Demon. Point to the player marked IS THE MARIONETTE and show the Marionette character token</string>
 
     <string name="role_name_nodashii">No Dashii</string>
-    <string name="role_ability_nodashii">Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned</string>
+    <string name="role_ability_nodashii">Each night✳, choose a player: they die. Your 2 Townsfolk neighbors are poisoned</string>
     <string name="action_prepare_nodashii">The two Townsfolk neighboring the No Dashii become poisoned - mark them with POISONED reminders</string>
     <string name="action_second_night_nodashii">Wake the No Dashii. They point at any player. That player dies. put Kill</string>
 
@@ -296,12 +297,12 @@
     <string name="action_second_night_chambermaid">Wake the Chambermaid. They point at any two alive players except themself. Show the Chambermaid fingers (0, 1, or 2) equaling the number of chosen characters who woke tonight</string>
 
     <string name="role_name_innkeeper">Innkeeper</string>
-    <string name="role_ability_innkeeper">Each night*, choose 2 players: they cant die tonight, but 1 is drunk until dusk</string>
+    <string name="role_ability_innkeeper">Each night✳, choose 2 players: they cant die tonight, but 1 is drunk until dusk</string>
     <string name="action_second_night_innkeeper">Wake the Innkeeper. They point at any two players. Put the Innkeeper to sleep. Mark the two chosen players with SAFE reminders. One of the chosen players becomes drunk—mark them with the DRUNK reminder. The players marked SAFE cannot die tonight</string>
     <string name="action_day_innkeeper">Remove the SAFE reminders, remove the DRUNK reminder</string>
 
     <string name="role_name_gambler">Gambler</string>
-    <string name="role_ability_gambler">Each night*, choose a player and guess their character: if you guess wrong, you die</string>
+    <string name="role_ability_gambler">Each night✳, choose a player and guess their character: if you guess wrong, you die</string>
     <string name="action_second_night_gambler">Wake the Gambler. They point at any player, then point at any character icon on their character sheet. Put the Gambler to sleep. If the chosen player is a different character from the chosen character icon, the Gambler dies—mark them with the DEAD reminder</string>
 
     <string name="role_name_gossip">Gossip</string>
@@ -314,7 +315,7 @@
     <string name="action_second_night_courtier">Wake the Courtier. They either shake their head no or point at any character icon on their character sheet. If the Courtier chose a character icon and that character is in play, the player of the chosen character becomes drunk for three nights and three days. Mark them with the Courtier’s DRUNK reminder</string>
 
     <string name="role_name_professor">Professor</string>
-    <string name="role_ability_professor">Once per game, at night*, choose a dead player: if they are a Townsfolk, they are resurrected</string>
+    <string name="role_ability_professor">Once per game, at night✳, choose a dead player: if they are a Townsfolk, they are resurrected</string>
     <string name="action_second_night_professor">Wake the Professor. The Professor either shakes their head no or points to a dead player. Put the Professor to sleep. If the Professor chose a dead Townsfolk, the chosen player becomes alive</string>
 
     <string name="role_name_minstrel">Minstrel</string>
@@ -358,16 +359,16 @@
     <string name="action_day_mastermind">If the Demon is executed and dies, and the game would end, continue playing the game</string>
 
     <string name="role_name_zombuul">Zombuul</string>
-    <string name="role_ability_zombuul">Each night*, if no-one died today, choose a player: they die. The 1st time you die, you live but register as dead</string>
+    <string name="role_ability_zombuul">Each night✳, if no-one died today, choose a player: they die. The 1st time you die, you live but register as dead</string>
     <string name="action_second_night_zombuul">if no player is marked DIED TODAY, wake the Zombuul. They point at any player</string>
     <string name="action_day_zombuul">If a player dies, mark them with the DIED TODAY reminder</string>
 
     <string name="role_name_shabaloth">Shabaloth</string>
-    <string name="role_ability_shabaloth">Each night*, choose 2 players: they die. A dead player you chose last night might be regurgitated</string>
+    <string name="role_ability_shabaloth">Each night✳, choose 2 players: they die. A dead player you chose last night might be regurgitated</string>
     <string name="action_second_night_shabaloth">Just before waking the Shabaloth, you can choose one character marked with the Shabaloths DEAD reminder, and the chosen player becomes alive again. Wake the Shabaloth. They point at any two players, one at a time. In the order chosen, each chosen player dies—mark them with DEAD reminders</string>
 
     <string name="role_name_po">Po</string>
-    <string name="role_ability_po">Each night*, you may choose a player: they die. If your last choice was no-one, choose 3 players tonight</string>
+    <string name="role_ability_po">Each night✳, you may choose a player: they die. If your last choice was no-one, choose 3 players tonight</string>
     <string name="action_second_night_po">Wake the Po. They either shake their head no or point at any player. If they shook their head no, mark the Po with the 3 ATTACKS reminder. If they chose a player, that player dies—mark them with a DEAD reminder. If the Po wakes to act while marked 3 ATTACKS, they point at any three players, one at a time. In the order chosen, each chosen player dies—mark them with DEAD reminders</string>
     
     <string name="role_name_dreamer">Dreamer</string>
@@ -383,7 +384,7 @@
     <string name="action_second_night_mathematician">Wake the Mathematician. Show fingers (0, 1, 2, etc.) equaling the number of characters with ABNORMAL reminders</string>
     
     <string name="role_name_town_crier">Town Crier</string>
-    <string name="role_ability_town_crier">Each night* you learn if a Minion nominated today</string>
+    <string name="role_ability_town_crier">Each night✳ you learn if a Minion nominated today</string>
     <string name="action_second_night_town_crier">Wake the Town Crier. If the Town Crier is marked MINION NOMINATED, nod your head Yes. Else - no</string>
     <string name="action_day_town_crier">if any Minion makes a nomination, put MINION NOMINATED reminder</string>
     
@@ -426,22 +427,22 @@
     <string name="action_second_night_cerenovus">Wake the Cerenovus. They point at any player and at any Townsfolk or Outsider icon on their character sheet.  Mark the chosen player with the MAD reminder. Wake this player, show them the THIS CHARACTER SELECTED YOU info token, then the Cerenovus token and chosen role</string>
     
     <string name="role_name_pit_hag">Pit Hag</string>
-    <string name="role_ability_pit_hag">Each night*, choose a player and a character: they become that character. If you create a Demon, deaths tonight are arbitrary</string>
+    <string name="role_ability_pit_hag">Each night✳, choose a player and a character: they become that character. If you create a Demon, deaths tonight are arbitrary</string>
     <string name="action_second_night_pit_hag">wake the Pit Hag. They point at any player and any character icon on their character sheet. Put the Pit-Hag to sleep. If the chosen character is in play, nothing happens. If the chosen character is not in play, wake the chosen player. Show them the YOU ARE info token, then their new character token</string>
     
     <string name="role_name_fang_gu">Fang Gu</string>
-    <string name="role_ability_fang_gu">Each night*, choose a player: they die. The first Outsider this kills becomes Fang Gu and you die instead. (+1 Outsider)</string>
+    <string name="role_ability_fang_gu">Each night✳, choose a player: they die. The first Outsider this kills becomes Fang Gu and you die instead. (+1 Outsider)</string>
     <string name="action_prepare_fang_gu">Return to Settings screen and add one extra Outsider character token and remove one Townsfolk character token</string>
     <string name="action_second_night_fang_gu">Wake the Fang Gu. They point at any player. If the chosen player is not an Outsider, that player dies—mark them with the DEAD reminder. If the chosen player is an Outsider and this is not the first time in game, that player dies—mark them with the DEAD reminder, otherwise, kill the Fang Gu and replace the Outsider with the Fang Gu</string>
 
     
     <string name="role_name_vigormortis">Vigormortis</string>
-    <string name="role_ability_vigormortis">Each night*, choose a player: they die. Minions you kill keep abilities and poison a Townsfolk neighbour. (-1 Outsider)</string>
+    <string name="role_ability_vigormortis">Each night✳, choose a player: they die. Minions you kill keep abilities and poison a Townsfolk neighbour. (-1 Outsider)</string>
     <string name="action_prepare_vigormortis">Return to Settings screen and remove one Outsider character token and add one Townsfolk character token</string>
     <string name="action_second_night_vigormortis">Wake the Vigormortis. They point at any player. If the chosen player isn’t a Minion, that player dies - mark them with a DEAD reminder. If the chosen player is a Minion, that player dies - mark them with a DEAD reminder and a HAS ABILITY reminder. The closest clockwise or closest counterclockwise Townsfolk to the Minion becomes poisoned</string>
     
     <string name="role_name_vortox">Vortox</string>
-    <string name="role_ability_vortox">Each night*, choose a player: they die. All Townsfolk info is false. If no execution occurs, evil wins</string>
+    <string name="role_ability_vortox">Each night✳, choose a player: they die. All Townsfolk info is false. If no execution occurs, evil wins</string>
     <string name="action_prepare_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information</string>
     <string name="action_second_night_vortox">Wake the Vortox. They point at any player. That player dies - mark them with the DEAD reminder</string>
     <string name="action_day_vortox">While the Vortox is alive, you must give false information whenever a Townsfolk ability prompts you to give information</string>
@@ -455,7 +456,7 @@
     <string name="role_ability_fisherman">Once per game, during the day, visit the Storyteller for some advice to help your team win</string>
 
     <string name="role_name_lleech">Lleech</string>
-    <string name="role_ability_lleech">Each night*, choose a player: they die. You start by choosing a player: they are poisoned. You die if and only if they are dead</string>
+    <string name="role_ability_lleech">Each night✳, choose a player: they die. You start by choosing a player: they are poisoned. You die if and only if they are dead</string>
     <string name="action_first_night_lleech">Wake the Lleech. They point at any player. That player is poisoned</string>
     <string name="action_second_night_lleech">Wake the Lleech. They point at any player. That player dies—mark them with the DEAD reminder</string>
 
@@ -513,11 +514,11 @@
     <string name="action_day_butcher">Remind the Butcher: immediately after a player is executed, the Butcher may nominate a player for execution</string>
 
     <string name="role_name_bone_collector">Bone Collector</string>
-    <string name="role_ability_bone_collector">Once per game, at night*: choose a dead player — they regain their ability until dusk</string>
+    <string name="role_ability_bone_collector">Once per game, at night✳: choose a dead player — they regain their ability until dusk</string>
     <string name="action_second_night_bone_collector">Wake the Bone Collector. They either shake their head no or point at any dead player. Put the Bone Collector to sleep. If they pointed at a dead player, the chosen player regains their ability—mark their character token with the Bone Collector’s HAS ABILITY reminder. (They may need to be woken tonight to use their ability.) The Bone Collector loses their ability—mark them with their NO ABILITY reminder. The next dusk, the chosen player loses their ability—remove the HAS ABILITY reminder</string>
 
     <string name="role_name_harlot">Harlot</string>
-    <string name="role_ability_harlot">Each night*, choose a living player: if they agree, you learn their character, but you both might die</string>
+    <string name="role_ability_harlot">Each night✳, choose a living player: if they agree, you learn their character, but you both might die</string>
     <string name="action_second_night_harlot">Wake the Harlot. The Harlot points at any player. Put the Harlot to sleep. Wake the chosen player, show them the THIS CHARACTER SELECTED YOU info token, then the Harlot token. That player either nods their head yes or shakes their head no. If they nodded their head yes, wake the Harlot and show them the chosen player’s character token. Put the Harlot to sleep. You may decide that both players die</string>
 
     <string name="role_name_barista">Barista</string>
@@ -587,7 +588,7 @@
     <string name="action_prepare_djinn">Declare that the Djinn is in play</string>
 
     <string name="role_name_duchess">Duchess</string>
-    <string name="role_ability_duchess">Each day, 3 players may choose to visit you. At night*, each visitor learns how many visitors are evil, but 1 gets false info</string>
+    <string name="role_ability_duchess">Each day, 3 players may choose to visit you. At night✳, each visitor learns how many visitors are evil, but 1 gets false info</string>
     <string name="action_prepare_duchess">Declare that the Duchess is in play</string>
     <string name="action_second_night_duchess">If exactly three players have VISITOR reminder, wake them and give appropriate information</string>
 
@@ -635,5 +636,190 @@
     <string name="role_name_big_wig">Big Wig</string>
     <string name="role_ability_big_wig">Each nominee chooses a player: until voting, only they may speak and they are mad the nominee is good or they might die</string>
     <string name="action_prepare_big_wig">Declare that the Big Wig is in play</string>
-
+         
+    <string name="jinx_alchemist_boffin">If the Alchemist has the Boffin ability, the Alchemist does not learn what ability the Demon has.</string>
+    <string name="jinx_alchemist_marionette">An Alchemist-Marionette has no Marionette ability  the Marionette is in play.</string>
+    <string name="jinx_alchemist_mastermind">An Alchemist-Mastermind has no Mastermind ability  the Mastermind is not-in-play.</string>
+    <string name="jinx_alchemist_organ_grinder">If the Alchemist has the Organ Grinder ability, the Organ Grinder is in play. If both are sober, both are drunk.</string>
+    <string name="jinx_alchemist_spy">An Alchemist-Spy has no Spy ability  a Spy is in play. After each execution, a living Alchemist-Spy may publicly guess a living player as the Spy. If correct, the Demon must choose the Spy tonight.</string>
+    <string name="jinx_alchemist_summoner">The Alchemist-Summoner does not get bluffs, and chooses which Demon but not which player. If they die before this happens, evil wins. [No Demon]</string>
+    <string name="jinx_alchemist_wraith">An Alchemist-Wraith has no Wraith ability  a Wraith is in play. After each execution, a living Alchemist-Wraith may publicly guess a living player as the Wraith. If correct, the Demon must choose the Wraith tonight.</string>
+    <string name="jinx_alchemist_widow">An Alchemist-Widow has no Widow ability  a Widow is in play. After each execution, a living Alchemist-Widow may publicly guess a living player as the Widow. If correct, the Demon must choose the Widow tonight.</string>
+    <string name="jinx_bounty_hunter_kazali">If the Kazali turns the Bounty Hunter into a Minion, an evil Townsfolk is not created.</string>
+    <string name="jinx_bounty_hunter_philosopher">If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil.</string>
+    <string name="jinx_cannibal_butler">If the Cannibal gains the Butler ability, the Cannibal learns this.</string>
+    <string name="jinx_cannibal_juggler">If the Juggler guesses on their first day and dies by execution, tonight the living Cannibal learns how many guesses the Juggler got correct.</string>
+    <string name="jinx_cannibal_princess">If the Cannibal nominated, executed,  killed the Princess today, the Demon doesnt kill tonight.</string>
+    <string name="jinx_cannibal_zealot">If the Cannibal gains the Zealot ability, the Cannibal learns this.</string>
+    <string name="jinx_mathematician_chambermaid">The Chambermaid can detect if the Mathematician will wake tonight.</string>
+    <string name="jinx_mathematician_drunk">The Mathematician might learn if the Drunks ability yielded false info or failed to work properly.</string>
+    <string name="jinx_mathematician_lunatic">The Mathematician might learn if the Lunatic attacks a different player than the real Demon attacked.</string>
+    <string name="jinx_mathematician_marionette">The Mathematician might learn if the Marionettes ability yielded false info or failed to work properly.</string>
+    <string name="jinx_magician_legion">The Magician wakes with Legion and might register as evil. Legion knows if a Magician is in play, but not which player it is.</string>
+    <string name="jinx_magician_marionette">If the Magician is alive, the Demon doesnt know which neighbor is the Marionette.</string>
+    <string name="jinx_magician_spy">When the Spy sees the Grimoire, the Demon and Magicians character tokens are removed.</string>
+    <string name="jinx_magician_vizier">If the Vizier is in play, the Magician has no ability but is immune to the Viziers ability.</string>
+    <string name="jinx_magician_widow">When the Widow sees the Grimoire, the Demon and Magicians character tokens are removed.</string>
+    <string name="jinx_magician_wraith">After each execution, the living Magician may publicly guess a living player as the Wraith. If correct, the Demon must choose the Wraith tonight.</string>
+    <string name="jinx_butler_organ_grinder">If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too.</string>
+    <string name="jinx_heretic_baron">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_heretic_godfather">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_heretic_lleech">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_heretic_pit_hag">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_heretic_spy">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_heretic_widow">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_plague_doctor_baron">If the Storyteller would gain the Baron ability, up to two players become Outsiders.</string>
+    <string name="jinx_plague_doctor_boomdandy">If the Storyteller would gain the Boomdandy ability, a player becomes the Boomdandy.</string>
+    <string name="jinx_plague_doctor_evil_twin">If the Storyteller would gain the Evil Twin ability, a player becomes the Evil Twin.</string>
+    <string name="jinx_plague_doctor_fearmonger">If the Storyteller would gain the Fearmonger ability, a Minion gains it, and learns this.</string>
+    <string name="jinx_plague_doctor_goblin">If the Storyteller would gain the Goblin ability, a Minion gains it, and learns this.</string>
+    <string name="jinx_plague_doctor_marionette">If the Storyteller would gain the Marionette ability, one of the Demons good neighbors becomes the Marionette.</string>
+    <string name="jinx_plague_doctor_scarlet_woman">If the Storyteller would gain the Scarlet Woman ability, a Minion gains it, and learns this.</string>
+    <string name="jinx_plague_doctor_spy">If the Storyteller would gain the Spy ability, a Minion gains it, and learns this.</string>
+    <string name="jinx_plague_doctor_wraith">If the Storyteller would gain the Wraith ability, a Minion gains it, and learns this.</string>
+    <string name="jinx_recluse_ogre">If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil.</string>
+    <string name="jinx_recluse_sage">The Recluse might register as the Demon to the Sage.</string>
+    <string name="jinx_boffin_cult_leader">If the Demon has the Cult Leader ability, they cant turn good due to this ability.</string>
+    <string name="jinx_boffin_drunk">The Demon cannot have the Drunk ability.</string>
+    <string name="jinx_boffin_goon">If the Demon has the Goon ability, they cant turn good due to this ability.</string>
+    <string name="jinx_boffin_heretic">The Demon cannot have the Heretic ability.</string>
+    <string name="jinx_boffin_ogre">The Demon cannot have the Ogre ability.</string>
+    <string name="jinx_boffin_politician">The Demon cannot have the Politician ability.</string>
+    <string name="jinx_boffin_idiot">If there is a spare token, the Boffin can give the Demon the Idiot ability.</string>
+    <string name="jinx_cerenovus_goblin">The Cerenovus may choose to make a player mad that they are the Goblin.</string>
+    <string name="jinx_marionette_balloonist">If the Marionette thinks that they are the Balloonist, an Outsider might have been added during setup.</string>
+    <string name="jinx_marionette_huntsman">If the Marionette thinks that they are the Huntsman, the Damsel was added during setup.</string>
+    <string name="jinx_marionette_kazali">If there would be a Marionette in play, they enter play after the Demon  must start as their neighbor.</string>
+    <string name="jinx_marionette_lil_monsta">If there would be a Marionette in play, they enter play after the Demon  must start as their neighbor.</string>
+    <string name="jinx_marionette_summoner">If there would be a Marionette in play, they enter play after the Demon  must start as their neighbor.</string>
+    <string name="jinx_mastermind_vigormortis">A Mastermind that has their ability keeps it if the Vigormortis dies.</string>
+    <string name="jinx_pit_hag_cult_leader">If the Pit-Hag turns an evil player into the Cult Leader, they cant turn good due to their own ability.</string>
+    <string name="jinx_pit_hag_damsel">If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is.</string>
+    <string name="jinx_pit_hag_goon">If the Pit-Hag turns an evil player into the Goon, they cant turn good due to their own ability.</string>
+    <string name="jinx_pit_hag_ogre">If the Pit-Hag turns an evil player into the Ogre, they cant turn good due to their own ability.</string>
+    <string name="jinx_pit_hag_politician">If the Pit-Hag turns an evil player into the Politician, they cant turn good due to their own ability.</string>
+    <string name="jinx_pit_hag_idiot">If there is a spare token, the Pit-Hag can create an extra Idiot. If so, the drunk Idiot might change.</string>
+    <string name="jinx_scarlet_woman_al_hadikhia">If there would be two Demons, one of which was the Scarlet Woman, the Scarlet Woman becomes the Scarlet Woman again.</string>
+    <string name="jinx_scarlet_woman_fang_gu">If there would be two Demons, one of which was the Scarlet Woman, the Scarlet Woman remains the Scarlet Woman.</string>
+    <string name="jinx_spy_damsel">If the Spy is (or has been) in play, the Damsel is poisoned.</string>
+    <string name="jinx_spy_ogre">The Spy registers as evil to the Ogre.</string>
+    <string name="jinx_spy_poppy_grower">If the Poppy Grower has their ability, the Spy does not see the Grimoire.</string>
+    <string name="jinx_summoner_clockmaker">The Summoner registers as the Demon to the Clockmaker.</string>
+    <string name="jinx_summoner_courtier">If the living Summoner has no ability, the Storyteller has the Summoner ability.</string>
+    <string name="jinx_summoner_engineer">If the living Summoner is removed from play, the Storyteller has the Summoner ability.</string>
+    <string name="jinx_summoner_hatter">If the Summoner creates a second living Demon, deaths tonight are arbitrary.</string>
+    <string name="jinx_summoner_kazali">If the Summoner creates a second living Demon, deaths tonight are arbitrary.</string>
+    <string name="jinx_summoner_lord_of_typhon">If a Lord of Typhon is summoned, they must neighbor a Minion  their other neighbor becomes an evil Minion.</string>
+    <string name="jinx_summoner_pit_hag">If the Summoner creates a second living Demon, deaths tonight are arbitrary.</string>
+    <string name="jinx_summoner_poppy_grower">If the Poppy Grower is alive on the 3rd night, the Summoner chooses which Demon but not which player.</string>
+    <string name="jinx_summoner_preacher">If the living Summoner has no ability, the Storyteller has the Summoner ability.</string>
+    <string name="jinx_summoner_pukka">The Summoner may summon a Pukka on the 2nd night instead of the 3rd.</string>
+    <string name="jinx_summoner_zombuul">If the Summoner summons a dead player into the Zombuul, the Zombuul has already "died once".</string>
+    <string name="jinx_vizier_alsaahir">The Storyteller doesnt declare the Vizier is in play.</string>
+    <string name="jinx_vizier_courtier">If the Vizier loses their ability, they learn this, and cannot die during the day.</string>
+    <string name="jinx_vizier_fearmonger">The Vizier wakes with the Fearmonger, learns who they choose and cannot choose to immediately execute that player.</string>
+    <string name="jinx_vizier_investigator">The Storyteller doesnt declare the Vizier is in play.</string>
+    <string name="jinx_vizier_politician">The Politician might register as evil to the Vizier.</string>
+    <string name="jinx_vizier_preacher">If the Vizier loses their ability, they learn this, and cannot die during the day.</string>
+    <string name="jinx_vizier_zealot">The Zealot might register as evil to the Vizier.</string>
+    <string name="jinx_widow_damsel">If the Widow is (or has been) in play, the Damsel is poisoned.</string>
+    <string name="jinx_widow_poppy_grower">If the Poppy Grower has their ability, the Widow does not see the Grimoire.</string>
+    <string name="jinx_al_hadikhia_princess">If the Princess nominated  executed a player on their 1st day, no one dies to the Al-Hadikhia tonight.</string>
+    <string name="jinx_al_hadikhia_mastermind">If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins.</string>
+    <string name="jinx_legion_engineer">If Legion is created, all evil players become Legion. If Legion is in play, the Engineer starts knowing this but has no ability.</string>
+    <string name="jinx_legion_hatter">If Legion is created, all evil players become Legion. If Legion is in play, the Hatter has no ability.</string>
+    <string name="jinx_legion_minstrel">If Legion died by execution today, Legion keeps their ability, but the Minstrel might learn they are Legion.</string>
+    <string name="jinx_legion_politician">The Politician might register as evil to Legion.</string>
+    <string name="jinx_legion_preacher">If the Preacher chooses Legion, Legion keeps their ability, but the Preacher might learn they are Legion.</string>
+    <string name="jinx_legion_summoner">If Legion is summoned, all evil players become Legion.</string>
+    <string name="jinx_legion_zealot">The Zealot might register as evil to Legion.</string>
+    <string name="jinx_leviathan_banshee">Each night✳, the Leviathan chooses an alive good player (different to previous nights): a chosen Banshee dies  gains their ability.</string>
+    <string name="jinx_leviathan_exorcist">If the Leviathan nominates and executes the Exorcist-chosen player, good wins.</string>
+    <string name="jinx_leviathan_farmer">Each night✳, the Leviathan chooses an alive good player (different to previous nights): a chosen Farmer uses their ability but does not die.</string>
+    <string name="jinx_leviathan_grandmother">If the Leviathan is in play and the Grandchild dies by execution, evil wins.</string>
+    <string name="jinx_leviathan_hatter">The Leviathan cannot enter play after day 5.</string>
+    <string name="jinx_leviathan_innkeeper">If the Leviathan nominates and executes an Innkeeper-protected player, good wins.</string>
+    <string name="jinx_leviathan_king">If the Leviathan is in play, and at least 1 player is dead, the King learns an alive character each night.</string>
+    <string name="jinx_leviathan_mayor">If the Leviathan and the Mayor are alive on day 5  no execution occurs, good wins.</string>
+    <string name="jinx_leviathan_monk">If the Leviathan nominates and executes the Monk-protected player, good wins.</string>
+    <string name="jinx_leviathan_pit_hag">The Leviathan cannot enter play after day 5.</string>
+    <string name="jinx_leviathan_ravenkeeper">Each night✳, the Leviathan chooses an alive player (different to previous nights): a chosen Ravenkeeper uses their ability but does not die.</string>
+    <string name="jinx_leviathan_sage">Each night✳, the Leviathan chooses an alive good player (different to previous nights): a chosen Sage uses their ability but does not die.</string>
+    <string name="jinx_leviathan_soldier">If the Leviathan nominates and executes the Soldier, good wins.</string>
+    <string name="jinx_lil_monsta_hatter">If the Hatter dies  the Demon chooses Lil Monsta, they also choose a Minion to become.</string>
+    <string name="jinx_lil_monsta_poppy_grower">If Lil Monsta  the Poppy Grower are alive, Minions wake one by one, until one of them chooses to take the Lil Monsta token.</string>
+    <string name="jinx_lil_monsta_psychopath">If the Psychopath is babysitting Lil Monsta, they die when executed.</string>
+    <string name="jinx_lil_monsta_magician">If the Magician is alive, the Storyteller chooses which Minion babysits Lil Monsta.</string>
+    <string name="jinx_lil_monsta_scarlet_woman">If Lil Monsta dies with 5 or more players alive, the Scarlet Woman babysits Lil Monsta for the rest of the game.</string>
+    <string name="jinx_lil_monsta_vizier">If the Vizier is babysitting Lil Monsta, they die when executed.</string>
+    <string name="jinx_lleech_mastermind">If the Mastermind is alive and the Lleech host dies by execution, the Lleech lives but loses their ability.</string>
+    <string name="jinx_lleech_slayer">If the Slayer slays the Lleech host, the host dies.</string>
+    <string name="jinx_riot_atheist">During a riot, if the Storyteller is nominated, players vote. If they are "about to die", the game ends. If not, they nominate again.</string>
+    <string name="jinx_riot_banshee">Each night✳, Riot chooses an alive good player (different to previous nights): a chosen Banshee dies  gains their ability.</string>
+    <string name="jinx_riot_exorcist">If Riot nominates and executes the Exorcist-chosen player, good wins.</string>
+    <string name="jinx_riot_farmer">Each night✳, Riot chooses an alive good player (different to previous nights): a chosen Farmer uses their ability but does not die.</string>
+    <string name="jinx_riot_grandmother">If Riot is in play and the Grandchild dies by execution, evil wins.</string>
+    <string name="jinx_riot_innkeeper">If Riot nominates and executes an Innkeeper-protected player, good wins.</string>
+    <string name="jinx_riot_king">If Riot is in play, and at least 1 player is dead, the King learns an alive character each night.</string>
+    <string name="jinx_riot_mayor">The Mayor may choose to stop the riot. If they do so when only 1 Riot is alive, good wins. Otherwise, evil wins.</string>
+    <string name="jinx_riot_monk">If Riot nominates and executes the Monk-protected player, good wins.</string>
+    <string name="jinx_riot_ravenkeeper">Each night✳, Riot chooses an alive good player (different to previous nights): a chosen Ravenkeeper uses their ability but does not die.</string>
+    <string name="jinx_riot_sage">Each night✳, Riot chooses an alive good player (different to previous nights): a chosen Sage uses their ability but does not die.</string>
+    <string name="jinx_riot_soldier">If Riot nominates and executes the Soldier, good wins.</string>
+    <string name="jinx_vortox_banshee">If the Vortox kills the Banshee, all players learn that the Banshee has died.</string>
+    <string name="jinx_yaggababble_exorcist">If the Exorcist chooses the Yaggababble, the Yaggababble does not kill tonight.</string>
+    
+    
+    <string name="jinx_nightwatchman_riot">If no one dies at night, and a player marked "Attention" is the 1st nominee the next day, they dont die immediately. In this case, the Nightwatchman doesnt die from their ability, and the Nightwatchman cannot prevent other players from dying.</string>
+    <string name="jinx_nightwatchman_werewolf">If the Nightwatchman protects a good player attacked by the Werewolf, only the Nightwatchman dies that night.</string>
+    <string name="jinx_opera_singer_atheist">If the Storyteller is executed, good wins.</string>
+    <string name="jinx_opera_singer_widow">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_goblin">The Opera Singer cannot change win conditions due to the Goblins ability.</string>
+    <string name="jinx_opera_singer_evil_twin">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_kazali">The Opera Singer and Kazali cannot both be in play at the start of the game. If a good player is about to become the Opera Singer due to an ability during the first night, before the ability takes effect, Kazali chooses which players become Minions.</string>
+    <string name="jinx_opera_singer_godfather">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_leviathan">If the Demon cannot choose who to kill at night, and there is an Opera Singer role in the script, at any time the Demon can tell the Storyteller they would like to kill themselves. The Storyteller kills the Demon that night. (If there is more than one living Demon, such as with Legion, the Storyteller wakes all players of that Demon role at night and asks if they want to die).</string>
+    <string name="jinx_opera_singer_legion">If the Demon cannot choose who to kill at night, and there is an Opera Singer role in the script, at any time the Demon can tell the Storyteller they would like to kill themselves. The Storyteller kills the Demon that night. (If there is more than one living Demon, such as with Legion, the Storyteller wakes all players of that Demon role at night and asks if they want to die).</string>
+    <string name="jinx_opera_singer_lil_monsta">If the Demon cannot choose who to kill at night, and there is an Opera Singer role in the script, at any time the Demon can tell the Storyteller they would like to kill themselves. The Storyteller kills the Demon that night. (If there is more than one living Demon, such as with Legion, the Storyteller wakes all players of that Demon role at night and asks if they want to die).</string>
+    <string name="jinx_opera_singer_riot">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_summoner">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_pukka">If the Demon cannot choose who to kill at night, and there is an Opera Singer role in the script, at any time the Demon can tell the Storyteller they would like to kill themselves. The Storyteller kills the Demon that night. (If there is more than one living Demon, such as with Legion, the Storyteller wakes all players of that Demon role at night and asks if they want to die).</string>
+    <string name="jinx_opera_singer_scarecrow">The Opera Singer cannot change win conditions due to the Scarecrows ability.</string>
+    <string name="jinx_opera_singer_spy">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_opera_singer_yaggababble">The Pit-Hag cannot create an Opera Singer.</string>
+    <string name="jinx_philosopher_kazali">A player with the Philosopher role can be chosen by Kazali as a Minion. If a player with the Kazali role does so, they can choose the normal number of Minions.</string>
+    <string name="jinx_philosopher_riot">Only if the riot nominates the Philosopher, the Philosopher stays alive, and another living evil player dies. The deceased can immediately nominate again. If the nominator is the only living evil player, the Philosopher dies.</string>
+    <string name="jinx_guide_chambermaid">The Chambermaid learns whether the Guide will wake at night or not, even though the Chambermaid wakes first.</string>
+    <string name="jinx_guide_mathematician">The Guide learns whether the Mathematician will wake at night or not, even though the Guide wakes first.</string>
+    <string name="jinx_enlightened_idiot">If there is a spare token, the enlightened can become an additional Idiot. If this happens, and as a result there is more than 1 Idiot, one of the Idiots becomes drunk.</string>
+    <string name="jinx_bodyguard_werewolf">If the Werewolf chooses to attack a good player protected by the Bodyguard, only the Bodyguard dies that night.</string>
+    <string name="jinx_hassan_kazali">Kazali can turn players sitting next to Hassan into evil Minions.</string>
+    <string name="jinx_hassan_leviathan">If Leviathan nominates and executes a living neighbor of Hassan, that player does not die. At night, Hassan learns that their ability worked. (A "Protected" marker is placed next to Hassans token. Since the marker is removed at dawn, Hassan cannot interrupt an evil players ability at night).</string>
+    <string name="jinx_hassan_riot">If the riot nominates a living neighbor of Hassan, the neighboring player does not die. At night, Hassan learns that their ability worked. (A "Protected" marker is placed next to Hassans token. Since the marker is removed at dawn, Hassan cannot interrupt an evil players ability at night).</string>
+    <string name="jinx_civet_banshee">If the Civet swaps roles with the Banshee, the Banshees ability does not work.</string>
+    <string name="jinx_civet_leviathan">Each night✳: Leviathan chooses a living good player (different from previous nights): if a chosen Civet is selected, they swap roles with Leviathan but do not die.</string>
+    <string name="jinx_civet_riot">Each night✳: riot chooses a living good player (different from previous nights): if a chosen Civet is selected, they swap roles with the riot but do not die.</string>
+    <string name="jinx_civet_professor">If the Civet swaps roles with the Professor who used their ability, the new Professor also loses their ability.</string>
+    <string name="jinx_chzennao_poppy_grower">If the Ravenkeeper chooses the Poppy Grower, they will not be poisoned by the Chzen Nao ability.</string>
+    <string name="jinx_grave_digger_al_hadikhia">If there are two Al-Hadikhia alive, the Grave Digger who turned into Al-Hadikhia becomes the Grave Digger again, but remains evil.</string>
+    <string name="jinx_grave_digger_scarlet_woman">When the Grave Digger nominates and executes a Demon and successfully turns into an evil Demon, the Scarlet Woman does not become the Demon.</string>
+    <string name="jinx_grave_digger_lil_monsta">If the Grave Digger nominates and executes a player who was babysitting Lil Monsta, when five or more players are alive, the Grave Digger becomes an evil version of that role and must babysit Lil Monsta that night.</string>
+    <string name="jinx_grave_digger_lleech">If the Grave Digger nominates and executes the Lleech host, when five or more players are alive, and the host dies as a result of execution, the Lleech dies that night, and the Grave Digger becomes an evil Lleech and cannot attack that night.</string>
+    <string name="jinx_renegade_riot">A players death from nomination due to the riots ability counts as a trigger for the Renegades ability.</string>
+    <string name="jinx_fox_heretic">Only 1 jinxed character can be in play.</string>
+    <string name="jinx_fox_riot">A players death from nomination due to the riots ability counts as a trigger for the foxs ability.</string>
+    <string name="jinx_fox_plague_doctor">If the Plague Doctor dies, a living Minion gains the fox ability in addition to their own ability and learns this.</string>
+    <string name="jinx_summoner_riot">If the Summoner creates a riot, all Minions also become riots.</string>
+    <string name="jinx_bug_collector_plague_doctor">If the Plague Doctor dies, a living Minion gains the Bug Collector ability in addition to their own ability and learns this.</string>
+    <string name="jinx_corpse_porter_plague_doctor">If the Plague Doctor dies, a living Minion gains the Сorpse Porter ability in addition to their own ability and learns this.</string>
+    <string name="jinx_taovu_scarlet_woman">A living Scarlet Woman is considered a Minion "without ability". She cannot be chosen by the Storyteller to extend Taovus life.</string>
+    <string name="jinx_taovu_snake_charmer">If Taovu swaps their role with another players role, the "No ability" markers on Minions are not removed.</string>
+    <string name="jinx_taovu_evil_twin">A living Evil Twin is considered a Minion "without ability". They cannot be chosen by the Storyteller to extend Taovus life.</string>
+    <string name="jinx_taovu_engineer">If Taovu changes their role, a Minion who lost their ability due to Taovus ability immediately dies.</string>
+    <string name="jinx_taovu_mastermind">A living Mastermind is considered a Minion "without ability". They cannot be chosen by the Storyteller to extend Taovus life.</string>
+    <string name="jinx_taovu_marionette">Taovu does not know who the Marionette is. If the Marionette loses their ability due to Taovus ability, Taovu learns who the Marionette is; the Marionette still considers themselves a good role.</string>
+    <string name="jinx_taovu_barber">If Taovu swaps their role with another players role, the "No ability" markers on Minions are not removed.</string>
+    <string name="jinx_taovu_organ_grinder">If Taovu is about to be executed, and a living Organ Grinder has their ability (to extend Taovus life), the Storyteller announces that no one was executed.</string>
+    <string name="jinx_taovu_hatter">If a player with the Taovu role changes their role, a Minion who lost their ability due to Taovus ability immediately dies.</string>
+    <string name="jinx_taovu_pit_hag">If Taovu changes their role, a Minion who lost their ability due to Taovus ability immediately dies.</string>
 </resources>

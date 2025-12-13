@@ -12,11 +12,10 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.nyxsed.thetome.R
-import ru.nyxsed.thetome.core.domain.models.GameState
-import ru.nyxsed.thetome.core.domain.models.Player
-import ru.nyxsed.thetome.core.domain.models.Role
-import ru.nyxsed.thetome.core.domain.models.Token
+import ru.nyxsed.thetome.core.data.RoleProvider.Djinn
+import ru.nyxsed.thetome.core.domain.models.*
 import ru.nyxsed.thetome.core.presentation.components.BackHandlerInterceptor
+import ru.nyxsed.thetome.core.presentation.components.CircleItem
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.features.game.presentation.components.*
 
@@ -68,7 +67,7 @@ fun GameScreen(
         onDeletePlayer = { viewModel.deletePlayer(it) },
         onReorderPlayers = { viewModel.updatePlayers(it) },
         onPositionChanged = { player, x, y -> viewModel.playerPositionChange(player, x, y) },
-        onPositionModeChanged = { viewModel.changePositionMode()}
+        onPositionModeChanged = { viewModel.changePositionMode() }
     )
 }
 
@@ -154,6 +153,7 @@ class DialogState {
     var isShareDialogRaised by mutableStateOf(false)
     var isAddPlayerDialogRaised by mutableStateOf(false)
     var isFabledEnabled by mutableStateOf(false)
+    var isJinxesDialogRaised by mutableStateOf(false)
     var targetDeletePlayer by mutableStateOf<Player?>(null)
     var targetEditPlayer by mutableStateOf<Player?>(null)
     var targetFabledPlayer by mutableStateOf<Player?>(null)
@@ -198,7 +198,7 @@ private fun LandscapeLayout(
         ) {
             TopButtonsSection(state, dialogState, onCard, onPositionModeChanged)
             Spacer(Modifier.height(16.dp))
-            MiddleSection(state, onChangeBluffs, isLandscape = true)
+            MiddleSection(state, dialogState, isLandscape = true, onChangeBluffs)
             Spacer(Modifier.height(16.dp))
             ReminderSection(modifier = Modifier.weight(1f), state, onMoveToPreviousAction, onMoveToNextAction)
         }
@@ -231,7 +231,7 @@ private fun PortraitLayout(
         Spacer(Modifier.height(20.dp))
         PlayersWheelSection(state, dialogState, onReorderPlayers, onDeleteToken, onPositionChanged)
         Spacer(Modifier.height(20.dp))
-        MiddleSection(state, onChangeBluffs, isLandscape = false)
+        MiddleSection(state, dialogState, isLandscape = false, onChangeBluffs)
         Spacer(Modifier.height(8.dp))
         ReminderSection(modifier = Modifier.weight(1f), state, onMoveToPreviousAction, onMoveToNextAction)
     }
@@ -327,8 +327,9 @@ private fun PlayersWheelSection(
 @Composable
 private fun MiddleSection(
     state: GameState,
-    onChangeBluffs: (List<Role?>) -> Unit,
+    dialogState: DialogState,
     isLandscape: Boolean,
+    onChangeBluffs: (List<Role?>) -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -343,6 +344,16 @@ private fun MiddleSection(
             )
             if (isLandscape) Spacer(Modifier.width(8.dp))
         }
+
+        if (state.jinxes.isNotEmpty()) {
+            CircleItem(
+                itemType = ItemType.PLAYER_CIRCLE,
+                size = 40.dp,
+                centerIcon = Djinn.iconRes,
+                onClick = { dialogState.isJinxesDialogRaised = true },
+            )
+        }
+
         KillParticipation(
             roleDistribution = state.roleDistribution,
             players = state.players,
@@ -528,6 +539,13 @@ private fun DialogsHandler(
                 dialogState.isShareDialogRaised = false
             },
             onDismiss = { dialogState.isShareDialogRaised = false }
+        )
+    }
+
+    if (dialogState.isJinxesDialogRaised) {
+        JinxDialog(
+            jinxes = state.jinxes,
+            onDismiss = { dialogState.isJinxesDialogRaised = false }
         )
     }
 }
