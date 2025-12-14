@@ -1,35 +1,6 @@
-package ru.nyxsed.thetome.core.data.repository
+package ru.nyxsed.thetome.core.data
 
 import ru.nyxsed.thetome.R
-import ru.nyxsed.thetome.core.data.RoleProvider.Balloonist
-import ru.nyxsed.thetome.core.data.RoleProvider.Butler
-import ru.nyxsed.thetome.core.data.RoleProvider.Cannibal
-import ru.nyxsed.thetome.core.data.RoleProvider.Cerenovus
-import ru.nyxsed.thetome.core.data.RoleProvider.Chambermaid
-import ru.nyxsed.thetome.core.data.RoleProvider.Drunk
-import ru.nyxsed.thetome.core.data.RoleProvider.Exorcist
-import ru.nyxsed.thetome.core.data.RoleProvider.FangGu
-import ru.nyxsed.thetome.core.data.RoleProvider.Goblin
-import ru.nyxsed.thetome.core.data.RoleProvider.Goon
-import ru.nyxsed.thetome.core.data.RoleProvider.Grandmother
-import ru.nyxsed.thetome.core.data.RoleProvider.Innkeeper
-import ru.nyxsed.thetome.core.data.RoleProvider.Juggler
-import ru.nyxsed.thetome.core.data.RoleProvider.Leviathan
-import ru.nyxsed.thetome.core.data.RoleProvider.Lleech
-import ru.nyxsed.thetome.core.data.RoleProvider.Lunatic
-import ru.nyxsed.thetome.core.data.RoleProvider.Marionette
-import ru.nyxsed.thetome.core.data.RoleProvider.Mastermind
-import ru.nyxsed.thetome.core.data.RoleProvider.Mathematician
-import ru.nyxsed.thetome.core.data.RoleProvider.Mayor
-import ru.nyxsed.thetome.core.data.RoleProvider.Monk
-import ru.nyxsed.thetome.core.data.RoleProvider.PitHag
-import ru.nyxsed.thetome.core.data.RoleProvider.Ravenkeeper
-import ru.nyxsed.thetome.core.data.RoleProvider.Recluse
-import ru.nyxsed.thetome.core.data.RoleProvider.Sage
-import ru.nyxsed.thetome.core.data.RoleProvider.ScarletWoman
-import ru.nyxsed.thetome.core.data.RoleProvider.Slayer
-import ru.nyxsed.thetome.core.data.RoleProvider.Soldier
-import ru.nyxsed.thetome.core.data.RoleProvider.Vigormortis
 import ru.nyxsed.thetome.core.domain.models.Jinx
 
 object JinxProvider {
@@ -44,14 +15,14 @@ object JinxProvider {
 //                Jinx(listOf(Alchemist, Widow), R.string.jinx_alchemist_widow),
 //                Jinx(listOf(Bounty_Hunter, Kazali), R.string.jinx_bounty_hunter_kazali),
 //                Jinx(listOf(Bounty_Hunter, Philosopher), R.string.jinx_bounty_hunter_philosopher),
-        Jinx(listOf(Cannibal, Butler), R.string.jinx_cannibal_butler),
-        Jinx(listOf(Cannibal, Juggler), R.string.jinx_cannibal_juggler),
+        Jinx(listOf(RoleProvider.Cannibal, RoleProvider.Butler), R.string.jinx_cannibal_butler),
+        Jinx(listOf(RoleProvider.Cannibal, RoleProvider.Juggler), R.string.jinx_cannibal_juggler),
 //                Jinx(listOf(Cannibal, Princess), R.string.jinx_cannibal_princess),
 //                Jinx(listOf(Cannibal, Zealot), R.string.jinx_cannibal_zealot),
-        Jinx(listOf(Mathematician, Chambermaid), R.string.jinx_mathematician_chambermaid),
-        Jinx(listOf(Mathematician, Drunk), R.string.jinx_mathematician_drunk),
-        Jinx(listOf(Mathematician, Lunatic), R.string.jinx_mathematician_lunatic),
-        Jinx(listOf(Mathematician, Marionette), R.string.jinx_mathematician_marionette),
+        Jinx(listOf(RoleProvider.Mathematician, RoleProvider.Chambermaid), R.string.jinx_mathematician_chambermaid),
+        Jinx(listOf(RoleProvider.Mathematician, RoleProvider.Drunk), R.string.jinx_mathematician_drunk),
+        Jinx(listOf(RoleProvider.Mathematician, RoleProvider.Lunatic), R.string.jinx_mathematician_lunatic),
+        Jinx(listOf(RoleProvider.Mathematician, RoleProvider.Marionette), R.string.jinx_mathematician_marionette),
 //                Jinx(listOf(Magician, Legion), R.string.jinx_magician_legion),
 //                Jinx(listOf(Magician, Marionette), R.string.jinx_magician_marionette),
 //                Jinx(listOf(Magician, Spy), R.string.jinx_magician_spy),
@@ -75,7 +46,7 @@ object JinxProvider {
 //                Jinx(listOf(Plague_Doctor, Spy), R.string.jinx_plague_doctor_spy),
 //                Jinx(listOf(Plague_Doctor, Wraith), R.string.jinx_plague_doctor_wraith),
 //                Jinx(listOf(Recluse, Ogre), R.string.jinx_recluse_ogre),
-        Jinx(listOf(Recluse, Sage), R.string.jinx_recluse_sage),
+        Jinx(listOf(RoleProvider.Recluse, RoleProvider.Sage), R.string.jinx_recluse_sage),
 //                Jinx(listOf(Boffin, Cult_Leader), R.string.jinx_boffin_cult_leader),
 //                Jinx(listOf(Boffin, Drunk), R.string.jinx_boffin_drunk),
 //                Jinx(listOf(Boffin, Goon), R.string.jinx_boffin_goon),
@@ -83,21 +54,21 @@ object JinxProvider {
 //                Jinx(listOf(Boffin, Ogre), R.string.jinx_boffin_ogre),
 //                Jinx(listOf(Boffin, Politician), R.string.jinx_boffin_politician),
 //                Jinx(listOf(Boffin, Idiot), R.string.jinx_boffin_idiot),
-        Jinx(listOf(Cerenovus, Goblin), R.string.jinx_cerenovus_goblin),
-        Jinx(listOf(Marionette, Balloonist), R.string.jinx_marionette_balloonist),
+        Jinx(listOf(RoleProvider.Cerenovus, RoleProvider.Goblin), R.string.jinx_cerenovus_goblin),
+        Jinx(listOf(RoleProvider.Marionette, RoleProvider.Balloonist), R.string.jinx_marionette_balloonist),
 //                Jinx(listOf(Marionette, Huntsman), R.string.jinx_marionette_huntsman),
 //                Jinx(listOf(Marionette, Kazali), R.string.jinx_marionette_kazali),
 //                Jinx(listOf(Marionette, Lil_Monsta), R.string.jinx_marionette_lil_monsta),
 //                Jinx(listOf(Marionette, Summoner), R.string.jinx_marionette_summoner),
-        Jinx(listOf(Mastermind, Vigormortis), R.string.jinx_mastermind_vigormortis),
+        Jinx(listOf(RoleProvider.Mastermind, RoleProvider.Vigormortis), R.string.jinx_mastermind_vigormortis),
 //                Jinx(listOf(PitHag, Cult_Leader), R.string.jinx_pit_hag_cult_leader),
 //                Jinx(listOf(PitHag, Damsel), R.string.jinx_pit_hag_damsel),
-        Jinx(listOf(PitHag, Goon), R.string.jinx_pit_hag_goon),
+        Jinx(listOf(RoleProvider.PitHag, RoleProvider.Goon), R.string.jinx_pit_hag_goon),
 //                Jinx(listOf(PitHag, Ogre), R.string.jinx_pit_hag_ogre),
 //                Jinx(listOf(PitHag, Politician), R.string.jinx_pit_hag_politician),
 //                Jinx(listOf(PitHag, Idiot), R.string.jinx_pit_hag_idiot),
 //                Jinx(listOf(ScarletWoman, Al_Hadikhia), R.string.jinx_scarlet_woman_al_hadikhia),
-        Jinx(listOf(ScarletWoman, FangGu), R.string.jinx_scarlet_woman_fang_gu),
+        Jinx(listOf(RoleProvider.ScarletWoman, RoleProvider.FangGu), R.string.jinx_scarlet_woman_fang_gu),
 //                Jinx(listOf(Spy, Damsel), R.string.jinx_spy_damsel),
 //                Jinx(listOf(Spy, Ogre), R.string.jinx_spy_ogre),
 //                Jinx(listOf(Spy, Poppy_Grower), R.string.jinx_spy_poppy_grower),
@@ -131,26 +102,26 @@ object JinxProvider {
 //                Jinx(listOf(Legion, Summoner), R.string.jinx_legion_summoner),
 //                Jinx(listOf(Legion, Zealot), R.string.jinx_legion_zealot),
 //                Jinx(listOf(Leviathan, Banshee), R.string.jinx_leviathan_banshee),
-        Jinx(listOf(Leviathan, Exorcist), R.string.jinx_leviathan_exorcist),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Exorcist), R.string.jinx_leviathan_exorcist),
 //                Jinx(listOf(Leviathan, Farmer), R.string.jinx_leviathan_farmer),
-        Jinx(listOf(Leviathan, Grandmother), R.string.jinx_leviathan_grandmother),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Grandmother), R.string.jinx_leviathan_grandmother),
 //                Jinx(listOf(Leviathan, Hatter), R.string.jinx_leviathan_hatter),
-        Jinx(listOf(Leviathan, Innkeeper), R.string.jinx_leviathan_innkeeper),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Innkeeper), R.string.jinx_leviathan_innkeeper),
 //                Jinx(listOf(Leviathan, King), R.string.jinx_leviathan_king),
-        Jinx(listOf(Leviathan, Mayor), R.string.jinx_leviathan_mayor),
-        Jinx(listOf(Leviathan, Monk), R.string.jinx_leviathan_monk),
-        Jinx(listOf(Leviathan, PitHag), R.string.jinx_leviathan_pit_hag),
-        Jinx(listOf(Leviathan, Ravenkeeper), R.string.jinx_leviathan_ravenkeeper),
-        Jinx(listOf(Leviathan, Sage), R.string.jinx_leviathan_sage),
-        Jinx(listOf(Leviathan, Soldier), R.string.jinx_leviathan_soldier),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Mayor), R.string.jinx_leviathan_mayor),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Monk), R.string.jinx_leviathan_monk),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.PitHag), R.string.jinx_leviathan_pit_hag),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Ravenkeeper), R.string.jinx_leviathan_ravenkeeper),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Sage), R.string.jinx_leviathan_sage),
+        Jinx(listOf(RoleProvider.Leviathan, RoleProvider.Soldier), R.string.jinx_leviathan_soldier),
 //                Jinx(listOf(Lil_Monsta, Hatter), R.string.jinx_lil_monsta_hatter),
 //                Jinx(listOf(Lil_Monsta, Poppy_Grower), R.string.jinx_lil_monsta_poppy_grower),
 //                Jinx(listOf(Lil_Monsta, Psychopath), R.string.jinx_lil_monsta_psychopath),
 //                Jinx(listOf(Lil_Monsta, Magician), R.string.jinx_lil_monsta_magician),
 //                Jinx(listOf(Lil_Monsta, ScarletWoman), R.string.jinx_lil_monsta_ScarletWoman),
 //                Jinx(listOf(Lil_Monsta, Vizier), R.string.jinx_lil_monsta_vizier),
-        Jinx(listOf(Lleech, Mastermind), R.string.jinx_lleech_mastermind),
-        Jinx(listOf(Lleech, Slayer), R.string.jinx_lleech_slayer),
+        Jinx(listOf(RoleProvider.Lleech, RoleProvider.Mastermind), R.string.jinx_lleech_mastermind),
+        Jinx(listOf(RoleProvider.Lleech, RoleProvider.Slayer), R.string.jinx_lleech_slayer),
 //                Jinx(listOf(Riot, Atheist), R.string.jinx_riot_atheist),
 //                Jinx(listOf(Riot, Banshee), R.string.jinx_riot_banshee),
 //                Jinx(listOf(Riot, Exorcist), R.string.jinx_riot_exorcist),

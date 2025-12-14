@@ -21,6 +21,7 @@ import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.core.domain.models.RoleType
 import ru.nyxsed.thetome.core.domain.models.Scenery
 import ru.nyxsed.thetome.core.presentation.components.CircleItem
+import ru.nyxsed.thetome.core.presentation.components.CustomVerticalScrollbar
 import ru.nyxsed.thetome.core.presentation.components.GameScreenBackground
 import ru.nyxsed.thetome.core.presentation.components.RoleInfoDialog
 import ru.nyxsed.thetome.features.game.presentation.components.SmallRoundIconButton
@@ -72,33 +73,144 @@ fun SettingsContent(
                         .asPaddingValues()
                 )
         ) {
-            Column(
+            Box(
                 modifier = Modifier
                     .weight(1.8f)
                     .fillMaxHeight()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
+                    .heightIn(max = 600.dp) // Ограничиваем высоту
             ) {
-                RoleSelector(
-                    availableRoles = state.selectedScenery?.roles,
-                    selectedRoles = state.chosenRoles,
-                    maxSelection = state.playerCount,
-                    onRoleClick = { onRoleSelected(it) },
-                    roleDistribution = state.roleDistribution,
-                    isLandscape = isLandscape
-                )
+                val scrollState = rememberScrollState()
+                val needsScrollbar = scrollState.maxValue > 0
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .padding(end = if (needsScrollbar) 8.dp else 0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Top
+                ) {
+                    RoleSelector(
+                        availableRoles = state.selectedScenery?.roles,
+                        selectedRoles = state.chosenRoles,
+                        maxSelection = state.playerCount,
+                        onRoleClick = { onRoleSelected(it) },
+                        roleDistribution = state.roleDistribution,
+                        isLandscape = isLandscape
+                    )
+                }
+
+                // Скроллбар для левой колонки
+                if (needsScrollbar) {
+                    CustomVerticalScrollbar(
+                        scrollState = scrollState,
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .fillMaxHeight()
+                            .width(8.dp)
+                    )
+                }
             }
 
-            Column(
+            Box(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 24.dp, vertical = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                    .heightIn(max = 600.dp) // Ограничиваем высоту
+            ) {
+                val scrollState = rememberScrollState()
+                val needsScrollbar = scrollState.maxValue > 0
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 24.dp, vertical = 8.dp)
+                        .padding(end = if (needsScrollbar) 8.dp else 0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    SceneryDropdown(
+                        items = listScenery,
+                        selectedScenery = state.selectedScenery,
+                        onSelected = { onSceneryChanged(it) },
+                        isLandscape = isLandscape
+                    )
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
+                            fontSize = 24.sp,
+                            color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
+                        )
+
+                        PlayerCountSlider(
+                            sliderPosition = state.playerCount.toFloat(),
+                            maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
+                            isLandscape = isLandscape,
+                            onValueChange = { onPlayerCountChanged(it.toInt()) },
+                            onRandomClicked = onRandomClicked
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(70.dp),
+                        enabled = state.chosenRoles.size == state.playerCount,
+                        onClick = { onStartGameClicked() },
+                        colors = ButtonDefaults.buttonColors()
+                            .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
+                    ) {
+                        Text(
+                            text = stringResource(R.string.text_start_game),
+                            color = Color.White,
+                            fontSize = 20.sp
+                        )
+                    }
+                }
+
+                // Скроллбар для правой колонки
+                if (needsScrollbar) {
+                    CustomVerticalScrollbar(
+                        scrollState = scrollState,
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .fillMaxHeight()
+                            .width(8.dp)
+                    )
+                }
+            }
+        }
+    } else {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    WindowInsets.safeDrawing
+                        .only(WindowInsetsSides.Top)
+                        .asPaddingValues()
+                )
+                .heightIn(max = 800.dp) // Ограничиваем высоту для вертикальной ориентации
+        ) {
+            val scrollState = rememberScrollState()
+            val needsScrollbar = scrollState.maxValue > 0
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(end = if (needsScrollbar) 8.dp else 0.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 SceneryDropdown(
                     items = listScenery,
@@ -106,18 +218,20 @@ fun SettingsContent(
                     onSelected = { onSceneryChanged(it) },
                     isLandscape = isLandscape
                 )
-                Spacer(modifier = Modifier.height(32.dp))
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
+                    fontSize = 20.sp,
+                    color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(
-                        text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
-                        fontSize = 24.sp,
-                        color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
-                    )
-
                     PlayerCountSlider(
                         sliderPosition = state.playerCount.toFloat(),
                         maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
@@ -127,12 +241,23 @@ fun SettingsContent(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(6.dp))
+
+                RoleSelector(
+                    availableRoles = state.selectedScenery?.roles,
+                    selectedRoles = state.chosenRoles,
+                    maxSelection = state.playerCount,
+                    onRoleClick = { onRoleSelected(it) },
+                    roleDistribution = state.roleDistribution,
+                    isLandscape = isLandscape
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Button(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(70.dp),
+                        .padding(horizontal = 8.dp, vertical = 8.dp),
                     enabled = state.chosenRoles.size == state.playerCount,
                     onClick = { onStartGameClicked() },
                     colors = ButtonDefaults.buttonColors()
@@ -141,79 +266,19 @@ fun SettingsContent(
                     Text(
                         text = stringResource(R.string.text_start_game),
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 16.sp
                     )
                 }
             }
-        }
-    } else {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    WindowInsets.safeDrawing
-                        .only(WindowInsetsSides.Top)
-                        .asPaddingValues()
-                )
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            SceneryDropdown(
-                items = listScenery,
-                selectedScenery = state.selectedScenery,
-                onSelected = { onSceneryChanged(it) },
-                isLandscape = isLandscape
-            )
 
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                text = stringResource(R.string.text_players, state.chosenRoles.size, state.playerCount),
-                fontSize = 20.sp,
-                color = if (state.chosenRoles.size == state.playerCount) DarkPurple else Color.Gray,
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                PlayerCountSlider(
-                    sliderPosition = state.playerCount.toFloat(),
-                    maxPlayers = state.selectedScenery?.maxPlayers ?: 15,
-                    isLandscape = isLandscape,
-                    onValueChange = { onPlayerCountChanged(it.toInt()) },
-                    onRandomClicked = onRandomClicked
-                )
-            }
-
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            RoleSelector(
-                availableRoles = state.selectedScenery?.roles,
-                selectedRoles = state.chosenRoles,
-                maxSelection = state.playerCount,
-                onRoleClick = { onRoleSelected(it) },
-                roleDistribution = state.roleDistribution,
-                isLandscape = isLandscape
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp, vertical = 8.dp),
-                enabled = state.chosenRoles.size == state.playerCount,
-                onClick = { onStartGameClicked() },
-                colors = ButtonDefaults.buttonColors()
-                    .copy(containerColor = DarkPurple, disabledContainerColor = DarkPurple.copy(alpha = 0.5f))
-            ) {
-                Text(
-                    text = stringResource(R.string.text_start_game),
-                    color = Color.White,
-                    fontSize = 16.sp
+            // Скроллбар для вертикальной ориентации
+            if (needsScrollbar) {
+                CustomVerticalScrollbar(
+                    scrollState = scrollState,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .fillMaxHeight()
+                        .width(8.dp)
                 )
             }
         }

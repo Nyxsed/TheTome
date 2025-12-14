@@ -3,7 +3,7 @@ package ru.nyxsed.thetome.core.domain.models
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import ru.nyxsed.thetome.core.data.repository.JinxProvider.allJinxes
+import ru.nyxsed.thetome.core.data.JinxProvider.allJinxes
 
 @Serializable
 data class GameState(
