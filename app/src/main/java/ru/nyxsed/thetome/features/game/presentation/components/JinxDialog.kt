@@ -41,7 +41,7 @@ fun JinxDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .verticalScroll(scrollState)
-                        .padding(end = if (needsScrollbar) 8.dp else 0.dp) // Отступ только если есть скроллбар
+                        .padding(end = if (needsScrollbar) 8.dp else 0.dp)
                 ) {
                     Spacer(modifier = Modifier.height(4.dp))
                     jinxes.forEachIndexed { index, jinx ->

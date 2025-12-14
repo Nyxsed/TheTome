@@ -42,7 +42,8 @@ class SettingsViewModel @Inject constructor(
                             playerCount = playerCount,
                             players = loadedState.players,
                             roleDistribution = roleDistributionUseCase(playerCount),
-                            chosenRoles = loadedState.chosenRoles!!
+                            chosenRoles = loadedState.chosenRoles!!,
+                            allowMultipleRoles = loadedState.allowMultipleRoles
                         )
                     }
                 }
@@ -63,18 +64,6 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun toggleRoleSelection(role: Role) {
-        _state.update { state ->
-            val selected = state.chosenRoles.toMutableList()
-            if (selected.contains(role)) {
-                selected.remove(role)
-            } else if (selected.size < state.playerCount) {
-                selected.add(role)
-            }
-            state.copy(chosenRoles = selected)
-        }
-    }
-
     fun saveGameState() {
         val roles = _state.value.chosenRoles
         val oldPlayers = _state.value.players
@@ -91,7 +80,8 @@ class SettingsViewModel @Inject constructor(
             scenery = _state.value.selectedScenery,
             chosenRoles = roles,
             players = players,
-            roleDistribution = _state.value.roleDistribution
+            roleDistribution = _state.value.roleDistribution,
+            allowMultipleRoles = _state.value.allowMultipleRoles
         )
         viewModelScope.launch {
             saveGameStateUseCase(gameState)
@@ -117,5 +107,75 @@ class SettingsViewModel @Inject constructor(
             }
         }
         _state.update { it.copy(chosenRoles = result) }
+    }
+
+    fun toggleRoleSelection(roleInfo: Pair<Pair<Role, Int>, Boolean>) {
+        val (roleData, wasSelected) = roleInfo
+        val (role, copyNum) = roleData
+
+        val currentState = _state.value
+        val newRoles = currentState.chosenRoles.toMutableList()
+
+        if (currentState.allowMultipleRoles) {
+            if (wasSelected) {
+                // Удаляем эту и все следующие копии
+                val currentSelectedCount = newRoles.count { it == role }
+
+                // Удаляем копии
+                val copiesToRemove = currentSelectedCount - copyNum + 1
+                if (copiesToRemove > 0) {
+                    // Удаляем copiesToRemove последних копий этой роли
+                    var removed = 0
+                    val iterator = newRoles.listIterator(newRoles.size)
+                    while (iterator.hasPrevious() && removed < copiesToRemove) {
+                        if (iterator.previous() == role) {
+                            iterator.remove()
+                            removed++
+                        }
+                    }
+                }
+            } else {
+                // Добавляем новую копию
+                if (newRoles.size < currentState.playerCount) {
+                    newRoles.add(role)
+                }
+            }
+        } else {
+
+            if (newRoles.contains(role)) {
+                newRoles.removeAll { it == role }
+            } else if (newRoles.size < currentState.playerCount) {
+                newRoles.add(role)
+            }
+        }
+
+        _state.update { it.copy(chosenRoles = newRoles) }
+    }
+
+    fun setAllowMultipleRoles(allow: Boolean) {
+        val currentState = _state.value
+
+        if (!allow && currentState.allowMultipleRoles) {
+            // Оставляем только первую копию каждой роли
+            val uniqueRoles = mutableListOf<Role>()
+            val seenRoles = mutableSetOf<Role>()
+
+            currentState.chosenRoles.forEach { role ->
+                if (!seenRoles.contains(role)) {
+                    uniqueRoles.add(role)
+                    seenRoles.add(role)
+                }
+            }
+
+            _state.update {
+                it.copy(
+                    allowMultipleRoles = allow,
+                    chosenRoles = uniqueRoles
+                )
+            }
+
+        } else {
+            _state.update { it.copy(allowMultipleRoles = allow) }
+        }
     }
 }

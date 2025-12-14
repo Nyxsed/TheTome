@@ -27,7 +27,6 @@ fun CustomVerticalScrollbar(
                 .drawWithContent {
                     drawContent()
 
-                    // Подвижный индикатор (ползунок)
                     if (scrollState.maxValue > 0) {
                         val containerHeight = size.height
                         val contentHeight = containerHeight + scrollState.maxValue

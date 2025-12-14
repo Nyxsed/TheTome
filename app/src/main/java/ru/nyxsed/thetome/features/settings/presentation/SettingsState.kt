@@ -10,5 +10,6 @@ data class SettingsState(
     val playerCount: Int = 5,
     val players: List<Player>? = emptyList(),
     val roleDistribution: Map<RoleType, Int> = emptyMap(),
-    val chosenRoles: List<Role> = emptyList()
+    val chosenRoles: List<Role> = emptyList(),
+    val allowMultipleRoles: Boolean = false,
 )

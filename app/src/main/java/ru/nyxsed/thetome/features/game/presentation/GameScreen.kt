@@ -398,9 +398,32 @@ private fun DialogsHandler(
 ) {
     val context = LocalContext.current
     val takenRoles = state.players?.mapNotNull { it.role } ?: emptyList()
-    val availableRoles = state.chosenRoles?.filter { role ->
-        role !in takenRoles || dialogState.targetEditPlayer?.role == role
-    } ?: emptyList()
+    val roleAssignmentCount = takenRoles
+        .groupingBy { it }
+        .eachCount()
+
+// Создаем копию списка выбранных ролей для фильтрации
+    val mutableAvailableRoles = state.chosenRoles?.toMutableList() ?: mutableListOf()
+
+// Убираем уже назначенные роли (по одной копии за каждое назначение)
+    takenRoles.forEach { takenRole ->
+        val index = mutableAvailableRoles.indexOfFirst { it == takenRole }
+        if (index != -1) {
+            mutableAvailableRoles.removeAt(index)
+        }
+    }
+
+// Если редактируем существующего игрока, добавляем его текущую роль обратно
+    dialogState.targetEditPlayer?.role?.let { currentRole ->
+        mutableAvailableRoles.add(currentRole)
+    }
+
+    val availableRoles = mutableAvailableRoles.sortedWith(
+        compareBy(
+            { it.type },
+            { it.roleName }
+        )
+    )
 
     if (dialogState.targetEditPlayer != null && !dialogState.isPickRoleDialogRaised) {
         EditPlayerDialog(

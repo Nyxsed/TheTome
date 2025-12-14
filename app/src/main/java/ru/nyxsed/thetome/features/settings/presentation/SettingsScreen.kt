@@ -44,7 +44,8 @@ fun SettingsScreen(
             viewModel.saveGameState()
             onStartGameClicked()
         },
-        onRandomClicked = { viewModel.randomRoleSelection() }
+        onRandomClicked = { viewModel.randomRoleSelection() },
+        onAllowMultipleChanged = { viewModel.setAllowMultipleRoles(it) }
     )
 }
 
@@ -54,9 +55,10 @@ fun SettingsContent(
     listScenery: List<Scenery>,
     onPlayerCountChanged: (Int) -> Unit,
     onSceneryChanged: (Scenery) -> Unit,
-    onRoleSelected: (Role) -> Unit,
+    onRoleSelected: (Pair<Pair<Role, Int>, Boolean>) -> Unit,
     onStartGameClicked: () -> Unit,
     onRandomClicked: () -> Unit,
+    onAllowMultipleChanged: (Boolean) -> Unit,
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
@@ -77,7 +79,7 @@ fun SettingsContent(
                 modifier = Modifier
                     .weight(1.8f)
                     .fillMaxHeight()
-                    .heightIn(max = 600.dp) // Ограничиваем высоту
+                    .heightIn(max = 600.dp)
             ) {
                 val scrollState = rememberScrollState()
                 val needsScrollbar = scrollState.maxValue > 0
@@ -98,11 +100,11 @@ fun SettingsContent(
                         maxSelection = state.playerCount,
                         onRoleClick = { onRoleSelected(it) },
                         roleDistribution = state.roleDistribution,
-                        isLandscape = isLandscape
+                        isLandscape = isLandscape,
+                        allowMultipleRoles = state.allowMultipleRoles
                     )
                 }
 
-                // Скроллбар для левой колонки
                 if (needsScrollbar) {
                     CustomVerticalScrollbar(
                         scrollState = scrollState,
@@ -118,7 +120,7 @@ fun SettingsContent(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .heightIn(max = 600.dp) // Ограничиваем высоту
+                    .heightIn(max = 600.dp)
             ) {
                 val scrollState = rememberScrollState()
                 val needsScrollbar = scrollState.maxValue > 0
@@ -139,7 +141,16 @@ fun SettingsContent(
                         onSelected = { onSceneryChanged(it) },
                         isLandscape = isLandscape
                     )
-                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    MultipleRolesSwitch(
+                        allowMultipleRoles = state.allowMultipleRoles,
+                        onAllowMultipleChanged = onAllowMultipleChanged,
+                        isLandscape = isLandscape
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -179,7 +190,6 @@ fun SettingsContent(
                     }
                 }
 
-                // Скроллбар для правой колонки
                 if (needsScrollbar) {
                     CustomVerticalScrollbar(
                         scrollState = scrollState,
@@ -200,7 +210,7 @@ fun SettingsContent(
                         .only(WindowInsetsSides.Top)
                         .asPaddingValues()
                 )
-                .heightIn(max = 800.dp) // Ограничиваем высоту для вертикальной ориентации
+                .heightIn(max = 800.dp)
         ) {
             val scrollState = rememberScrollState()
             val needsScrollbar = scrollState.maxValue > 0
@@ -216,6 +226,14 @@ fun SettingsContent(
                     items = listScenery,
                     selectedScenery = state.selectedScenery,
                     onSelected = { onSceneryChanged(it) },
+                    isLandscape = isLandscape
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                MultipleRolesSwitch(
+                    allowMultipleRoles = state.allowMultipleRoles,
+                    onAllowMultipleChanged = onAllowMultipleChanged,
                     isLandscape = isLandscape
                 )
 
@@ -249,7 +267,8 @@ fun SettingsContent(
                     maxSelection = state.playerCount,
                     onRoleClick = { onRoleSelected(it) },
                     roleDistribution = state.roleDistribution,
-                    isLandscape = isLandscape
+                    isLandscape = isLandscape,
+                    allowMultipleRoles = state.allowMultipleRoles
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -271,7 +290,6 @@ fun SettingsContent(
                 }
             }
 
-            // Скроллбар для вертикальной ориентации
             if (needsScrollbar) {
                 CustomVerticalScrollbar(
                     scrollState = scrollState,
@@ -282,6 +300,38 @@ fun SettingsContent(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun MultipleRolesSwitch(
+    allowMultipleRoles: Boolean,
+    onAllowMultipleChanged: (Boolean) -> Unit,
+    isLandscape: Boolean
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = if (isLandscape) 0.dp else 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(R.string.text_allow_multiple_roles),
+            fontSize = if (isLandscape) 18.sp else 16.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(end = 12.dp)
+        )
+        Switch(
+            checked = allowMultipleRoles,
+            onCheckedChange = onAllowMultipleChanged,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = DarkPurple,
+                checkedTrackColor = DarkPurple.copy(alpha = 0.5f),
+                uncheckedThumbColor = Color.Gray,
+                uncheckedTrackColor = Color.Gray.copy(alpha = 0.5f)
+            )
+        )
     }
 }
 
@@ -412,9 +462,10 @@ fun RoleSelector(
     availableRoles: List<Role>?,
     selectedRoles: List<Role>,
     maxSelection: Int,
-    onRoleClick: (Role) -> Unit,
+    onRoleClick: (Pair<Pair<Role, Int>, Boolean>) -> Unit,
     roleDistribution: Map<RoleType, Int>,
-    isLandscape: Boolean
+    isLandscape: Boolean,
+    allowMultipleRoles: Boolean
 ) {
     var isRoleInfoDialogRaised by remember { mutableStateOf(false) }
     var roleInfoTarget by remember { mutableStateOf<Role?>(null) }
@@ -440,7 +491,38 @@ fun RoleSelector(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         RoleType.entries.filterNot { it == RoleType.TRAVELLER || it == RoleType.FABLED }.forEach { roleType ->
-            val selectedRolesCountByType = selectedRoles.filter { it.type == roleType }.size
+            // Считаем количество выбранных ролей по типу
+            val selectedRolesByType = selectedRoles.filter { it.type == roleType }
+            val selectedRolesCountByType = selectedRolesByType.size
+            val maxForType = roleDistribution[roleType] ?: 0
+
+            // Базовые уникальные роли из сценария
+            val baseRoles = availableRoles
+                ?.filter { role -> role.type == roleType }
+                ?.distinctBy { it } ?: emptyList()
+
+            // Для каждой базовой роли строим список отображаемых копий
+            val displayRoles = buildList<Pair<Role, Int>> {
+                baseRoles.forEach { role ->
+                    // Считаем, сколько раз эта роль выбрана
+                    val selectedCount = selectedRolesByType.count { it == role }
+
+                    // Всегда показываем оригинал
+                    add(role to 1)
+
+                    if (allowMultipleRoles && selectedCount > 0) {
+                        // Показываем выбранные копии
+                        for (copyNum in 2..selectedCount) {
+                            add(role to copyNum)
+                        }
+
+                        // Показываем следующую копию
+                        if (selectedRoles.size < maxSelection) {
+                            add(role to (selectedCount + 1))
+                        }
+                    }
+                }
+            }
 
             Column(
                 modifier = Modifier
@@ -457,10 +539,11 @@ fun RoleSelector(
                         fontSize = if (isLandscape) 18.sp else 20.sp,
                         color = Color.Black
                     )
+
                     Text(
-                        text = "$selectedRolesCountByType/${roleDistribution[roleType]}",
+                        text = "$selectedRolesCountByType/$maxForType",
                         fontSize = if (isLandscape) 18.sp else 20.sp,
-                        color = if (selectedRolesCountByType == roleDistribution[roleType]) DarkPurple else Color.Gray
+                        color = if (selectedRolesCountByType == maxForType) DarkPurple else Color.Gray
                     )
                 }
 
@@ -472,31 +555,39 @@ fun RoleSelector(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     maxItemsInEachRow = itemsPerRow
                 ) {
-                    availableRoles
-                        ?.filter { role ->
-                            role.type == roleType
-                        }
-                        ?.forEach { role ->
-                            val isSelected = selectedRoles.contains(role)
-                            val isEnabled = isSelected || selectedRoles.size < maxSelection
+                    displayRoles.forEach { (role, copyNum) ->
+                        // Копия выбрана если ее номер <= количеству выбранных копий
+                        val selectedCount = selectedRolesByType.count { it == role }
+                        val isSelected = copyNum <= selectedCount
 
-                            CircleItem(
-                                itemType = ItemType.PLAYER_CIRCLE,
-                                size = circleSize,
-                                centerIcon = role.iconRes,
-                                bottomText = stringResource(role.roleName),
-                                isSelected = isSelected,
-                                isEnabled = isEnabled,
-                                haveGhostVote = false,
-                                onClick = {
-                                    onRoleClick(role)
-                                },
-                                onLongClick = {
-                                    roleInfoTarget = role
-                                    isRoleInfoDialogRaised = true
-                                }
-                            )
+                        // Определяем, на какую именно копию кликаем
+                        val isEnabled = if (allowMultipleRoles) {
+                            true
+                        } else {
+                            isSelected || (selectedRolesCountByType < maxForType && selectedRoles.size < maxSelection)
                         }
+
+                        CircleItem(
+                            itemType = ItemType.PLAYER_CIRCLE,
+                            size = circleSize,
+                            centerIcon = role.iconRes,
+                            bottomText = if (allowMultipleRoles && copyNum > 1) {
+                                "${stringResource(role.roleName)} ($copyNum)"
+                            } else {
+                                stringResource(role.roleName)
+                            },
+                            isSelected = isSelected,
+                            isEnabled = isEnabled,
+                            haveGhostVote = false,
+                            onClick = {
+                                onRoleClick(role to copyNum to isSelected)
+                            },
+                            onLongClick = {
+                                roleInfoTarget = role
+                                isRoleInfoDialogRaised = true
+                            }
+                        )
+                    }
                 }
             }
         }

@@ -55,7 +55,6 @@ class GameViewModel @Inject constructor(
 
         _state.update { currentState ->
 
-            // обновляем игроков
             val updatedPlayers = currentState.players?.map { currentPlayer ->
                 if (currentPlayer == player)
                     currentPlayer.copy(tokens = newTokens)
@@ -63,7 +62,6 @@ class GameViewModel @Inject constructor(
                     currentPlayer
             }
 
-            // обновляем fabled, если это тот же игрок
             val updatedFabled =
                 if (player == currentState.fabled)
                     currentState.fabled.copy(tokens = newTokens)
@@ -85,7 +83,6 @@ class GameViewModel @Inject constructor(
 
         _state.update { currentState ->
 
-            // обновляем игроков
             val updatedPlayers = currentState.players?.map { currentPlayer ->
                 if (currentPlayer == player)
                     currentPlayer.copy(tokens = newTokens)
@@ -93,7 +90,6 @@ class GameViewModel @Inject constructor(
                     currentPlayer
             }
 
-            // обновляем fabled, если это тот же player
             val updatedFabled =
                 if (player == currentState.fabled)
                     currentState.fabled.copy(tokens = newTokens)
