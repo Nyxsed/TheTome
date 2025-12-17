@@ -133,6 +133,8 @@ object TokenProvider {
     val CannibalPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_cannibal)
     val CannibalLunch = Token(nameResId = R.string.token_lunch, iconRes = R.drawable.icon_cannibal)
 
+    val NobleKnow = Token(nameResId = R.string.token_know, iconRes = R.drawable.icon_noble)
+
     val WidowPoison = Token(nameResId = R.string.token_poison, iconRes = R.drawable.icon_widow)
     val WidowKnow = Token(nameResId = R.string.token_know, iconRes = R.drawable.icon_widow)
 

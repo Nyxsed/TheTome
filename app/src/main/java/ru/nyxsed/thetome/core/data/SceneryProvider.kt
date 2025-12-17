@@ -128,6 +128,35 @@ object SceneryProvider {
         ),
     )
 
+    val PiesBaking = Scenery(
+        sceneryNameRes = R.string.scenery_name_pies_baking,
+        iconRes = R.drawable.icon_pies_baking,
+        roles = listOf(
+            RoleProvider.Noble,
+            RoleProvider.Chef,
+            RoleProvider.Washerwoman,
+            RoleProvider.Librarian,
+            RoleProvider.Empath,
+            RoleProvider.FortuneTeller,
+            RoleProvider.Monk,
+            RoleProvider.Slayer,
+            RoleProvider.Soldier,
+            RoleProvider.Ravenkeeper,
+            RoleProvider.Cannibal,
+            RoleProvider.Virgin,
+            RoleProvider.Mayor,
+            RoleProvider.Butler,
+            RoleProvider.Saint,
+            RoleProvider.Recluse,
+            RoleProvider.Drunk,
+            RoleProvider.Poisoner,
+            RoleProvider.Spy,
+            RoleProvider.Baron,
+            RoleProvider.Marionette,
+            RoleProvider.Imp,
+        ),
+    )
+
     val ALleechOfDistrust = Scenery(
         sceneryNameRes = R.string.scenery_name_a_lleech_of_distrust,
         iconRes = R.drawable.lleech_of_distrust,
@@ -190,6 +219,7 @@ object SceneryProvider {
         BadMoonRising,
         SectsNViolets,
         UncertainDeath,
+        PiesBaking,
         NoGreaterJoy,
         ALleechOfDistrust,
         LaissezUnFaire,

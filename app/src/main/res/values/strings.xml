@@ -125,6 +125,7 @@
     <string name="scenery_name_trouble_brewing" translatable="false">Trouble Brewing</string>
     <string name="scenery_name_bad_moon_rising" translatable="false">Bad Moon Rising</string>
     <string name="scenery_name_sects_and_violets" translatable="false">Sects and Violets</string>
+    <string name="scenery_name_pies_baking" translatable="false">Pies Baking</string>
     <string name="scenery_name_uncertain_death" translatable="false">Uncertain Death</string>
     <string name="scenery_name_a_lleech_of_distrust" translatable="false">A Lleech of Distrust</string>
     <string name="scenery_name_no_greater_joy" translatable="false">No Greater Joy</string>
@@ -477,6 +478,11 @@
     <string name="role_ability_cannibal">You have the ability of the recently killed executee. If they are evil, you are poisoned until a good player dies by execution</string>
     <string name="action_day_cannibal">If a good player dies by execution, mark them with the LUNCH reminder, and remove the Cannibal’s POISONED reminder if necessary. The Cannibal now has this good player’s ability (do not say which), and will wake at night when this good character would normally wake. If an evil player dies by execution, mark them with the LUNCH reminder and mark the Cannibal with the POISONED reminder</string>
     <string name="action_second_night_cannibal">Wake Cannibal if needed</string>
+
+    <string name="role_name_noble">Noble</string>
+    <string name="role_ability_noble">You start knowing 3 players, 1 and only 1 of which is evil</string>
+    <string name="action_prepare_noble">Mark two good players character tokens with Noble KNOW reminders. Mark any evil players character token with the third KNOW reminder</string>
+    <string name="action_first_night_noble">During the first night, wake the Noble. Point to all three players marked KNOW</string>
 
     <string name="role_name_widow">Widow</string>
     <string name="role_ability_widow">On your 1st night, look at the Grimoire and choose a player: they are poisoned. 1 good player knows a Widow is in play</string>

@@ -67,6 +67,7 @@ import ru.nyxsed.thetome.core.data.TokenProvider.MonkSafe
 import ru.nyxsed.thetome.core.data.TokenProvider.MoonchildKill
 import ru.nyxsed.thetome.core.data.TokenProvider.NoDashiiKill
 import ru.nyxsed.thetome.core.data.TokenProvider.NoDashiiPoison
+import ru.nyxsed.thetome.core.data.TokenProvider.NobleKnow
 import ru.nyxsed.thetome.core.data.TokenProvider.PhilosopherDrunk
 import ru.nyxsed.thetome.core.data.TokenProvider.PhilosopherIs
 import ru.nyxsed.thetome.core.data.TokenProvider.PixieMad
@@ -564,6 +565,17 @@ object RoleProvider {
         dayActionId = R.string.action_day_cannibal,
         iconRes = R.drawable.icon_cannibal,
         nightPriority = 999,
+    )
+
+    val Noble = Role(
+        type = RoleType.TOWNSFOLK,
+        roleName = R.string.role_name_noble,
+        ability = R.string.role_ability_noble,
+        tokens = listOf(NobleKnow, NobleKnow, NobleKnow),
+        prepareActionId = R.string.action_prepare_noble,
+        firstNightActionId = R.string.action_first_night_noble,
+        iconRes = R.drawable.icon_noble,
+        nightPriority = 101,
     )
 
 
