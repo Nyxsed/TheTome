@@ -11,6 +11,7 @@ import kotlinx.serialization.json.Json
 import ru.nyxsed.thetome.core.domain.models.Role
 import ru.nyxsed.thetome.features.card.presentation.CardScreen
 import ru.nyxsed.thetome.features.game.presentation.GameScreen
+import ru.nyxsed.thetome.features.pickrole.presentation.PickRoleScreen
 import ru.nyxsed.thetome.features.settings.presentation.SettingsScreen
 import ru.nyxsed.thetome.features.start.presentation.StartScreen
 
@@ -20,38 +21,54 @@ fun AppNavHost(navController: NavHostController) {
         composable("start") {
             StartScreen(
                 onNewGameClicked = { navController.navigate("settings") },
-                onRestoreGameClicked = { navController.navigate("restore_game") },
+                onRestoreGameClicked = { navController.navigate("game") },
             )
         }
         composable("settings") {
             SettingsScreen(
-                onStartGameClicked = { navController.navigate("restore_game") }
+                onStartGameClicked = { navController.navigate("pick_role") }
             )
         }
-        composable("restore_game") {
-            GameScreen(
-                onEditGameClicked = { navController.navigate("settings") },
-                onCardClicked = { stringResourceId, roles ->
+        composable("pick_role") {
+            PickRoleScreen(
+                onNewGameClicked = { navController.navigate("game") },
+                onRoleClicked = { stringResourceId, roles ->
                     val cleanRoles = roles?.filterNotNull()
                     val rolesJson = Json.encodeToString(cleanRoles)
-                    navController.navigate("card/$stringResourceId/$rolesJson")
+                    navController.navigate("card/$stringResourceId/$rolesJson/true")
                 },
                 onDoublePressBack = {
                     navController.popBackStack()
                 }
             )
         }
-        composable("card/{stringResourceId}/{rolesJson}",
+        composable("game") {
+            GameScreen(
+                onEditGameClicked = { navController.navigate("settings") },
+                onCardClicked = { stringResourceId, roles ->
+                    val cleanRoles = roles?.filterNotNull()
+                    val rolesJson = Json.encodeToString(cleanRoles)
+                    navController.navigate("card/$stringResourceId/$rolesJson/false")
+                },
+                onDoublePressBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable("card/{stringResourceId}/{rolesJson}/{haveButton}",
             arguments = listOf(
                 navArgument("stringResourceId") { type = NavType.IntType },
-                navArgument("rolesJson") { type = NavType.StringType }
+                navArgument("rolesJson") { type = NavType.StringType },
+                navArgument("haveButton") { type = NavType.BoolType }
             )) { backStackEntry ->
             val stringResourceId = backStackEntry.arguments?.getInt("stringResourceId") ?: 0
             val rolesJson = backStackEntry.arguments?.getString("rolesJson") ?: "[]"
             val roles = Json.decodeFromString<List<Role>>(rolesJson)
+            val haveButton = backStackEntry.arguments?.getBoolean("haveButton") ?: false
             CardScreen(
                 stringResourceId = stringResourceId,
                 roles = roles,
+                haveButton = haveButton,
                 onDoublePressBack = {
                     navController.popBackStack()
                 }

@@ -96,7 +96,7 @@ fun PlayersWheel(
 
         // Определяем размер элементов
         val circleSizeFactor = when (items.size) {
-            in 5..20 -> 0.25f - (items.size - 5) * 0.01f
+            in 5..20 -> 0.24f - (items.size - 5) * 0.01f
             else -> 0.11f
         }.coerceAtLeast(0.11f)
 
@@ -118,13 +118,13 @@ fun PlayersWheel(
         val maxPossibleRadius = (availableSize - maxItemSize) / 2f
         val radiusPx = maxPossibleRadius * 0.95f
 
-        val slotCenters = List(items.size) { idx ->
-            val ang = Math.toRadians((-90 + 360f / items.size * idx).toDouble())
-            Offset(
-                (cx + radiusPx * cos(ang)).toFloat(),
-                (cy + radiusPx * sin(ang)).toFloat()
-            )
-        }
+        // Рассчитываем позиции с учетом разрыва и поворота
+        val slotCenters = calculatePositionsWithGap(
+            items = items,
+            radius = radiusPx,
+            centerX = cx,
+            centerY = cy
+        )
 
         // Логика для кругового режима: определяем порядок при перетаскивании
         val placeholderIndex = if (draggingId == null) -1
@@ -393,6 +393,34 @@ fun PlayersWheel(
         }
     }
 }
+
+private fun calculatePositionsWithGap(
+    items: List<Player>,
+    radius: Float,
+    centerX: Float,
+    centerY: Float
+): List<Offset> {
+    val n = items.size
+    if (n == 0) return emptyList()
+
+    val totalSlots = n + 1          // n элементов + 1 пустой
+    val stepDeg = 360.0 / totalSlots
+
+    val gapCenterDeg = 90.0
+
+    val firstCenterDeg = gapCenterDeg + stepDeg
+
+    return (0 until n).map { i ->
+        val angleDeg = (firstCenterDeg + i * stepDeg) % 360.0
+        val angleRad = Math.toRadians(angleDeg)
+
+        Offset(
+            (centerX + radius * cos(angleRad)).toFloat(),
+            (centerY + radius * sin(angleRad)).toFloat()
+        )
+    }
+}
+
 
 private fun nearestIndexForOffset(cur: Offset, centers: List<Offset>): Int {
     var best = 0

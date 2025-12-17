@@ -34,4 +34,7 @@ data class GameState(
         val sceneryRoleSet = scenery?.roles?.toSet() ?: emptySet()
         jinx.roles.all { role -> sceneryRoleSet.contains(role) }
     }
+    fun getPlayerByRole(role: Role): Player? {
+        return players?.find { it.role == role }
+    }
 }

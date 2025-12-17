@@ -42,6 +42,8 @@
     <string name="text_return_ghost_vote">Return Ghost Vote</string>
     <string name="text_jinxes">Jinxes</string>
     <string name="text_allow_multiple_roles">Allow multiple roles</string>
+    <string name="text_choose_role">Choose your role</string>
+    <string name="text_enter_name">Enter your name</string>
 
     <string name="action_prepare_3_demon_bluffs">Prepare 3 demon bluffs</string>
     <string name="action_prepare_bag">Prepare bag of roles and pass it to players</string>

@@ -39,6 +39,8 @@
     <string name="text_return_ghost_vote">Вернуть голос призрака</string>
     <string name="text_jinxes">Сглазы</string>
     <string name="text_allow_multiple_roles">Разрешить одинаковые роли</string>
+    <string name="text_choose_role">Выбери свою роль</string>
+    <string name="text_enter_name">Введи своё имя</string>
 
     <string name="action_prepare_3_demon_bluffs">Подготовить 3 блефа демона</string>
     <string name="action_prepare_bag">Подготовить мешок ролей и передать игрокам</string>
