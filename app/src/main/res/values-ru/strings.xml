@@ -192,6 +192,7 @@
 
     <string name="role_name_virgin">Девственница</string>
     <string name="role_ability_virgin">Первый раз, когда вас номинируют, если номинирующий – Горожанин, его немедленно казнят</string>
+    <string name="action_day_virgin">Во время номинаций, когда Девственницу номинируют первый раз если номинирующий – Горожанин, его немедленно казнят. положи жетон потраченной способности</string>
 
     <string name="role_name_saint">Святой</string>
     <string name="role_ability_saint">Если вы умираете в результате казни, ваша команда проигрывает</string>

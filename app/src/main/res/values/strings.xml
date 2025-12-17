@@ -204,6 +204,7 @@
 
     <string name="role_name_virgin">Virgin</string>
     <string name="role_ability_virgin">The 1st time you are nominated, if the nominator is a Townsfolk, they are executed immediately</string>
+    <string name="action_day_virgin">During a nomination, Virgin are nominated, if the nominator is a Townsfolk, they are executed immediately</string>
 
     <string name="role_name_saint">Saint</string>
     <string name="role_ability_saint">If you die by execution, your team loses</string>

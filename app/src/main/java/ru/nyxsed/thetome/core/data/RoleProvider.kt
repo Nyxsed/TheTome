@@ -208,6 +208,7 @@ object RoleProvider {
         tokens = listOf(VirginNoAbility),
         roleName = R.string.role_name_virgin,
         ability = R.string.role_ability_virgin,
+        dayActionId = R.string.action_day_virgin,
         iconRes = R.drawable.icon_virgin,
         nightPriority = 999,
     )
